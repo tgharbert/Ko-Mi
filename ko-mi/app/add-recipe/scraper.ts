@@ -7,21 +7,25 @@ const ldScraper = async (url: string) => {
       .get(url)
       .catch((err: string) => console.error(err));
     const html = response.data;
-    // console.log(
-    //   "response: *********************************************  ",
-    //   html
-    // );
     const $ = await cheerio.load(html);
     const jsonLDData: string[] = [];
-    $('script[type="application/ld+json"]').each((index, element) => {
+    $('script[type="application/ld+json"]').each((index, element: string) => {
       const json = JSON.parse($(element).html());
       jsonLDData.push(json);
     });
-    // console.log("jsonLDData: ", jsonLDData);
     return jsonLDData;
   } catch (error) {
     console.error("error retrieving from URL: ", error);
   }
 };
 
-export default ldScraper;
+const getData = async (url: string) => {
+  try {
+    const result = await ldScraper(url);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default getData;
