@@ -7,7 +7,12 @@ export default function RecipeURLForm() {
   return (
     <div>
       <form>
-        <input type="text" value={recipeURL} placeholder="Recipe URL" />
+        <input
+          type="text"
+          value={recipeURL}
+          onChange={(e) => setRecipeURL(e.target.value)}
+          placeholder="Recipe URL"
+        />
         <button>Enter Recipe</button>
       </form>
     </div>
