@@ -3,14 +3,14 @@ import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <div>
+    <div className="text-center ">
       <div className="header">
         <Header />
         <h1>Ko-Mi</h1>
       </div>
-      <div>
-        <>This is the Body</>
-      </div>
+      <h2>
+        <p>Here are a list of your recipes:</p>
+      </h2>
     </div>
   );
 }

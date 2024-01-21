@@ -2,7 +2,7 @@ import Header from "../components/Header";
 
 const Ingredients = () => {
   return (
-    <div>
+    <div className="text-center">
       <Header />
       <h1>Ingredients</h1>
       <ul>This will be a list of ingredients</ul>
