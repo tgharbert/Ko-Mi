@@ -25,8 +25,6 @@ export default function RecipeURLForm() {
     setRecipeURL("");
   };
 
-  console.log("recipe1", recipe);
-
   return (
     <div className="pt-4">
       <form onSubmit={handleRecipeSubmit}>
