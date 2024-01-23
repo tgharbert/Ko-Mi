@@ -4,19 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:seed": "ts-node --esm prisma/seed.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "@supabase/supabase-js": "^2.39.3",
     "axios": "^1.6.5",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.2",
-    "mongoose": "^8.1.0",
     "next": "14.1.0",
     "next-auth": "^4.24.5",
+    "postgres": "^3.4.3",
+    "prisma": "^5.8.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tsx": "^4.7.0"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import getData from "../add-recipe/scraper";
-import { parse } from "path";
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
@@ -19,7 +18,6 @@ export default function RecipeURLForm() {
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newRecipe = await getData(recipeURL);
-    // console.log("recipe", newRecipe);
     parseRecipe(newRecipe);
     // send the recipe to the database...
     setRecipeURL("");
@@ -39,6 +37,11 @@ export default function RecipeURLForm() {
           Enter Recipe
         </button>
       </form>
+      {recipe ? (
+        <div>{JSON.stringify(recipe.recipeIngredient)}</div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

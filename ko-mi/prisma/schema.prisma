@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// RGoa5OXVw1rJRAi2
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Recipe {
+  id          Int      @id @default(autoincrement())
+  title       String
+  author      String
+  description String
+  name        String
+  keywords    String[]
+
+  ingredients Ingredient[]
+  userId      Int?
+  users       User?        @relation(fields: [userId], references: [id])
+
+  instructions     String[]
+  image            String[]
+  aggregateRating  Float
+  cuisine          String
+  publisher        String
+  recipeYield      Int
+  mainEntityOfPage Boolean
+  totalTime        String
+  cookTime         String
+  prepTime         String
+}
+
+model CurrentIngredient {
+  id      Int      @id @default(autoincrement())
+  name    String
+  checked Boolean
+  types   String[]
+
+  userId Int?
+  users  User? @relation(fields: [userId], references: [id])
+}
+
+model Ingredient {
+  id            Int      @id @default(autoincrement())
+  name          String
+  types         String[]
+  ingredientsId String
+
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+}
+
+model Location {
+  id    Int    @id @default(autoincrement())
+  store String
+  home  String
+
+  ingredientId Int
+  Ingredient   Ingredient[]
+}
+
+model User {
+  id                 Int                 @id @default(autoincrement())
+  email              String              @unique
+  name               String?
+  password           String?
+  recipes            Recipe[]
+  currentIngredients CurrentIngredient[]
+}

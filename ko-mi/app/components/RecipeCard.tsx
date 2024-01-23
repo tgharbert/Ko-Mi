@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+// need to refine based on the data model in MVP
 type Recipe = {
   name: string;
   description: string;
