@@ -1,6 +1,11 @@
 export default function Header() {
   return (
-    <div className="bg-green">
+    <div className="bg-green pb-6">
+      <div>
+        <h1 className="pt-4 pb-4 font-bold text-5xl italic text-lime-500">
+          Ko-Mi
+        </h1>
+      </div>
       <span>
         <a className="px-4 hover:text-lime-600" href="/">
           Home
@@ -12,11 +17,6 @@ export default function Header() {
           Ingredients
         </a>
       </span>
-      <div>
-        <h1 className="pt-4 pb-4 font-bold text-5xl italic text-lime-500">
-          Ko-Mi
-        </h1>
-      </div>
     </div>
   );
 }

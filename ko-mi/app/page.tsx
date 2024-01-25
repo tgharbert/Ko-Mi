@@ -17,9 +17,9 @@ export default function Home() {
 
   return (
     <div className="text-center ">
-      <div className="header">
+      <div className="-mt-9">
         <Header />
-        <h1>Ko-Mi</h1>
+        {/* <h1>Ko-Mi</h1> */}
       </div>
       <h2>
         <p>Here are a list of your recipes:</p>

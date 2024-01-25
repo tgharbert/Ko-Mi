@@ -1,42 +1,44 @@
 "use client";
+import RecipeCard from "./RecipeCard";
 import { useState } from "react";
 import getData from "../add-recipe/scraper";
 // this is how I will send data to the new page - (new-recipe)
-import Link from "next/link";
+// import Link from "next/link";
 
-type Recipe = {
-  title: string;
-  author: string;
-  description: string;
-  name: string;
-  keywords: string[];
-  instructions: string[];
-  image: string[];
-  aggregateRating: number;
-  cuisine: string;
-  publisher: string;
-  recipeYield: number;
-  mainEntityOfPage: boolean;
-  totalTime: string;
-  cookTime: string;
-  prepTime: string;
-};
+// type Recipe = {
+//   title: string;
+//   author: string;
+//   description: string;
+//   name: string;
+//   keywords: string[];
+//   instructions: string[];
+//   image: string[];
+//   aggregateRating: number;
+//   cuisine: string;
+//   publisher: string;
+//   recipeYield: number;
+//   mainEntityOfPage: boolean;
+//   totalTime: string;
+//   cookTime: string;
+//   prepTime?: string;
+// };
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
-  const [recipe, setRecipe] = useState([]);
+  const [recipe, setRecipe] = useState(["empty"]);
 
   // should this happen on the new-recipe page?
   // currently we leave the page before the parsing is finished
   const parseRecipe = (newRecipe: any) => {
     if (Array.isArray(newRecipe)) {
-      console.log("good test");
+      // console.log("good test");
       parseRecipe(newRecipe[0]);
     } else {
       setRecipe(newRecipe as any);
     }
   };
 
+  // console.log(recipe);
   // ONE WAY TO DO THIS IS TO SIMPLY PASS THE URL TO THE NEW-RECIPE PAGE
   // THEN HAVE ALL OF THIS WORK DONE ON THAT PAGE...
 
@@ -59,23 +61,24 @@ export default function RecipeURLForm() {
           placeholder="Recipe URL"
         />
         <button className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3">
-          {/* Enter Recipe */}
-          {/* send the recipe data here */}
-          <Link
+          {/* <Link
             href={{
               pathname: "/new-recipe",
-              query: { search: recipeURL },
+              // passes into the URL of the page...
+              query: { recipe: recipeURL },
             }}
           >
             Enter Recipe
-          </Link>
+          </Link> */}
+          Enter Recipe
         </button>
       </form>
-      {recipe ? (
+      {/* {recipe ? (
         <div>Here is some data: {JSON.stringify(recipe.recipeIngredient)}</div>
       ) : (
         <div></div>
-      )}
+      )} */}
+      <div>{recipe.length !== 1 ? <RecipeCard recipe={recipe} /> : ""}</div>
     </div>
   );
 }
