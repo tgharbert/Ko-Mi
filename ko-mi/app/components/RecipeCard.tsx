@@ -22,24 +22,24 @@ type Recipe = {
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   return (
-    <div>
+    <div className="mr-20 ml-20">
       <div>
-        <h1>{recipe.name}</h1>
+        <h1 className="text-xl pt-4">{recipe.name}</h1>
       </div>
-      <div className="flexbox">
+      <div className="pt-4 pb-4">
         <Image
-          width="100"
-          height="100"
+          width="400"
+          height="400"
           src={recipe.image[0]}
           alt="recipe-photo"
-          className=""
+          className="rounded-lg"
         />
       </div>
-      <div>
+      <div className="pt-4 pb-4">
         <p>Description: </p>
         <p>{recipe.description}</p>
       </div>
-      <div className="pt-4">
+      <div className="pt-4 pb-4">
         <p>Ingredients: </p>
         <ul>
           {recipe.recipeIngredient.map((ingredient, idx) => (

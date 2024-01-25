@@ -7,13 +7,13 @@ export default function Header() {
         </h1>
       </div>
       <span>
-        <a className="px-4 hover:text-lime-600" href="/">
+        <a className="px-6 hover:text-lime-600" href="/">
           Home
         </a>
-        <a className="px-4 hover:text-lime-600" href="/add-recipe">
+        <a className="px-6 hover:text-lime-600" href="/add-recipe">
           Add Recipe
         </a>
-        <a className="px-4 hover:text-lime-600" href="/ingredients">
+        <a className="px-6 hover:text-lime-600" href="/ingredients">
           Ingredients
         </a>
       </span>
