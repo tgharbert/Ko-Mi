@@ -10,7 +10,6 @@ const AddRecipe = () => {
       <div className="-mt-9">
         <Header />
       </div>
-      {/* <h1>Add Recipe</h1> */}
       <RecipeURLForm />
     </div>
   );
