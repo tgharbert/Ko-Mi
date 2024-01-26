@@ -7,7 +7,6 @@ const SignInButton = () => {
 
   if (session && session.user) {
     return (
-      // <div className="flex gap-4 ml-auto">
       <div className="flow-root w-full	">
         <p className="float-left">{session.user.name}</p>
         <button className="float-right" onClick={() => signOut()}>

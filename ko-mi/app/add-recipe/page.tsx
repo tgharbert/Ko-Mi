@@ -1,8 +1,5 @@
 import RecipeURLForm from "../components/RecipeURLForm";
 import Header from "../components/Header";
-import getData from "./scraper";
-
-// how to pass data from one page to another?
 
 const AddRecipe = () => {
   return (

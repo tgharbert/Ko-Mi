@@ -23,6 +23,7 @@ type Recipe = {
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   const handleRecipeSubmission = async () => {
+    console.log(recipe);
     try {
       const response = await fetch("/api/add-recipe", {
         method: "POST",
@@ -63,7 +64,6 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           ))}
         </ul>
       </div>
-      {/* <AddRecipeButton /> */}
       <div className="mx-4 pb-10">
         <button
           onClick={() => handleRecipeSubmission()}

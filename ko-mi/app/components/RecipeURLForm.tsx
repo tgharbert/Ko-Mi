@@ -1,9 +1,7 @@
 "use client";
 import RecipeCard from "./RecipeCard";
 import { useState } from "react";
-import getData from "../add-recipe/scraper";
-// this is how I will send data to the new page - (new-recipe)
-// import Link from "next/link";
+import getData from "../../utils/scraper";
 
 // type Recipe = {
 //   title: string;
@@ -27,26 +25,20 @@ export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
   const [recipe, setRecipe] = useState(["empty"]);
 
-  // should this happen on the new-recipe page?
-  // currently we leave the page before the parsing is finished
   const parseRecipe = (newRecipe: any) => {
     if (Array.isArray(newRecipe)) {
-      // console.log("good test");
       parseRecipe(newRecipe[0]);
     } else {
+      // this is crucial!!!!
       setRecipe(newRecipe as any);
     }
   };
-
-  // console.log(recipe);
-  // ONE WAY TO DO THIS IS TO SIMPLY PASS THE URL TO THE NEW-RECIPE PAGE
-  // THEN HAVE ALL OF THIS WORK DONE ON THAT PAGE...
+  console.log(Array.isArray(recipe));
 
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newRecipe = await getData(recipeURL);
     parseRecipe(newRecipe);
-    // send the recipe to the database...
     setRecipeURL("");
   };
 
@@ -61,23 +53,10 @@ export default function RecipeURLForm() {
           placeholder="Recipe URL"
         />
         <button className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3">
-          {/* <Link
-            href={{
-              pathname: "/new-recipe",
-              // passes into the URL of the page...
-              query: { recipe: recipeURL },
-            }}
-          >
-            Enter Recipe
-          </Link> */}
           Enter Recipe
         </button>
       </form>
-      {/* {recipe ? (
-        <div>Here is some data: {JSON.stringify(recipe.recipeIngredient)}</div>
-      ) : (
-        <div></div>
-      )} */}
+      {/* I DON'T LIKE THIS CONDITIONAL RENDERING... */}
       <div>{recipe.length !== 1 ? <RecipeCard recipe={recipe} /> : ""}</div>
     </div>
   );
