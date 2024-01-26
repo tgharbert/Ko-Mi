@@ -1,25 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-// import prisma from "@/utils/prisma";
 import { PrismaClient } from "@prisma/client";
-// export { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
-// export async function POST(request: NextApiRequest, response: NextApiResponse) {
-//   console.log("hit");
-//   if (request.method === "POST") {
-//     try {
-//       const recipe = request.body;
-//       console.log("response", recipe);
-//       response.status(200).json(recipe);
-//       return response;
-//     } catch (error) {
-//       console.error("ERROR POSTING RECIPE: ", error);
-//       // response.status(405);
-//       return response;
-//     }
-//   }
-// }
 
 export async function POST(req: Request, res: Response) {
   const recipe = await req.json();
@@ -32,7 +13,14 @@ export async function POST(req: Request, res: Response) {
       keywords: recipe.keywords,
     },
   });
-  return new Response(recipe);
+  newRecipe
+    .then((newRecipe) => {
+      console.log("NEW RECIPE: ", newRecipe);
+    })
+    .catch((error) => {
+      console.error("ERROR: ", error);
+    });
+  return new Response(JSON.stringify(newRecipe));
 }
 // export default async function addRecipe(recipe: any) {
 //   try {
