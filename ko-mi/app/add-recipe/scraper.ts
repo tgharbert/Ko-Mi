@@ -15,7 +15,6 @@ const ldScraper = async (url: string) => {
       const json = JSON.parse($(element).html());
       jsonLDData.push(json);
     });
-    console.log(jsonLDData);
     return jsonLDData;
   } catch (error) {
     console.error("error retrieving from URL: ", error);

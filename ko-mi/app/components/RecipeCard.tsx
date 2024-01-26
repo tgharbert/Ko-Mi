@@ -1,5 +1,4 @@
 import Image from "next/image";
-import AddRecipeButton from "./AddRecipeButton";
 // import addRecipe from "../api/addRecipe/route";
 
 // need to refine based on the data model in MVP
@@ -23,10 +22,6 @@ type Recipe = {
 };
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-  // const submitRecipe = (recipe: Recipe) => {
-  //   addRecipe(recipe);
-  // };
-
   const handleRecipeSubmission = async () => {
     try {
       const response = await fetch("/api/add-recipe", {
@@ -36,29 +31,11 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         },
         body: JSON.stringify(recipe),
       });
-      const data = await response.json();
-      console.log("recipe card");
+      console.log(response);
     } catch (error) {
-      console.error(error);
+      console.error("error", error);
     }
   };
-
-  // const handlePostSubmit = async () => {
-  //   try {
-  //     const response = await fetch("/api/posts", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(postData),
-  //     });
-
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error("Error creating post:", error);
-  //   }
-  // };
 
   return (
     <div className="mr-20 ml-20">
