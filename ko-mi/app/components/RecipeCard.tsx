@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
 // import addRecipe from "../api/addRecipe/route";
+import Accordion from "@mui/material/Accordion";
+import AccordionActions from "@mui/material/AccordionActions";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Button from "@mui/material/Button";
 
 // need to refine based on the data model in MVP
 type Recipe = {
@@ -28,6 +34,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   const [showIngredients, setShowIngredients] = useState(false);
 
   const handleRecipeSubmission = async () => {
+    console.log("hi");
     try {
       const response = await fetch("/api/add-recipe", {
         method: "POST",
@@ -47,6 +54,9 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
       <div>
         <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
       </div>
+      <div>
+        <p className="text-sm pt-2 italic">by: {recipe.author}</p>
+      </div>
       <div className="pt-4 pb-4 flex items-center justify-center">
         <Image
           width="400"
@@ -57,14 +67,56 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         />
       </div>
       <div className="pt-4 pb-4">
-        <p className="text-lg italic">Description: </p>
+        <p className="text-lg italic font-semibold">Description: </p>
         <p>{recipe.description}</p>
       </div>
       {/* BUTTON TO SHOW MORE... */}
-      <div>
-        <button>Show Instructions</button>
+      <div className="mt-7 rounded-lg">
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+            className="font-semibold text-center"
+          >
+            Recipe Instructions
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul className=" text-left">
+              {recipe.recipeInstructions.map((instruction, idx) => (
+                <li className="pb-4" key={idx}>
+                  {instruction.text}
+                </li>
+              ))}
+            </ul>
+          </AccordionDetails>
+        </Accordion>
       </div>
-      <div className="pt-4 pb-4 ">
+
+      <div>
+        <Accordion className="mt-7">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+            className="font-semibold text-center"
+          >
+            Recipe Ingredients
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul className="px-2 list-disc text-left">
+              {recipe.recipeIngredient.map((ingredient, idx) => (
+                <li key={idx}>{ingredient}</li>
+              ))}
+            </ul>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+      {/* END OF TEST */}
+      {/* <div>
+        <button>Show Instructions</button>
+      </div> */}
+      {/* <div className="pt-4 pb-4 ">
         <p className="text-lg italic">Instructions: </p>
         <ul className="list-decimal text-left">
           {recipe.recipeInstructions.map((instruction, idx) => (
@@ -73,17 +125,17 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
       {/* BUTTON TO SHOW MORE... */}
-      <div className="pt-4 pb-4">
+      {/* <div className="pt-4 pb-4">
         <p className="text-lg italic">Ingredients: </p>
         <ul className="px-2 list-disc text-left">
           {recipe.recipeIngredient.map((ingredient, idx) => (
             <li key={idx}>{ingredient}</li>
           ))}
         </ul>
-      </div>
-      <div className="mx-4 pb-10">
+      </div> */}
+      <div className="mx-4 pt-7 pb-10">
         <button
           onClick={() => handleRecipeSubmission()}
           className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3"

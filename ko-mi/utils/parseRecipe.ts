@@ -8,14 +8,17 @@ const getRecipeObject = (array: any) => {
       // return array[0]["@graph"][array[0]["@graph"].length - 1];
       let recipe = array[0]["@graph"][array[0]["@graph"].length - 1];
       getImage(recipe);
+      getAuthor(recipe);
       console.log("HERE", recipe);
       return recipe;
     }
     return getRecipeObject(array[0]);
   } else {
-    getImage(array);
-    console.log(array);
-    return array;
+    let recipe = array;
+    getImage(recipe);
+    getAuthor(recipe);
+    // console.log(array);
+    return recipe;
   }
 };
 
@@ -29,6 +32,10 @@ const getImage = (recipe: any) => {
   if (recipe.image.url) {
     recipe.image = recipe.image.url;
   }
+};
+
+const getAuthor = (recipe: any) => {
+  recipe.author = recipe.author[0].name;
 };
 
 export default getRecipeObject;
