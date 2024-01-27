@@ -2,6 +2,7 @@
 import RecipeCard from "./RecipeCard";
 import { useState } from "react";
 import getData from "../../utils/scraper";
+import getRecipeObject from "@/utils/parseRecipe";
 
 // type Recipe = {
 //   title: string;
@@ -23,22 +24,14 @@ import getData from "../../utils/scraper";
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
-  const [recipe, setRecipe] = useState(["empty"]);
-
-  const parseRecipe = (newRecipe: any) => {
-    if (Array.isArray(newRecipe)) {
-      parseRecipe(newRecipe[0]);
-    } else {
-      // this is crucial!!!!
-      setRecipe(newRecipe as any);
-    }
-  };
-  console.log(Array.isArray(recipe));
+  const [recipe, setRecipe] = useState({});
+  const [isRecipe, setIsRecipe] = useState(false);
 
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newRecipe = await getData(recipeURL);
-    parseRecipe(newRecipe);
+    setRecipe(getRecipeObject(newRecipe));
+    setIsRecipe(true);
     setRecipeURL("");
   };
 
@@ -56,8 +49,7 @@ export default function RecipeURLForm() {
           Enter Recipe
         </button>
       </form>
-      {/* I DON'T LIKE THIS CONDITIONAL RENDERING... */}
-      <div>{recipe.length !== 1 ? <RecipeCard recipe={recipe} /> : ""}</div>
+      <div>{isRecipe ? <RecipeCard recipe={recipe} /> : ""}</div>
     </div>
   );
 }
