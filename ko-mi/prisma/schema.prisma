@@ -8,14 +8,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model Recipe {
   id          Int      @id @default(autoincrement())
-  title       String
+  url         String
   author      String
   description String
   name        String
@@ -26,12 +26,14 @@ model Recipe {
   users       User?        @relation(fields: [userId], references: [id])
 
   instructions     String[]
-  image            String[]
+  image            String
   aggregateRating  Float
-  cuisine          String
-  publisher        String
-  recipeYield      Int
-  mainEntityOfPage Boolean
+  category         String[]
+  publisherName    String?
+  publisherUrl     String?
+  publisherLogo    String?
+  recipeYield      String
+  // mainEntityOfPage Boolean
   totalTime        String
   cookTime         String
   prepTime         String
@@ -48,13 +50,13 @@ model CurrentIngredient {
 }
 
 model Ingredient {
-  id            Int      @id @default(autoincrement())
-  name          String
-  types         String[]
-  ingredientsId String
+  id    Int      @id @default(autoincrement())
+  name  String
+  types String[]
+  // ingredientsId String
 
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId Int
+  location   Location? @relation(fields: [locationId], references: [id])
+  locationId Int?
 
   recipe   Recipe @relation(fields: [recipeId], references: [id])
   recipeId Int

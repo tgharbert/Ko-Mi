@@ -3,7 +3,7 @@ export default function Header() {
     <div className="bg-green pb-6 pt-4">
       <div>
         <h1 className="pt-4 pb-4 font-bold text-5xl italic text-lime-500">
-          Ko-Mi
+          <a href="/">Ko-Mi</a>
         </h1>
       </div>
       <span>
