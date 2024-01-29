@@ -10,13 +10,13 @@ const getRecipeObject = (array: any) => {
     }
     return getRecipeObject(array[0]);
   } else {
+    console.log(array);
+
     let recipe = array;
     formatRecipe(recipe);
     return recipe;
   }
 };
-
-// SHOULD WRITE A BUILD RECIPE FUNCTION THAT FORMATS RECIPE...
 
 // all sub formatters go into this 'master' formatter
 const formatRecipe = (recipe: any) => {
@@ -25,7 +25,6 @@ const formatRecipe = (recipe: any) => {
   getRecipeYield(recipe);
   getAggregateRating(recipe);
   getPublisherInfo(recipe);
-  getUrl(recipe);
   getKeywords(recipe);
   getCategory(recipe);
 };
@@ -68,13 +67,9 @@ const getPublisherInfo = (recipe: any) => {
   }
   if (recipe.publisher) {
     recipe.publisherUrl = recipe.publisher.url;
-    recipe.publisherLogo = recipe.publisher.logo.url;
-  }
-};
-
-const getUrl = (recipe: any) => {
-  if (!recipe.url) {
-    recipe.url = recipe.mainEntityOfPage["@id"];
+    if (recipe.publisherLogo) {
+      recipe.publisherLogo = recipe.publisher.logo.url;
+    }
   }
 };
 

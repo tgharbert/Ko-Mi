@@ -36,7 +36,9 @@ export default function RecipeURLForm() {
       setRecipeURL("");
       return;
     }
-    setRecipe(getRecipeObject(newRecipe));
+    let recipeObject = getRecipeObject(newRecipe);
+    recipeObject.url = recipeURL;
+    setRecipe(recipeObject);
     setIsRecipe(true);
     setRecipeURL("");
   };

@@ -29,12 +29,14 @@ export async function POST(req: Request, res: Response) {
       prepTime: recipe.prepTime || "Value not assigned",
     },
   });
-  newRecipe
+  await newRecipe
     .then((newRecipe) => {
       console.log("NEW RECIPE: ", newRecipe);
+      return new Response(JSON.stringify("finished"));
     })
     .catch((error) => {
       console.error("ERROR: ", error);
+      return new Response("ERROR: ", error);
     });
   return new Response(JSON.stringify(newRecipe));
 }
