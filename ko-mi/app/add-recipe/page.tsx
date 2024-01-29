@@ -1,4 +1,4 @@
-import RecipeURLForm from "../components/RecipeURLForm";
+import RecipeURLForm from "../components/add-recipe/RecipeURLForm";
 import Header from "../components/Header";
 
 const AddRecipe = () => {

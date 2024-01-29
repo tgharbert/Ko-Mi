@@ -1,4 +1,4 @@
-import { Recipe } from "@prisma/client";
+// import { Recipe } from "@prisma/client";
 
 const getRecipeObject = (array: any) => {
   if (Array.isArray(array)) {

@@ -4,6 +4,7 @@ import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
 // import Button from "@mui/material/Button";
 
 // need to refine based on the data model in MVP
@@ -27,7 +28,6 @@ type Recipe = {
 };
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-  console.log(recipe);
   const handleRecipeSubmission = async () => {
     try {
       const response = await fetch("/api/add-recipe", {
@@ -37,8 +37,8 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         },
         body: JSON.stringify(recipe),
       });
-      console.log(response);
     } catch (error) {
+      setIsError(true);
       console.error("error", error);
     }
   };

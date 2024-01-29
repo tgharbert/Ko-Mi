@@ -1,38 +1,24 @@
 "use client";
 import RecipeCard from "./RecipeCard";
 import { useState } from "react";
-import getData from "../../utils/scraper";
+import getData from "../../../utils/scraper";
 import getRecipeObject from "@/utils/parseRecipe";
-
-// type Recipe = {
-//   title: string;
-//   author: string;
-//   description: string;
-//   name: string;
-//   keywords: string[];
-//   instructions: string[];
-//   image: string[];
-//   aggregateRating: number;
-//   cuisine: string;
-//   publisher: string;
-//   recipeYield: number;
-//   mainEntityOfPage: boolean;
-//   totalTime: string;
-//   cookTime: string;
-//   prepTime?: string;
-// };
+import RecipeCardError from "./RecipeCardError";
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
   const [recipe, setRecipe] = useState({});
+  const [badURL, setBadURL] = useState("");
   const [isRecipe, setIsRecipe] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newRecipe = await getData(recipeURL);
     if (!newRecipe) {
-      // error message
-      alert("invalid recipe!");
+      setIsError(true);
+      setBadURL(recipeURL);
+
       setRecipeURL("");
       return;
     }
@@ -42,6 +28,7 @@ export default function RecipeURLForm() {
     setIsRecipe(true);
     setRecipeURL("");
   };
+  console.log(badURL);
 
   return (
     <div className="pt-4">
@@ -57,7 +44,17 @@ export default function RecipeURLForm() {
           Enter Recipe
         </button>
       </form>
-      <div>{isRecipe ? <RecipeCard recipe={recipe} /> : ""}</div>
+      {isError ? (
+        // <div>
+        //   <h2 className="text-lg pt-4 pb-4">
+        //     The provided URL is not supported
+        //   </h2>
+        //   <p>Please verify the provided URL or try a different one.</p>
+        // </div>
+        <RecipeCardError url={badURL} />
+      ) : (
+        <div>{isRecipe ? <RecipeCard recipe={recipe} /> : ""}</div>
+      )}
     </div>
   );
 }
