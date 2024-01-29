@@ -1,9 +1,6 @@
-// import { Recipe } from "@prisma/client";
-
 const getRecipeObject = (array: any) => {
   if (Array.isArray(array)) {
     if (array[0]["@graph"]) {
-      // right now this is just the last? object in the array
       let recipe = array[0]["@graph"][array[0]["@graph"].length - 1];
       formatRecipe(recipe);
       return recipe;
@@ -19,7 +16,7 @@ const getRecipeObject = (array: any) => {
 };
 
 // all sub formatters go into this 'master' formatter
-const formatRecipe = (recipe: any) => {
+const formatRecipe = (recipe: object) => {
   getImage(recipe);
   getAuthor(recipe);
   getRecipeYield(recipe);
@@ -27,6 +24,7 @@ const formatRecipe = (recipe: any) => {
   getPublisherInfo(recipe);
   getKeywords(recipe);
   getCategory(recipe);
+  getInstructions(recipe);
 };
 
 const getImage = (recipe: any) => {
@@ -87,6 +85,34 @@ const getCategory = (recipe: any) => {
     const category = recipe.recipeCategory;
     recipe.recipeCategory = [category];
   }
+};
+
+// ALL VALUES ARE BEING ADDED TO THE LIST AT THE MOMENT. NEED TO ADD TITLE TO THE FIRST ELEMENT??
+const getInstructions = (recipe: any) => {
+  let instructions: string[] = [];
+  recipe.recipeInstructions.map((item: any) => {
+    if (item["@type"] === "HowToSection") {
+      instructions.push(item.name + ":");
+      item.itemListElement.map((instruction: any) => {
+        instructions.push(instruction.text);
+      });
+      recipe.instructions = instructions;
+    } else {
+      instructions.push(item.text);
+      recipe.instructions = instructions;
+    }
+  });
+  // if (recipe.recipeInstructions[0]["@type"] === "HowToSection") {
+  //   recipe.recipeInstructions[0].itemListElement.map((instruction: any) => {
+  //     instructions.push(instruction.text);
+  //   });
+  //   recipe.instructions = instructions;
+  // } else {
+  //   recipe.recipeInstructions.map((instruction: any) => {
+  //     instructions.push(instruction.text);
+  //   });
+  //   recipe.instructions = instructions;
+  // }
 };
 
 export default getRecipeObject;

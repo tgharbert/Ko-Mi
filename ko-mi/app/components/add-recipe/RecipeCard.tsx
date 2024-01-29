@@ -14,7 +14,8 @@ type Recipe = {
   description: string;
   name: string;
   keywords: string[];
-  recipeInstructions: object[];
+  instructions: string[];
+  recipeInstructions: string[];
   recipeIngredient: string[];
   image: string;
   aggregateRating: number;
@@ -28,6 +29,7 @@ type Recipe = {
 };
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
+  // need to route to the homepage '/'
   const handleRecipeSubmission = async () => {
     try {
       const response = await fetch("/api/add-recipe", {
@@ -38,7 +40,6 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         body: JSON.stringify(recipe),
       });
     } catch (error) {
-      setIsError(true);
       console.error("error", error);
     }
   };
@@ -64,7 +65,6 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         <p className="text-lg italic font-semibold">Description: </p>
         <p>{recipe.description}</p>
       </div>
-      {/* BUTTON TO SHOW MORE... */}
       <div className="mt-7 rounded-lg">
         <Accordion>
           <AccordionSummary
@@ -77,9 +77,9 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           </AccordionSummary>
           <AccordionDetails>
             <ul className=" text-left">
-              {recipe.recipeInstructions.map((instruction, idx) => (
+              {recipe.instructions.map((instruction, idx) => (
                 <li className="pb-4" key={idx}>
-                  {instruction.text}
+                  {instruction}
                 </li>
               ))}
             </ul>

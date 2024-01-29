@@ -17,6 +17,7 @@ export async function POST(req: Request, res: Response) {
           name: ingredient,
         })),
       },
+      instructions: recipe.instructions,
       image: recipe.image,
       aggregateRating: recipe.aggregateRating,
       publisherName: recipe.publisherName,

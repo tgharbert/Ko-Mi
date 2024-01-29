@@ -18,17 +18,17 @@ export default function RecipeURLForm() {
     if (!newRecipe) {
       setIsError(true);
       setBadURL(recipeURL);
-
       setRecipeURL("");
       return;
     }
     let recipeObject = getRecipeObject(newRecipe);
     recipeObject.url = recipeURL;
+    setBadURL("");
+    setIsError(false);
     setRecipe(recipeObject);
     setIsRecipe(true);
     setRecipeURL("");
   };
-  console.log(badURL);
 
   return (
     <div className="pt-4">
@@ -45,12 +45,6 @@ export default function RecipeURLForm() {
         </button>
       </form>
       {isError ? (
-        // <div>
-        //   <h2 className="text-lg pt-4 pb-4">
-        //     The provided URL is not supported
-        //   </h2>
-        //   <p>Please verify the provided URL or try a different one.</p>
-        // </div>
         <RecipeCardError url={badURL} />
       ) : (
         <div>{isRecipe ? <RecipeCard recipe={recipe} /> : ""}</div>
