@@ -44,6 +44,8 @@ const getImage = (recipe: any) => {
 const getAuthor = (recipe: any) => {
   if (Array.isArray(recipe.author)) {
     recipe.author = recipe.author[0].name;
+  } else if (recipe.author.name) {
+    recipe.author = recipe.author.name;
   } else {
     recipe.author = "";
   }
