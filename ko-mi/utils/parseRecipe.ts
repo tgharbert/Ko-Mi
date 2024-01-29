@@ -5,7 +5,6 @@ const getRecipeObject = (array: any) => {
     if (array[0]["@graph"]) {
       // right now this is just the last? object in the array
       let recipe = array[0]["@graph"][array[0]["@graph"].length - 1];
-      console.log(recipe);
       formatRecipe(recipe);
       return recipe;
     }
@@ -28,6 +27,7 @@ const formatRecipe = (recipe: any) => {
   getPublisherInfo(recipe);
   getUrl(recipe);
   getKeywords(recipe);
+  getCategory(recipe);
 };
 
 const getImage = (recipe: any) => {
@@ -82,6 +82,13 @@ const getKeywords = (recipe: any) => {
   if (typeof recipe.keywords === "string") {
     const keyword = recipe.keywords;
     recipe.keywords = [keyword];
+  }
+};
+
+const getCategory = (recipe: any) => {
+  if (typeof recipe.recipeCategory === "string") {
+    const category = recipe.recipeCategory;
+    recipe.recipeCategory = [category];
   }
 };
 

@@ -30,6 +30,12 @@ export default function RecipeURLForm() {
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newRecipe = await getData(recipeURL);
+    if (!newRecipe) {
+      // error message
+      alert("invalid recipe!");
+      setRecipeURL("");
+      return;
+    }
     setRecipe(getRecipeObject(newRecipe));
     setIsRecipe(true);
     setRecipeURL("");
