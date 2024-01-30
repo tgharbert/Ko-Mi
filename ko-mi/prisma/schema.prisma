@@ -23,18 +23,20 @@ model Recipe {
   userId      Int?
   users       User?        @relation(fields: [userId], references: [id])
 
-  instructions     String[]
-  image            String
-  aggregateRating  Float
-  category         String[]
-  publisherName    String?
-  publisherUrl     String?
-  publisherLogo    String?
-  recipeYield      String
+  instructions    String[]
+  image           String
+  aggregateRating Float
+  category        String[]
+  publisherName   String?
+  publisherUrl    String?
+  publisherLogo   String?
+  recipeYield     String
   // mainEntityOfPage Boolean
-  totalTime        String
-  cookTime         String
-  prepTime         String
+  totalTime       String
+  cookTime        String
+  prepTime        String
+
+  @@unique ([url])
 }
 
 model CurrentIngredient {

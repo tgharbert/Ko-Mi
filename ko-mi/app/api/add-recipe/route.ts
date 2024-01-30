@@ -3,10 +3,15 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// CHANGE THIS TO UPSERT
 export async function POST(req: Request, res: Response) {
   const recipe = await req.json();
-  const newRecipe = prisma.recipe.create({
-    data: {
+  const newRecipe = prisma.recipe.upsert({
+    where: {
+      url: recipe.url,
+    },
+    update: {},
+    create: {
       url: recipe.url || "No URL",
       author: recipe.author,
       description: recipe.description,

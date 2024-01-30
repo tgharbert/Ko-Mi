@@ -7,8 +7,6 @@ const getRecipeObject = (array: any) => {
     }
     return getRecipeObject(array[0]);
   } else {
-    console.log(array);
-
     let recipe = array;
     formatRecipe(recipe);
     return recipe;
@@ -102,17 +100,6 @@ const getInstructions = (recipe: any) => {
       recipe.instructions = instructions;
     }
   });
-  // if (recipe.recipeInstructions[0]["@type"] === "HowToSection") {
-  //   recipe.recipeInstructions[0].itemListElement.map((instruction: any) => {
-  //     instructions.push(instruction.text);
-  //   });
-  //   recipe.instructions = instructions;
-  // } else {
-  //   recipe.recipeInstructions.map((instruction: any) => {
-  //     instructions.push(instruction.text);
-  //   });
-  //   recipe.instructions = instructions;
-  // }
 };
 
 export default getRecipeObject;
