@@ -1,9 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-// import { stringify } from "querystring";
 
 const prisma = new PrismaClient();
 
-// CHANGE THIS TO UPSERT
 export async function POST(req: Request, res: Response) {
   const recipe = await req.json();
   const newRecipe = prisma.recipe.upsert({
