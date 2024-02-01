@@ -8,11 +8,11 @@ const SignInButton = () => {
   const router = useRouter();
   const { data: sessionData, status } = useSession();
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/");
-    }
-  }, [status]);
+  // useEffect(() => {
+  //   if (status === "authenticated") {
+  //     router.push("/");
+  //   }
+  // }, [status]);
 
   if (session && session.user) {
     return (

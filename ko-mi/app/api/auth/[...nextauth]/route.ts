@@ -2,7 +2,6 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
 // should log the user to the database??
-console.log("here");
 // save the user to the db if they do not exist, else update their login info??
 // const checkUser = () => {};
 
