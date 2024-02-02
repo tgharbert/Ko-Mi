@@ -4,7 +4,9 @@ import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import Button from "@mui/material/Button";
+import { useRouter } from "next/navigation";
+import Loading from "../Loading";
+import { useState } from "react";
 
 // need to refine based on the data model in MVP
 type Recipe = {
@@ -28,7 +30,10 @@ type Recipe = {
 };
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-  // need to route to the homepage '/'
+  const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
+
   const handleRecipeSubmission = async () => {
     try {
       const response = await fetch("/api/add-recipe", {
@@ -38,12 +43,16 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         },
         body: JSON.stringify(recipe),
       });
+      setIsLoading(true);
+      router.push("/");
     } catch (error) {
       console.error("error", error);
     }
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="mr-20 ml-20">
       <div>
         <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
