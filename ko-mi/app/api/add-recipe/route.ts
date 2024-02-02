@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// this needs to be saving the recipe to the user as well -
 export async function POST(req: Request, res: Response) {
   const recipe = await req.json();
   const newRecipe = prisma.recipe.upsert({

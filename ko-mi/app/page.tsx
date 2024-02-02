@@ -1,40 +1,20 @@
 "use client";
-import Image from "next/image";
 import Header from "./components/Header";
+import RecipeList from "./components/homepage/RecipeList";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 export default function Home() {
-  const [recipes, setRecipes] = useState([]);
+  // const [recipes, setRecipes] = useState([]);
   const { data: sessionData, status } = useSession();
   const router = useRouter();
-  console.log(sessionData);
 
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("login");
     }
   }, [status]);
-
-  // const getRecipes = async () => {
-  //   try {
-  //     const userRecipes = await fetch("/api/get-recipes", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(recipes),
-  //     });
-  //     console.log(userRecipes);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getRecipes();
-  // }, []);
 
   return (
     <div className="text-center ">
@@ -44,6 +24,7 @@ export default function Home() {
       <h2>
         <p>Here are a list of your recipes:</p>
       </h2>
+      <RecipeList />
     </div>
   );
 }
