@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loading from "../Loading";
+import RecipeCard from "./RecipeCardHome";
 
 const RecipeList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,8 +38,11 @@ const RecipeList = () => {
         </div>
       ) : (
         <div>
-          {recipes.map((recipe) => {
+          {/* {recipes.map((recipe) => {
             return recipe.name;
+          })} */}
+          {recipes.map((recipe) => {
+            return <RecipeCard key={recipe.id} recipe={recipe} />;
           })}
         </div>
       )}

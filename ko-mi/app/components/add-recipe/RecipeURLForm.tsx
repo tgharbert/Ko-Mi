@@ -1,5 +1,5 @@
 "use client";
-import RecipeCard from "./RecipeCard";
+import RecipeCard from "./NewRecipeCard";
 import { useState } from "react";
 import getData from "../../../utils/scraper";
 import getRecipeObject from "@/utils/parseRecipe";
