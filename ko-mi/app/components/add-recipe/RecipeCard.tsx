@@ -61,10 +61,23 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           className="rounded-lg"
         />
       </div>
-      <div className="pt-4 pb-4">
-        <p className="text-lg italic font-semibold">Description: </p>
-        <p>{recipe.description}</p>
+
+      <div className="mt-7 rounded-lg">
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+            className="font-semibold text-center"
+          >
+            Recipe Description
+          </AccordionSummary>
+          <AccordionDetails>
+            <p>{recipe.description}</p>
+          </AccordionDetails>
+        </Accordion>
       </div>
+
       <div className="mt-7 rounded-lg">
         <Accordion>
           <AccordionSummary
@@ -88,7 +101,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
       </div>
 
       <div>
-        <Accordion className="mt-7">
+        <Accordion className="mt-7 rounded-lg">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -100,7 +113,9 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           <AccordionDetails>
             <ul className="px-2 list-disc text-left">
               {recipe.recipeIngredient.map((ingredient, idx) => (
-                <li key={idx}>{ingredient}</li>
+                <li className="pb-4" key={idx}>
+                  {ingredient}
+                </li>
               ))}
             </ul>
           </AccordionDetails>

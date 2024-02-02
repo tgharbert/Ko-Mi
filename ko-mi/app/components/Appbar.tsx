@@ -1,10 +1,12 @@
+"use client";
 import SignInButton from "./SignInButton";
-import Header from "./Header";
+import { usePathname } from "next/navigation";
 
 const Appbar = () => {
+  const pathname = usePathname();
   return (
     <header className="flex gap-4 p-4">
-      <SignInButton />
+      {pathname.includes("/login") ? "" : <SignInButton />}
     </header>
   );
 };

@@ -10,13 +10,13 @@ export default function Home() {
   const { data: sessionData, status } = useSession();
   const router = useRouter();
   console.log(sessionData);
-  console.log("status: ", status);
 
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("login");
     }
   }, [status]);
+
   // const getRecipes = async () => {
   //   try {
   //     const userRecipes = await fetch("/api/get-recipes", {

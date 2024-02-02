@@ -1,11 +1,12 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
 
-// should log the user to the database??
-// save the user to the db if they do not exist, else update their login info??
-// const checkUser = () => {};
+const prisma = new PrismaClient();
 
 const handler = NextAuth({
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
