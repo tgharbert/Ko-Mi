@@ -16,6 +16,9 @@ export default function Home() {
     }
   }, [status]);
 
+  // console.log(sessionData?.user);
+  const user = sessionData?.user;
+
   return (
     <div className="text-center ">
       <div className="-mt-9">
@@ -24,7 +27,7 @@ export default function Home() {
       <h2>
         <p>Here are a list of your recipes:</p>
       </h2>
-      <RecipeList />
+      <RecipeList user={user} />
     </div>
   );
 }

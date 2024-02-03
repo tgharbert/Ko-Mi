@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import Loading from "../Loading";
 import RecipeCard from "./RecipeCardHome";
 
-const RecipeList = () => {
+type user = {
+  name: string;
+  email: string;
+  image: string;
+};
+
+const RecipeList = ({ user }: { user: user }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [recipes, setRecipes] = useState([]);
 
@@ -14,6 +20,7 @@ const RecipeList = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        // body: JSON.stringify({ user }),
       });
       const newRecipes = await userRecipes.json();
       setRecipes(newRecipes);
