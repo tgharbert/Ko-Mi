@@ -25,7 +25,7 @@ model Recipe {
 
   instructions    String[]
   image           String
-  aggregateRating Float
+  aggregateRating Float?
   category        String[]
   publisherName   String?
   publisherUrl    String?
@@ -71,33 +71,11 @@ model Location {
   Ingredient   Ingredient[]
 }
 
-// model User {
-//   id                 Int                 @id @default(autoincrement())
-//   email              String              @unique
-//   name               String?
-//   // password           String?
-//   createdAt          DateTime
-//   lastLogin          DateTime
-//   sessions           Session[]
-// recipes            Recipe[]
-// currentIngredients CurrentIngredient[]
-// }
-
-// model Session {
-//   id           String   @id @default(cuid())
-//   sessionToken String   @unique
-//   userId       Int
-//   expires      DateTime
-//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-// }
-
-// model VerificationToken {
-//   identifier String
-//   token      String   @unique
-//   expires    DateTime
-
-//   @@unique([identifier, token])
-// }
+model ReportedURL {
+  id        Int     @id @default(autoincrement())
+  url       String
+  addressed Boolean
+}
 
 model Account {
   id                String  @id @default(cuid())

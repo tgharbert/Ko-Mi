@@ -1,4 +1,5 @@
 const getRecipeObject = (array: any) => {
+  console.log(array);
   if (Array.isArray(array)) {
     if (array[0]["@graph"]) {
       let recipe = array[0]["@graph"][array[0]["@graph"].length - 1];

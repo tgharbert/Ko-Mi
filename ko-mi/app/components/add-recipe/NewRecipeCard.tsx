@@ -7,6 +7,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import Loading from "../Loading";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+// import { Session } from "inspector";
 
 // need to refine based on the data model in MVP
 type Recipe = {
@@ -27,12 +29,19 @@ type Recipe = {
   totalTime: string;
   cookTime: string;
   prepTime?: string;
+  user?: string;
 };
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { data: sessionData, status } = useSession();
 
   const router = useRouter();
+
+  // console.log(sessionData);
+  const user = {
+    email: sessionData?.user?.email,
+  };
 
   const handleRecipeSubmission = async () => {
     try {
@@ -41,7 +50,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(recipe),
+        body: JSON.stringify({ recipe, user }),
       });
       setIsLoading(true);
       router.push("/");

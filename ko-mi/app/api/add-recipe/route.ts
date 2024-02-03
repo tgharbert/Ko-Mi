@@ -4,12 +4,22 @@ const prisma = new PrismaClient();
 
 // this needs to be saving the recipe to the user as well -
 export async function POST(req: Request, res: Response) {
-  const recipe = await req.json();
+  const data = await req.json();
+  const recipe = data.recipe;
+  const userEmail = data.user.email;
+
+  const user = await prisma.user.findUnique({
+    where: { email: userEmail },
+  });
+
+  // should be await then it will kill the whole promise thing further down
   const newRecipe = prisma.recipe.upsert({
     where: {
       url: recipe.url,
     },
-    update: {},
+    update: {
+      users: { connect: { id: user?.id } },
+    },
     create: {
       url: recipe.url || "No URL",
       author: recipe.author,
@@ -22,6 +32,7 @@ export async function POST(req: Request, res: Response) {
         })),
       },
       instructions: recipe.instructions,
+      users: { connect: { id: user?.id } },
       image: recipe.image,
       aggregateRating: recipe.aggregateRating,
       publisherName: recipe.publisherName,
