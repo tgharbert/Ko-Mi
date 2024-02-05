@@ -6,15 +6,10 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Image from "next/image";
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -73,21 +68,14 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
 
   return (
     <Card sx={{ maxWidth: 345 }} className="mx-10 mt-4">
-      {/* <CardHeader
-        // avatar={
-        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        //     {recipe.publisherName}
-        //   </Avatar>
-        // }
+      <CardHeader
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={recipe.name}
-        // subheader={recipe.author}
-      /> */}
-      <h2 className="text-xl mt-4 mb-4">{recipe.name}</h2>
+        title={<h2 className="text-lg font-semibold">{recipe.name}</h2>}
+      />
       <div className="overflow-hidden h-48 flex justify-center mr-2 ml-2 ">
         <CardMedia
           className="overflow-hidden rounded-lg border-2 border-black"
@@ -98,14 +86,17 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         />
       </div>
       <CardContent>
-        {recipe.author ? <p className="pb-2">by: {recipe.author}</p> : " "}
+        {recipe.author ? (
+          <p className="pb-2 italic">by: {recipe.author}</p>
+        ) : (
+          " "
+        )}
         <Typography variant="body2" color="text.primary">
           {recipe.description}
         </Typography>
         <button className="pt-4">Add Ingredients</button>
-        {/* <button className="">Add Ingredients</button> */}
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing className="-mt-14">
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -117,7 +108,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <div className="mt-7 rounded-lg">
+          <div className="rounded-lg">
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
