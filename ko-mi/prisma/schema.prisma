@@ -42,7 +42,7 @@ model Recipe {
 model CurrentIngredient {
   id      Int      @id @default(autoincrement())
   name    String
-  checked Boolean
+  checked Boolean @default(false)
   types   String[]
 
   userId String?

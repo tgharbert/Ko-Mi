@@ -24,7 +24,7 @@ type Recipe = {
   id: number;
   image: string;
   instructions: string[];
-  ingredients: object[];
+  ingredients: Ingredient[];
   keywords: string[];
   name: string;
   prepTime: string;
@@ -94,9 +94,9 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         <Typography variant="body2" color="text.primary">
           {recipe.description}
         </Typography>
-        <button className="pt-4">Add Ingredients</button>
+        <button className="float-left pt-4">Add Ingredients</button>
       </CardContent>
-      <CardActions disableSpacing className="-mt-14">
+      <CardActions disableSpacing className="-mt-4">
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
