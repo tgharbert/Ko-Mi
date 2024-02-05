@@ -20,7 +20,6 @@ const RecipeList = ({ user }: { user: user }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify({ user }),
       });
       const newRecipes = await userRecipes.json();
       setRecipes(newRecipes);
@@ -35,7 +34,7 @@ const RecipeList = ({ user }: { user: user }) => {
   }, []);
 
   return (
-    <div>
+    <div className="">
       {isLoading ? (
         <div>
           <div className="pt-5">
@@ -44,7 +43,7 @@ const RecipeList = ({ user }: { user: user }) => {
           <Loading />
         </div>
       ) : (
-        <div>
+        <div className=" w-full lg:max-w-full lg:flex">
           {recipes.map((recipe) => {
             return <RecipeCard key={recipe.id} recipe={recipe} />;
           })}

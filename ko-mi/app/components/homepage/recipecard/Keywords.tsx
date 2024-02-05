@@ -3,7 +3,11 @@ const Keywords = ({ keywords }: { keywords: string[] }) => {
     <div>
       Keywords:
       {keywords.map((keyword: string) => {
-        return <div key={keyword}>#{keyword}</div>;
+        return (
+          <div className="" key={keyword}>
+            #{keyword}
+          </div>
+        );
       })}
     </div>
   );

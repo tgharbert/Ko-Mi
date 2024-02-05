@@ -20,7 +20,7 @@ export default function Home() {
   const user = sessionData?.user;
 
   return (
-    <div className="text-center ">
+    <div className="text-center flexbox content-center">
       <div className="-mt-9">
         <Header />
       </div>

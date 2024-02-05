@@ -20,6 +20,10 @@ export async function GET() {
     where: {
       userId: user?.id,
     },
+    include: {
+      ingredients: true,
+    },
   });
+
   return new Response(JSON.stringify(allRecipes));
 }
