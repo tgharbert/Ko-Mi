@@ -1,4 +1,4 @@
-const getRecipeObject = (array: any) => {
+const getRecipeObject = (array: any): object => {
   console.log(array);
   if (Array.isArray(array)) {
     if (array[0]["@graph"]) {

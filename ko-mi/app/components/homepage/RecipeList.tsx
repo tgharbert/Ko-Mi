@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loading from "../Loading";
-import RecipeCard from "./RecipeCardHome";
+import RecipeCard from "./recipecard/RecipeCardHome";
 
 type user = {
   name: string;
@@ -45,9 +45,6 @@ const RecipeList = ({ user }: { user: user }) => {
         </div>
       ) : (
         <div>
-          {/* {recipes.map((recipe) => {
-            return recipe.name;
-          })} */}
           {recipes.map((recipe) => {
             return <RecipeCard key={recipe.id} recipe={recipe} />;
           })}

@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 // try to get the user info here...
 
-export async function GET(req: Request) {
+export async function GET() {
   // do this where the userId matches in the recipe's user
   const session = await getServerSession(authOptions);
 
