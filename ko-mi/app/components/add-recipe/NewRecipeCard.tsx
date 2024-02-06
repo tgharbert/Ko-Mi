@@ -7,8 +7,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import Loading from "../Loading";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-// import { Session } from "inspector";
 
 // need to refine based on the data model in MVP
 type Recipe = {
@@ -34,14 +32,8 @@ type Recipe = {
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { data: sessionData, status } = useSession();
 
   const router = useRouter();
-
-  // console.log(sessionData);
-  const user = {
-    email: sessionData?.user?.email,
-  };
 
   const handleRecipeSubmission = async () => {
     try {
@@ -50,7 +42,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ recipe, user }),
+        body: JSON.stringify({ recipe }),
       });
       setIsLoading(true);
       router.push("/");
@@ -78,6 +70,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           className="rounded-lg"
         />
       </div>
+      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
 
       <div className="mt-7 rounded-lg">
         <Accordion>
@@ -94,6 +87,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           </AccordionDetails>
         </Accordion>
       </div>
+      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
 
       <div className="mt-7 rounded-lg">
         <Accordion>
@@ -116,7 +110,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           </AccordionDetails>
         </Accordion>
       </div>
-
+      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
       <div>
         <Accordion className="mt-7 rounded-lg">
           <AccordionSummary

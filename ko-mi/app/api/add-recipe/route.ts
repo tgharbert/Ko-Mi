@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
@@ -6,8 +8,10 @@ const prisma = new PrismaClient();
 export async function POST(req: Request, res: Response) {
   try {
     const data = await req.json();
+    const session = await getServerSession(authOptions);
+
+    const userEmail = session?.user?.email || "";
     const recipe = data.recipe;
-    const userEmail = data.user.email;
 
     const user = await prisma.user.findUnique({
       where: { email: userEmail },
