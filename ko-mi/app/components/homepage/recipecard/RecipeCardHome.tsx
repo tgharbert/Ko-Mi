@@ -68,7 +68,8 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
     setExpanded(!expanded);
   };
 
-  console.log(ingredientList);
+  // console.log(ingredientList);
+
   // route to /api/add-ingredient
   const handleAddIngredients = async () => {
     setIngredientList(recipe.ingredients);
@@ -78,7 +79,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ingredientList }),
+        body: JSON.stringify(ingredientList),
       });
       console.log(response);
       // setIsLoading(true);

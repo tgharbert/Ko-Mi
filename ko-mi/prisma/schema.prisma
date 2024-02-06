@@ -68,7 +68,7 @@ model UserIngredient {
   id           Int     @id @default(autoincrement())
   userId       String
   ingredientId Int
-  checked      Boolean
+  checked      Boolean @default(false)
 
   user       User       @relation(fields: [userId], references: [id])
   ingredient Ingredient @relation(fields: [ingredientId], references: [id])
