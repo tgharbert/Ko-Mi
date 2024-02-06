@@ -1,3 +1,10 @@
 // NEED TO WRITE A FUNCTION THAT ADDS THE INGREDIENTS TO THE SHOPPING LIST DATABASE
 
-// add them to the shopping list and add the userId to the current user session id
+// need to get the user from the session info and add the ingredients to the ingredients array
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default async function POST(req: Request, res: Response) {
+  const data = await req.json();
+}

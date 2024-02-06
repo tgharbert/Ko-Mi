@@ -66,6 +66,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
     setExpanded(!expanded);
   };
 
+  console.log(recipe);
   return (
     <Card sx={{ maxWidth: 345 }} className="mx-10 mt-4">
       <CardHeader
@@ -109,6 +110,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <div className="rounded-lg">
+            {/* REFACTOR */}
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -132,6 +134,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
             </Accordion>
           </div>
           <div>
+            {/* REFACTOR */}
             <Accordion className="mt-7 rounded-lg">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -149,6 +152,50 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
                     </li>
                   ))}
                 </ul>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+          <div>
+            <Accordion className="mt-7 rounded-lg">
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                className="font-semibold text-center"
+              >
+                Additional Information
+              </AccordionSummary>
+              <AccordionDetails>
+                <div>
+                  <p>
+                    <b>Original URL: </b>
+                    <a href={recipe.url}>link</a>
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>Recipe Yield: </b>
+                    {recipe.recipeYield}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>Original Publisher: </b>
+                    {recipe.publisherName}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <b>Keywords: </b>
+                    {recipe.keywords.map((keyword, idx) => {
+                      return (
+                        <p className="italic text-sm" key={idx}>
+                          #{keyword}
+                        </p>
+                      );
+                    })}
+                  </p>
+                </div>
               </AccordionDetails>
             </Accordion>
           </div>

@@ -1,12 +1,11 @@
 "use client";
 import Header from "./components/Header";
 import RecipeList from "./components/homepage/RecipeList";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 export default function Home() {
-  // const [recipes, setRecipes] = useState([]);
   const { data: sessionData, status } = useSession();
   const router = useRouter();
 
@@ -16,7 +15,6 @@ export default function Home() {
     }
   }, [status]);
 
-  // console.log(sessionData?.user);
   const user = sessionData?.user;
 
   return (
