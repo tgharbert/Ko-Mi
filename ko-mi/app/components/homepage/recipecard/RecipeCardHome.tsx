@@ -1,4 +1,5 @@
-import * as React from "react";
+// import * as React from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -60,13 +61,32 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [ingredientList, setIngredientList] = useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  console.log(recipe);
+  console.log(ingredientList);
+  // route to /api/add-ingredient
+  const handleAddIngredients = async () => {
+    setIngredientList(recipe.ingredients);
+    try {
+      const response = await fetch("/api/add-ingredient", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ingredientList }),
+      });
+      console.log(response);
+      // setIsLoading(true);
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }} className="mx-10 mt-4">
       <CardHeader
@@ -95,7 +115,9 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         <Typography variant="body2" color="text.primary">
           {recipe.description}
         </Typography>
-        <button className="float-left pt-4">Add Ingredients</button>
+        <button onClick={handleAddIngredients} className="float-left pt-4">
+          Add Ingredients
+        </button>
       </CardContent>
       <CardActions disableSpacing className="-mt-4">
         <ExpandMore
