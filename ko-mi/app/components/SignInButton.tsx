@@ -18,7 +18,11 @@ const SignInButton = () => {
 
   return (
     <div>
-      <button onClick={() => signIn()}>Sign In</button>
+      {status === "unauthenticated" ? (
+        <button onClick={() => signIn()}>Sign In</button>
+      ) : (
+        <>ONE SECOND GEEEZ</>
+      )}
     </div>
   );
 };
