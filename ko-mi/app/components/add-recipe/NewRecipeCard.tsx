@@ -9,6 +9,7 @@ import Loading from "../Loading";
 import { useState } from "react";
 import InstructionAccordion from "../accordions/InstructionAccordion";
 import DescriptionAccordion from "../accordions/DescriptionAccordion";
+// unable to use this because ingredients are formatted as strings from URL
 import IngredientAccordion from "../accordions/IngredientAccordion";
 
 // need to refine based on the data model in MVP

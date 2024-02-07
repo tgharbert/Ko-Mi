@@ -19,7 +19,7 @@ const IngredientAccordion = ({
   ingredients: Ingredient[];
 }) => {
   return (
-    <Accordion className="mt-7 rounded-lg">
+    <Accordion className="rounded-lg">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1-content"

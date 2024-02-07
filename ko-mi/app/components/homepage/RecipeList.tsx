@@ -3,13 +3,7 @@ import { useState, useEffect } from "react";
 import Loading from "../Loading";
 import RecipeCard from "./recipecard/RecipeCardHome";
 
-type user = {
-  name: string;
-  email: string;
-  image: string;
-};
-
-const RecipeList = ({ user }: { user: user }) => {
+const RecipeList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [recipes, setRecipes] = useState([]);
 
@@ -43,7 +37,8 @@ const RecipeList = ({ user }: { user: user }) => {
           <Loading />
         </div>
       ) : (
-        <div className=" w-full lg:max-w-full lg:flex">
+        // <div className=" w-full lg:max-w-full lg:flexbox sm:flexbox content-center">
+        <div className="grid sm:grid-cols-3 gap-4 sm:content-around ">
           {recipes.map((recipe) => {
             return <RecipeCard key={recipe.id} recipe={recipe} />;
           })}

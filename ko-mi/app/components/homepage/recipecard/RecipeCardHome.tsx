@@ -11,14 +11,12 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
+import Image from "next/image";
 
 import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
+import DescriptionAccordion from "../../accordions/DescriptionAccordion";
 
 type Recipe = {
   aggregateRating: number;
@@ -91,7 +89,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="mx-10 mt-4">
+    <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mx-10 mt-4">
       <CardHeader
         action={
           <IconButton aria-label="settings">
@@ -100,11 +98,11 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         }
         title={<h2 className="text-lg font-semibold">{recipe.name}</h2>}
       />
-      <div className="overflow-hidden h-48 flex justify-center mr-2 ml-2 ">
+      <div className="overflow-hidden h-48 flex justify-center mr-2 ml-2">
         <CardMedia
           className="overflow-hidden rounded-lg border-2 border-black"
           component="img"
-          width="100"
+          // width="100"
           image={recipe.image}
           alt={`image of ${recipe.name}`}
         />
@@ -115,9 +113,9 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         ) : (
           " "
         )}
-        <Typography variant="body2" color="text.primary">
+        {/* <Typography variant="body2" color="text.primary">
           {recipe.description}
-        </Typography>
+        </Typography> */}
         <button onClick={handleAddIngredients} className="float-left pt-4">
           Add Ingredients
         </button>
@@ -134,6 +132,9 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
+          <div className="rounded-lg pb-">
+            <DescriptionAccordion description={recipe.description} />
+          </div>
           <div className="rounded-lg">
             <InstructionAccordion instructions={recipe.instructions} />
           </div>
