@@ -7,6 +7,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import Loading from "../Loading";
 import { useState } from "react";
+import InstructionAccordion from "../accordions/InstructionAccordion";
+import DescriptionAccordion from "../accordions/DescriptionAccordion";
+import IngredientAccordion from "../accordions/IngredientAccordion";
 
 // need to refine based on the data model in MVP
 type Recipe = {
@@ -37,7 +40,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 
   const handleRecipeSubmission = async () => {
     try {
-      const response = await fetch("/api/add-recipe", {
+      await fetch("/api/add-recipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,48 +73,15 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
           className="rounded-lg"
         />
       </div>
-      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
-
       <div className="mt-7 rounded-lg">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-            className="font-semibold text-center"
-          >
-            Recipe Description
-          </AccordionSummary>
-          <AccordionDetails>
-            <p>{recipe.description}</p>
-          </AccordionDetails>
-        </Accordion>
+        <DescriptionAccordion description={recipe.description} />
       </div>
-      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
-
       <div className="mt-7 rounded-lg">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-            className="font-semibold text-center"
-          >
-            Recipe Instructions
-          </AccordionSummary>
-          <AccordionDetails>
-            <ul className=" text-left">
-              {recipe.instructions.map((instruction, idx) => (
-                <li className="pb-4" key={idx}>
-                  {instruction}
-                </li>
-              ))}
-            </ul>
-          </AccordionDetails>
-        </Accordion>
+        <InstructionAccordion instructions={recipe.instructions} />
       </div>
       {/* REFACTOR BASED ON SHARED ACCORDIONS */}
       <div>
+        {/* <IngredientAccordion ingredients={recipe.recipeIngredient} /> */}
         <Accordion className="mt-7 rounded-lg">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

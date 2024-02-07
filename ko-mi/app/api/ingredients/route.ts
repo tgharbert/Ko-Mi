@@ -4,15 +4,11 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
-// try to get the user info here...
-
 export async function GET() {
   try {
     // do this where the userId matches in the recipe's user
     const session = await getServerSession(authOptions);
-
     const userEmail = session?.user?.email || "";
-
     const user = await prisma.user.findUnique({
       where: { email: userEmail },
     });
@@ -35,7 +31,6 @@ export async function GET() {
   }
 }
 
-// right now this isn't being hit
 export async function DELETE() {
   try {
     const session = await getServerSession(authOptions);

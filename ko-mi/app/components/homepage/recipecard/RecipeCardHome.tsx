@@ -16,6 +16,10 @@ import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 
+import IngredientAccordion from "../../accordions/IngredientAccordion";
+import InstructionAccordion from "../../accordions/InstructionAccordion";
+import AdditionalAccordion from "../../accordions/AdditionalAccordion";
+
 type Recipe = {
   aggregateRating: number;
   author: string;
@@ -131,94 +135,18 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <div className="rounded-lg">
-            {/* REFACTOR */}
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-                className="font-semibold text-center"
-              >
-                Method
-              </AccordionSummary>
-              <AccordionDetails>
-                <div>
-                  {recipe.instructions.map((instruction, idx) => {
-                    return (
-                      <div className="pb-2 pt-2" key={idx}>
-                        {instruction}
-                      </div>
-                    );
-                  })}
-                </div>
-              </AccordionDetails>
-            </Accordion>
+            <InstructionAccordion instructions={recipe.instructions} />
           </div>
           <div>
-            {/* REFACTOR */}
-            <Accordion className="mt-7 rounded-lg">
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-                className="font-semibold text-center"
-              >
-                Recipe Ingredients
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul className="px-2 list-disc text-left">
-                  {recipe.ingredients.map((ingredient: Ingredient) => (
-                    <li className="pb-4" key={ingredient.id}>
-                      {ingredient.name}
-                    </li>
-                  ))}
-                </ul>
-              </AccordionDetails>
-            </Accordion>
+            <IngredientAccordion ingredients={recipe.ingredients} />
           </div>
           <div>
-            <Accordion className="mt-7 rounded-lg">
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-                className="font-semibold text-center"
-              >
-                Additional Information
-              </AccordionSummary>
-              <AccordionDetails>
-                <div>
-                  <p>
-                    <b>Original URL: </b>
-                    <a href={recipe.url}>link</a>
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <b>Recipe Yield: </b>
-                    {recipe.recipeYield}
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <b>Original Publisher: </b>
-                    {recipe.publisherName}
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <b>Keywords: </b>
-                    {recipe.keywords.map((keyword, idx) => {
-                      return (
-                        <p className="italic text-sm" key={idx}>
-                          #{keyword}
-                        </p>
-                      );
-                    })}
-                  </p>
-                </div>
-              </AccordionDetails>
-            </Accordion>
+            <AdditionalAccordion
+              url={recipe.url}
+              recipeYield={recipe.recipeYield}
+              publisher={recipe.publisherName}
+              keywords={recipe.keywords}
+            />
           </div>
         </CardContent>
       </Collapse>

@@ -1,5 +1,3 @@
-// NEED TO WRITE A FUNCTION THAT ADDS THE INGREDIENTS TO THE SHOPPING LIST DATABASE
-
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
@@ -12,7 +10,7 @@ type Entry = {
   name: string;
 };
 
-export async function POST(req: Request) {
+export async function POST(req: Request, res: Response) {
   try {
     const recipeData = await req.json();
     const session = await getServerSession(authOptions);
@@ -30,6 +28,8 @@ export async function POST(req: Request) {
         userId: user?.id || "",
         ingredientId: ingredient.id,
         // need to work on adding the multiplier
+        // should get the multiplier from the client and then apply here?
+        // parseNumberAmount
         name: ingredient.name,
       };
       newEntry.push(entry);

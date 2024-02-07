@@ -4,8 +4,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
-// this needs to be saving the recipe to the user as well -
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const data = await req.json();
     const session = await getServerSession(authOptions);
@@ -17,7 +16,6 @@ export async function POST(req: Request, res: Response) {
       where: { email: userEmail },
     });
 
-    // should be await then it will kill the whole promise thing further down
     const newRecipe = await prisma.recipe.upsert({
       where: {
         url: recipe.url,
