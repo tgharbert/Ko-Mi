@@ -4,8 +4,11 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
+// try to get the user info here...
+
 export async function GET() {
   try {
+  // do this where the userId matches in the recipe's user
   const session = await getServerSession(authOptions);
 
   const userEmail = session?.user?.email || "";
@@ -14,17 +17,15 @@ export async function GET() {
     where: { email: userEmail },
   });
 
-  const allRecipes = await prisma.recipe.findMany({
+  const allIngredients = await prisma.userIngredient.findMany({
     where: {
       userId: user?.id,
     },
-    include: {
-      ingredients: true,
-    },
   });
-  return new Response(JSON.stringify(allRecipes));
-} catch(error) {
-  console.error(error)
-  return new Response("Error retrieving recipes")
+
+  return new Response(JSON.stringify(allIngredients));
+} catch (error) {
+  console.error("error", error)
+  return new Response("Error retrieving data")
 }
 }

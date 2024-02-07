@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import IngredientsList from "../components/ingredients/IngredientsList";
 
 const Ingredients = () => {
   return (
@@ -7,10 +8,7 @@ const Ingredients = () => {
         <Header />
       </div>
       <h1>Ingredients</h1>
-      <ul>This will be a list of ingredients</ul>
-      <li>here</li>
-      <li>and here</li>
-      <li>and here</li>
+      <IngredientsList />
     </div>
   );
 };
