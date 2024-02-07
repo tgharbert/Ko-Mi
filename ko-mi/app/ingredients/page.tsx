@@ -7,7 +7,7 @@ const Ingredients = () => {
       <div className="-mt-9">
         <Header />
       </div>
-      <h1>Ingredients</h1>
+      <h2 className="pb-4">Your Current Shopping List:</h2>
       <IngredientsList />
     </div>
   );

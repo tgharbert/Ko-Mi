@@ -24,6 +24,7 @@ export async function GET() {
     select: {
       ingredientId: true,
       name: true,
+      checked: true,
     }
   });
 

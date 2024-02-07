@@ -1,5 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
+import Loading from "../Loading";
+import IngredientNode from "./IngredientNode";
+
+type Ingredient = {
+  name: string;
+  ingredientId: number;
+};
 
 const IngredientsList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,16 +34,29 @@ const IngredientsList = () => {
     getIngredients();
   }, []);
 
-  // console.log(ingredients);
   return (
     <div>
-      <h2>Your Current Shopping List:</h2>
-      <ul>
-        {ingredients.map((ingredient) => {
-          // alter this to create 'nodes' for ingredients
-          return <li key={ingredient.ingredientId}>{ingredient.name}</li>;
-        })}
-      </ul>
+      {isLoading ? (
+        <div>
+          <div className="pt-5">
+            <p>Retrieving your ingredients...</p>
+          </div>
+          <Loading />
+        </div>
+      ) : (
+        <div>
+          <ul>
+            {ingredients.map((ingredient: Ingredient) => {
+              return (
+                <IngredientNode
+                  key={ingredient.ingredientId}
+                  ingredient={ingredient}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
