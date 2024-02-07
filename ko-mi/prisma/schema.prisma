@@ -44,7 +44,7 @@ model CurrentIngredient {
   checked Boolean  @default(false)
   types   String[]
 
-  userId String?
+  userId  String?
 }
 
 model Ingredient {

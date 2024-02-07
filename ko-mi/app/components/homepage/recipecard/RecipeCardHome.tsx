@@ -68,8 +68,6 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
     setExpanded(!expanded);
   };
 
-  // console.log(ingredientList);
-
   // route to /api/add-ingredient
   const handleAddIngredients = async () => {
     setIngredientList(recipe.ingredients);
@@ -81,10 +79,10 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         },
         body: JSON.stringify(ingredientList),
       });
+      // THIS SHOULD HAVE AN 'ADDED' MESSAGE
       console.log(response);
-      // setIsLoading(true);
     } catch (error) {
-      console.error("error", error);
+      console.error("ERROR: ", error);
     }
   };
 

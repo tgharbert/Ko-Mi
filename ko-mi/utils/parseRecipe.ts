@@ -1,14 +1,14 @@
-const getRecipeObject = (array: any): object => {
-  console.log(array);
-  if (Array.isArray(array)) {
-    if (array[0]["@graph"]) {
-      let recipe = array[0]["@graph"][array[0]["@graph"].length - 1];
+const getRecipeObject = (recipeData: any): object => {
+  console.log(recipeData);
+  if (Array.isArray(recipeData)) {
+    if (recipeData[0]["@graph"]) {
+      let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
       formatRecipe(recipe);
       return recipe;
     }
-    return getRecipeObject(array[0]);
+    return getRecipeObject(recipeData[0]);
   } else {
-    let recipe = array;
+    let recipe = recipeData;
     formatRecipe(recipe);
     return recipe;
   }

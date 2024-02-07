@@ -1,6 +1,5 @@
 // NEED TO WRITE A FUNCTION THAT ADDS THE INGREDIENTS TO THE SHOPPING LIST DATABASE
 
-// need to get the user from the session info and add the ingredients to the ingredients array
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
@@ -13,7 +12,7 @@ type Entry = {
   name: string;
 };
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const recipeData = await req.json();
     const session = await getServerSession(authOptions);
@@ -24,14 +23,14 @@ export async function POST(req: Request, res: Response) {
       where: { email: userEmail },
     });
 
-    let newEntry = [];
+    let newEntry: Entry[] = [];
 
-    await recipeData.map((ingredient: any) => {
+    recipeData.map((ingredient: any) => {
       let entry: Entry = {
         userId: user?.id || "",
         ingredientId: ingredient.id,
         // need to work on adding the multiplier
-        name: ingredient.name
+        name: ingredient.name,
       };
       newEntry.push(entry);
     });
@@ -39,7 +38,7 @@ export async function POST(req: Request, res: Response) {
     const newIngredients = await prisma.userIngredient.createMany({
       data: newEntry,
     });
-
+    console.log(newIngredients);
     return new Response(JSON.stringify(newIngredients));
   } catch (error) {
     console.error(error);

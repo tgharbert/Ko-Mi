@@ -31,6 +31,20 @@ const IngredientsList = () => {
     }
   };
 
+  const handleDeleteIngredients = async () => {
+    try {
+      await fetch("/api/ingredients", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setIngredients([]);
+    } catch (error) {
+      console.error("ERROR: ", error);
+    }
+  };
+
   useEffect(() => {
     getIngredients();
   }, []);
@@ -50,11 +64,14 @@ const IngredientsList = () => {
             <button className=" mr-4 bg-lime-500 px-3 rounded">
               Delete Checked
             </button>
-            <button className=" ml-4 bg-lime-500 px-3 rounded">
+            <button
+              onClick={handleDeleteIngredients}
+              className=" ml-4 bg-lime-500 px-3 rounded"
+            >
               Delete All Items
             </button>
           </div>
-          {/* SHOULD BE AN INFINITE SCROLL */}
+          {/* SHOULD BE AN INFINITE SCROLL?? */}
           <div className="flex-col">
             <ul>
               {ingredients.map((ingredient: Ingredient) => {
