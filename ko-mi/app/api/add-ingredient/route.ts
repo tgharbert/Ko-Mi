@@ -10,6 +10,7 @@ const prisma = new PrismaClient();
 type Entry = {
   userId: string;
   ingredientId: number;
+  name: string;
 };
 
 export async function POST(req: Request, res: Response) {
@@ -26,10 +27,11 @@ export async function POST(req: Request, res: Response) {
     let newEntry = [];
 
     await recipeData.map((ingredient: any) => {
-      // console.log(ingredient);
       let entry: Entry = {
         userId: user?.id || "",
         ingredientId: ingredient.id,
+        // need to work on adding the multiplier
+        name: ingredient.name
       };
       newEntry.push(entry);
     });

@@ -21,6 +21,10 @@ export async function GET() {
     where: {
       userId: user?.id,
     },
+    select: {
+      ingredientId: true,
+      name: true,
+    }
   });
 
   return new Response(JSON.stringify(allIngredients));

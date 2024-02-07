@@ -31,7 +31,6 @@ model Recipe {
   publisherUrl    String?
   publisherLogo   String?
   recipeYield     String
-  // mainEntityOfPage Boolean
   totalTime       String
   cookTime        String
   prepTime        String
@@ -56,8 +55,6 @@ model Ingredient {
   location   Location? @relation(fields: [locationId], references: [id])
   locationId Int?
 
-  // user   User?  @relation(fields: [userId], references: [id])
-  // userId String
   users UserIngredient[]
 
   recipe   Recipe @relation(fields: [recipeId], references: [id])
@@ -69,6 +66,7 @@ model UserIngredient {
   userId       String
   ingredientId Int
   checked      Boolean @default(false)
+  name String?
 
   user       User       @relation(fields: [userId], references: [id])
   ingredient Ingredient @relation(fields: [ingredientId], references: [id])

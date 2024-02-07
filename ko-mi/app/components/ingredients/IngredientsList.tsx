@@ -27,10 +27,16 @@ const IngredientsList = () => {
     getIngredients();
   }, []);
 
-  console.log(ingredients);
+  // console.log(ingredients);
   return (
     <div>
-      <p>test</p>
+      <h2>Your Current Shopping List:</h2>
+      <ul>
+        {ingredients.map((ingredient) => {
+          // alter this to create 'nodes' for ingredients
+          return <li key={ingredient.ingredientId}>{ingredient.name}</li>;
+        })}
+      </ul>
     </div>
   );
 };
