@@ -38,15 +38,6 @@ model Recipe {
   @@unique([url])
 }
 
-model CurrentIngredient {
-  id      Int      @id @default(autoincrement())
-  name    String
-  checked Boolean  @default(false)
-  types   String[]
-
-  userId  String?
-}
-
 model Ingredient {
   id    Int      @id @default(autoincrement())
   name  String
@@ -66,7 +57,7 @@ model UserIngredient {
   userId       String
   ingredientId Int
   checked      Boolean @default(false)
-  name String?
+  name         String?
 
   user       User       @relation(fields: [userId], references: [id])
   ingredient Ingredient @relation(fields: [ingredientId], references: [id])

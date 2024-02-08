@@ -28,9 +28,6 @@ export default async function Home() {
       <div className="-mt-9">
         <Header />
       </div>
-      <h2>
-        <p>Here are a list of your recipes:</p>
-      </h2>
       <Suspense fallback={<LoadingPage />}>
         <RecipeList />
       </Suspense>

@@ -1,3 +1,4 @@
+import RecipeSearchBar from "./SearchBar";
 import RecipeCard from "./recipecard/RecipeCardHome";
 
 const RecipeList = async () => {
@@ -17,6 +18,7 @@ const RecipeList = async () => {
 
   return (
     <div className="">
+      <RecipeSearchBar />
       <div className="grid sm:grid-cols-3 gap-4 sm:content-around ">
         {recipes.map((recipe: any) => {
           return <RecipeCard key={recipe.id} recipe={recipe} />;

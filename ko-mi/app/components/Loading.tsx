@@ -1,15 +1,12 @@
-import Image from "next/image";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Loading = () => {
   return (
-    <div className="flex justify-center items-center pt-10">
-      <Image
-        // className="flex justify-center items-center"
-        src="/loading-buffering.gif"
-        alt="loading-spinner"
-        width="40"
-        height="40"
-      />
+    <div className="flex justify-center items-center pt-10 lime-500">
+      <Stack sx={{ color: "lime-500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
     </div>
   );
 };
