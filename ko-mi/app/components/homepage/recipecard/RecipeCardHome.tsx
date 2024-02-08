@@ -99,24 +99,23 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         }
         title={<h2 className="text-lg font-semibold">{recipe.name}</h2>}
       />
-      <div className="overflow-hidden h-48 flex justify-center mr-2 ml-2">
-        <CardMedia
-          className="overflow-hidden rounded-lg border-2 border-black"
-          component="img"
-          // width="100"
-          image={recipe.image}
-          alt={`image of ${recipe.name}`}
-        />
+      <div className="overflow-hidden h-48 flex rounded-lg border-2 border-black justify-center mr-2 ml-2  content-center  items-center ">
+        <div className="flex content-center  items-center  ">
+          <Image
+            className="overflow-hidden rounded-lg "
+            height={188}
+            width={330}
+            src={recipe.image}
+            alt={`image of ${recipe.name}`}
+          />
+        </div>
       </div>
       <CardContent>
         {recipe.author ? (
           <p className="pb-2 italic">by: {recipe.author}</p>
         ) : (
-          " "
+          <p className="pb-2 italic">No listed author</p>
         )}
-        {/* <Typography variant="body2" color="text.primary">
-          {recipe.description}
-        </Typography> */}
         <button onClick={handleAddIngredients} className="float-left pt-4">
           Add Ingredients
         </button>

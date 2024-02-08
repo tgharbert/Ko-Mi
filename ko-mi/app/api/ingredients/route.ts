@@ -1,18 +1,12 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../_base"
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
-const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    // do this where the userId matches in the recipe's user
     const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email || "";
-    const user = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
-
+    const user = session?.user || "";
     const allIngredients = await prisma.userIngredient.findMany({
       where: {
         userId: user?.id,
