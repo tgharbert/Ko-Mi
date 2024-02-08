@@ -1,7 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-const SignInButton = () => {
+const SignInButton = ({ name }: { name: string }) => {
   const { data: session } = useSession();
   const { data: sessionData, status } = useSession();
 
@@ -21,7 +21,7 @@ const SignInButton = () => {
       {status === "unauthenticated" ? (
         <button onClick={() => signIn()}>Sign In</button>
       ) : (
-        <>ONE SECOND GEEEZ</>
+        <>{name}</>
       )}
     </div>
   );

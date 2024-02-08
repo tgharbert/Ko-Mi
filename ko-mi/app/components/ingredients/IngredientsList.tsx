@@ -1,6 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
-import Loading from "../Loading";
 import IngredientNode from "./IngredientNode";
 
 type Ingredient = {
@@ -9,25 +6,21 @@ type Ingredient = {
   checked: boolean;
 };
 
-const IngredientsList = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [ingredients, setIngredients] = useState([]);
-
+const IngredientsList = async () => {
   // get the userIngredients from the db
   const getIngredients = async () => {
     try {
-      const userIngredients: Response = await fetch("/api/ingredients", {
-        next: {
-          revalidate: 5000,
-        },
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const userIngredients: Response = await fetch(
+        "http://localhost:3000/api/ingredients",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const ingredients = await userIngredients.json();
-      setIngredients(ingredients);
-      setIsLoading(false);
+      return ingredients;
     } catch (error) {
       console.error(error);
       // should set an error message in the DOM
@@ -36,59 +29,49 @@ const IngredientsList = () => {
 
   const handleDeleteIngredients = async () => {
     try {
-      await fetch("/api/ingredients", {
+      await fetch("http://localhost:3000/api/ingredients", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      setIngredients([]);
+      getIngredients();
     } catch (error) {
       console.error("ERROR: ", error);
     }
   };
 
-  useEffect(() => {
-    getIngredients();
-  }, []);
+  let ingredients = await getIngredients();
 
   return (
     <div>
-      {isLoading ? (
-        <div>
-          <div className="pt-5">
-            <p>Retrieving your ingredients...</p>
-          </div>
-          <Loading />
+      <div>
+        {/* <div className="pb-8">
+          <button className=" mr-4 bg-lime-500 px-3 rounded">
+            Delete Checked
+          </button>
+          <button
+            onClick={handleDeleteIngredients}
+            className=" ml-4 bg-lime-500 px-3 rounded"
+          >
+            Delete All Items
+          </button>
+        </div> */}
+        {/* SHOULD BE AN INFINITE SCROLL?? */}
+        <div className="flex-col">
+          <ul>
+            {ingredients.map((ingredient: Ingredient) => {
+              return (
+                <IngredientNode
+                  key={ingredient.ingredientId}
+                  ingredient={ingredient}
+                />
+              );
+            })}
+          </ul>
         </div>
-      ) : (
-        <div>
-          <div className="pb-8">
-            <button className=" mr-4 bg-lime-500 px-3 rounded">
-              Delete Checked
-            </button>
-            <button
-              onClick={handleDeleteIngredients}
-              className=" ml-4 bg-lime-500 px-3 rounded"
-            >
-              Delete All Items
-            </button>
-          </div>
-          {/* SHOULD BE AN INFINITE SCROLL?? */}
-          <div className="flex-col">
-            <ul>
-              {ingredients.map((ingredient: Ingredient) => {
-                return (
-                  <IngredientNode
-                    key={ingredient.ingredientId}
-                    ingredient={ingredient}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-      )}
+      </div>
+      {/* )} */}
     </div>
   );
 };

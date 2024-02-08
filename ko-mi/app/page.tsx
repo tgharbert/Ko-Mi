@@ -30,6 +30,9 @@ export default async function Home() {
   // }
 
   // const user = sessionData?.user;
+  // const session = await getServerSession(authOptions);
+  // const user = session?.user || "";
+  // console.log(user);
 
   // NEED TO FIGURE OUT HOW TO ROUTE TO THE LOGIN WHEN A USER ISN'T SIGNED IN
 

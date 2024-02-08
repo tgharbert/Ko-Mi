@@ -1,14 +1,16 @@
-"use client";
 import SignInButton from "./SignInButton";
-import { usePathname } from "next/navigation";
-// import { useRouter } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-const Appbar = () => {
-  const pathname = usePathname();
-  // const route = useRouter();
+const Appbar = async () => {
+  const session = await getServerSession(authOptions);
+  const user = session?.user || "";
+
   return (
     <header className="flex gap-4 p-4">
-      {pathname.includes("/login") ? "" : <SignInButton />}
+      {/* REFACTOR THIS FOR SESSIONS? !SESSION REDIRECT? */}
+      {/* {pathname.includes("/login") ? "" : <SignInButton />} */}
+      <SignInButton name={user.name} />
     </header>
   );
 };
