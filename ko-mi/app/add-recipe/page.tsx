@@ -1,5 +1,7 @@
 import RecipeURLForm from "../components/add-recipe/RecipeURLForm";
 import Header from "../components/Header";
+import LoadingPage from "../loading";
+import { Suspense } from "react";
 
 const AddRecipe = () => {
   return (
@@ -7,7 +9,9 @@ const AddRecipe = () => {
       <div className="-mt-9">
         <Header />
       </div>
-      <RecipeURLForm />
+      <Suspense fallback={<LoadingPage />}>
+        <RecipeURLForm />
+      </Suspense>
     </div>
   );
 };

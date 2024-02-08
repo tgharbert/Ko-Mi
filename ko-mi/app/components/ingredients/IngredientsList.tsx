@@ -17,6 +17,7 @@ const IngredientsList = async () => {
           headers: {
             "Content-Type": "application/json",
           },
+          cache: "no-store",
         }
       );
       const ingredients = await userIngredients.json();
