@@ -17,6 +17,9 @@ const IngredientsList = () => {
   const getIngredients = async () => {
     try {
       const userIngredients: Response = await fetch("/api/ingredients", {
+        next: {
+          revalidate: 5000,
+        },
         method: "GET",
         headers: {
           "Content-Type": "application/json",

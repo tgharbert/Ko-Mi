@@ -1,21 +1,35 @@
-"use client";
+// "use client";
 import Header from "./components/Header";
 import RecipeList from "./components/homepage/RecipeList";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export default function Home() {
-  const { data: sessionData, status } = useSession();
-  const router = useRouter();
+import { getServerSession } from "next-auth";
+import { authOptions } from "../app/api/auth/[...nextauth]/route";
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("login");
-    }
-  }, [status]);
+export default async function Home() {
+  // const { data: sessionData, status } = useSession();
+  // const router = useRouter();
 
-  const user = sessionData?.user;
+  // const recipeData = await req.json();
+  const session = await getServerSession(authOptions);
+
+  const user = session?.user || "";
+
+  console.log(user);
+
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("login");
+  //   }
+  // }, [status]);
+
+  // if (status === "authenticated") {
+  //   router.push("login");
+  // }
+
+  // const user = sessionData?.user;
 
   return (
     <div className="text-center flexbox content-center">
@@ -25,7 +39,7 @@ export default function Home() {
       <h2>
         <p>Here are a list of your recipes:</p>
       </h2>
-      <RecipeList user={user} />
+      <RecipeList id={user.id} />
     </div>
   );
 }

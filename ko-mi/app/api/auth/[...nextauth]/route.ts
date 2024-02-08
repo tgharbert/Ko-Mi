@@ -5,6 +5,16 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const authOptions = {
+  // study these callbacks
+  callbacks: {
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id,
+      },
+    }),
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
