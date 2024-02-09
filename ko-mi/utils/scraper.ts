@@ -3,6 +3,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+// do I have to use cheerio and axios here?
 const ldScraper = async (url: string) => {
   try {
     const response = await axios
