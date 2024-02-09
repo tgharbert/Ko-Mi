@@ -2,8 +2,11 @@ import Header from "../components/Header";
 import IngredientsList from "../components/ingredients/IngredientsList";
 import { Suspense } from "react";
 import LoadingPage from "../loading";
+import verifyUser from "@/utils/verifyUser";
 
-const Ingredients = () => {
+const Ingredients = async () => {
+  await verifyUser();
+
   return (
     <div className="text-center">
       <div className="-mt-9">
