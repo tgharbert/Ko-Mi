@@ -18,6 +18,16 @@ const RecipeSearchBar = () => {
     replace(`${pathname}?${params.toString()}`);
   }, 1000);
 
+  const handleCategory = (term: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set("category", term);
+    } else {
+      params.delete("category");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div>
       <input
@@ -31,7 +41,12 @@ const RecipeSearchBar = () => {
       {/* <button className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3">
         Enter
       </button> */}
-      <select className="text-black rounded px-2">
+      <select
+        className="text-black rounded px-2"
+        onChange={(e) => {
+          handleCategory(e.target.value);
+        }}
+      >
         Name
         <option>Name</option>
         <option>Ingredient</option>

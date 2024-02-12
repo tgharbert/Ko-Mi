@@ -12,6 +12,7 @@ export default async function Home({
   searchParams,
 }: {
   searchParams?: {
+    category?: string;
     query?: string;
     page?: string;
   };
@@ -24,6 +25,8 @@ export default async function Home({
   // }
 
   const query = searchParams?.query || "";
+  const category = searchParams?.category || "name";
+  // at the moment pagination is half-built...
   const currentPage = Number(searchParams?.page) || 1;
 
   await verifyUser();
@@ -35,7 +38,11 @@ export default async function Home({
       </div>
       <Suspense fallback={<LoadingPage />} key={query + currentPage}>
         <RecipeSearchBar />
-        <RecipeList query={query} currentPage={currentPage} />
+        <RecipeList
+          query={query}
+          currentPage={currentPage}
+          category={category}
+        />
       </Suspense>
     </div>
   );

@@ -5,9 +5,11 @@ import { getRecipes } from "@/lib/getRecipes";
 const RecipeList = async ({
   query,
   currentPage,
+  category,
 }: {
   query: string;
   currentPage: number;
+  category: string;
 }) => {
   // modify this for the query term and the page = also need to handle pagination
   // const fetchRecipes = async (query: string, page: number) => {
@@ -25,9 +27,9 @@ const RecipeList = async ({
   //   return data;
   // };
 
-  let test = await getRecipes(query, "");
+  let test = await getRecipes(query, category);
   let recipes = await test.json();
-  // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", test);
+  // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", category);
 
   // let recipes = await fetchRecipes(query, currentPage);
 
