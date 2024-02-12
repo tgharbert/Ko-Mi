@@ -18,6 +18,7 @@ import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
+import Keywords from "./Keywords";
 
 type Recipe = {
   aggregateRating: number;
@@ -29,7 +30,7 @@ type Recipe = {
   image: string;
   instructions: string[];
   ingredients: Ingredient[];
-  keywords: string[];
+  keywords: Keywords[];
   name: string;
   prepTime: string;
   publisherLogo: string;
@@ -38,6 +39,12 @@ type Recipe = {
   recipeYield: string;
   totalTime: string;
   url: string;
+};
+
+type Keywords = {
+  id: number;
+  name: string;
+  recipeId: number;
 };
 
 type Ingredient = {
@@ -65,7 +72,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
   const [expanded, setExpanded] = useState(false);
-  const [ingredientList, setIngredientList] = useState([]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -73,17 +79,15 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
 
   // route to /api/add-ingredient
   const handleAddIngredients = async () => {
-    setIngredientList(recipe.ingredients);
     try {
-      const response = await fetch("/api/add-ingredient", {
+      await fetch("/api/add-ingredient", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(ingredientList),
+        body: JSON.stringify(recipe.ingredients),
       });
       // THIS SHOULD HAVE AN 'ADDED' MESSAGE
-      console.log(response);
     } catch (error) {
       console.error("ERROR: ", error);
     }

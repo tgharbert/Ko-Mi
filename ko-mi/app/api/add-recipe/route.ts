@@ -28,7 +28,11 @@ export async function POST(req: Request) {
         author: recipe.author,
         description: recipe.description,
         name: recipe.name,
-        keywords: recipe.keywords,
+        keywords: {
+          create: recipe.keywords.map((keyword: string) => ({
+            name: keyword
+          }))
+        },
         ingredients: {
           create: recipe.recipeIngredient.map((ingredient: string) => ({
             name: ingredient,

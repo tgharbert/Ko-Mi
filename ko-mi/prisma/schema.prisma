@@ -12,12 +12,14 @@ datasource db {
 }
 
 model Recipe {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   url         String
   author      String
   description String
   name        String
-  keywords    String[]
+  // keywords    String[]
+  keywordId   Int?
+  keywords    Keyword[]
 
   ingredients Ingredient[]
   userId      String?
@@ -36,6 +38,14 @@ model Recipe {
   prepTime        String
 
   @@unique([url])
+}
+
+model Keyword {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
 }
 
 model Ingredient {

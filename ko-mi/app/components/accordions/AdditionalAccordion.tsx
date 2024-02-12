@@ -8,6 +8,12 @@ import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 
+type Keywords = {
+  id: number;
+  name: string;
+  recipeId: number;
+};
+
 const AdditionalAccordion = ({
   url,
   recipeYield,
@@ -17,7 +23,7 @@ const AdditionalAccordion = ({
   url: string;
   recipeYield: string;
   publisher: string;
-  keywords: string[];
+  keywords: Keywords[];
 }) => {
   return (
     <Accordion className="rounded-lg">
@@ -51,10 +57,10 @@ const AdditionalAccordion = ({
         <div>
           <p>
             <b>Keywords: </b>
-            {keywords.map((keyword, idx) => {
+            {keywords.map((keyword) => {
               return (
-                <p className="italic text-sm" key={idx}>
-                  #{keyword}
+                <p className="italic text-sm" key={keyword.name}>
+                  #{keyword.name}
                 </p>
               );
             })}

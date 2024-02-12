@@ -28,8 +28,8 @@ const RecipeList = async ({
   // };
 
   let test = await getRecipes(query, category);
-  let recipes = await test.json();
-  // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", category);
+  let recipes = await test?.json();
+  // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", recipes);
 
   // let recipes = await fetchRecipes(query, currentPage);
 

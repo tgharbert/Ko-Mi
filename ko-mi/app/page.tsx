@@ -2,9 +2,6 @@ import Header from "./components/Header";
 import RecipeList from "./components/homepage/RecipeList";
 import { Suspense } from "react";
 import LoadingPage from "./loading";
-// import { redirect } from "next/navigation";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "./api/auth/[...nextauth]/route";
 import RecipeSearchBar from "./components/homepage/SearchBar";
 import verifyUser from "@/utils/verifyUser";
 
@@ -17,13 +14,6 @@ export default async function Home({
     page?: string;
   };
 }) {
-  // this should be refactored and spread to other funcs.
-  // const session = await getServerSession(authOptions);
-
-  // if (!session) {
-  //   redirect("/login");
-  // }
-
   const query = searchParams?.query || "";
   const category = searchParams?.category || "name";
   // at the moment pagination is half-built...
