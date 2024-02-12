@@ -1,8 +1,9 @@
-import prisma from "../_base"
+import prisma from "../app/api/_base"
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../app/api/auth/[...nextauth]/route";
+import { useRouter } from "next/router";
 
-export async function GET() {
+export async function getRecipes(query: string, category: string) {
 
   try {
     const session = await getServerSession(authOptions);
@@ -11,6 +12,10 @@ export async function GET() {
     const allRecipes = await prisma.recipe.findMany({
       where: {
         userId: user?.id,
+        name: {
+          contains: query,
+          mode: 'insensitive'
+        }
       },
       include: {
         ingredients: true,

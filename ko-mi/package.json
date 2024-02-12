@@ -30,7 +30,8 @@
     "postgres": "^3.4.3",
     "react": "^18",
     "react-dom": "^18",
-    "tsx": "^4.7.0"
+    "tsx": "^4.7.0",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

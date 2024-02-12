@@ -17,7 +17,7 @@ export async function GET() {
         checked: true,
       },
     });
-
+    prisma.$disconnect();
     return new Response(JSON.stringify(allIngredients));
   } catch (error) {
     console.error("error", error);

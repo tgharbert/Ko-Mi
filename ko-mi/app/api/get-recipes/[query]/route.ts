@@ -1,8 +1,9 @@
-import prisma from "../_base"
+import prisma from "../../_base"
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../../auth/[...nextauth]/route";
+import { useRouter } from "next/router";
 
-export async function GET() {
+export async function GET(query: Request) {
 
   try {
     const session = await getServerSession(authOptions);
