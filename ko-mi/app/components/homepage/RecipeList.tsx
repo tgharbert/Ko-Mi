@@ -1,4 +1,3 @@
-// import RecipeSearchBar from "./SearchBar";
 import RecipeCard from "./recipecard/RecipeCardHome";
 import { getRecipes } from "@/lib/getRecipes";
 
@@ -27,15 +26,11 @@ const RecipeList = async ({
   //   return data;
   // };
 
-  let test = await getRecipes(query, category);
-  let recipes = await test?.json();
-  // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", recipes);
-
-  // let recipes = await fetchRecipes(query, currentPage);
+  let response = await getRecipes(query, category);
+  let recipes = await response?.json();
 
   return (
     <div className="">
-      {/* <RecipeSearchBar /> */}
       <div className="grid sm:grid-cols-3 gap-4 sm:content-around ">
         {recipes.map((recipe: any) => {
           return <RecipeCard key={recipe.id} recipe={recipe} />;

@@ -1,4 +1,7 @@
+"use client";
 import IngredientNode from "./IngredientNode";
+import LoadingPage from "../Loading";
+import { useState, useEffect } from "react";
 
 type Ingredient = {
   name: string;
@@ -6,8 +9,11 @@ type Ingredient = {
   checked: boolean;
 };
 
-const IngredientsList = async () => {
+const IngredientsList = () => {
   // get the userIngredients from the db
+  const [ingredients, setIngredients] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const getIngredients = async () => {
     try {
       const userIngredients: Response = await fetch(
@@ -20,13 +26,19 @@ const IngredientsList = async () => {
           cache: "no-store",
         }
       );
-      const ingredients = await userIngredients.json();
-      return ingredients;
+      const test = await userIngredients.json();
+      setIngredients(test);
+      setIsLoading(false);
+      // return ingredients;
     } catch (error) {
       console.error(error);
       // should set an error message in the DOM
     }
   };
+
+  useEffect(() => {
+    getIngredients();
+  }, []);
 
   const handleDeleteIngredients = async () => {
     try {
@@ -42,37 +54,41 @@ const IngredientsList = async () => {
     }
   };
 
-  let ingredients = await getIngredients();
+  // let ingredients = await getIngredients();
 
   return (
     <div>
-      <div>
-        {/* <div className="pb-8">
-          <button className=" mr-4 bg-lime-500 px-3 rounded">
-            Delete Checked
-          </button>
-          <button
-            onClick={handleDeleteIngredients}
-            className=" ml-4 bg-lime-500 px-3 rounded"
-          >
-            Delete All Items
-          </button>
-        </div> */}
-        {/* SHOULD BE AN INFINITE SCROLL?? */}
-        <div className="flex-col">
-          <ul>
-            {ingredients.map((ingredient: Ingredient) => {
-              return (
-                <IngredientNode
-                  key={ingredient.ingredientId}
-                  ingredient={ingredient}
-                />
-              );
-            })}
-          </ul>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <div>
+          <div className="pb-8">
+            <button className=" mr-4 bg-lime-500 px-3 rounded">
+              Delete Checked
+            </button>
+            <button
+              onClick={handleDeleteIngredients}
+              className=" ml-4 bg-lime-500 px-3 rounded"
+            >
+              Delete All Items
+            </button>
+          </div>
+          {/* SHOULD BE AN INFINITE SCROLL?? */}
+          <div className="flex-col">
+            <ul>
+              {ingredients.map((ingredient: Ingredient) => {
+                console.log("test");
+                return (
+                  <IngredientNode
+                    key={ingredient.ingredientId}
+                    ingredient={ingredient}
+                  />
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
-      {/* )} */}
+      )}
     </div>
   );
 };

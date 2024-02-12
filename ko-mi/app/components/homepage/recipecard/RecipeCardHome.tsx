@@ -18,7 +18,6 @@ import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
-import Keywords from "./Keywords";
 
 type Recipe = {
   aggregateRating: number;

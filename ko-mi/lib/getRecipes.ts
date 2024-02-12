@@ -8,7 +8,7 @@ export async function getRecipes(query: string, category: string) {
     const session = await getServerSession(authOptions);
     const user = session?.user || "";
 
-    if (category === 'name') {
+    if (category === 'name' || category === '') {
     const allRecipes = await prisma.recipe.findMany({
       where: {
         userId: user?.id,

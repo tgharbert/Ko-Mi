@@ -27,7 +27,7 @@ export default async function Home({
         <Header />
       </div>
       <Suspense fallback={<LoadingPage />} key={query + currentPage}>
-        <RecipeSearchBar />
+        <RecipeSearchBar category={category} />
         <RecipeList
           query={query}
           currentPage={currentPage}

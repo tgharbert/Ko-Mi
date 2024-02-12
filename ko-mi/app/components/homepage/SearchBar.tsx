@@ -2,7 +2,7 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-const RecipeSearchBar = () => {
+const RecipeSearchBar = ({ category }: { category: string }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -38,16 +38,14 @@ const RecipeSearchBar = () => {
         placeholder="Enter Search Term"
         defaultValue={searchParams.get("query")?.toString()}
       ></input>
-      {/* <button className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3">
-        Enter
-      </button> */}
       <select
         className="text-black rounded px-2"
         onChange={(e) => {
           handleCategory(e.target.value);
         }}
+        defaultValue={category || "Name"}
       >
-        Name
+        Search Category
         <option>Name</option>
         <option>Ingredient</option>
         <option>Keyword</option>
