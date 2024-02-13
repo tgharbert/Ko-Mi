@@ -3,6 +3,7 @@ import SignInButton from "../components/SignInButton";
 import { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import SignInPageButton from "../components/signIn/SignInPageButton";
 
 const Login = () => {
   const { data: sessionData, status } = useSession();
@@ -12,7 +13,7 @@ const Login = () => {
     if (status === "authenticated") {
       router.push("/");
     }
-  }, [status]);
+  }, [status, router]);
 
   return (
     <div className="flex justify-center items-center">
@@ -23,7 +24,8 @@ const Login = () => {
         </p>
         <div className="bg-lime-500 w-1/5 text-center">
           {/* DESIGN A NEW SIGNIN BUTTON FOR THIS?... */}
-          <SignInButton />
+          {/* <SignInButton /> */}
+          <SignInPageButton />
         </div>
       </div>
     </div>

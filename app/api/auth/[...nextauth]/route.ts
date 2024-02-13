@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "../../_base"
 
+// need to fix these types
 export const authOptions = {
   // study these callbacks
   callbacks: {
