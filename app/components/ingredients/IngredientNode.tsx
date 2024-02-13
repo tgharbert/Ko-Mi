@@ -31,9 +31,7 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
           ) : (
             <AddShoppingCartIcon className="mt-4 text-lime-500 ml-4" />
           )}
-          {/* <RemoveShoppingCartIcon className="mt-4 text-lime-500  ml-4" /> */}
         </IconButton>
-        {/* need to add conditional styling based on checked status */}
         <p
           className={
             isChecked

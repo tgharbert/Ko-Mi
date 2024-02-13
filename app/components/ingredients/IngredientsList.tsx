@@ -21,6 +21,7 @@ const IngredientsList = () => {
 
   const getIngredients = async () => {
     try {
+      setIsLoading(true);
       const ingredientData = await getUserIngredients();
       setIngredients(ingredientData);
       setIsLoading(false);
@@ -50,27 +51,30 @@ const IngredientsList = () => {
 
   return (
     <div>
-      {isLoading ? (
+      {/* {isLoading ? (
         <LoadingPage />
-      ) : (
-        <div>
-          <div className="pb-8">
-            <button
-              onClick={handleDeleteChecked}
-              className=" mr-4 bg-lime-500 px-3 rounded"
-            >
-              Delete Checked
-              <ClearIcon />
-            </button>
-            <button
-              onClick={handleDeleteIngredients}
-              className=" ml-4 bg-lime-500 px-3 rounded"
-            >
-              Delete All Items
-              <DeleteIcon />
-            </button>
-          </div>
-          {/* SHOULD BE AN INFINITE SCROLL?? */}
+      ) : ( */}
+      <div>
+        <div className="pb-8">
+          <button
+            onClick={handleDeleteChecked}
+            className=" mr-4 bg-lime-500 px-3 rounded"
+          >
+            Delete Checked
+            <ClearIcon />
+          </button>
+          <button
+            onClick={handleDeleteIngredients}
+            className=" ml-4 bg-lime-500 px-3 rounded"
+          >
+            Delete All Items
+            <DeleteIcon />
+          </button>
+        </div>
+        {/* SHOULD BE AN INFINITE SCROLL?? */}
+        {isLoading ? (
+          <LoadingPage />
+        ) : (
           <div className="flex-col">
             <ul>
               {ingredients.map((ingredient: Ingredient) => {
@@ -84,8 +88,8 @@ const IngredientsList = () => {
               })}
             </ul>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
