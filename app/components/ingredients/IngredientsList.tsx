@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 import IngredientNode from "./IngredientNode";
 import LoadingPage from "../Loading";
+import ClearIcon from "@mui/icons-material/Clear";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 
 type Ingredient = {
   id: number;
@@ -55,6 +58,11 @@ const IngredientsList = () => {
     }
   };
 
+  const handleDeleteChecked = async () => {
+    await deleteCheckedIngredients();
+    getIngredients();
+  };
+
   // let ingredients = await getIngredients();
 
   return (
@@ -64,14 +72,19 @@ const IngredientsList = () => {
       ) : (
         <div>
           <div className="pb-8">
-            <button className=" mr-4 bg-lime-500 px-3 rounded">
+            <button
+              onClick={handleDeleteChecked}
+              className=" mr-4 bg-lime-500 px-3 rounded"
+            >
               Delete Checked
+              <ClearIcon />
             </button>
             <button
               onClick={handleDeleteIngredients}
               className=" ml-4 bg-lime-500 px-3 rounded"
             >
               Delete All Items
+              <DeleteIcon />
             </button>
           </div>
           {/* SHOULD BE AN INFINITE SCROLL?? */}

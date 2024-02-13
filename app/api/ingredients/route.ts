@@ -10,6 +10,7 @@ export async function GET() {
     const allIngredients = await prisma.userIngredient.findMany({
       where: {
         userId: user?.id,
+        checked: false
       },
       select: {
         id: true,

@@ -1,5 +1,9 @@
 import { checkIngredient } from "../../../lib/checkIngredient";
 import { useState } from "react";
+import CheckIcon from "@mui/icons-material/Check";
+import IconButton from "@mui/material/IconButton";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 type Ingredient = {
   id: number;
@@ -18,16 +22,30 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
   };
 
   return (
-    <div className=" mx-4 pb-3">
-      <li className="block mx-4 pb-3">
-        <input
-          onChange={() => onCheckIngredient()}
-          className="mr-3"
-          type="checkbox"
-        ></input>
-        <>{ingredient.name}</>
+    // <div className=" mx-4 pb-3 float-left block">
+    <span className="">
+      <li className="flexbox overflow-y-auto mx-4 pb-8 text-left border-2 border-red rounded-lg h-auto mt-4">
+        <IconButton onClick={() => onCheckIngredient()} className="mr-3 ">
+          {isChecked ? (
+            <RemoveShoppingCartIcon className="mt-4 text-lime-500  ml-4" />
+          ) : (
+            <AddShoppingCartIcon className="mt-4 text-lime-500 ml-4" />
+          )}
+          {/* <RemoveShoppingCartIcon className="mt-4 text-lime-500  ml-4" /> */}
+        </IconButton>
+        {/* need to add conditional styling based on checked status */}
+        <p
+          className={
+            isChecked
+              ? "w-4/5 float-right line-through text-lg pt-4"
+              : "w-4/5 float-right text-lg pt-4"
+          }
+        >
+          {ingredient.name}
+        </p>
       </li>
-    </div>
+    </span>
+    // </div>
   );
 };
 

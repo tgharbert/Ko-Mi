@@ -4,6 +4,7 @@ import { useState } from "react";
 import getData from "../../../utils/scraper";
 import getRecipeObject from "@/utils/parseRecipe";
 import RecipeCardError from "./RecipeCardError";
+import LinkIcon from "@mui/icons-material/Link";
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");

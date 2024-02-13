@@ -2,7 +2,6 @@
 import prisma from "../app/api/_base"
 
 export async function checkIngredient (targetId: number, bool: boolean) {
-  console.log(bool)
   try {
     if (bool === false) {
     const removedIngredient = await prisma.userIngredient.update({
