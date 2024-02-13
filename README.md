@@ -2,6 +2,17 @@
 
 <p>Ko-Mi is a phoenetic spelling of "commis," the French term for a professional kitchen assistant who works under the supervision of a chef.</p>
 
+### Built With
+
+![Typescript](https://img.shields.io/badge/Typescript-%23000000.svg?style=for-the-badge&logo=Typescript)
+![next.js](https://img.shields.io/badge/next-%23000000.svg?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-%23000000.svg?style=for-the-badge&logo=React)
+![Prisma](https://img.shields.io/badge/Prisma-%23000000.svg?style=for-the-badge&logo=Prisma)
+![Supabase](https://img.shields.io/badge/Supabase-%23000000.svg?style=for-the-badge&logo=Supabase)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-000000?style=for-the-badge&logo=tailwind-css&logoColor=0EA5E9)
+
+<!-- need to add MUI -->
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
