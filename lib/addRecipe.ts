@@ -13,7 +13,9 @@ export async function addRecipe(recipe: any) {
 
     const userEmail = session?.user?.email || "";
     // const recipe = data.recipe;
-    recipe.keywords = recipe.keywords || []
+    recipe.keywords = recipe.keywords || ["No available keywords"]
+    recipe.instructions = recipe.keywords || ['No available instructions']
+
 
 
     const user = await prisma.user.findUnique({
