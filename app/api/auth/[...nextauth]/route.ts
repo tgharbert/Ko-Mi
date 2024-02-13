@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+// import Providers from "next-auth/providers"
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "../../_base"
 
@@ -33,6 +34,9 @@ export const authOptions = {
 //     }),
 //   ],
 // });
+
+
+
 
 export const handler = NextAuth(authOptions);
 

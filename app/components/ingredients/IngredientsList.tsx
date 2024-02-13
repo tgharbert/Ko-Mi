@@ -5,6 +5,7 @@ import LoadingPage from "../Loading";
 import ClearIcon from "@mui/icons-material/Clear";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
+import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 
 type Ingredient = {
   id: number;
@@ -20,20 +21,9 @@ const IngredientsList = () => {
 
   const getIngredients = async () => {
     try {
-      const userIngredients: Response = await fetch(
-        "http://localhost:3000/api/ingredients",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          cache: "no-store",
-        }
-      );
-      const test = await userIngredients.json();
-      setIngredients(test);
+      const ingredientData = await getUserIngredients();
+      setIngredients(ingredientData);
       setIsLoading(false);
-      // return ingredients;
     } catch (error) {
       console.error(error);
       // should set an error message in the DOM
@@ -46,13 +36,14 @@ const IngredientsList = () => {
 
   const handleDeleteIngredients = async () => {
     try {
-      await fetch("http://localhost:3000/api/ingredients", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      getIngredients();
+      // await fetch("http://localhost:3000/api/ingredients", {
+      //   method: "DELETE",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      await deleteUserIngredients();
+      await getIngredients();
     } catch (error) {
       console.error("ERROR: ", error);
     }
@@ -60,10 +51,8 @@ const IngredientsList = () => {
 
   const handleDeleteChecked = async () => {
     await deleteCheckedIngredients();
-    getIngredients();
+    await getIngredients();
   };
-
-  // let ingredients = await getIngredients();
 
   return (
     <div>
