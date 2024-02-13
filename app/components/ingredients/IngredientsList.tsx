@@ -4,6 +4,7 @@ import IngredientNode from "./IngredientNode";
 import LoadingPage from "../Loading";
 
 type Ingredient = {
+  id: number;
   name: string;
   ingredientId: number;
   checked: boolean;

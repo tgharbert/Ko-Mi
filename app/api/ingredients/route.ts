@@ -12,6 +12,7 @@ export async function GET() {
         userId: user?.id,
       },
       select: {
+        id: true,
         ingredientId: true,
         name: true,
         checked: true,

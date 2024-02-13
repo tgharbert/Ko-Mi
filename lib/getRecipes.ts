@@ -23,7 +23,7 @@ export async function getRecipes(query: string, category: string) {
       },
     });
     await prisma.$disconnect();
-    console.log(allRecipes)
+    // console.log(allRecipes)
     return new Response(JSON.stringify(allRecipes));
   }
 

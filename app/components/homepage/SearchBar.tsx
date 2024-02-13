@@ -39,7 +39,7 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
         defaultValue={searchParams.get("query")?.toString()}
       ></input>
       <select
-        className="text-black rounded px-2"
+        className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3 pt-1 pb-1"
         onChange={(e) => {
           handleCategory(e.target.value);
         }}

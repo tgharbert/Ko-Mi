@@ -71,6 +71,8 @@ model UserIngredient {
 
   user       User       @relation(fields: [userId], references: [id])
   ingredient Ingredient @relation(fields: [ingredientId], references: [id])
+
+  @@unique([id])
 }
 
 model Location {
