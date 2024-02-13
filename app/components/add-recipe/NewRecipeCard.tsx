@@ -11,6 +11,7 @@ import InstructionAccordion from "../accordions/InstructionAccordion";
 import DescriptionAccordion from "../accordions/DescriptionAccordion";
 // unable to use this because ingredients are formatted as strings from URL
 import IngredientAccordion from "../accordions/IngredientAccordion";
+import { addRecipe } from "@/lib/addRecipe";
 
 // need to refine based on the data model in MVP
 type Recipe = {
@@ -21,7 +22,7 @@ type Recipe = {
   keywords: string[];
   instructions: string[];
   recipeInstructions: string[];
-  recipeIngredient: string[];
+  recipeIngredient: any[];
   image: string;
   aggregateRating: number;
   publisher: string;
@@ -41,13 +42,16 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 
   const handleRecipeSubmission = async () => {
     try {
-      await fetch("/api/add-recipe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ recipe }),
-      });
+      // await fetch("/api/add-recipe", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ recipe }),
+      // });
+      // console.log(recipe);
+      // const recipeData = await JSON.stringify(recipe);
+      await addRecipe(recipe);
       setIsLoading(true);
       router.push("/");
     } catch (error) {

@@ -1,21 +1,24 @@
-import { PrismaClient } from "@prisma/client";
+'use server'
+// import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import prisma from "../app/api/_base"
 
-const prisma = new PrismaClient();
-
-export async function POST(req: Request) {
+export async function addRecipe(recipe: any) {
+  console.log('hit')
   try {
-    const data = await req.json();
+    // const recipe = await input.json();
+    // console.log(typeof input)
     const session = await getServerSession(authOptions);
 
     const userEmail = session?.user?.email || "";
-    const recipe = data.recipe;
+    // const recipe = data.recipe;
+    recipe.keywords = recipe.keywords || []
+
 
     const user = await prisma.user.findUnique({
       where: { email: userEmail },
     });
-    recipe.keywords = recipe.keywords || []
 
     const newRecipe = await prisma.recipe.upsert({
       where: {
@@ -53,9 +56,13 @@ export async function POST(req: Request) {
         prepTime: recipe.prepTime || "Value not assigned",
       },
     });
-    return new Response(JSON.stringify(newRecipe));
+    await prisma.$disconnect();
+    console.log("HHHHHHHHHHHHHHHHHHH")
+    console.log(newRecipe)
+    return;
+    // return new Response('success!');
   } catch (error) {
     console.error("ERROR: ", error);
-    return new Response("ERROR: ", error);
+    return new Response();
   }
 }

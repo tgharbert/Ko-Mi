@@ -12,7 +12,6 @@ export async function checkIngredient (targetId: number, bool: boolean) {
         checked: true
       }
     })
-    // console.log(removedIngredient)
     await prisma.$disconnect();
   } else {
     const removedIngredient = await prisma.userIngredient.update({
@@ -23,10 +22,8 @@ export async function checkIngredient (targetId: number, bool: boolean) {
         checked: false
       }
     })
-    // console.log(removedIngredient)
     await prisma.$disconnect();
   }
-    // return new Response();
   } catch (error) {
     console.error(error)
   }

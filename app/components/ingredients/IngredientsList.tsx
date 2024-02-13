@@ -36,12 +36,6 @@ const IngredientsList = () => {
 
   const handleDeleteIngredients = async () => {
     try {
-      // await fetch("http://localhost:3000/api/ingredients", {
-      //   method: "DELETE",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
       await deleteUserIngredients();
       await getIngredients();
     } catch (error) {
