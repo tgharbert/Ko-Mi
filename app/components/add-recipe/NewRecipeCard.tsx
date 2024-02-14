@@ -42,16 +42,17 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 
   const handleRecipeSubmission = async () => {
     try {
-      // await fetch("/api/add-recipe", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ recipe }),
-      // });
-      // console.log(recipe);
-      // const recipeData = await JSON.stringify(recipe);
-      await addRecipe(recipe);
+      await fetch("/api/add-recipe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ recipe }),
+      });
+      console.log(recipe);
+      const recipeData = await JSON.stringify(recipe);
+
+      // await addRecipe(recipe);
       setIsLoading(true);
       router.push("/");
     } catch (error) {

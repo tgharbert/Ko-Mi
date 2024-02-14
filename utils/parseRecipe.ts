@@ -1,6 +1,5 @@
-
 const getRecipeObject = (recipeData: any): object => {
-  console.log("&&&&&&&&&&&&&&&&&", recipeData);
+  console.log('________________________', recipeData)
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
@@ -11,6 +10,7 @@ const getRecipeObject = (recipeData: any): object => {
   } else {
     let recipe = recipeData;
     formatRecipe(recipe);
+    // console.log(recipe)
     return recipe;
   }
 };
@@ -51,9 +51,22 @@ const getAuthor = (recipe: any) => {
 
 const getRecipeYield = (recipe: any) => {
   if (Array.isArray(recipe.recipeYield)) {
-    recipe.recipeYield = recipe.recipeYield[0];
+    recipe.recipeYield = parseYieldNumber(recipe.recipeYield[0]);
+  } else {
+    recipe.recipeYield = parseYieldNumber(recipe.recipeYield)
   }
 };
+// calling this to get just the number from recipe yield
+const parseYieldNumber = (string: string) => {
+  const servingArray = string.split(' ');
+  let number;
+  servingArray.forEach((word) => {
+    if (parseInt(word) < 0 || parseInt(word) > 0) {
+      number = eval(word)
+    }
+  })
+  return number;
+}
 
 const getAggregateRating = (recipe: any) => {
   if (recipe.aggregateRating) {
@@ -88,6 +101,7 @@ const getCategory = (recipe: any) => {
 };
 
 // ALL VALUES ARE BEING ADDED TO THE LIST AT THE MOMENT. NEED TO ADD TITLE TO THE FIRST ELEMENT??
+// there are edge cases that are not working here... NYT cassoulet for ex
 const getInstructions = (recipe: any) => {
   let instructions: string[] = [];
   recipe.recipeInstructions.map((item: any) => {

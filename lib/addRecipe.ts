@@ -4,10 +4,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "../app/api/_base"
 
-export async function addRecipe(recipe: any) {
+export async function addRecipe(input: any) {
+  // console.log(recipe)
   console.log('hit')
   try {
-    // const recipe = await input.json();
+    const recipe = await input.json();
     // console.log(typeof input)
     const session = await getServerSession(authOptions);
 
@@ -59,8 +60,10 @@ export async function addRecipe(recipe: any) {
       },
     });
     await prisma.$disconnect();
-    console.log("HHHHHHHHHHHHHHHHHHH")
+    // console.log("HHHHHHHHHHHHHHHHHHH")
     console.log(newRecipe)
+    return new Response();
+
     return;
     // return new Response('success!');
   } catch (error) {

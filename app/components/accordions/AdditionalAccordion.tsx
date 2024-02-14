@@ -21,7 +21,7 @@ const AdditionalAccordion = ({
   keywords,
 }: {
   url: string;
-  recipeYield: string;
+  recipeYield: number;
   publisher: string;
   keywords: Keywords[];
 }) => {
@@ -45,7 +45,7 @@ const AdditionalAccordion = ({
         <div>
           <p>
             <b>Recipe Yield: </b>
-            {recipeYield}
+            {recipeYield} servings
           </p>
         </div>
         <div>

@@ -32,7 +32,7 @@ model Recipe {
   publisherName   String?
   publisherUrl    String?
   publisherLogo   String?
-  recipeYield     String
+  recipeYield     Int
   totalTime       String
   cookTime        String
   prepTime        String

@@ -1,4 +1,4 @@
-const parseNumberAmount = (string: string) => {
+const parseIngredientAmount = (string: string) => {
   const firstValue = string.split(" ")[0];
   if (firstValue.includes(".") || firstValue.includes("/")) {
     return eval(firstValue);
@@ -8,4 +8,4 @@ const parseNumberAmount = (string: string) => {
   return false;
 };
 
-export default parseNumberAmount;
+export default parseIngredientAmount;

@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
+import AddIngredientsButton from "./AddIngredientsButton";
 
 import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
@@ -35,7 +36,7 @@ type Recipe = {
   publisherLogo: string;
   publisherName: string;
   publisherUrl: string;
-  recipeYield: string;
+  recipeYield: number;
   totalTime: string;
   url: string;
 };
@@ -119,9 +120,13 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         ) : (
           <p className="pb-2 italic">No listed author</p>
         )}
-        <button onClick={handleAddIngredients} className="float-left pt-4">
+        {/* ADD THE DIALOG HERE */}
+        <div className="float-left pt-4">
+          <AddIngredientsButton recipeYield={recipe.recipeYield} />
+        </div>
+        {/* <button onClick={handleAddIngredients} className="float-left pt-4">
           Add Ingredients
-        </button>
+        </button> */}
       </CardContent>
       <CardActions disableSpacing className="-mt-4">
         <ExpandMore
