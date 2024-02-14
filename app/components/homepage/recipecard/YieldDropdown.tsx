@@ -1,49 +1,47 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import NativeSelect from "@mui/material/NativeSelect";
+import { useState } from "react";
+import { addIngredients } from "@/lib/addIngredients";
 
 export default function YieldDropdown({
   recipeYield,
+  recipeIngredients,
+  handleClose,
 }: {
   recipeYield: number;
+  recipeIngredients: Ingredient[];
+  handleClose: Function;
 }) {
-  // I want the values in the dropdown to be multiples or recipeValue-
-  // .25, .5, 1, 1.5, 2
+  const [multiplier, setMultiplier] = useState(recipeYield);
+  // ingredients should be passed to this component...
+  const handleAddIngredients = async (
+    ingredients: string[],
+    multiplier: number
+  ) => {
+    // let ingredientData = await JSON.stringify(ingredients);
+    console.log(ingredients);
+    addIngredients(ingredients, multiplier);
+    handleClose();
+  };
 
-  // return (
-  //   <Box sx={{ minWidth: 120 }}>
-  //     <FormControl fullWidth>
-  //       <InputLabel variant="standard" htmlFor="uncontrolled-native">
-  //         Yield
-  //       </InputLabel>
-  //       <NativeSelect
-  //         defaultValue={recipeYield}
-  //         inputProps={{
-  //           name: "age",
-  //           id: "uncontrolled-native",
-  //         }}
-  //       >
-  //         <option value={10}>Ten</option>
-  //         <option value={20}>Twenty</option>
-  //         <option value={30}>Thirty</option>
-  //       </NativeSelect>
-  //     </FormControl>
-  //   </Box>
-  // );
-
+  console.log(recipeIngredients);
+  // on click the ingredients are sent to the db where the multiplier will be applied...
   return (
-    <div>
-      <select>
+    <div className="pb-4">
+      <select
+        // value={multiplier}
+        onChange={(e) => setMultiplier(e.target.value)}
+        defaultValue={recipeYield}
+      >
         <option value={recipeYield / 4}>{recipeYield / 4}</option>
         <option value={recipeYield / 2}>{recipeYield / 2}</option>
-        <option value={recipeYield} selected>
-          {recipeYield}
-        </option>
+        <option value={recipeYield}>{recipeYield}</option>
         <option value={recipeYield * 1.5}>{recipeYield * 1.5}</option>
         <option value={recipeYield * 2}>{recipeYield * 2}</option>
       </select>
+      <button
+        onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
+      >
+        Add Ingredients
+      </button>
     </div>
   );
 }

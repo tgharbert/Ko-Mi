@@ -20,41 +20,6 @@ import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
 
-type Recipe = {
-  aggregateRating: number;
-  author: string;
-  categotry: string[];
-  cookTime: string;
-  description: string;
-  id: number;
-  image: string;
-  instructions: string[];
-  ingredients: Ingredient[];
-  keywords: Keywords[];
-  name: string;
-  prepTime: string;
-  publisherLogo: string;
-  publisherName: string;
-  publisherUrl: string;
-  recipeYield: number;
-  totalTime: string;
-  url: string;
-};
-
-type Keywords = {
-  id: number;
-  name: string;
-  recipeId: number;
-};
-
-type Ingredient = {
-  id: number;
-  name: string;
-  locationId: number;
-  recipeId: number;
-  types: string[];
-};
-
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -122,7 +87,10 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
         )}
         {/* ADD THE DIALOG HERE */}
         <div className="float-left pt-4">
-          <AddIngredientsButton recipeYield={recipe.recipeYield} />
+          <AddIngredientsButton
+            recipeYield={recipe.recipeYield}
+            recipeIngredients={recipe.ingredients}
+          />
         </div>
         {/* <button onClick={handleAddIngredients} className="float-left pt-4">
           Add Ingredients

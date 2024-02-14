@@ -1,5 +1,4 @@
-import * as React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -8,8 +7,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import YieldDropdown from "./YieldDropdown";
 
-const AddIngredientsButton = ({ recipeYield }: { recipeYield: number }) => {
-  const [open, setOpen] = React.useState(false);
+const AddIngredientsButton = ({
+  recipeYield,
+  recipeIngredients,
+}: {
+  recipeYield: number;
+  recipeIngredients: Ingredient[];
+}) => {
+  const [open, setOpen] = useState(false);
   // need to pass the recipeYield to dropdown
 
   const handleClickOpen = () => {
@@ -21,25 +26,26 @@ const AddIngredientsButton = ({ recipeYield }: { recipeYield: number }) => {
   };
 
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <div className="px-5">
+      {/* <Button variant="" onClick={handleClickOpen}>
         Add Ingredients
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
+      </Button> */}
+      <button onClick={handleClickOpen}>Add Ingredients</button>
+      <Dialog open={open} onClose={handleClose} className="mx-10">
+        {/* <DialogTitle id="alert-dialog-title">
           {"Adjust Serving Size"}
-        </DialogTitle>
-        <DialogContent>
+        </DialogTitle> */}
+        <p className="px-10 mx-10 pt-4 pb-8">Adjust Serving Size</p>
+        {/* <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Serving Size
           </DialogContentText>
-        </DialogContent>
-        <YieldDropdown recipeYield={recipeYield} />
+        </DialogContent> */}
+        <YieldDropdown
+          recipeYield={recipeYield}
+          recipeIngredients={recipeIngredients}
+          handleClose={handleClose}
+        />
         {/* <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
@@ -47,7 +53,7 @@ const AddIngredientsButton = ({ recipeYield }: { recipeYield: number }) => {
           </Button>
         </DialogActions> */}
       </Dialog>
-    </React.Fragment>
+    </div>
   );
 };
 
