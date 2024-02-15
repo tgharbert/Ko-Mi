@@ -21,7 +21,6 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
       let entry: IngredientEntry = {
         userId: user?.id || "",
         ingredientId: ingredient.id,
-        // name: ingredient.name,
         name: modifyIngredientAmount(ingredient.name, multiplier),
       };
       newEntry.push(entry);
@@ -30,12 +29,9 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
     const newIngredients = await prisma.userIngredient.createMany({
       data: newEntry,
     });
-    console.log(newIngredients);
     return;
-    // return new Response(JSON.stringify(newIngredients));
   } catch (error) {
     console.error(error);
     return `ERROR: ${error}`
-    // return new Response({error: 'error'});
   }
 }

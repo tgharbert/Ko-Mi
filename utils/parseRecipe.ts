@@ -123,7 +123,7 @@ const getInstructions = (recipe: any) => {
         instructions.push(instruction.text);
       });
     } else {
-      // if it's just an array of text
+      // if the ingredients are just an array of text
       instructions.push(item.text);
     }
   });

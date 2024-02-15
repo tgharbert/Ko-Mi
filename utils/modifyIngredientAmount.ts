@@ -9,6 +9,7 @@ const modifyIngredientAmount = (string: string, multiplier: number) => {
     const baseValue = eval(firstValue)
     const newValue = baseValue * multiplier;
     return newValue + string.slice(firstSpaceIndex)
+  // checking against NaN
   } else if (parseInt(firstValue) > 0 || parseInt(firstValue) < 0) {
     const baseValue = parseInt(firstValue);
     const newValue = baseValue * multiplier;

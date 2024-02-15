@@ -23,11 +23,7 @@ export default function YieldDropdown({
   // on click the ingredients are sent to the db where the multiplier will be applied...
   return (
     <div className="pb-4">
-      <select
-        // value={multiplier}
-        onChange={(e) => setMultiplier(e.target.value)}
-        defaultValue={1}
-      >
+      <select onChange={(e) => setMultiplier(e.target.value)} defaultValue={1}>
         <option value={0.25}>{recipeYield / 4}</option>
         <option value={0.5}>{recipeYield / 2}</option>
         <option value={1}>{recipeYield}</option>
