@@ -1,5 +1,4 @@
 const getRecipeObject = (recipeData: any): object => {
-  console.log('________________________', recipeData)
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
@@ -100,11 +99,11 @@ const getCategory = (recipe: any) => {
 };
 
 // ALL VALUES ARE BEING ADDED TO THE LIST AT THE MOMENT. NEED TO ADD TITLE TO THE FIRST ELEMENT??
-// there are edge cases that are not working here... NYT cassoulet for ex
+// there are edge cases that are not working here... turkey chili food 52
 const getInstructions = (recipe: any) => {
   let instructions: string[] = [];
   if (recipe.recipeInstructions.length === 1) {
-    console.log('hit conditional')
+    console.log('hit conditional for Tukey Chili')
     let recipeContainer = recipe.recipeInstructions[0];
 
   }

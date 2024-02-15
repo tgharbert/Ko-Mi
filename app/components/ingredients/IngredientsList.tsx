@@ -15,7 +15,6 @@ type Ingredient = {
 };
 
 const IngredientsList = () => {
-  // get the userIngredients from the db
   const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,6 +23,7 @@ const IngredientsList = () => {
       setIsLoading(true);
       const ingredientData = await getUserIngredients();
       setIngredients(ingredientData);
+      // display a success message??
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -51,9 +51,6 @@ const IngredientsList = () => {
 
   return (
     <div>
-      {/* {isLoading ? (
-        <LoadingPage />
-      ) : ( */}
       <div>
         <div className="pb-8">
           <button

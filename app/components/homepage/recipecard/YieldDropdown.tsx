@@ -16,13 +16,10 @@ export default function YieldDropdown({
     ingredients: string[],
     multiplier: number
   ) => {
-    // let ingredientData = await JSON.stringify(ingredients);
-    console.log(ingredients);
     addIngredients(ingredients, multiplier);
     handleClose();
   };
 
-  console.log(recipeIngredients);
   // on click the ingredients are sent to the db where the multiplier will be applied...
   return (
     <div className="pb-4">

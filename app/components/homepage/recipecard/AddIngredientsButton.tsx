@@ -15,7 +15,6 @@ const AddIngredientsButton = ({
   recipeIngredients: Ingredient[];
 }) => {
   const [open, setOpen] = useState(false);
-  // need to pass the recipeYield to dropdown
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,9 +26,6 @@ const AddIngredientsButton = ({
 
   return (
     <div className="px-5">
-      {/* <Button variant="" onClick={handleClickOpen}>
-        Add Ingredients
-      </Button> */}
       <button onClick={handleClickOpen}>Add Ingredients</button>
       <Dialog open={open} onClose={handleClose} className="mx-10">
         {/* <DialogTitle id="alert-dialog-title">

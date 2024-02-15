@@ -13,28 +13,6 @@ import DescriptionAccordion from "../accordions/DescriptionAccordion";
 import IngredientAccordion from "../accordions/IngredientAccordion";
 import { addRecipe } from "@/lib/addRecipe";
 
-// need to refine based on the data model in MVP
-// type Recipe = {
-//   title: string;
-//   author: string;
-//   description: string;
-//   name: string;
-//   keywords: string[];
-//   instructions: string[];
-//   recipeInstructions: string[];
-//   recipeIngredient: any[];
-//   image: string;
-//   aggregateRating: number;
-//   publisher: string;
-//   recipeYield: string;
-//   mainEntityOfPage: boolean;
-//   category?: string[];
-//   totalTime: string;
-//   cookTime: string;
-//   prepTime?: string;
-//   user?: string;
-// };
-
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   const [isLoading, setIsLoading] = useState(false);
 

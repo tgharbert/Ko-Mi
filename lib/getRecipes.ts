@@ -71,8 +71,8 @@ export async function getRecipes(query: string, category: string) {
     return new Response(JSON.stringify(allRecipes));
   }
 
+  // query for author
   if (category === 'Author') {
-    // query for author
         const allRecipes = await prisma.recipe.findMany({
           where: {
             userId: user?.id,

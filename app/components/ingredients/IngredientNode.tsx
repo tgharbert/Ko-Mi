@@ -35,7 +35,7 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
         <p
           className={
             isChecked
-              ? "w-4/5 float-right line-through text-lg pt-4"
+              ? "w-4/5 float-right line-through text-lg pt-4  text-red-500"
               : "w-4/5 float-right text-lg pt-4"
           }
         >
