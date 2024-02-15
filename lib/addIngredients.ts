@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/app/api/_base"
 
-import parseIngredientAmount from "@/utils/numberParser";
+import modifyIngredientAmount from "@/utils/modifyIngredientAmount";
 
 export async function addIngredients(ingredients: Ingredient[], multiplier: number) {
   try {
@@ -21,10 +21,8 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
       let entry: IngredientEntry = {
         userId: user?.id || "",
         ingredientId: ingredient.id,
-        // need to work on adding the multiplier
-        // should get the multiplier from the client and then apply here?
-        // parseNumberAmount
-        name: ingredient.name,
+        // name: ingredient.name,
+        name: modifyIngredientAmount(ingredient.name, multiplier),
       };
       newEntry.push(entry);
     });
@@ -37,6 +35,7 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
     // return new Response(JSON.stringify(newIngredients));
   } catch (error) {
     console.error(error);
-    return new Response("ERROR: ", error);
+    return `ERROR: ${error}`
+    // return new Response({error: 'error'});
   }
 }

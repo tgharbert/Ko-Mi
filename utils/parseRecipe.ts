@@ -26,23 +26,29 @@ const formatRecipe = (recipe: object) => {
 };
 
 const getImage = (recipe: any) => {
+  // if it's an array of images just grab the first one
   if (Array.isArray(recipe.image)) {
     recipe.image = recipe.image[0];
   }
+  // if it's an object with a url key
   if (recipe.image.url) {
     recipe.image = recipe.image.url;
   }
+  // if it's just a url string
   if (typeof recipe.image === "string") {
     recipe.image = recipe.image;
   }
 };
 
 const getAuthor = (recipe: any) => {
+  // if it's an object inside of an array of length 1
   if (Array.isArray(recipe.author)) {
     recipe.author = recipe.author[0].name;
   } else if (recipe.author.name) {
+    // if it's an object
     recipe.author = recipe.author.name;
   } else {
+    // if it wasn't provided
     recipe.author = "";
   }
 };
@@ -54,7 +60,8 @@ const getRecipeYield = (recipe: any) => {
     recipe.recipeYield = parseYieldNumber(recipe.recipeYield)
   }
 };
-// calling this to get just the number from recipe yield
+
+// get just the number from recipe yield
 const parseYieldNumber = (string: string) => {
   const servingArray = string.split(' ');
   let number;
@@ -98,27 +105,30 @@ const getCategory = (recipe: any) => {
   }
 };
 
-// ALL VALUES ARE BEING ADDED TO THE LIST AT THE MOMENT. NEED TO ADD TITLE TO THE FIRST ELEMENT??
-// there are edge cases that are not working here... turkey chili food 52
+// this could be refactored - a little messy at the moment
 const getInstructions = (recipe: any) => {
   let instructions: string[] = [];
+  // if the array of instructions are an array of objects inside of an array length 1
   if (recipe.recipeInstructions.length === 1) {
-    console.log('hit conditional for Tukey Chili')
     let recipeContainer = recipe.recipeInstructions[0];
-
-  }
+    recipeContainer.map((item: any) => {
+      instructions.push(item.text)
+    })
+  } else {
   recipe.recipeInstructions.map((item: any) => {
+    // if it's an array of objects with text, etc
     if (item["@type"] === "HowToSection") {
       instructions.push(item.name + ":");
       item.itemListElement.map((instruction: any) => {
         instructions.push(instruction.text);
       });
-      recipe.instructions = instructions;
     } else {
+      // if it's just an array of text
       instructions.push(item.text);
-      recipe.instructions = instructions;
     }
   });
+}
+  recipe.instructions = instructions;
 };
 
 export default getRecipeObject;

@@ -1,4 +1,3 @@
-// import * as React from "react";
 "use client";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
@@ -76,9 +75,6 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
             recipeIngredients={recipe.ingredients}
           />
         </div>
-        {/* <button onClick={handleAddIngredients} className="float-left pt-4">
-          Add Ingredients
-        </button> */}
       </CardContent>
       <CardActions disableSpacing className="-mt-4">
         <ExpandMore

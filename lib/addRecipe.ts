@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/app/api/_base"
 
-export async function addRecipe(recipe: Recipe) {
+export async function addRecipe(recipe: any) {
 
   try {
     const session = await getServerSession(authOptions);

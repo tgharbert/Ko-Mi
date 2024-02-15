@@ -7,12 +7,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 
-type Ingredient = {
-  id: number;
-  name: string;
-  ingredientId: number;
-  checked: boolean;
-};
+// type Ingredient = {
+//   id: number;
+//   name: string;
+//   ingredientId: number;
+//   checked: boolean;
+// };
 
 const IngredientsList = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -75,12 +75,8 @@ const IngredientsList = () => {
           <div className="flex-col">
             <ul>
               {ingredients.map((ingredient: Ingredient) => {
-                console.log("test");
                 return (
-                  <IngredientNode
-                    key={ingredient.ingredientId}
-                    ingredient={ingredient}
-                  />
+                  <IngredientNode key={ingredient.id} ingredient={ingredient} />
                 );
               })}
             </ul>

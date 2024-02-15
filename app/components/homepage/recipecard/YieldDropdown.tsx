@@ -11,9 +11,9 @@ export default function YieldDropdown({
   handleClose: Function;
 }) {
   const [multiplier, setMultiplier] = useState(recipeYield);
-  // ingredients should be passed to this component...
+
   const handleAddIngredients = async (
-    ingredients: string[],
+    ingredients: Ingredient[],
     multiplier: number
   ) => {
     addIngredients(ingredients, multiplier);
@@ -26,13 +26,13 @@ export default function YieldDropdown({
       <select
         // value={multiplier}
         onChange={(e) => setMultiplier(e.target.value)}
-        defaultValue={recipeYield}
+        defaultValue={1}
       >
-        <option value={recipeYield / 4}>{recipeYield / 4}</option>
-        <option value={recipeYield / 2}>{recipeYield / 2}</option>
-        <option value={recipeYield}>{recipeYield}</option>
-        <option value={recipeYield * 1.5}>{recipeYield * 1.5}</option>
-        <option value={recipeYield * 2}>{recipeYield * 2}</option>
+        <option value={0.25}>{recipeYield / 4}</option>
+        <option value={0.5}>{recipeYield / 2}</option>
+        <option value={1}>{recipeYield}</option>
+        <option value={1.5}>{recipeYield * 1.5}</option>
+        <option value={2}>{recipeYield * 2}</option>
       </select>
       <button
         onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
