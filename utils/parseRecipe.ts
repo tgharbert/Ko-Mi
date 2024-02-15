@@ -10,7 +10,6 @@ const getRecipeObject = (recipeData: any): object => {
   } else {
     let recipe = recipeData;
     formatRecipe(recipe);
-    // console.log(recipe)
     return recipe;
   }
 };
@@ -104,6 +103,11 @@ const getCategory = (recipe: any) => {
 // there are edge cases that are not working here... NYT cassoulet for ex
 const getInstructions = (recipe: any) => {
   let instructions: string[] = [];
+  if (recipe.recipeInstructions.length === 1) {
+    console.log('hit conditional')
+    let recipeContainer = recipe.recipeInstructions[0];
+
+  }
   recipe.recipeInstructions.map((item: any) => {
     if (item["@type"] === "HowToSection") {
       instructions.push(item.name + ":");

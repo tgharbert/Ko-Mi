@@ -2,7 +2,8 @@
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import prisma from "../app/api/_base"
+import prisma from "@/app/api/_base"
+
 import parseIngredientAmount from "@/utils/numberParser";
 
 export async function addIngredients(ingredients: Ingredient[], multiplier: number) {

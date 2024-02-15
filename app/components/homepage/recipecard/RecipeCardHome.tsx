@@ -42,22 +42,6 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
     setExpanded(!expanded);
   };
 
-  // route to /api/add-ingredient
-  const handleAddIngredients = async () => {
-    try {
-      await fetch("/api/add-ingredient", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(recipe.ingredients),
-      });
-      // THIS SHOULD HAVE AN 'ADDED' MESSAGE
-    } catch (error) {
-      console.error("ERROR: ", error);
-    }
-  };
-
   return (
     <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mx-10 mt-4">
       <CardHeader

@@ -1,3 +1,5 @@
+'use server'
+
 import prisma from "../app/api/_base"
 import { getServerSession } from "next-auth";
 import { authOptions } from "../app/api/auth/[...nextauth]/route";
@@ -46,8 +48,8 @@ export async function getRecipes(query: string, category: string) {
     return new Response(JSON.stringify(allRecipes));
   }
 
+  // query for keywords
   if (category === 'Keyword') {
-    // query for keywords
     const allRecipes = await prisma.recipe.findMany({
       where: {
         userId: user?.id,

@@ -1,27 +1,19 @@
 'use server'
-// import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import prisma from "../app/api/_base"
+import prisma from "@/app/api/_base"
 
-export async function addRecipe(input: any) {
-  // console.log(recipe)
-  console.log('hit')
+export async function addRecipe(recipe: Recipe) {
+
   try {
-    const recipe = await input.json();
-    // console.log(typeof input)
     const session = await getServerSession(authOptions);
-
     const userEmail = session?.user?.email || "";
-    // const recipe = data.recipe;
-    recipe.keywords = recipe.keywords || ["No available keywords"]
-    recipe.instructions = recipe.keywords || ['No available instructions']
-
-
-
     const user = await prisma.user.findUnique({
       where: { email: userEmail },
     });
+
+    recipe.keywords = recipe.keywords || ["No available keywords"]
+    recipe.instructions = recipe.instructions || ['No available instructions']
 
     const newRecipe = await prisma.recipe.upsert({
       where: {
@@ -60,12 +52,7 @@ export async function addRecipe(input: any) {
       },
     });
     await prisma.$disconnect();
-    // console.log("HHHHHHHHHHHHHHHHHHH")
-    console.log(newRecipe)
-    return new Response();
-
     return;
-    // return new Response('success!');
   } catch (error) {
     console.error("ERROR: ", error);
     return new Response();
