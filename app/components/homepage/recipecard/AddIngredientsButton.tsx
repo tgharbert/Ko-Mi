@@ -26,7 +26,12 @@ const AddIngredientsButton = ({
 
   return (
     <div className="px-5">
-      <button onClick={handleClickOpen}>Add Ingredients</button>
+      <button
+        className="font-bold cursor-pointer hover:text-lime-600"
+        onClick={handleClickOpen}
+      >
+        Add Ingredients
+      </button>
       <Dialog open={open} onClose={handleClose} className="mx-10">
         {/* <DialogTitle id="alert-dialog-title">
           {"Adjust Serving Size"}

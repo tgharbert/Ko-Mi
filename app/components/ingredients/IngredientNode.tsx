@@ -14,13 +14,13 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
 
   return (
     // <div className=" mx-4 pb-3 float-left block">
-    <span className="">
-      <li className="flexbox overflow-y-auto mx-4 pb-8 text-left border-2 border-red rounded-lg h-auto mt-4 bg-tertiary text-black">
-        <IconButton onClick={() => onCheckIngredient()} className="mr-3 ">
+    <span className="sm:flex sm:items-center sm:justify-center ">
+      <li className="flexbox overflow-y-auto mx-4 pb-8 text-left border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
+        <IconButton onClick={() => onCheckIngredient()}>
           {isChecked ? (
-            <RemoveShoppingCartIcon className="mt-4 text-red-500  ml-4" />
+            <RemoveShoppingCartIcon className="mt-4 text-red-500  ml-4 text-left" />
           ) : (
-            <AddShoppingCartIcon className="mt-4 text-lime-500 ml-4" />
+            <AddShoppingCartIcon className="mt-4 text-lime-500 ml-4 float-left" />
           )}
         </IconButton>
         <p

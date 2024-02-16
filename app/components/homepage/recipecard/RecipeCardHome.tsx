@@ -51,7 +51,9 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
           //   </IconButton>
           // }
           title={
-            <h2 className="text-lg font-semibold flex-fill ">{recipe.name}</h2>
+            <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
+              {recipe.name}
+            </h2>
           }
         />
         <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
