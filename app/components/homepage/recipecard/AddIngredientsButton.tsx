@@ -25,18 +25,22 @@ const AddIngredientsButton = ({
   };
 
   return (
-    <div className="px-5">
+    <div className="px-5 bg-tertiary">
       <button
         className="font-bold cursor-pointer hover:text-lime-600"
         onClick={handleClickOpen}
       >
         Add Ingredients
       </button>
-      <Dialog open={open} onClose={handleClose} className="mx-10">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        className="mx-10 justify-center content-center"
+      >
         {/* <DialogTitle id="alert-dialog-title">
           {"Adjust Serving Size"}
         </DialogTitle> */}
-        <p className="px-10 mx-10 pt-4 pb-8">Adjust Serving Size</p>
+        <p className="px-10 pt-4 pb-8">Adjust Serving Size</p>
         {/* <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Serving Size
