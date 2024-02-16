@@ -15,7 +15,7 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
   return (
     // <div className=" mx-4 pb-3 float-left block">
     <span className="">
-      <li className="flexbox overflow-y-auto mx-4 pb-8 text-left border-2 border-red rounded-lg h-auto mt-4">
+      <li className="flexbox overflow-y-auto mx-4 pb-8 text-left border-2 border-red rounded-lg h-auto mt-4 bg-tertiary text-black">
         <IconButton onClick={() => onCheckIngredient()} className="mr-3 ">
           {isChecked ? (
             <RemoveShoppingCartIcon className="mt-4 text-red-500  ml-4" />

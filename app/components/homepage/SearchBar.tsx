@@ -29,7 +29,7 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
   };
 
   return (
-    <div>
+    <div className="pb-4">
       <input
         className="text-black w-1/2 rounded px-2"
         onChange={(e) => {

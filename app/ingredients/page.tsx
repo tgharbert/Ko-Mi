@@ -12,7 +12,6 @@ const Ingredients = async () => {
       <div className="-mt-9">
         <Header />
       </div>
-      <h2 className="pb-4">Your Current Shopping List:</h2>
       <Suspense fallback={<LoadingPage />}>
         <IngredientsList />
       </Suspense>

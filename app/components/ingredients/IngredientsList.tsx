@@ -55,10 +55,10 @@ const IngredientsList = () => {
         <div className="pb-8">
           <button
             onClick={handleDeleteChecked}
-            className=" mr-4 bg-lime-500 px-3 rounded"
+            className=" mr-4 bg-lime-500 rounded px-3"
           >
-            Delete Checked
             <ClearIcon />
+            Delete Checked
           </button>
           <button
             onClick={handleDeleteIngredients}
