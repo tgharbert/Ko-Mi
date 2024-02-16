@@ -15,22 +15,39 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
   return (
     // <div className=" mx-4 pb-3 float-left block">
     <span className="sm:flex sm:items-center sm:justify-center ">
-      <li className="flexbox overflow-y-auto mx-4 pb-8 text-left border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
-        <IconButton onClick={() => onCheckIngredient()}>
-          {isChecked ? (
-            <RemoveShoppingCartIcon className="mt-4 text-red-500  ml-4 text-left" />
-          ) : (
-            <AddShoppingCartIcon className="mt-4 text-lime-500 ml-4 float-left" />
-          )}
-        </IconButton>
+      <li className="flexbox overflow-y-auto mx-4 px-4 text-left border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
+        {/* <span className="mt-6 flex w-1/5">
+          <IconButton
+            onClick={() => onCheckIngredient()}
+            className="justify-center content-center flex"
+          >
+            {isChecked ? (
+              <RemoveShoppingCartIcon className=" text-red-500 text-left flex justify-center content-center" />
+            ) : (
+              <AddShoppingCartIcon className=" text-lime-500 float-left" />
+            )}
+          </IconButton>
+        </span> */}
         <p
           className={
             isChecked
-              ? "w-4/5 float-right line-through text-lg pt-4 text-red-500"
-              : "w-4/5 float-right text-lg pt-4"
+              ? "w-full float-center line-through text-lg text-red-500"
+              : "w-full float-center text-lg "
           }
         >
-          {ingredient.name}
+          <span className="mt-4 mb-4 flex ">
+            <IconButton
+              onClick={() => onCheckIngredient()}
+              className="justify-center content-center flex"
+            >
+              {isChecked ? (
+                <RemoveShoppingCartIcon className=" text-red-500 text-left flex justify-center content-center mr-4" />
+              ) : (
+                <AddShoppingCartIcon className=" text-lime-500 float-left mr-4" />
+              )}
+            </IconButton>
+            <div>{ingredient.name}</div>
+          </span>
         </p>
       </li>
     </span>

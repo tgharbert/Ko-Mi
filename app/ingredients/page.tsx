@@ -8,7 +8,7 @@ const Ingredients = async () => {
   await verifyUser();
 
   return (
-    <div className="text-center">
+    <div className="text-center pb-10">
       <div className="-mt-9">
         <Header />
       </div>

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { addIngredients } from "@/lib/addIngredients";
+import Button from "@mui/material/Button";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/mui-styles/styles";
 
 export default function YieldDropdown({
   recipeYield,
@@ -22,20 +25,33 @@ export default function YieldDropdown({
 
   // on click the ingredients are sent to the db where the multiplier will be applied...
   return (
-    <div className="pb-4 ml-4">
-      <select onChange={(e) => setMultiplier(e.target.value)} defaultValue={1}>
-        <option value={0.25}>{recipeYield / 4}</option>
-        <option value={0.5}>{recipeYield / 2}</option>
-        <option value={1}>{recipeYield}</option>
-        <option value={1.5}>{recipeYield * 1.5}</option>
-        <option value={2}>{recipeYield * 2}</option>
-      </select>
-      <button
-        onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
-        className="float-right mr-4 bg-lime-500 rounded px-2 text-white"
-      >
-        Add Ingredients
-      </button>
+    <div className="flexbox justify-center content-center pb-4 px-8">
+      <div className="pb-4 px-8 flex justify-center content-center ">
+        <select
+          onChange={(e) => setMultiplier(e.target.value)}
+          defaultValue={1}
+          className="mr-2 border-2 border-primary rounded px-3"
+        >
+          <option value={0.25}>{recipeYield / 4}</option>
+          <option value={0.5}>{recipeYield / 2}</option>
+          <option value={1}>{recipeYield}</option>
+          <option value={1.5}>{recipeYield * 1.5}</option>
+          <option value={2}>{recipeYield * 2}</option>
+        </select>
+        <label className="ml-2">Servings</label>
+      </div>
+      <div className="flex justify-center content-center">
+        <ThemeProvider theme={theme}>
+          <Button
+            variant="contained"
+            className="px-4 bg-lime-500"
+            onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
+            color="lime"
+          >
+            Add Ingredients
+          </Button>
+        </ThemeProvider>
+      </div>
     </div>
   );
 }

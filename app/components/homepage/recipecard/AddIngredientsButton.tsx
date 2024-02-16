@@ -1,11 +1,9 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import YieldDropdown from "./YieldDropdown";
+import AddIcon from "@mui/icons-material/Add";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const AddIngredientsButton = ({
   recipeYield,
@@ -25,38 +23,31 @@ const AddIngredientsButton = ({
   };
 
   return (
-    <div className="px-5 bg-tertiary">
+    <div className="px-5 bg-tertiary flex justify-center content-center">
       <button
-        className="font-bold cursor-pointer hover:text-lime-600"
+        className="cursor-pointer hover:text-lime-600 flex "
         onClick={handleClickOpen}
       >
-        Add Ingredients
+        <AddShoppingCartIcon className="mr-3" /> Add Ingredients
       </button>
       <Dialog
         open={open}
         onClose={handleClose}
         className="mx-10 justify-center content-center"
       >
-        {/* <DialogTitle id="alert-dialog-title">
-          {"Adjust Serving Size"}
-        </DialogTitle> */}
-        <p className="px-10 pt-4 pb-8">Adjust Serving Size</p>
-        {/* <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Serving Size
-          </DialogContentText>
-        </DialogContent> */}
+        <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-lg">
+          Adjust Serving Size:
+        </p>
+        <div className="flex justify-center content-center">
+          <p className="px-10 italic text-center pb-4">
+            <b>{recipeYield}</b> is the standard serving size
+          </p>
+        </div>
         <YieldDropdown
           recipeYield={recipeYield}
           recipeIngredients={recipeIngredients}
           handleClose={handleClose}
         />
-        {/* <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );

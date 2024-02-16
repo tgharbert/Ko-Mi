@@ -2,42 +2,13 @@
 import { useState, useEffect } from "react";
 import IngredientNode from "./IngredientNode";
 import LoadingPage from "../Loading";
-import ClearIcon from "@mui/icons-material/Clear";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-
-// should extract this into another folder and export 'theme'
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    lime: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    lime?: PaletteOptions["primary"];
-  }
-}
-
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    lime: true;
-  }
-}
-
-const theme = createTheme({
-  palette: {
-    lime: {
-      main: "#84CC16",
-      light: "#65A30D",
-      dark: "#65A30D",
-      contrastText: "#F7F9F9",
-    },
-  },
-});
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/mui-styles/styles";
 
 const IngredientsList = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -79,14 +50,6 @@ const IngredientsList = () => {
       <div>
         <div>
           <div className="pb-8">
-            {/* <button
-            onClick={handleDeleteChecked}
-            className=" mr-4 bg-lime-500 rounded px-3"
-            >
-            <ClearIcon />
-            Delete Checked
-          </button> */}
-            {/* Adjust this with MUI button! */}
             <Stack
               // spacing={2}
               direction="row"
@@ -98,24 +61,21 @@ const IngredientsList = () => {
                 onClick={handleDeleteChecked}
                 color="lime"
               >
+                <DeleteIcon className="mr-4" />
                 Delete Checked
               </Button>
-              <Button
-                variant="contained"
-                className="bg-lime-500"
-                onClick={handleDeleteIngredients}
-                color="lime"
-              >
-                Delete All
-              </Button>
+              <div className="px-4">
+                <Button
+                  variant="contained"
+                  className="bg-lime-500"
+                  onClick={handleDeleteIngredients}
+                  color="lime"
+                >
+                  <DeleteIcon className="mr-4" />
+                  Delete All
+                </Button>
+              </div>
             </Stack>
-            {/* <button
-            onClick={handleDeleteIngredients}
-            className=" ml-4 bg-lime-500 px-3 rounded"
-            >
-            Delete All Items
-            <DeleteIcon />
-          </button> */}
           </div>
           {/* SHOULD BE AN INFINITE SCROLL?? */}
           {isLoading ? (
