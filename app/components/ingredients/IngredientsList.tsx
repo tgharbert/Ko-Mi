@@ -7,13 +7,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 
-// type Ingredient = {
-//   id: number;
-//   name: string;
-//   ingredientId: number;
-//   checked: boolean;
-// };
-
 const IngredientsList = () => {
   const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

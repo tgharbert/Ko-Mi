@@ -1,14 +1,22 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
-const SignInButton = ({ name }: { name: string }) => {
+const SignInButton = ({ name, image }: { name: string; image: string }) => {
   const { data: session } = useSession();
   const { data: sessionData, status } = useSession();
 
   if (session && session.user) {
     return (
       <div className="flow-root w-full	">
-        <p className="float-left">{session.user.name}</p>
+        <Image
+          src={image}
+          width="40"
+          height="40"
+          className="rounded-full float-left mr-4"
+          alt="profile-image"
+        />
+        <p className="float-left">{name}</p>
         <button className="float-right" onClick={() => signOut()}>
           Sign Out
         </button>
@@ -21,7 +29,16 @@ const SignInButton = ({ name }: { name: string }) => {
       {status === "unauthenticated" ? (
         <button onClick={() => signIn()}>Sign In</button>
       ) : (
-        <>{name}</>
+        <div>
+          <Image
+            src={image}
+            width="40"
+            height="40"
+            className="rounded-full float-left mr-4"
+            alt="profile-image"
+          />
+          <>{name}</>
+        </div>
       )}
     </div>
   );

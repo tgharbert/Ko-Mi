@@ -10,7 +10,7 @@ const SignInPageButton = () => {
     return (
       <div className="flow-root w-full	">
         <p className="float-left">{session.user.name}</p>
-        <button className="float-right" onClick={() => signOut()}>
+        <button className="float-right " onClick={() => signOut()}>
           Sign Out
         </button>
       </div>
@@ -20,7 +20,9 @@ const SignInPageButton = () => {
   return (
     <div>
       {status === "unauthenticated" ? (
-        <button onClick={() => signIn()}>Sign In</button>
+        <button className="bg-lime-500 px-3 rounded" onClick={() => signIn()}>
+          Sign In
+        </button>
       ) : (
         <>{name}</>
       )}

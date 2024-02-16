@@ -15,13 +15,14 @@ const Login = () => {
   }, [status, router]);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center pr-6 pl-6 text-center pt-80">
       <div>
-        <p className="">
-          Welcome to Ko-Mi! At the moment, we only support Google accounts.
-          Sign-In or Sign Up with the button below:
+        <p className="text-xl pb-3 font-bold">Welcome to Ko-Mi!</p>
+        <p className="pb-3">
+          At the moment, we only support Google accounts. Sign-In or Sign Up
+          with the button below:
         </p>
-        <div className="bg-lime-500 w-1/5 text-center">
+        <div className=" text-center ">
           <SignInPageButton />
         </div>
       </div>

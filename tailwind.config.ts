@@ -17,7 +17,7 @@ const config: Config = {
       colors: {
         primary: '#233329',
         secondary: '#ABFF4F',
-        tertiary: '#E0DFD5'
+        tertiary: '#F7F9F9'
       },
       fontFamily: {
         'sans': ['Roboto', 'ui-sans-serif', 'system-ui'],

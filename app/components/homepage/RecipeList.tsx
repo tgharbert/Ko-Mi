@@ -15,8 +15,8 @@ const RecipeList = async ({
   let recipes = await response?.json();
 
   return (
-    <div className="">
-      <div className="grid sm:grid-cols-3 gap-4 sm:content-around ">
+    <div className="sm:flex justify-center items-center pb-8">
+      <div className="grid sm:grid-cols-3 gap-2 w-4/5">
         {recipes.map((recipe: any) => {
           return <RecipeCard key={recipe.id} recipe={recipe} />;
         })}

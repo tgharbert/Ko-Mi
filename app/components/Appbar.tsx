@@ -10,7 +10,7 @@ const Appbar = async () => {
     <header className="flex gap-4 p-4">
       {/* REFACTOR THIS FOR SESSIONS? !SESSION REDIRECT? */}
       {/* {pathname.includes("/login") ? "" : <SignInButton />} */}
-      <SignInButton name={user.name} />
+      <SignInButton name={user.name} image={user.image} />
     </header>
   );
 };
