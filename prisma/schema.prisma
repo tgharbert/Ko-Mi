@@ -17,7 +17,7 @@ model Recipe {
   author      String
   description String
   name        String
-  // keywords    String[]
+
   keywordId   Int?
   keywords    Keyword[]
 
@@ -127,6 +127,9 @@ model User {
   sessions      Session[]
   recipes       Recipe[]
   ingredients   UserIngredient[]
+
+  friendsA Friend[] @relation("FriendA")
+  friendsB Friend[] @relation("FriendB")
 }
 
 model VerificationToken {
@@ -135,4 +138,26 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum FriendStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
+model Friend {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  friendA   User   @relation("FriendA", fields: [friendAId], references: [id])
+  friendAId String
+
+  friendB   User   @relation("FriendB", fields: [friendBId], references: [id])
+  friendBId String
+
+  status FriendStatus
+
+  @@unique([friendAId, friendBId])
 }
