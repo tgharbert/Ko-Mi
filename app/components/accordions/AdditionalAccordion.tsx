@@ -7,6 +7,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
+import LinkIcon from "@mui/icons-material/Link";
 
 type Keywords = {
   id: number;
@@ -39,7 +40,10 @@ const AdditionalAccordion = ({
         <div>
           <p>
             <b>Original URL: </b>
-            <a href={url}>link</a>
+            <a className="underline text-blue" href={url}>
+              <LinkIcon className="mr-1" />
+              click link
+            </a>
           </p>
         </div>
         <div>

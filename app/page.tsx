@@ -19,8 +19,6 @@ export default async function Home({
   // at the moment pagination is half-built...
   const currentPage = Number(searchParams?.page) || 1;
 
-  console.log(currentPage);
-
   await verifyUser();
 
   return (

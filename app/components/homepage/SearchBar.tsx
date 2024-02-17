@@ -31,7 +31,8 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
   return (
     <div className="pb-4">
       <input
-        className="text-black w-1/2 rounded px-2"
+        className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
+        autoFocus
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
@@ -39,7 +40,7 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
         defaultValue={searchParams.get("query")?.toString()}
       ></input>
       <select
-        className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3 pt-1 pb-1"
+        className="bg-lime-500 hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1"
         onChange={(e) => {
           handleCategory(e.target.value);
         }}

@@ -32,16 +32,16 @@ export default function RecipeURLForm() {
   };
 
   return (
-    <div className="pt-4">
+    <div className="">
       <form onSubmit={handleRecipeSubmit}>
         <input
-          className="text-black w-1/2 rounded px-2"
+          className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
           type="text"
           value={recipeURL}
           onChange={(e) => setRecipeURL(e.target.value)}
           placeholder="Recipe URL"
         />
-        <button className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3">
+        <button className="bg-lime-500 hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
           Enter Recipe
         </button>
       </form>

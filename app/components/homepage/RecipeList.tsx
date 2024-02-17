@@ -18,12 +18,10 @@ const RecipeList = async ({
 
   // clicking a button at the bottom will increment the page, if there are more results that aren't shown
   // this button will be a client component that is created and imported into the bottom of the page
-  // page will passed into it
+  // currentPage will passed into it
   // const handleNextPageClick = (currentPage: number) => {
   //   const params = new URLSearchParams(searchParams);
-  //   if (page === 1) {
-  //     params.set("page", page++);
-  //   }
+  //   params.set("page", page++);
   //   replace(`${pathname}?${params.toString()}`);
   // };
 
