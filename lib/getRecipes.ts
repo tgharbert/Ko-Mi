@@ -4,7 +4,8 @@ import prisma from "../app/api/_base"
 import { getServerSession } from "next-auth";
 import { authOptions } from "../app/api/auth/[...nextauth]/route";
 
-export async function getRecipes(query: string, category: string) {
+export async function getRecipes(query: string, category: string, page: number) {
+  const resultsPerPage = 6;
 
   try {
     const session = await getServerSession(authOptions);
@@ -12,6 +13,10 @@ export async function getRecipes(query: string, category: string) {
 
     if (category === 'Name') {
     const allRecipes = await prisma.recipe.findMany({
+      skip: (page - 1) * resultsPerPage,
+      take: resultsPerPage,
+      skip: page * 3,
+      take: 3,
       where: {
         userId: user?.id,
         name: {
@@ -31,6 +36,8 @@ export async function getRecipes(query: string, category: string) {
   // QUERY BY INGREDIENT
   if (category === 'Ingredient') {
     const allRecipes = await prisma.recipe.findMany({
+      skip: (page - 1) * resultsPerPage,
+      take: resultsPerPage,
       where: {
         userId: user?.id,
         ingredients: {
@@ -51,6 +58,8 @@ export async function getRecipes(query: string, category: string) {
   // query for keywords
   if (category === 'Keyword') {
     const allRecipes = await prisma.recipe.findMany({
+      skip: (page - 1) * resultsPerPage,
+      take: resultsPerPage,
       where: {
         userId: user?.id,
         keywords: {
@@ -74,6 +83,8 @@ export async function getRecipes(query: string, category: string) {
   // query for author
   if (category === 'Author') {
         const allRecipes = await prisma.recipe.findMany({
+          skip: (page - 1) * resultsPerPage,
+          take: resultsPerPage,
           where: {
             userId: user?.id,
             author: {
@@ -93,6 +104,8 @@ export async function getRecipes(query: string, category: string) {
   if (category === 'Publisher') {
     // query for publisher
     const allRecipes = await prisma.recipe.findMany({
+      skip: (page - 1) * resultsPerPage,
+      take: resultsPerPage,
       where: {
         userId: user?.id,
         publisherName: {
@@ -110,6 +123,8 @@ export async function getRecipes(query: string, category: string) {
   }
 
   const allRecipes = await prisma.recipe.findMany({
+    skip: (page - 1) * resultsPerPage,
+    take: resultsPerPage,
     where: {
       userId: user?.id,
       name: {

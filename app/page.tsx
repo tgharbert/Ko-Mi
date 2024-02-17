@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import LoadingPage from "./loading";
 import RecipeSearchBar from "./components/homepage/SearchBar";
 import verifyUser from "@/utils/verifyUser";
+import PageNavigation from "./components/homepage/PageNavigation";
 
 export default async function Home({
   searchParams,
@@ -33,6 +34,9 @@ export default async function Home({
           currentPage={currentPage}
           category={category}
         />
+        {/* <div className="float-center">
+          <PageNavigation currentPage={currentPage} />
+        </div> */}
       </Suspense>
     </div>
   );
