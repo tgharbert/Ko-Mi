@@ -37,6 +37,10 @@ model Recipe {
   cookTime        String
   prepTime        String
 
+  // I think that I should be able to keep track of what users submit recipes
+  // this way users are able to edit 'their' recipes
+  // should there be a public/private setting?
+
   @@unique([url])
 }
 

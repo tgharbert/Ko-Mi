@@ -35,11 +35,13 @@ const PageNavigation = ({
     <div className="mb-4">
       <div>
         {currentPage > 1 ? (
-          <NavigateBeforeIcon
-            fontSize="large"
-            className="cursor-pointer"
-            onClick={() => handlePreviousPageClick(currentPage)}
-          />
+          <span className="hover:text-lime-500">
+            <NavigateBeforeIcon
+              fontSize="large"
+              className="cursor-pointer"
+              onClick={() => handlePreviousPageClick(currentPage)}
+            />
+          </span>
         ) : (
           ""
         )}
@@ -47,11 +49,13 @@ const PageNavigation = ({
         {numberOfResults < 6 ? (
           ""
         ) : (
-          <NavigateNextIcon
-            fontSize="large"
-            className="cursor-pointer"
-            onClick={() => handleNextPageClick(currentPage)}
-          />
+          <span className="hover:text-lime-500">
+            <NavigateNextIcon
+              fontSize="large"
+              className="cursor-pointer "
+              onClick={() => handleNextPageClick(currentPage)}
+            />
+          </span>
         )}
       </div>
     </div>
