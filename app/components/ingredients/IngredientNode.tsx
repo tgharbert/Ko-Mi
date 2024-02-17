@@ -15,7 +15,7 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
       <li className="flexbox overflow-y-auto mx-4 px-4 text-left border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
-        <p
+        <span
           className={
             isChecked
               ? "w-full float-center line-through text-lg text-red-500"
@@ -30,9 +30,9 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
                 <AddShoppingCartIcon className=" text-lime-500 float-left " />
               )}
             </IconButton>
-            <div className="px-20">{ingredient.name}</div>
+            <p className="px-20">{ingredient.name}</p>
           </span>
-        </p>
+        </span>
       </li>
     </span>
   );

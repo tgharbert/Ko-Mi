@@ -13,7 +13,7 @@ export default function YieldDropdown({
   recipeIngredients: Ingredient[];
   handleClose: Function;
 }) {
-  const [multiplier, setMultiplier] = useState(recipeYield);
+  const [multiplier, setMultiplier] = useState(1);
 
   const handleAddIngredients = async (
     ingredients: Ingredient[],
@@ -22,6 +22,7 @@ export default function YieldDropdown({
     addIngredients(ingredients, multiplier);
     handleClose();
   };
+  console.log(multiplier);
 
   // on click the ingredients are sent to the db where the multiplier will be applied...
   return (

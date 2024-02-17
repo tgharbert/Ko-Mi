@@ -1,7 +1,6 @@
 import RecipeCard from "./recipecard/RecipeCardHome";
 import PageNavigation from "./PageNavigation";
 import { getRecipes } from "@/lib/getRecipes";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const RecipeList = async ({
   query,

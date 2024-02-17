@@ -17,15 +17,25 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
 
     let newEntry: IngredientEntry[] = [];
 
-    ingredients.map((ingredient: any) => {
-      let entry: IngredientEntry = {
-        userId: user?.id || "",
-        ingredientId: ingredient.id,
-        name: modifyIngredientAmount(ingredient.name, multiplier),
-      };
-      newEntry.push(entry);
-    });
-
+    if (multiplier === 1) {
+      ingredients.map((ingredient: any) => {
+        let entry: IngredientEntry = {
+          userId: user?.id || "",
+          ingredientId: ingredient.id,
+          name: ingredient.name,
+        };
+        newEntry.push(entry);
+      });
+    } else {
+      ingredients.map((ingredient: any) => {
+        let entry: IngredientEntry = {
+          userId: user?.id || "",
+          ingredientId: ingredient.id,
+          name: modifyIngredientAmount(ingredient.name, multiplier),
+        };
+        newEntry.push(entry);
+      });
+    }
     const newIngredients = await prisma.userIngredient.createMany({
       data: newEntry,
     });

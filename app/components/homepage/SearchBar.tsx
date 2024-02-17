@@ -7,8 +7,8 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  // debouncing here to limit calls - having an issue where the page is refreshing on debounce
   const handleSearch = useDebouncedCallback((term: string) => {
+    // set page to 1?
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);
@@ -19,6 +19,7 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
   }, 1000);
 
   const handleCategory = (term: string) => {
+    // set page to 1?
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("category", term);
