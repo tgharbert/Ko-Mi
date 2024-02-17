@@ -82,6 +82,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
           </div>
         </CardContent>
         <CardActions disableSpacing className="-mt-4">
+          {/* CHANGE THIS TO A MODAL WINDOW THAT POPS UP */}
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
