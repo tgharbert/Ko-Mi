@@ -3,7 +3,13 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-const PageNavigation = ({ currentPage }: { currentPage: number }) => {
+const PageNavigation = ({
+  currentPage,
+  numberOfResults,
+}: {
+  currentPage: number;
+  numberOfResults: number;
+}) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -38,11 +44,15 @@ const PageNavigation = ({ currentPage }: { currentPage: number }) => {
           ""
         )}
         <span className="text-lg italic">Page {currentPage}</span>
-        <NavigateNextIcon
-          fontSize="large"
-          className="cursor-pointer"
-          onClick={() => handleNextPageClick(currentPage)}
-        />
+        {numberOfResults < 6 ? (
+          ""
+        ) : (
+          <NavigateNextIcon
+            fontSize="large"
+            className="cursor-pointer"
+            onClick={() => handleNextPageClick(currentPage)}
+          />
+        )}
       </div>
     </div>
   );

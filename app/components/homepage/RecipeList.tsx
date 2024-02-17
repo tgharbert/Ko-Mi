@@ -32,7 +32,10 @@ const RecipeList = async ({
         </div>
       ) : (
         <div className="float-center">
-          <PageNavigation currentPage={currentPage} />
+          <PageNavigation
+            currentPage={currentPage}
+            numberOfResults={recipes.length}
+          />
         </div>
       )}
     </div>

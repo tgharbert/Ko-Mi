@@ -53,15 +53,15 @@ const IngredientsList = () => {
             <Stack
               // spacing={2}
               direction="row"
-              className="flex justify-center content-center px-4"
+              className="flex justify-center content-center "
             >
               <Button
                 variant="contained"
-                className="px-4 bg-lime-500"
+                className=" bg-lime-500"
                 onClick={handleDeleteChecked}
                 color="lime"
               >
-                <DeleteIcon className="mr-4" />
+                <DeleteIcon className="" />
                 Delete Checked
               </Button>
               <div className="px-4">
@@ -71,7 +71,7 @@ const IngredientsList = () => {
                   onClick={handleDeleteIngredients}
                   color="lime"
                 >
-                  <DeleteIcon className="mr-4" />
+                  <DeleteIcon className="" />
                   Delete All
                 </Button>
               </div>
