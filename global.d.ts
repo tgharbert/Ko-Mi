@@ -3,7 +3,7 @@ declare global {
 type Recipe = {
   aggregateRating: number;
   author: string;
-  categotry: string[];
+  category: string[];
   cookTime: string;
   description: string;
   id: number;
@@ -41,3 +41,39 @@ type Keywords = {
   name: string;
   recipeId: number;
 };
+
+
+type RawRecipe = {
+  aggregateRating: number;
+  author: string;
+  category: string[];
+  cookTime: string;
+  description: string;
+  id: number;
+  image: string;
+  instructions: string[];
+  recipeIngredient: string[];
+  keywords: Keywords[];
+  name: string;
+  prepTime: string;
+  publisherLogo: string;
+  publisherName: string;
+  publisherUrl: string;
+  recipeYield: number;
+  totalTime: string;
+  url: string;
+};
+
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  id: string;
+}
+
+type AddedIngredient = {
+  name: string;
+  checked: boolean;
+  ingredientId: number;
+  id: number;
+}

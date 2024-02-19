@@ -2,14 +2,14 @@
 
 import prisma from "@/app/api/_base"
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
+import {authOptions} from "@/utils/authOptions"
 
 export async function getUserIngredients() {
   try {
     // should this be passed a userId??
     const session = await getServerSession(authOptions);
-    const user = session?.user || "";
+    const user = session?.user as User;
+
     const allIngredients = await prisma.userIngredient.findMany({
       where: {
         userId: user?.id,

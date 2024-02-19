@@ -12,7 +12,7 @@ const ldScraper = async (url: string) => {
     const html = response.data;
     const $ = await cheerio.load(html);
     const jsonLDData: string[] = [];
-    $('script[type="application/ld+json"]').each((index, element: string) => {
+    $('script[type="application/ld+json"]').each((index: number, element: string) => {
       const json = JSON.parse($(element).html());
       jsonLDData.push(json);
     });

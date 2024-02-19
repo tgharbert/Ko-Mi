@@ -13,7 +13,7 @@ export default function YieldDropdown({
   recipeIngredients: Ingredient[];
   handleClose: Function;
 }) {
-  const [multiplier, setMultiplier] = useState(1);
+  const [multiplier, setMultiplier] = useState<number>(1);
 
   const handleAddIngredients = async (
     ingredients: Ingredient[],
@@ -29,7 +29,7 @@ export default function YieldDropdown({
     <div className="flexbox justify-center content-center pb-4 px-8">
       <div className="pb-4 px-8 flex justify-center content-center ">
         <select
-          onChange={(e) => setMultiplier(e.target.value)}
+          onChange={(e) => setMultiplier(Number(e.target.value))}
           defaultValue={1}
           className="mr-2 border-2 border-primary rounded px-3"
         >

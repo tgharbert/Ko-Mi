@@ -1,10 +1,10 @@
 import SignInButton from "./SignInButton";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOptions";
 
 const Appbar = async () => {
   const session = await getServerSession(authOptions);
-  const user = session?.user || "";
+  const user = session?.user as User;
 
   return (
     <header className="flex gap-4 p-4">

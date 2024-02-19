@@ -8,9 +8,9 @@ import LinkIcon from "@mui/icons-material/Link";
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
-  const [recipe, setRecipe] = useState({});
+  const [recipe, setRecipe] = useState<RawRecipe | undefined>();
   const [badURL, setBadURL] = useState("");
-  const [isRecipe, setIsRecipe] = useState(false);
+  // const [isRecipe, setIsRecipe] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,12 +22,12 @@ export default function RecipeURLForm() {
       setRecipeURL("");
       return;
     }
-    let recipeObject = getRecipeObject(newRecipe);
+    let recipeObject: RawRecipe = getRecipeObject(newRecipe);
     recipeObject.url = recipeURL;
     setBadURL("");
     setIsError(false);
     setRecipe(recipeObject);
-    setIsRecipe(true);
+    // setIsRecipe(true);
     setRecipeURL("");
   };
 
@@ -48,7 +48,7 @@ export default function RecipeURLForm() {
       {isError ? (
         <RecipeCardError url={badURL} />
       ) : (
-        <div>{isRecipe ? <RecipeCard recipe={recipe} /> : ""}</div>
+        <div>{recipe ? <RecipeCard recipe={recipe} /> : ""}</div>
       )}
     </div>
   );

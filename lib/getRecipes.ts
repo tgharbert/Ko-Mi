@@ -2,21 +2,21 @@
 
 import prisma from "../app/api/_base"
 import { getServerSession } from "next-auth";
-import { authOptions } from "../app/api/auth/[...nextauth]/route";
+import {authOptions} from '@/utils/authOptions'
+
 
 export async function getRecipes(query: string, category: string, page: number) {
   const resultsPerPage = 6;
 
   try {
     const session = await getServerSession(authOptions);
-    const user = session?.user || "";
+    const user = session?.user as User;
+
 
     if (category === 'Name') {
     const allRecipes = await prisma.recipe.findMany({
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
-      skip: page * 3,
-      take: 3,
       where: {
         userId: user?.id,
         name: {

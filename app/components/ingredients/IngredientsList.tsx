@@ -17,7 +17,8 @@ const IngredientsList = () => {
   const getIngredients = async () => {
     try {
       setIsLoading(true);
-      const ingredientData = await getUserIngredients();
+      const ingredientData: any = await getUserIngredients();
+      console.log(ingredientData);
       setIngredients(ingredientData);
       // display a success message??
       setIsLoading(false);

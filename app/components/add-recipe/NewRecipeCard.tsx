@@ -13,7 +13,7 @@ import DescriptionAccordion from "../accordions/DescriptionAccordion";
 import IngredientAccordion from "../accordions/IngredientAccordion";
 import { addRecipe } from "@/lib/addRecipe";
 
-const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
+const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -71,7 +71,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
             </AccordionSummary>
             <AccordionDetails>
               <ul className="px-2 list-disc text-left">
-                {recipe.recipeIngredient.map((ingredient, idx) => (
+                {recipe.recipeIngredient.map((ingredient, idx: number) => (
                   <li className="pb-4" key={idx}>
                     {ingredient}
                   </li>

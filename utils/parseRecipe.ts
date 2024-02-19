@@ -1,6 +1,7 @@
-const getRecipeObject = (recipeData: any): object => {
+const getRecipeObject = (recipeData: any): RawRecipe => {
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
+      console.log('TESTBOI', recipeData)
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
       formatRecipe(recipe);
       return recipe;
