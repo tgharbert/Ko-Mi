@@ -27,7 +27,7 @@ export default async function Home({
       <div className="-mt-9">
         <Header />
       </div>
-      <RecipeSearchBar category={category} />
+      <RecipeSearchBar category={category} currentPage={currentPage} />
       <Suspense fallback={<LoadingPage />} key={query + currentPage}>
         <RecipeList
           query={query}

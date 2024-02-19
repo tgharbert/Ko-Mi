@@ -2,15 +2,25 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-const RecipeSearchBar = ({ category }: { category: string }) => {
+const RecipeSearchBar = ({
+  category,
+  currentPage,
+}: {
+  category: string;
+  currentPage: number;
+}) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const handleSearch = useDebouncedCallback((term: string) => {
-    // set page to 1?
     const params = new URLSearchParams(searchParams);
+
+    currentPage = 1;
+    const newPage = String(currentPage);
+
     if (term) {
+      params.set("page", newPage);
       params.set("query", term);
     } else {
       params.delete("query");
@@ -19,9 +29,13 @@ const RecipeSearchBar = ({ category }: { category: string }) => {
   }, 1000);
 
   const handleCategory = (term: string) => {
-    // set page to 1?
     const params = new URLSearchParams(searchParams);
+
+    currentPage = 1;
+    const newPage = String(currentPage);
+
     if (term) {
+      params.set("page", newPage);
       params.set("category", term);
     } else {
       params.delete("category");
