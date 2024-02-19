@@ -3,6 +3,11 @@ WORKDIR /my-project
 COPY package.json package-lock.json ./
 RUN yarn install
 
+RUN yarn prisma generate
+
+RUN rm -rf node_modules
+RUN yarn --frozen-lockfile --prod
+
 
 FROM node:lts as builder
 WORKDIR /my-project
