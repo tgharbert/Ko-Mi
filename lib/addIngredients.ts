@@ -1,7 +1,6 @@
 'use server'
 
 import { getServerSession } from "next-auth";
-// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import {authOptions} from '@/utils/authOptions'
 
 import prisma from "@/app/api/_base"
@@ -20,7 +19,7 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
     let newEntry: IngredientEntry[] = [];
 
     if (multiplier === 1) {
-      ingredients.map((ingredient: any) => {
+      ingredients.map((ingredient: Ingredient) => {
         let entry: IngredientEntry = {
           userId: user?.id || "",
           ingredientId: ingredient.id,
@@ -29,7 +28,7 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
         newEntry.push(entry);
       });
     } else {
-      ingredients.map((ingredient: any) => {
+      ingredients.map((ingredient: Ingredient) => {
         let entry: IngredientEntry = {
           userId: user?.id || "",
           ingredientId: ingredient.id,

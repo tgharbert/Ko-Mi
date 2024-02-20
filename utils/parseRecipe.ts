@@ -1,4 +1,5 @@
 const getRecipeObject = (recipeData: any): RawRecipe => {
+  console.log(recipeData)
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
@@ -66,6 +67,7 @@ const getRecipeYield = (recipe: any) => {
 
 // get just the number from recipe yield
 const parseYieldNumber = (string: string) => {
+  // at the moment not parsing if there's something like 5-6
   const servingArray = string.split(' ');
   let number;
   servingArray.forEach((word) => {
