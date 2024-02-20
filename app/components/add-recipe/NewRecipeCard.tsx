@@ -12,6 +12,7 @@ import DescriptionAccordion from "../accordions/DescriptionAccordion";
 // unable to use this because ingredients are formatted as strings from URL
 import IngredientAccordion from "../accordions/IngredientAccordion";
 import { addRecipe } from "@/lib/addRecipe";
+// import { addRecipe } from "../../../lib/addRecipe";
 
 const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
   const [isLoading, setIsLoading] = useState(false);

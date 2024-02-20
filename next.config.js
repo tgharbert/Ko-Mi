@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   images: {
     remotePatterns: [
@@ -6,5 +8,11 @@ module.exports = {
         hostname: "**",
       },
     ],
+  },
+  output: "standalone",
+  webpack: (config, { isServer }) => {
+    // for path in tsconfig.js: "@/*": ["./src/*"]
+    config.resolve.alias["@"] = path.join(__dirname, "");
+    return config;
   },
 };
