@@ -6,7 +6,7 @@ import {authOptions} from '@/utils/authOptions'
 
 
 export async function getRecipes(query: string, category: string, page: number) {
-  const resultsPerPage = 6;
+  const resultsPerPage = 9;
 
   try {
     const session = await getServerSession(authOptions);

@@ -38,6 +38,7 @@ export default function RecipeURLForm() {
           value={recipeURL}
           onChange={(e) => setRecipeURL(e.target.value)}
           placeholder="Recipe URL"
+          autoFocus
         />
         <button className="bg-lime-500 hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
           Enter Recipe

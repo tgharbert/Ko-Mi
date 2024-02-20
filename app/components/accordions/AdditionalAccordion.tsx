@@ -59,16 +59,14 @@ const AdditionalAccordion = ({
           </p>
         </div>
         <div>
-          <p>
-            <b>Keywords: </b>
-            {keywords.map((keyword) => {
-              return (
-                <p className="italic text-sm" key={keyword.name}>
-                  #{keyword.name}
-                </p>
-              );
-            })}
-          </p>
+          <b>Keywords: </b>
+          {keywords.map((keyword) => {
+            return (
+              <p className="italic text-sm" key={keyword.name}>
+                #{keyword.name}
+              </p>
+            );
+          })}
         </div>
       </AccordionDetails>
     </Accordion>
