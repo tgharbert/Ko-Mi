@@ -72,8 +72,8 @@ type User = {
 }
 
 type AddedIngredient = {
-  name: string;
+  name: string | null;
   checked: boolean;
   ingredientId: number;
   id: number;
-}
+}[]

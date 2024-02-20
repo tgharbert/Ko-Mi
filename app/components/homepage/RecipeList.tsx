@@ -20,7 +20,7 @@ const RecipeList = async ({
     <div>
       <div className="sm:flex justify-center items-center pb-8">
         <div className="grid sm:grid-cols-3 gap-2 w-4/5">
-          {recipes.map((recipe: any) => {
+          {recipes.map((recipe: Recipe) => {
             return <RecipeCard key={recipe.id} recipe={recipe} />;
           })}
         </div>
