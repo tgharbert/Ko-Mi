@@ -22,7 +22,6 @@ export default function YieldDropdown({
     addIngredients(ingredients, multiplier);
     handleClose();
   };
-  console.log(multiplier);
 
   // on click the ingredients are sent to the db where the multiplier will be applied...
   return (

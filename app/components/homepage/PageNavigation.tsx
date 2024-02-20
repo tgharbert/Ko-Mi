@@ -18,7 +18,6 @@ const PageNavigation = ({
     page++;
     const params = new URLSearchParams(searchParams);
     const newPage = String(page);
-    console.log(newPage);
     params.set("page", newPage);
     replace(`${pathname}?${params.toString()}`);
   };

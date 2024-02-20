@@ -1,5 +1,5 @@
 const RecipeCardError = ({ url }: { url: string }) => {
-  console.log(url);
+  // console.log(url);
   return (
     <div>
       <h2 className="text-lg pt-4 pb-4">

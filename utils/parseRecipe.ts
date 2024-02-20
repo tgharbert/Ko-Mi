@@ -1,7 +1,6 @@
 const getRecipeObject = (recipeData: any): RawRecipe => {
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
-      console.log('TESTBOI', recipeData)
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
       formatRecipe(recipe);
       return recipe;
@@ -24,6 +23,7 @@ const formatRecipe = (recipe: object) => {
   getKeywords(recipe);
   getCategory(recipe);
   getInstructions(recipe);
+  getIngredients(recipe)
 };
 
 const getImage = (recipe: any) => {
@@ -55,7 +55,9 @@ const getAuthor = (recipe: any) => {
 };
 
 const getRecipeYield = (recipe: any) => {
-  if (Array.isArray(recipe.recipeYield)) {
+  if (!recipe.recipeYield) {
+    recipe.recipeYield = '1'
+  } else if (Array.isArray(recipe.recipeYield)) {
     recipe.recipeYield = parseYieldNumber(recipe.recipeYield[0]);
   } else {
     recipe.recipeYield = parseYieldNumber(recipe.recipeYield)
@@ -109,9 +111,14 @@ const getCategory = (recipe: any) => {
 // this could be refactored - a little messy at the moment
 const getInstructions = (recipe: any) => {
   let instructions: string[] = [];
-  // if the array of instructions are an array of objects inside of an array length 1
-  if (recipe.recipeInstructions.length === 1) {
+  if (!recipe.recipeInstructions) {
+    instructions.push("Please visit recipe link")
+  } else if (recipe.recipeInstructions.length === 1) {
+    // if the array of instructions are an array of objects inside of an array length 1
     let recipeContainer = recipe.recipeInstructions[0];
+    if (recipeContainer.itemListElement) {
+      recipeContainer = recipeContainer.itemListElement;
+    }
     recipeContainer.map((item: any) => {
       instructions.push(item.text)
     })
@@ -124,12 +131,18 @@ const getInstructions = (recipe: any) => {
         instructions.push(instruction.text);
       });
     } else {
-      // if the ingredients are just an array of text
+      // if the instructions are just an array of text
       instructions.push(item.text);
     }
   });
 }
   recipe.instructions = instructions;
 };
+
+const getIngredients = (recipe: any) => {
+  if (!recipe.ingredients) {
+    recipe.recipeIngredient = ["None provided, please visit URL"]
+  }
+}
 
 export default getRecipeObject;

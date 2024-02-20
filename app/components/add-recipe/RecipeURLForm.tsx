@@ -10,7 +10,6 @@ export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
   const [recipe, setRecipe] = useState<RawRecipe | undefined>();
   const [badURL, setBadURL] = useState("");
-  // const [isRecipe, setIsRecipe] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,7 +26,6 @@ export default function RecipeURLForm() {
     setBadURL("");
     setIsError(false);
     setRecipe(recipeObject);
-    // setIsRecipe(true);
     setRecipeURL("");
   };
 
