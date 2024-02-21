@@ -26,7 +26,7 @@ export async function getUserIngredients() {
     return allIngredients;
   } catch (error) {
     console.error("error", error);
-    return new Response("Error retrieving data");
+    return;
   }
 }
 

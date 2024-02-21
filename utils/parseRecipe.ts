@@ -23,7 +23,6 @@ const formatRecipe = (recipe: object) => {
   getKeywords(recipe);
   getCategory(recipe);
   getInstructions(recipe);
-  getIngredients(recipe)
 };
 
 const getImage = (recipe: any) => {
@@ -140,10 +139,5 @@ const getInstructions = (recipe: any) => {
   recipe.instructions = instructions;
 };
 
-const getIngredients = (recipe: any) => {
-  if (!recipe.ingredients) {
-    recipe.recipeIngredient = ["None provided, please visit URL"]
-  }
-}
 
 export default getRecipeObject;

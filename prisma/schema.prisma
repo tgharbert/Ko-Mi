@@ -69,12 +69,12 @@ model Ingredient {
 model UserIngredient {
   id           Int     @id @default(autoincrement())
   userId       String
-  ingredientId Int
+  ingredientId Int?  @map("ingredient_id") // Define custom foreign key name
   checked      Boolean @default(false)
   name         String?
 
   user       User       @relation(fields: [userId], references: [id])
-  ingredient Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredient Ingredient? @relation(fields: [ingredientId], references: [id])
 
   @@unique([id])
 }

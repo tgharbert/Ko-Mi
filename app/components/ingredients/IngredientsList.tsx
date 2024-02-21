@@ -48,6 +48,7 @@ const IngredientsList = () => {
   return (
     <ThemeProvider theme={theme}>
       <div>
+        {/* add the bar here? */}
         <div>
           <div className="pb-8">
             <Stack
