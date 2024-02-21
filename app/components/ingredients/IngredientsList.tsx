@@ -9,10 +9,13 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
+import AddListItemBar from "./NewIngredientBar";
+import { addItemToList } from "@/lib/addItemToList";
 
 const IngredientsList = () => {
   const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [item, setItem] = useState("");
 
   const getIngredients = async () => {
     try {
@@ -41,16 +44,35 @@ const IngredientsList = () => {
   };
 
   const handleDeleteChecked = async () => {
-    await deleteCheckedIngredients();
+    try {
+      await deleteCheckedIngredients();
+      await getIngredients();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleItemSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    await addItemToList(item);
     await getIngredients();
+    setItem("");
+  };
+
+  const setValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setItem(e.target.value);
   };
 
   return (
     <ThemeProvider theme={theme}>
       <div>
-        {/* add the bar here? */}
+        <AddListItemBar
+          item={item}
+          handleSubmit={handleItemSubmit}
+          setValue={setValue}
+        />
         <div>
-          <div className="pb-8">
+          <div className="pb-4 mt-8">
             <Stack
               // spacing={2}
               direction="row"
