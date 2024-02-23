@@ -1,6 +1,16 @@
 const getRecipeObject = (recipeData: any): RawRecipe => {
+  console.log(recipeData)
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
+      // triggered...
+      // should probably refactor to find an object with
+      // @type == "Recipe"
+      if (recipeData[1]["@type"] == 'Recipe') {
+        const recipe = recipeData[1]
+        console.log(recipe)
+        formatRecipe(recipe)
+        return recipe;
+      }
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
       formatRecipe(recipe);
       return recipe;
@@ -59,6 +69,7 @@ const getRecipeYield = (recipe: any) => {
   } else if (Array.isArray(recipe.recipeYield)) {
     recipe.recipeYield = parseYieldNumber(recipe.recipeYield[0]);
   } else {
+    recipe.recipeYield = String(recipe.recipeYield)
     recipe.recipeYield = parseYieldNumber(recipe.recipeYield)
   }
 };
