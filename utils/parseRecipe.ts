@@ -1,31 +1,23 @@
+// Refactor this to break into smaller components with more descriptive naming
+
 const getRecipeObject = (recipeData: any): RawRecipe => {
-  console.log('initial data: ', recipeData)
+  // console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
-    // console.log('okay, array: ', recipeData)
     if (recipeData[0]["@graph"]) {
       let graphArray = recipeData[0]["@graph"];
-      console.log('graphy: ', graphArray)
       for (let key in graphArray) {
         if (graphArray[key]["@type"] === "Recipe") {
-          console.log('hit!!!')
-          // const recipe = recipeData[1]
           const recipe = graphArray[key]
-          console.log(recipe)
           formatRecipe(recipe)
           return recipe;
         }
       }
-      // triggered...
-      // should probably refactor to find an object with
-      // @type == "Recipe"
       if (recipeData[1]["@type"] === 'Recipe') {
         const recipe = recipeData[1]
         console.log(recipe)
         formatRecipe(recipe)
         return recipe;
       }
-
-
       let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
       formatRecipe(recipe);
       return recipe;
