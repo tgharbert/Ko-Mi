@@ -46,7 +46,7 @@ export async function addRecipe(recipe: any) {
         publisherName: recipe.publisherName,
         publisherLogo: recipe.publisherLogo,
         publisherUrl: recipe.publisherUrl,
-        recipeYield: recipe.recipeYield,
+        recipeYield: Number(recipe.recipeYield),
         totalTime: recipe.totalTime || "Value not assigned",
         cookTime: recipe.cookTime || "Value not assigned",
         category: recipe.recipeCategory || ["Value not assigned"],

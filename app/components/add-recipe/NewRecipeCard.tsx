@@ -20,6 +20,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
   const router = useRouter();
 
   const handleRecipeSubmission = async () => {
+    console.log("recipe: ", recipe);
     try {
       await addRecipe(recipe);
       setIsLoading(true);
