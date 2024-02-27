@@ -1,8 +1,10 @@
 # Ko-Mi
 
-<p>Ko-Mi is a phoenetic spelling of "commis," the French term for a professional kitchen assistant who works under the supervision of a chef.</p>
+<p>Ko-Mi is your ultimate grocery shopping assistant and cookbook companion! With Ko-Mi, planning meals, creating shopping lists, and discovering new recipes has never been easier. Seamlessly browse through a vast collection of delicious recipes, organize your ingredients, and streamline your shopping experience, all in one intuitive app.</p>
 
-<p>Introducing Ko-Mi: your ultimate grocery shopping assistant and cookbook companion! With Ko-Mi, planning meals, creating shopping lists, and discovering new recipes has never been easier. Seamlessly browse through a vast collection of delicious recipes, organize your ingredients, and streamline your shopping experience, all in one intuitive app. Say goodbye to mealtime stress and hello to culinary convenience with Ko-Mi!</p>
+## What's in a name?
+
+<p>Ko-Mi is a phoenetic spelling of "commis," the French term for a professional kitchen assistant who works under the supervision of a chef.</p>
 
 ## Built With
 
@@ -13,7 +15,7 @@
 ![Supabase](https://img.shields.io/badge/Supabase-%23000000.svg?style=for-the-badge&logo=Supabase)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-000000?style=for-the-badge&logo=tailwind-css&logoColor=0EA5E9)
 
-<!-- need to add MUI, aws, docker? -->
+<!-- need to add MUI, vercel, docker? -->
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -1,0 +1,104 @@
+{
+  "@type": "Recipe",
+  "name": "Tuscan White Bean Skillet Recipe",
+  "author": "",
+  "description": "Whip up a delightful weeknight dinner with our Tuscan White Bean Skillet! Packed with pantry staples, this vegetarian masterpiece guarantees a quick and satisfying meal in just 30 minutes!",
+  "datePublished": "2016-10-18T06:19:00+00:00",
+  "image": "https://thewanderlustkitchen.com/wp-content/uploads/2016/10/Tuscan-White-Bean-Skillet-Recipe-square-1200.jpg",
+  "video": {
+    "name": "30-Minute Tuscan White Bean Skillet",
+    "description": "This vegetarian Tuscan White Bean Skillet recipe is made from pantry staples for a quick weeknight dinner!",
+    "thumbnailUrl": "https://content.jwplatform.com/thumbs/e0xcjvss-720.jpg",
+    "contentUrl": "https://content.jwplatform.com/videos/e0xcjvss.mp4",
+    "uploadDate": "2020-10-09T00:00:00.000Z",
+    "@type": "VideoObject"
+  },
+  "recipeYield": 4,
+  "prepTime": "PT5M",
+  "cookTime": "PT25M",
+  "totalTime": "PT30M",
+  "recipeIngredient": [
+    "2 tablespoons extra virgin olive oil (divided)",
+    "8 ounces brown mushrooms (sliced)",
+    "1 1/2 cups diced yellow onion (about 1 large onion)",
+    "3 cloves garlic (minced)",
+    "2/3 cup drained and chopped oil-packed sun dried tomatoes",
+    "2 14.5 ounce cans fire-roasted diced tomatoes",
+    "2 14.5 ounce cans drained and rinsed Cannelini beans",
+    "14.5- ounce can quartered artichoke hearts (rinsed)",
+    "1/2 teaspoon kosher salt",
+    "1/2 teaspoon black pepper",
+    "1 teaspoon dried oregano",
+    "1/2 teaspoon dried thyme",
+    "1 teaspoon sugar",
+    "Parsley for garnish"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "text": "Heat one tablespoon of oil in a 10&quot; or 12&quot; cast iron skillet over medium-high heat until shimmering. Working in batches, add the mushrooms to the pan in a single layer. Brown for 1 to 2 minutes per side, then transfer to a bowl and repeat with the remaining mushrooms.",
+      "name": "Heat one tablespoon of oil in a 10&quot; or 12&quot; cast iron skillet over medium-high heat until shimmering. Working in batches, add the mushrooms to the pan in a single layer. Brown for 1 to 2 minutes per side, then transfer to a bowl and repeat with the remaining mushrooms.",
+      "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-0"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Add the remaining tablespoon of oil to the pan. Add the onions and sauté until lightly browned, about 3 minutes. Add the garlic and sun-dried tomatoes, cooking until fragrant and softened, about another 2 minutes.",
+      "name": "Add the remaining tablespoon of oil to the pan. Add the onions and sauté until lightly browned, about 3 minutes. Add the garlic and sun-dried tomatoes, cooking until fragrant and softened, about another 2 minutes.",
+      "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-1"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Add the diced tomatoes, beans, artichoke hearts, salt, pepper, oregano, thyme, and sugar to the pan. Cover the pan and reduce the heat to medium. Let it cook for about 10 minutes, until hot.",
+      "name": "Add the diced tomatoes, beans, artichoke hearts, salt, pepper, oregano, thyme, and sugar to the pan. Cover the pan and reduce the heat to medium. Let it cook for about 10 minutes, until hot.",
+      "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-2"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Return the mushrooms to the pan and cook for another minute or two to warm them up.",
+      "name": "Return the mushrooms to the pan and cook for another minute or two to warm them up.",
+      "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-3"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Garnish with chopped parsley and serve with plenty of crusty bread.",
+      "name": "Garnish with chopped parsley and serve with plenty of crusty bread.",
+      "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-4"
+    }
+  ],
+  "aggregateRating": 4.43,
+  "recipeCategory": ["Main Dish"],
+  "recipeCuisine": ["Italian"],
+  "suitableForDiet": [
+    "https://schema.org/GlutenFreeDiet",
+    "https://schema.org/LowLactoseDiet",
+    "https://schema.org/VegetarianDiet"
+  ],
+  "keywords": [
+    "30 minute tuscan white bean skillet, tuscan white bean skillet, tuscan white bean skillet recipe"
+  ],
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "servingSize": "1 serving",
+    "calories": "542 kcal",
+    "carbohydrateContent": "73 g",
+    "proteinContent": "21 g",
+    "fatContent": "20 g",
+    "saturatedFatContent": "3 g",
+    "sodiumContent": "1063 mg",
+    "fiberContent": "16 g",
+    "sugarContent": "11 g",
+    "unsaturatedFatContent": "8 g"
+  },
+  "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#recipe",
+  "isPartOf": {
+    "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#article"
+  },
+  "mainEntityOfPage": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/",
+  "instructions": [
+    "Heat one tablespoon of oil in a 10&quot; or 12&quot; cast iron skillet over medium-high heat until shimmering. Working in batches, add the mushrooms to the pan in a single layer. Brown for 1 to 2 minutes per side, then transfer to a bowl and repeat with the remaining mushrooms.",
+    "Add the remaining tablespoon of oil to the pan. Add the onions and sauté until lightly browned, about 3 minutes. Add the garlic and sun-dried tomatoes, cooking until fragrant and softened, about another 2 minutes.",
+    "Add the diced tomatoes, beans, artichoke hearts, salt, pepper, oregano, thyme, and sugar to the pan. Cover the pan and reduce the heat to medium. Let it cook for about 10 minutes, until hot.",
+    "Return the mushrooms to the pan and cook for another minute or two to warm them up.",
+    "Garnish with chopped parsley and serve with plenty of crusty bread."
+  ]
+}

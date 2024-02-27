@@ -1,0 +1,131 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Recipe",
+  "name": "Easy Chicken Cacciatore",
+  "author": "www.DessertForTwo.com",
+  "datePublished": "2018-11-25",
+  "recipeYield": 2,
+  "description": "Easy chicken cacciatore recipe for two.",
+  "image": "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3-480x480.jpg",
+  "recipeCategory": ["Dinner Recipes for two"],
+  "recipeCuisine": "American",
+  "prepTime": "PT20M",
+  "cookTime": "PT25M",
+  "performTime": "PT25M",
+  "totalTime": "PT45M",
+  "recipeIngredient": [
+    "4 bone-in, skin-on chicken thighs",
+    "1 cup of flour",
+    "2 tablespoons olive oil",
+    "1/2 of a yellow onion",
+    "1 small red bell pepper",
+    "2 cloves garlic",
+    "5 sprigs of fresh thyme",
+    "1/2 teaspoon dried oregano",
+    "1/2 cup dry white wine",
+    "14-ounce can of diced tomatoes in juices",
+    "2 tablespoons drained capers"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "text": "Preheat the oven to 350°F.",
+      "position": 1,
+      "name": "Preheat the oven to 350°F.",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_1"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "First, place the chicken pieces on a plate, and sprinkle both sides liberally with salt and pepper. Then, sprinkle the flour evenly over the chicken, turning it to coat it in the flour.",
+      "position": 2,
+      "name": "First, place the chicken pieces on a plate,...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_2"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Add the olive oil to a 9\" oven-safe skillet, and place it over high heat.",
+      "position": 3,
+      "name": "Add the olive oil to a 9\" oven-safe...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_3"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Once the oil is hot, add the chicken, skin side down and let it sear for 5-7 minutes. Flip the chicken when its golden brown on the first side, and sear it on the second side. Once both sides of the chicken are golden brown, remove the chicken from the pan and place on a plate. The chicken will not be cooked through at this point.",
+      "position": 4,
+      "name": "Once the oil is hot, add the chicken,...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_4"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "While the chicken cooks, slice the onion into half-moon shapes, and seed and slice the pepper into strips. Peel and mince the garlic cloves.",
+      "position": 5,
+      "name": "While the chicken cooks, slice the onion into...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_5"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Drain off about half of the oil from the pan that you just seared the chicken in, and then add the onions and peppers. Cook for about 5 minutes, just to soften, and then stir in the garlic, thyme, oregano, wine, tomatoes and capers.",
+      "position": 6,
+      "name": "Drain off about half of the oil from...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_6"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Nestle the chicken back into the pan, skin side up, and slide it into the oven for 25 minutes.",
+      "position": 7,
+      "name": "Nestle the chicken back into the pan, skin...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_7"
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Serve the chicken on its own, or with pasta, bread or mashed potatoes.",
+      "position": 8,
+      "name": "Serve the chicken on its own, or with...",
+      "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_8"
+    }
+  ],
+  "video": {
+    "@type": "VideoObject",
+    "name": "Chicken Cacciatore Recipe",
+    "description": "Chicken Cacciatore recipe for two, your new easy skillet dinner for two. Chicken and peppers in a rich tomato and caper sauce, all made in one pan!",
+    "thumbnailUrl": [
+      "https://mediavine-res.cloudinary.com/video/upload/s--6wl9UqJL--/ar_16:9,c_fill,f_auto,fl_lossy,q_auto/v1576554590/isz2lbo8ttmsnzlsxdrf.jpg",
+      "https://mediavine-res.cloudinary.com/video/upload/s--8ZMjEdBP--/ar_4:3,c_fill,f_auto,fl_lossy,q_auto/v1576554590/isz2lbo8ttmsnzlsxdrf.jpg",
+      "https://mediavine-res.cloudinary.com/video/upload/s--LdxOFpGe--/ar_1:1,c_fill,f_auto,fl_lossy,q_auto/v1576554590/isz2lbo8ttmsnzlsxdrf.jpg"
+    ],
+    "contentUrl": "https://mediavine-res.cloudinary.com/video/upload/isz2lbo8ttmsnzlsxdrf.mp4",
+    "duration": "PT376S",
+    "uploadDate": "2024-01-10T23:30:45+00:00"
+  },
+  "keywords": [
+    "chicken cacciatore, chicken cacciatore recipe, chicken and peppers"
+  ],
+  "suitableForDiet": "LowCalorieDiet",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "666 calories",
+    "carbohydrateContent": "80 grams carbohydrates",
+    "cholesterolContent": "83 milligrams cholesterol",
+    "fatContent": "24 grams fat",
+    "fiberContent": "7 grams fiber",
+    "proteinContent": "25 grams protein",
+    "saturatedFatContent": "5 grams saturated fat",
+    "servingSize": "1",
+    "sodiumContent": "623 milligrams sodium",
+    "sugarContent": "24 grams sugar",
+    "transFatContent": "0 grams trans fat",
+    "unsaturatedFatContent": "18 grams unsaturated fat"
+  },
+  "aggregateRating": 4.5,
+  "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/",
+  "instructions": [
+    "Preheat the oven to 350°F.",
+    "First, place the chicken pieces on a plate, and sprinkle both sides liberally with salt and pepper. Then, sprinkle the flour evenly over the chicken, turning it to coat it in the flour.",
+    "Add the olive oil to a 9\" oven-safe skillet, and place it over high heat.",
+    "Once the oil is hot, add the chicken, skin side down and let it sear for 5-7 minutes. Flip the chicken when its golden brown on the first side, and sear it on the second side. Once both sides of the chicken are golden brown, remove the chicken from the pan and place on a plate. The chicken will not be cooked through at this point.",
+    "While the chicken cooks, slice the onion into half-moon shapes, and seed and slice the pepper into strips. Peel and mince the garlic cloves.",
+    "Drain off about half of the oil from the pan that you just seared the chicken in, and then add the onions and peppers. Cook for about 5 minutes, just to soften, and then stir in the garlic, thyme, oregano, wine, tomatoes and capers.",
+    "Nestle the chicken back into the pan, skin side up, and slide it into the oven for 25 minutes.",
+    "Serve the chicken on its own, or with pasta, bread or mashed potatoes."
+  ]
+}
