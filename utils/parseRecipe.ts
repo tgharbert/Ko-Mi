@@ -136,8 +136,21 @@ const getInstructions = (recipe: any) => {
     if (recipeContainer.itemListElement) {
       recipeContainer = recipeContainer.itemListElement;
     }
+    // handles a steps object with a text property with numberical values marking
+    // each new 'step'
+    if (recipeContainer["@type"] === "HowToStep") {
+      const recipe = recipeContainer.text;
+      const steps = recipe.split(/\b\d+\.\s/).filter((step: string) => step.trim() !== '');
+      // console.log('container: ', steps)
+      recipeContainer = steps;
+    }
     recipeContainer.map((item: any) => {
-      instructions.push(item.text)
+      // covers if there is just string, created in the case of large text block
+      if (!item.text) {
+        instructions.push(item)
+      } else {
+        instructions.push(item.text)
+      }
     })
   } else {
   recipe.recipeInstructions.map((item: any) => {
