@@ -22,8 +22,9 @@ export default function RecipeURLForm() {
       return;
     }
     let recipeObject: RawRecipe = getRecipeObject(newRecipe);
-    recipeObject.url = recipeURL;
+    // using this for test info
     // console.log("here", JSON.stringify(recipeObject));
+    recipeObject.url = recipeURL;
     setBadURL("");
     setIsError(false);
     setRecipe(recipeObject);

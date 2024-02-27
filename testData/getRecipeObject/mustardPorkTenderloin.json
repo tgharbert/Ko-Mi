@@ -1,0 +1,264 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Recipe",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cooking.nytimes.com/recipes/10080-mustard-glazed-pork-tenderloin#WebPage",
+    "url": "https://cooking.nytimes.com/recipes/10080-mustard-glazed-pork-tenderloin"
+  },
+  "url": "https://cooking.nytimes.com/recipes/10080-mustard-glazed-pork-tenderloin",
+  "name": "Mustard-Glazed Pork Tenderloin",
+  "description": "This savory-sweet treatment for pork tenderloin was brought to The Times in 1989 by the inimitable Marian Burros. With just five ingredients — pork, brown sugar, whole-grain mustard, rosemary and sherry — you have an extremely simple though supremely satisfying dish. We like ours served with mashed sweet potatoes and a pile of sautéed greens, and the leftovers make great sandwiches.",
+  "author": "Marian Burros",
+  "image": "https://static01.nyt.com/images/2016/08/22/dining/22COOKING-PORK-TENDERLOIN1/22COOKING-PORK-TENDERLOIN1-square640.jpg",
+  "totalTime": "PT40M",
+  "recipeYield": 4,
+  "recipeCuisine": "",
+  "recipeCategory": ["dinner, easy, quick, steaks and chops, main course"],
+  "keywords": [
+    "labor day, pork tenderloin, rosemary, whole-grain mustard, summer"
+  ],
+  "aggregateRating": 5,
+  "nutrition": {
+    "@context": "http://schema.org",
+    "@type": "NutritionInformation",
+    "calories": 248,
+    "unsaturatedFatContent": "4 grams",
+    "carbohydrateContent": "8 grams",
+    "cholesterolContent": null,
+    "fatContent": "6 grams",
+    "fiberContent": "1 gram",
+    "proteinContent": "35 grams",
+    "saturatedFatContent": "2 grams",
+    "sodiumContent": "177 milligrams",
+    "sugarContent": "7 grams",
+    "transFatContent": "0 grams"
+  },
+  "recipeIngredient": [
+    "1 1/2 pounds pork tenderloins",
+    "3 tablespoons brown sugar",
+    "2 tablespoons grainy mustard",
+    "2 teaspoons chopped fresh or dried rosemary",
+    "2 tablespoons dry sherry"
+  ],
+  "recipeInstructions": [
+    {
+      "@context": "http://schema.org",
+      "@type": "HowToStep",
+      "text": "Pat the tenderloins dry with paper towels."
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "HowToStep",
+      "text": "Combine the remaining ingredients in a bowl and stir. Add pork tenderloins and turn to coat well with marinade. Marinate for 15 minutes or as long as overnight."
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "HowToStep",
+      "text": "Heat a large cast iron skillet or grill pan over medium-high heat until smoking. (Alternately, heat a charcoal or gas grill to high; bank coals or turn off burner on one side.) Season tenderloins with salt and pepper. Brush pan with olive oil and add tenderloins; reduce heat to medium-low. Cook, turning tenderloins every 3 to 4 minutes, until deeply caramelized on all sides and until desired internal temperature, about 20 to 25 minutes. (You can also broil the tenderloins in the oven — about 10 minutes on one side, then turn and cook about 5 minutes on the other.)"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "HowToStep",
+      "text": "Remove and lightly tent with foil; let rest about 10 minutes before cutting into 1/4- to 1/2-inch slices."
+    }
+  ],
+  "isAccessibleForFree": "False",
+  "hasPart": {
+    "@type": "WebPageElement",
+    "isAccessibleForFree": "False",
+    "cssSelector": ".recipe"
+  },
+  "publisher": {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "NYT Cooking",
+    "url": "https://cooking.nytimes.com",
+    "alternateName": ["nytimes cooking", "New York Times Cooking"],
+    "image": [
+      {
+        "url": "https://static01.nyt.com/applications/cooking/0a34ae9/assets/SiteLogoRed.svg",
+        "height": 31,
+        "width": 168,
+        "@context": "http://schema.org",
+        "@type": "ImageObject"
+      },
+      {
+        "url": "https://static01.nyt.com/applications/cooking/0a34ae9/assets/SiteLogoBlack.svg",
+        "height": 24,
+        "width": 131,
+        "@context": "http://schema.org",
+        "@type": "ImageObject"
+      }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/nytcooking/",
+      "https://www.instagram.com/nytcooking/",
+      "https://twitter.com/nytimes",
+      "https://www.youtube.com/c/NYTCooking",
+      "https://www.tiktok.com/@nytcooking",
+      "https://apps.apple.com/us/app/nyt-cooking/id911422904",
+      "https://play.google.com/store/apps/details?id=com.nytimes.cooking&hl=en_US&gl=US"
+    ]
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Montclair Janet" },
+      "reviewBody": "I sauteed the pork tenderloin just to brown and then, as in the twice cooked pork recipe, I cut the pork into slices and briefly sauteed again. I added the extra marinade to the pan and heated all together for a few minutes."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "kati" },
+      "reviewBody": "Be sure to tin foil or cooking spray broiler pans"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Kim" },
+      "reviewBody": "For a little more umami and tang, I add a little lite soy sauce."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Jim R" },
+      "reviewBody": "Few things are as simple and elegant as this recipe. Thank you."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "debbie" },
+      "reviewBody": "This is the most tender flavorful Potok tenderloin ever! I used 2T maple syrup instead of brown sugar and doubled the rest of the ingredients. Browned on stovetop then baked at 325 convection for 20 minutes. While the pork was resting I deglazed the cast iron skillet with white wine and then added half and half to a good consistency and served it with mashed potatoes and NYT carmelized Brussels sprouts. It was an amazing meal!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Kim" },
+      "reviewBody": "Less brown sugar; add a bit of soy sauce"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "brooke from Los Gatos, CA" },
+      "reviewBody": "This recipe is easy and perfect. I do as another suggests and sear the pork before putting in a 400 degree oven for 12 minutes. While tented and resting I pour some wine (I used what I had, which was sake) and olive oil to the pan with the vestiges of the pork fat, mustard and brown sugar, cooked down to a sauce and spooned over the pork, served with roasted sweet potato and steamed green beans."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Christian" },
+      "reviewBody": "Way too sweet for my taste"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "bnom" },
+      "reviewBody": "Since the marinade is fairly sweet, I added sherry vinegar, white wine, broth and dijon when I boiled/reduced the remaining marinade. \nThen finished with some cream and sour cream. Made a wonderful finishing sauce."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Sandra" },
+      "reviewBody": "Made the marinade per recipe, marinated the tenderloin about an hour.\nPreheated cast iron skillet in the Traeger on high. \nSeared the pork on cooktop in skillet, put the skillet with pork in the Traeger until probe read 135. \nI heated the remaining marinade on cooktop, added soy sauce, chili garlic sauce, herbs de Provence, broth, let it cook down and thicken. \nThe pork was juicy and pink; the sauce was delish too."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "CJE" },
+      "reviewBody": "Did this on the grill, should have marinated it longer to get better caramelization but it was still very tasty."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "K.Bunny" },
+      "reviewBody": "I used 1/3 the sugar and it still could’ve been less. May try orange juice or apricot jam next time. Also added 2 cloves crushed garlic. I appreciate the advice to pan sear then bake, 25 minutes at 400 seems about right in my oven."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Paul" },
+      "reviewBody": "I use apple cider vinegar when I don't have sherry on hand, which works really well. I also deglaze the pan with 3/4 cup of water and then let that reduce a bit. My family calls the sauce \"black gold\" because it's so delicious. I always think it'll be a bit too caramelized/bitter for my young kids, but they keep surprising me with how much they love it."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "sara" },
+      "reviewBody": "Preheat broiler at 450 for 10 minutes minimum. Try 8 minutes on first side and then turn"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "low calorie" },
+      "reviewBody": "Has any made this on a bbq grill?"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "JoeJ" },
+      "reviewBody": "This recipe was excellent.  I broiled the pork to an internal temp of 135F and let it rest a good 10 minutes; it came out a light pink.  Don't spoon the marinade over the pork at the start.  After the first side has been broiled, turn over the pork and spoon the marinade over the side to be broiled next.  This gives a really nice finish.  I spooned it over the pork at the beginning, turned over the pork and lost my nice crust.  This is a great recipe."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Ann" },
+      "reviewBody": "This marinade also works well with my usual technique of baking tenderloin in a 500-degree oven for 5-7 min, then turning off the oven and leaving it in the oven for an hour without opening the door."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Bohemian" },
+      "reviewBody": "Try using the late Judy Rodgers' (Zuni Cafe Cookbook) method of pre-salting meat for a day or two in the refrigerator.  It sucks the juices out of the meat initially, then they get reabsorbed with the salt.  You just take kosher salt or whatever and rub it over the meat, then cover in the refrigerator for one to two days, then rinse the excess when ready to start cooking.  It makes a huge difference."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "CoBo" },
+      "reviewBody": "Made this for a dinner party.  Used Costco tenderloins (4 in two bags). Made 4times the marinade and split marinade between four freezer bags.  Added 1 tenderloin per bag. After marinating overnight, I grilled the pork to 135 degrees.  Perfect.  Meanwhile, I poured the marinade in a saucepan, and brought it to a boil, then reduced it at a simmer until about half.  Added a little Dijon mustard to the sauce and served drizzled over the pork.  A keeper!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Gail" },
+      "reviewBody": "what can i use in place of sherry? another wine? some vinegar? TY!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "chad" },
+      "reviewBody": "Sear on stovetop\nRoast in 400 degree oven for 10-12 mins until meat temps at 137.\nTent in foil & rest for 10 mins."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Autumn H." },
+      "reviewBody": "Substituted regular Dijon and herbs de provence in listed ingredients for marinade. After browning a 1.5 lb tenderloin on stovetop, tranferred to the oven for about 30 minutes.  While the finished pork was resting I deglazed the pan with about two tablespoons of white wine and the same of heavy cream then drizzled a bit of sauce over each serving. Everyone love it!  "
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "dek" },
+      "reviewBody": "Couldn't be easier. I scaled everything up to accommodate 4+ lbs. of tenderloins - no problem. Used dried rosemary. Marinated 5 hr and grilled; would probably marinate overnight next time though the shorter time was delicious. It did glaze nicely, following the suggestion to add the marinade after turning the tenderloins. Good recipe!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Sam" },
+      "reviewBody": "This recipe was excellent. I broiled the pork to an internal temp of 135F and let it rest a good 10 minutes; it came out a light pink. Don't spoon the marinade over the pork at the start. After the first side has been broiled, turn over the pork and spoon the marinade over the side to be broiled next. This gives a really nice finish. I spooned it over the pork at the beginning, turned over the pork and lost my nice crust. This is a great recipe"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Linda" },
+      "reviewBody": "Also good with maple syrup instead of brown sugar, and a bit of fresh squeezed orange juice."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "lizhobbins" },
+      "reviewBody": "As did others, I seared the tenderloin on all sides (about two min each side) and then roasted in the oven at 375 degrees (convection oven) for 25 min. Recipe is very easy and tasty."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Petra Fyde" },
+      "reviewBody": "This was amazing!  I tweaked it because I hate hate hate rosemary.  Substituted 1 tsp dried Thyme and doubled the recipe.  Baked in the oven at 400 for 45 min, turning every 15."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Ila" },
+      "reviewBody": "Yes can be done in oven start heat 450 just before u put in lower to 350 or 375 will take longer not much would flip after 15 then 15 more an check may need longer will need meat thermometer to get internal to right temp but I have same issue an above worked wonders plus I sux at broil I burn to crispy everything will just have to check meat often if u need to cook longer due to every oven different may need to cook longer"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Erin" },
+      "reviewBody": "After I cooked it, I took it out of the pan and sautéed apple and leeks w a little butter in the juices. So good !"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Robert Delisle" },
+      "reviewBody": "Isn't this the same reply as JoeJ of a year ago?  Maybe they are Siamese.  Still, it's a good trick."
+    }
+  ],
+  "publisherName": "NYT Cooking",
+  "publisherUrl": "https://cooking.nytimes.com",
+  "instructions": [
+    "Pat the tenderloins dry with paper towels.",
+    "Combine the remaining ingredients in a bowl and stir. Add pork tenderloins and turn to coat well with marinade. Marinate for 15 minutes or as long as overnight.",
+    "Heat a large cast iron skillet or grill pan over medium-high heat until smoking. (Alternately, heat a charcoal or gas grill to high; bank coals or turn off burner on one side.) Season tenderloins with salt and pepper. Brush pan with olive oil and add tenderloins; reduce heat to medium-low. Cook, turning tenderloins every 3 to 4 minutes, until deeply caramelized on all sides and until desired internal temperature, about 20 to 25 minutes. (You can also broil the tenderloins in the oven — about 10 minutes on one side, then turn and cook about 5 minutes on the other.)",
+    "Remove and lightly tent with foil; let rest about 10 minutes before cutting into 1/4- to 1/2-inch slices."
+  ]
+}
