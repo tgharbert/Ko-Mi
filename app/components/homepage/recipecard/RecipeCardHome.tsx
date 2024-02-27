@@ -42,78 +42,80 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mx-10 mt-2 mb-2">
-      <div className="bg-tertiary">
-        <CardHeader
-          // action={
-          //   <IconButton aria-label="settings">
-          //     <MoreVertIcon />
-          //   </IconButton>
-          // }
-          title={
-            <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
-              {recipe.name}
-            </h2>
-          }
-        />
-        <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
-          <div className="flex content-center  items-center  ">
-            <Image
-              className="overflow-hidden rounded-lg "
-              height={188}
-              width={330}
-              src={recipe.image}
-              alt={`image of ${recipe.name}`}
-            />
+    <div className="flex justify-center">
+      <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
+        <div className="bg-tertiary">
+          <CardHeader
+            // action={
+            //   <IconButton aria-label="settings">
+            //     <MoreVertIcon />
+            //   </IconButton>
+            // }
+            title={
+              <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
+                {recipe.name}
+              </h2>
+            }
+          />
+          <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
+            <div className="flex content-center  items-center  ">
+              <Image
+                className="overflow-hidden rounded-lg "
+                height={188}
+                width={330}
+                src={recipe.image}
+                alt={`image of ${recipe.name}`}
+              />
+            </div>
           </div>
-        </div>
-        <CardContent>
-          {recipe.author ? (
-            <p className="pb-2 italic">by: {recipe.author}</p>
-          ) : (
-            <p className="pb-2 italic">No listed author</p>
-          )}
-          {/* ADD THE DIALOG HERE */}
-          <div className="float-left pt-4">
-            <AddIngredientsButton
-              recipeYield={recipe.recipeYield}
-              recipeIngredients={recipe.ingredients}
-            />
-          </div>
-        </CardContent>
-        <CardActions disableSpacing className="-mt-4">
-          {/* CHANGE THIS TO A MODAL WINDOW THAT POPS UP */}
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <div className="rounded-lg pb-">
-              <DescriptionAccordion description={recipe.description} />
-            </div>
-            <div className="rounded-lg">
-              <InstructionAccordion instructions={recipe.instructions} />
-            </div>
-            <div>
-              <IngredientAccordion ingredients={recipe.ingredients} />
-            </div>
-            <div>
-              <AdditionalAccordion
-                url={recipe.url}
+            {recipe.author ? (
+              <p className="pb-2 italic">by: {recipe.author}</p>
+            ) : (
+              <p className="pb-2 italic">No listed author</p>
+            )}
+            {/* ADD THE DIALOG HERE */}
+            <div className="float-left pt-4">
+              <AddIngredientsButton
                 recipeYield={recipe.recipeYield}
-                publisher={recipe.publisherName}
-                keywords={recipe.keywords}
+                recipeIngredients={recipe.ingredients}
               />
             </div>
           </CardContent>
-        </Collapse>
-      </div>
-    </Card>
+          <CardActions disableSpacing className="-mt-4">
+            {/* CHANGE THIS TO A MODAL WINDOW THAT POPS UP */}
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <div className="rounded-lg pb-">
+                <DescriptionAccordion description={recipe.description} />
+              </div>
+              <div className="rounded-lg">
+                <InstructionAccordion instructions={recipe.instructions} />
+              </div>
+              <div>
+                <IngredientAccordion ingredients={recipe.ingredients} />
+              </div>
+              <div>
+                <AdditionalAccordion
+                  url={recipe.url}
+                  recipeYield={recipe.recipeYield}
+                  publisher={recipe.publisherName}
+                  keywords={recipe.keywords}
+                />
+              </div>
+            </CardContent>
+          </Collapse>
+        </div>
+      </Card>
+    </div>
   );
 }

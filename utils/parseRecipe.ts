@@ -14,7 +14,6 @@ const getRecipeObject = (recipeData: any): RawRecipe => {
       }
       if (recipeData[1]["@type"] === 'Recipe') {
         const recipe = recipeData[1]
-        console.log(recipe)
         formatRecipe(recipe)
         return recipe;
       }
