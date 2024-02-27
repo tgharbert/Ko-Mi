@@ -1,7 +1,7 @@
 // Refactor this to break into smaller components with more descriptive naming
 
 const getRecipeObject = (recipeData: any): RawRecipe => {
-  console.log('initial data: ', recipeData)
+  // console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
       let graphArray = recipeData[0]["@graph"];
