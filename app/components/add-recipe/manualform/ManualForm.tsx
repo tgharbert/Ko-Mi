@@ -1,39 +1,38 @@
-// the form will need the following fields:
-// user is the author
-// description
-// name
-// userId is the user's id
-// instructions** -- seperate component
-// keywords
-// ingredients** -- seperate component
-// image
-// recipe yield
-// total time
-// cook time
-// prep time
-// category
+import { useState } from "react";
+import NameAndDescription from "./NameAndDescription";
 
 const RecipeForm = () => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [page, setPage] = useState(1);
+
+  const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const descriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(e.target.value);
+  };
+
+  const pageChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setPage(page + 1);
+  };
+  console.log(name);
+
   return (
     <div className="px-8 justify-center flex">
-      <form>
-        <div>
-          <p>Im about to work on the form for the recipe</p>
-          <input
-            className="text-black rounded px-4 pt-1 pb-1 "
-            type="text"
-            placeholder="Recipe Name"
-            autoFocus
-          />
-        </div>
-        <div>
-          <textarea
-            className="text-black rounded px-4 pt-1 pb-1 "
-            placeholder="Recipe Description"
-            autoFocus
-          />
-        </div>
-      </form>
+      {page === 1 && (
+        <NameAndDescription
+          nameChange={nameChange}
+          descriptionChange={descriptionChange}
+          pageChange={pageChange}
+          name={name}
+          description={description}
+          page={page}
+        />
+      )}
+      {page === 2 && <>page 2</>}
     </div>
   );
 };

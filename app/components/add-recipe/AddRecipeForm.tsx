@@ -14,7 +14,7 @@ const AddRecipeForm = () => {
 
   return (
     <div>
-      <div>
+      <div className="mb-4">
         <label>Enter URL</label>
         <Switch onChange={onToggle} />
         <label>Enter Recipe Manually</label>
