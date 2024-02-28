@@ -35,10 +35,10 @@ const NameAndDescription = ({
     console.log(hours);
   };
   const hoursChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+    console.log(hours);
+    // e.preventDefault();
     setHours(e.target.value);
     formatTime(hours, minutes);
-    console.log(hours);
   };
 
   return (
