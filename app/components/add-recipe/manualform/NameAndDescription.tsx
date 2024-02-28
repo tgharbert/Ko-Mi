@@ -1,44 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewRecipeYieldDropdown from "./NewYieldDropdown";
 import CookTimeInput from "./CookTimeInput";
-import Button from "@mui/material/Button";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/mui-styles/styles";
 
 const NameAndDescription = ({
   nameChange,
   descriptionChange,
   name,
   description,
-  pageChange,
   servingsChange,
   servingSize,
   formatTime,
 }: {
   nameChange: Function;
   descriptionChange: Function;
-  pageChange: Function;
   servingsChange: Function;
-  page: number;
   name: string;
   description: string;
   servingSize: string;
   formatTime: Function;
 }) => {
-  const [minutes, setMinutes] = useState("");
-  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("0");
+  const [hours, setHours] = useState("0");
 
   const minutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     setMinutes(e.target.value);
-    formatTime(hours, minutes);
-    console.log(hours);
   };
-  const hoursChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(hours);
-    // e.preventDefault();
-    setHours(e.target.value);
+
+  useEffect(() => {
     formatTime(hours, minutes);
+  }, [hours, minutes, formatTime]);
+
+  const hoursChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHours(e.target.value);
   };
 
   return (
@@ -85,17 +78,6 @@ const NameAndDescription = ({
           servingsChange={servingsChange}
           servingSize={servingSize}
         />
-        {/* this should be its own component and lifted... */}
-        <ThemeProvider theme={theme}>
-          <Button
-            variant="contained"
-            className="px-4 bg-lime-500"
-            onClick={() => pageChange()}
-            color="lime"
-          >
-            Next Page
-          </Button>
-        </ThemeProvider>
       </form>
     </div>
   );

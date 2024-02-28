@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NameAndDescription from "./NameAndDescription";
+import NextPageButton from "./NextPageButton";
 import convertTime from "@/utils/convertInputTime";
 
 const RecipeForm = () => {
@@ -30,24 +31,23 @@ const RecipeForm = () => {
     setCookTime(formattedTime);
   };
 
-  console.log(cookTime);
-
   return (
-    <div className="px-8 justify-center flex">
-      {page === 1 && (
-        <NameAndDescription
-          nameChange={nameChange}
-          descriptionChange={descriptionChange}
-          pageChange={pageChange}
-          name={name}
-          description={description}
-          page={page}
-          servingsChange={servingsChange}
-          servingSize={servingSize}
-          formatTime={formatTime}
-        />
-      )}
-      {page === 2 && <>page 2</>}
+    <div>
+      <div className="px-8 justify-center flex">
+        {page === 1 && (
+          <NameAndDescription
+            nameChange={nameChange}
+            descriptionChange={descriptionChange}
+            name={name}
+            description={description}
+            servingsChange={servingsChange}
+            servingSize={servingSize}
+            formatTime={formatTime}
+          />
+        )}
+        {page === 2 && <>page 2</>}
+      </div>
+      <NextPageButton pageChange={pageChange} />
     </div>
   );
 };
