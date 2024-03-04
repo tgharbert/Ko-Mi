@@ -23,7 +23,7 @@ const AddItems = ({
             return <li key={idx}>{ingredient}</li>;
           })}
         </ul>
-        <ItemField itemChange={itemChange} item={item} />
+        <ItemField itemChange={itemChange} item={item} text={text} />
         <button>
           <label>Add Ingredient: </label>
           <AddIcon />
