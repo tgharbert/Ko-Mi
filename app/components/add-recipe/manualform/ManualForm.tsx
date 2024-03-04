@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NameAndDescription from "./NameAndDescription";
 import NextPageButton from "./NextPageButton";
+import AddIngredients from "./AddIngredient";
 import convertTime from "@/utils/convertInputTime";
 
 const RecipeForm = () => {
@@ -9,6 +10,7 @@ const RecipeForm = () => {
   const [page, setPage] = useState(1);
   const [servingSize, setServingSize] = useState<string>("1");
   const [cookTime, setCookTime] = useState("");
+  const [ingredients, setIngredients] = useState<string[]>([]);
 
   const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -31,6 +33,14 @@ const RecipeForm = () => {
     setCookTime(formattedTime);
   };
 
+  const addIngredient = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    ingredient: string
+  ) => {
+    e.preventDefault();
+    setIngredients([...ingredients, ingredient]);
+  };
+
   return (
     <div>
       <div className="px-8 justify-center flex">
@@ -45,7 +55,12 @@ const RecipeForm = () => {
             formatTime={formatTime}
           />
         )}
-        {page === 2 && <>page 2</>}
+        {page === 2 && (
+          <AddIngredients
+            addIngredient={addIngredient}
+            ingredients={ingredients}
+          />
+        )}
       </div>
       <NextPageButton pageChange={pageChange} />
     </div>
