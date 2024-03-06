@@ -6,6 +6,8 @@ import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
 import buildCustomRecipe from "@/lib/buildCustomRecipe";
 import CustomRecipeCard from "./page5/CustomRecipeCard";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 const RecipeForm = () => {
   const [name, setName] = useState("");
@@ -22,6 +24,18 @@ const RecipeForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
   const [recipe, setRecipe] = useState<CustomRecipe>();
+  const [isAlert, setIsAlert] = useState(false);
+
+  console.log(cookTime);
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setIsAlert(false);
+  };
 
   const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -36,7 +50,37 @@ const RecipeForm = () => {
   };
 
   const pageChange = () => {
+    if (page === 1) {
+      if (name === "") {
+        setIsAlert(true);
+        return;
+      }
+      if (description === "") {
+        setIsAlert(true);
+        return;
+      }
+      if (cookTime === "PT0M") {
+        setIsAlert(true);
+        return;
+      }
+    }
+    if (page === 2) {
+      if (ingredients.length === 0) {
+        setIsAlert(true);
+        return;
+      }
+    }
+    if (page === 3) {
+      if (instructions.length === 0) {
+        setIsAlert(true);
+        return;
+      }
+    }
     if (page === 4) {
+      if (file === null) {
+        setIsAlert(true);
+        return;
+      }
       let customRecipe = buildCustomRecipe(
         name,
         description,
@@ -105,6 +149,24 @@ const RecipeForm = () => {
     <div>
       <p className="text-lg pb-4">Enter your recipe info:</p>
       <div className="px-8 justify-center flex">
+        {isAlert ? (
+          <Snackbar
+            open={isAlert}
+            autoHideDuration={4000}
+            onClose={handleClose}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="warning"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              Not all fields are filled in!
+            </Alert>
+          </Snackbar>
+        ) : (
+          ""
+        )}
         {page === 1 && (
           <NameAndDescription
             nameChange={nameChange}

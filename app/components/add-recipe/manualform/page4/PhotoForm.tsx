@@ -36,6 +36,7 @@ const PhotoForm = ({
           component="label"
           role={undefined}
           onChange={(e) => handleFileSelected(e)}
+          className="px-4 bg-lime-500"
           variant="contained"
           tabIndex={-1}
           startIcon={<CloudUploadIcon />}
