@@ -22,21 +22,14 @@ const PhotoForm = ({
   });
 
   return (
-    // <div className="flex justify-center mb-4 sm:pl-28">
     <div>
-      {/* <input
-        type="file"
-        name="image"
-        onChange={(e) => handleFileSelected(e)}
-        className="file-input-tertiary file-input-sm w-full max-w-xs hover:secondary rounded-lg  hover:cursor-pointer file:bg-tertiary align-items-center"
-      /> */}
       <div className="mb-4">
         <p>Upload a Photo:</p>
         <Button
           component="label"
           role={undefined}
           onChange={(e) => handleFileSelected(e)}
-          className="px-4 bg-lime-500"
+          className="px-4"
           variant="contained"
           tabIndex={-1}
           startIcon={<CloudUploadIcon />}
@@ -52,7 +45,6 @@ const PhotoForm = ({
           ""
         )}
       </div>
-      {/* ); */}
     </div>
   );
 };
