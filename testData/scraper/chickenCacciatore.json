@@ -1,0 +1,295 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#article",
+        "isPartOf": {
+          "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/"
+        },
+        "author": {
+          "name": "Christina Lane",
+          "@id": "https://www.dessertfortwo.com/#/schema/person/73a86beffc8191a2b8ef2ea0cbbbc8fc"
+        },
+        "headline": "Best Chicken Cacciatore Recipe",
+        "datePublished": "2020-07-16T15:00:48+00:00",
+        "dateModified": "2024-01-21T00:22:10+00:00",
+        "mainEntityOfPage": {
+          "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/"
+        },
+        "wordCount": 870,
+        "commentCount": 17,
+        "publisher": { "@id": "https://www.dessertfortwo.com/#organization" },
+        "image": {
+          "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#primaryimage"
+        },
+        "thumbnailUrl": "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3.jpg",
+        "articleSection": ["Dinner Recipes for two", "Meat / Seafood"],
+        "inLanguage": "en-US",
+        "potentialAction": [
+          {
+            "@type": "CommentAction",
+            "name": "Comment",
+            "target": [
+              "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#respond"
+            ]
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/",
+        "name": "Best Recipe for Chicken Cacciatore - Dessert for Two",
+        "isPartOf": { "@id": "https://www.dessertfortwo.com/#website" },
+        "primaryImageOfPage": {
+          "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#primaryimage"
+        },
+        "image": {
+          "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#primaryimage"
+        },
+        "thumbnailUrl": "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3.jpg",
+        "datePublished": "2020-07-16T15:00:48+00:00",
+        "dateModified": "2024-01-21T00:22:10+00:00",
+        "description": "Chicken cacciatore recipe for two. Italian chicken and peppers one dish dinner that is so easy and delicious. Easy chicken cacciatore for two.",
+        "breadcrumb": {
+          "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#breadcrumb"
+        },
+        "inLanguage": "en-US",
+        "potentialAction": [
+          {
+            "@type": "ReadAction",
+            "target": [
+              "https://www.dessertfortwo.com/chicken-cacciatore-recipe/"
+            ]
+          }
+        ]
+      },
+      {
+        "@type": "ImageObject",
+        "inLanguage": "en-US",
+        "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#primaryimage",
+        "url": "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3.jpg",
+        "contentUrl": "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3.jpg",
+        "width": 610,
+        "height": 900,
+        "caption": "chicken-cacciatore-recipe"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.dessertfortwo.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Recipes",
+            "item": "https://www.dessertfortwo.com/recipes/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Dinner Recipes for two",
+            "item": "https://www.dessertfortwo.com/category/dinners-for-two/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Best Chicken Cacciatore Recipe"
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.dessertfortwo.com/#website",
+        "url": "https://www.dessertfortwo.com/",
+        "name": "Dessert for Two",
+        "description": "by Christina Lane",
+        "publisher": { "@id": "https://www.dessertfortwo.com/#organization" },
+        "potentialAction": [
+          {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.dessertfortwo.com/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        ],
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.dessertfortwo.com/#organization",
+        "name": "Dessert for Two",
+        "url": "https://www.dessertfortwo.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "inLanguage": "en-US",
+          "@id": "https://www.dessertfortwo.com/#/schema/logo/image/",
+          "url": "https://www.dessertfortwo.com/wp-content/uploads/2020/08/logo.png",
+          "contentUrl": "https://www.dessertfortwo.com/wp-content/uploads/2020/08/logo.png",
+          "width": 458,
+          "height": 458,
+          "caption": "Dessert for Two"
+        },
+        "image": {
+          "@id": "https://www.dessertfortwo.com/#/schema/logo/image/"
+        },
+        "sameAs": [
+          "https://www.facebook.com/dessertfortwo",
+          "https://twitter.com/dessertfortwo",
+          "https://www.instagram.com/dessertfortwo",
+          "https://www.pinterest.com/dessertfortwo",
+          "https://www.youtube.com/channel/UCxigxKTdEUJ_HGeT81QO9qQ?sub_confirmation=1"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.dessertfortwo.com/#/schema/person/73a86beffc8191a2b8ef2ea0cbbbc8fc",
+        "name": "Christina Lane",
+        "description": "Christina Lane is the author of 3 cookbooks all about cooking and baking for two. She has scaled down hundreds of recipes into smaller servings so you can enjoy your favorite dishes without the leftovers! Valentine's Day is her favorite holiday.",
+        "sameAs": [
+          "https://www.dessertfortwo.com/about/",
+          "https://www.facebook.com/DessertForTwo",
+          "https://twitter.com/dessertfortwo"
+        ],
+        "url": "https://www.dessertfortwo.com/author/christina/"
+      }
+    ]
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "Recipe",
+    "name": "Easy Chicken Cacciatore",
+    "author": { "@type": "Person", "name": "www.DessertForTwo.com" },
+    "datePublished": "2018-11-25",
+    "recipeYield": 2,
+    "description": "Easy chicken cacciatore recipe for two.",
+    "image": [
+      "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3-480x480.jpg",
+      "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3-480x360.jpg",
+      "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3.jpg",
+      "https://www.dessertfortwo.com/wp-content/uploads/2018/10/chicken-cacciatore-recipe-3-480x270.jpg"
+    ],
+    "recipeCategory": "Dinner Recipes for two",
+    "recipeCuisine": "American",
+    "prepTime": "PT20M",
+    "cookTime": "PT25M",
+    "performTime": "PT25M",
+    "totalTime": "PT45M",
+    "recipeIngredient": [
+      "4 bone-in, skin-on chicken thighs",
+      "1 cup of flour",
+      "2 tablespoons olive oil",
+      "1/2 of a yellow onion",
+      "1 small red bell pepper",
+      "2 cloves garlic",
+      "5 sprigs of fresh thyme",
+      "1/2 teaspoon dried oregano",
+      "1/2 cup dry white wine",
+      "14-ounce can of diced tomatoes in juices",
+      "2 tablespoons drained capers"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": "Preheat the oven to 350°F.",
+        "position": 1,
+        "name": "Preheat the oven to 350°F.",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_1"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "First, place the chicken pieces on a plate, and sprinkle both sides liberally with salt and pepper. Then, sprinkle the flour evenly over the chicken, turning it to coat it in the flour.",
+        "position": 2,
+        "name": "First, place the chicken pieces on a plate,...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_2"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Add the olive oil to a 9\" oven-safe skillet, and place it over high heat.",
+        "position": 3,
+        "name": "Add the olive oil to a 9\" oven-safe...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_3"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Once the oil is hot, add the chicken, skin side down and let it sear for 5-7 minutes. Flip the chicken when its golden brown on the first side, and sear it on the second side. Once both sides of the chicken are golden brown, remove the chicken from the pan and place on a plate. The chicken will not be cooked through at this point.",
+        "position": 4,
+        "name": "Once the oil is hot, add the chicken,...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_4"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "While the chicken cooks, slice the onion into half-moon shapes, and seed and slice the pepper into strips. Peel and mince the garlic cloves.",
+        "position": 5,
+        "name": "While the chicken cooks, slice the onion into...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_5"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Drain off about half of the oil from the pan that you just seared the chicken in, and then add the onions and peppers. Cook for about 5 minutes, just to soften, and then stir in the garlic, thyme, oregano, wine, tomatoes and capers.",
+        "position": 6,
+        "name": "Drain off about half of the oil from...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_6"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Nestle the chicken back into the pan, skin side up, and slide it into the oven for 25 minutes.",
+        "position": 7,
+        "name": "Nestle the chicken back into the pan, skin...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_7"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Serve the chicken on its own, or with pasta, bread or mashed potatoes.",
+        "position": 8,
+        "name": "Serve the chicken on its own, or with...",
+        "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/#mv_create_43_8"
+      }
+    ],
+    "video": {
+      "@type": "VideoObject",
+      "name": "Chicken Cacciatore Recipe",
+      "description": "Chicken Cacciatore recipe for two, your new easy skillet dinner for two. Chicken and peppers in a rich tomato and caper sauce, all made in one pan!",
+      "thumbnailUrl": [
+        "https://mediavine-res.cloudinary.com/video/upload/s--6wl9UqJL--/ar_16:9,c_fill,f_auto,fl_lossy,q_auto/v1576554590/isz2lbo8ttmsnzlsxdrf.jpg",
+        "https://mediavine-res.cloudinary.com/video/upload/s--8ZMjEdBP--/ar_4:3,c_fill,f_auto,fl_lossy,q_auto/v1576554590/isz2lbo8ttmsnzlsxdrf.jpg",
+        "https://mediavine-res.cloudinary.com/video/upload/s--LdxOFpGe--/ar_1:1,c_fill,f_auto,fl_lossy,q_auto/v1576554590/isz2lbo8ttmsnzlsxdrf.jpg"
+      ],
+      "contentUrl": "https://mediavine-res.cloudinary.com/video/upload/isz2lbo8ttmsnzlsxdrf.mp4",
+      "duration": "PT376S",
+      "uploadDate": "2024-01-10T23:30:45+00:00"
+    },
+    "keywords": "chicken cacciatore, chicken cacciatore recipe, chicken and peppers",
+    "suitableForDiet": "LowCalorieDiet",
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "calories": "666 calories",
+      "carbohydrateContent": "80 grams carbohydrates",
+      "cholesterolContent": "83 milligrams cholesterol",
+      "fatContent": "24 grams fat",
+      "fiberContent": "7 grams fiber",
+      "proteinContent": "25 grams protein",
+      "saturatedFatContent": "5 grams saturated fat",
+      "servingSize": "1",
+      "sodiumContent": "623 milligrams sodium",
+      "sugarContent": "24 grams sugar",
+      "transFatContent": "0 grams trans fat",
+      "unsaturatedFatContent": "18 grams unsaturated fat"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.5,
+      "reviewCount": "27"
+    },
+    "url": "https://www.dessertfortwo.com/chicken-cacciatore-recipe/"
+  }
+]

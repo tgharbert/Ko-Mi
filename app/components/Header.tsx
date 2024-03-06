@@ -13,8 +13,8 @@ export default function Header() {
         <a className="px-6 hover:text-lime-600" href="/add-recipe">
           Add Recipe
         </a>
-        <a className="px-6 hover:text-lime-600" href="/ingredients">
-          Ingredients
+        <a className="px-6 hover:text-lime-600" href="/shopping-list">
+          Shopping List
         </a>
       </span>
     </div>

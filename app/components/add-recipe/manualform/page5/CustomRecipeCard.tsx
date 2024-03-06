@@ -1,27 +1,61 @@
 import Image from "next/image";
 import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
-import Loading from "../Loading";
-import { useState } from "react";
-import InstructionAccordion from "../accordions/InstructionAccordion";
-import DescriptionAccordion from "../accordions/DescriptionAccordion";
-// unable to use this because ingredients are formatted as strings from URL
-import IngredientAccordion from "../accordions/IngredientAccordion";
-import { addRecipe } from "@/lib/addRecipe";
+import Loading from "@/app/components/Loading";
+import { useState, useEffect } from "react";
+import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
+import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
+import { supabase } from "@/lib/supabase";
+import { addCustomRecipe } from "@/lib/addCustomRecipe";
 
-const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
+const CustomRecipeCard = ({ recipe }: { recipe: CustomRecipe }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null | ArrayBuffer>(
+    null
+  );
 
   const router = useRouter();
 
+  const handleFileInputChange = () => {
+    if (!recipe.photoFile) {
+      return;
+    }
+    const file = recipe.photoFile;
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    handleFileInputChange();
+  }, []);
+
   const handleRecipeSubmission = async () => {
-    // console.log("recipe: ", recipe);
+    // here is where the problem lies. I cannot pass the photo file to the backend...
+    // i'm hacking around it by copying the recipe object and giving it an any type
+    // then reassigning the photoFile key to a string of imagePreview.
+    let customRecipe: any = recipe;
     try {
-      await addRecipe(recipe);
+      const filename = `${recipe.name}Photo`;
+      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
+      const { error } = await supabase.storage
+        .from("images")
+        .upload(filename, recipe.photoFile, {
+          cacheControl: "3600",
+          upsert: true,
+        });
+      if (error) {
+        console.error("error from upload: ", error);
+      }
+      customRecipe.photoFile = recipeAddress;
+      await addCustomRecipe(recipe);
       setIsLoading(true);
       router.push("/");
     } catch (error) {
@@ -37,16 +71,18 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
         <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
       </div>
       <div>
-        <p className="text-sm pt-2 italic">by: {recipe.author}</p>
+        <p className="text-sm pt-2 italic">by: USERNAME (change later)</p>
       </div>
       <div className="pt-4 pb-4 flex items-center justify-center">
-        <Image
-          width="400"
-          height="400"
-          src={recipe.image}
-          alt="recipe-photo"
-          className="rounded-lg"
-        />
+        {typeof imagePreview === "string" && (
+          <Image
+            width="400"
+            height="400"
+            src={imagePreview}
+            alt="recipe-photo"
+            className="rounded-lg"
+          />
+        )}
       </div>
       <div className="flex justify-center">
         <div className=" mt-7 rounded-lg sm:w-3/5">
@@ -72,7 +108,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
             </AccordionSummary>
             <AccordionDetails>
               <ul className="px-2 list-disc text-left">
-                {recipe.recipeIngredient.map((ingredient, idx: number) => (
+                {recipe.ingredients.map((ingredient: string, idx: number) => (
                   <li className="pb-4" key={idx}>
                     {ingredient}
                   </li>
@@ -94,4 +130,4 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
   );
 };
 
-export default RecipeCard;
+export default CustomRecipeCard;

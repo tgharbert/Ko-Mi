@@ -25,6 +25,8 @@ const ldScraper = async (url: string) => {
 const getData = async (url: string) => {
   try {
     const result = await ldScraper(url);
+    // using this for test info
+    // console.log(JSON.stringify(result))
     return result;
   } catch (error) {
     console.error(error);

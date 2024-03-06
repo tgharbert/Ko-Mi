@@ -21,6 +21,18 @@ type Recipe = {
   url: string;
 };
 
+type CustomRecipe = {
+  name: string;
+  description: string;
+  ingredients: string[];
+  instructions: string[];
+  keywords: string[];
+  photoFile: fileObject;
+  servingSize: string;
+  cookTime: string;
+  // photoFile: string;
+}
+
 type Ingredient = {
   id: number;
   name: string;

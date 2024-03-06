@@ -1,0 +1,373 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#article",
+        "isPartOf": {
+          "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/"
+        },
+        "author": {
+          "name": "Linda",
+          "@id": "https://thewanderlustkitchen.com/#/schema/person/3d5fef074d029d5768c9d4e068bad82a"
+        },
+        "headline": "30-Minute Tuscan White Bean Skillet",
+        "datePublished": "2016-10-18T11:19:00+00:00",
+        "dateModified": "2023-12-17T14:48:33+00:00",
+        "wordCount": 1303,
+        "commentCount": 45,
+        "publisher": {
+          "@id": "https://thewanderlustkitchen.com/#organization"
+        },
+        "image": {
+          "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#primaryimage"
+        },
+        "thumbnailUrl": "https://thewanderlustkitchen.com/wp-content/uploads/2023/03/tuscan-white-beans-16-1200x1200-1.jpg",
+        "articleSection": [
+          "Bean &amp; Legume",
+          "Dairy-Free",
+          "European",
+          "Fall",
+          "Gluten-Free",
+          "Healthy",
+          "Italian",
+          "Main Dishes",
+          "Spring",
+          "Summer",
+          "Under 30 Minutes",
+          "Vegetable",
+          "Vegetarian",
+          "Winter"
+        ],
+        "inLanguage": "en-US",
+        "potentialAction": [
+          {
+            "@type": "CommentAction",
+            "name": "Comment",
+            "target": [
+              "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#respond"
+            ]
+          }
+        ]
+      },
+      {
+        "@type": ["WebPage", "FAQPage"],
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/",
+        "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/",
+        "name": "30-Minute Tuscan White Bean Skillet - The Wanderlust Kitchen",
+        "isPartOf": { "@id": "https://thewanderlustkitchen.com/#website" },
+        "primaryImageOfPage": {
+          "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#primaryimage"
+        },
+        "image": {
+          "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#primaryimage"
+        },
+        "thumbnailUrl": "https://thewanderlustkitchen.com/wp-content/uploads/2023/03/tuscan-white-beans-16-1200x1200-1.jpg",
+        "datePublished": "2016-10-18T11:19:00+00:00",
+        "dateModified": "2023-12-17T14:48:33+00:00",
+        "description": "This vegetarian Tuscan White Bean Skillet recipe is made from pantry staples for a quick weeknight dinner in 30 minutes!",
+        "breadcrumb": {
+          "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#breadcrumb"
+        },
+        "mainEntity": [
+          {
+            "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406178850"
+          },
+          {
+            "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406218734"
+          },
+          {
+            "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406231416"
+          },
+          {
+            "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406285007"
+          },
+          {
+            "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406444103"
+          }
+        ],
+        "inLanguage": "en-US",
+        "potentialAction": [
+          {
+            "@type": "ReadAction",
+            "target": [
+              "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/"
+            ]
+          }
+        ]
+      },
+      {
+        "@type": "ImageObject",
+        "inLanguage": "en-US",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#primaryimage",
+        "url": "https://thewanderlustkitchen.com/wp-content/uploads/2023/03/tuscan-white-beans-16-1200x1200-1.jpg",
+        "contentUrl": "https://thewanderlustkitchen.com/wp-content/uploads/2023/03/tuscan-white-beans-16-1200x1200-1.jpg",
+        "width": 1200,
+        "height": 1200,
+        "caption": "Tuscan White Bean Skillet Recipe."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Course",
+            "item": "https://thewanderlustkitchen.com/category/course/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Main Dishes",
+            "item": "https://thewanderlustkitchen.com/category/course/main-dishes/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "30-Minute Tuscan White Bean Skillet"
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://thewanderlustkitchen.com/#website",
+        "url": "https://thewanderlustkitchen.com/",
+        "name": "The Wanderlust Kitchen",
+        "description": "Recipes, Travel Tips and Lifestyle Ideas from Around the World",
+        "publisher": {
+          "@id": "https://thewanderlustkitchen.com/#organization"
+        },
+        "potentialAction": [
+          {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://thewanderlustkitchen.com/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        ],
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://thewanderlustkitchen.com/#organization",
+        "name": "The Wanderlust Kitchen",
+        "url": "https://thewanderlustkitchen.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "inLanguage": "en-US",
+          "@id": "https://thewanderlustkitchen.com/#/schema/logo/image/",
+          "url": "https://thewanderlustkitchen.com/wp-content/uploads/2021/06/wanderlust_kitchen_logo.jpg",
+          "contentUrl": "https://thewanderlustkitchen.com/wp-content/uploads/2021/06/wanderlust_kitchen_logo.jpg",
+          "width": 1400,
+          "height": 900,
+          "caption": "The Wanderlust Kitchen"
+        },
+        "image": {
+          "@id": "https://thewanderlustkitchen.com/#/schema/logo/image/"
+        },
+        "sameAs": [
+          "https://www.facebook.com/TheWanderlustKitchen",
+          "https://twitter.com/wanderlustkitch",
+          "http://instagram.com/thewanderlustkitchen",
+          "http://pinterest.com/wanderlustkitch",
+          "https://www.youtube.com/channel/UCW1oVeoPzyKh5n3GVZkp-Fg"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://thewanderlustkitchen.com/#/schema/person/3d5fef074d029d5768c9d4e068bad82a",
+        "name": "Linda",
+        "description": "Hi, I'm Linda! Welcome to The Wanderlust Kitchen, where I share recipes and travel adventures from all around the world. Here you'll find a world of recipes you can have confidence in. These recipes celebrate authentic food heritage as well as modern techniques and ingredients. Be adventurous and try a new recipe and travel somewhere you have never been before.  Bon Appétit! Bon Voyage!  ",
+        "sameAs": [
+          "https://thewanderlustkitchen.com/about-linda/",
+          "https://www.facebook.com/TheWanderlustKitchen/",
+          "https://www.instagram.com/thewanderlustkitchen/",
+          "https://www.pinterest.com/wanderlustkitch/",
+          "https://twitter.com/https://twitter.com/WanderlustKitch",
+          "https://www.youtube.com/channel/UCW1oVeoPzyKh5n3GVZkp-Fg"
+        ],
+        "url": "https://thewanderlustkitchen.com/about-linda/"
+      },
+      {
+        "@type": "Question",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406178850",
+        "position": 1,
+        "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406178850",
+        "name": "What type of skillet should I use for this recipe?",
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A cast iron skillet is preferred due to its heat retention properties, but you can use any large, heavy-bottomed skillet.",
+          "inLanguage": "en-US"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Question",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406218734",
+        "position": 2,
+        "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406218734",
+        "name": "Can I use fresh tomatoes instead of canned?",
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can substitute the canned tomatoes with about 4-5 fresh tomatoes, diced. Please note that the cooking time might be a bit longer to allow the fresh tomatoes to break down.",
+          "inLanguage": "en-US"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Question",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406231416",
+        "position": 3,
+        "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406231416",
+        "name": "Why is sugar added to the recipe?",
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The sugar helps to balance the acidity of the tomatoes, giving a more rounded flavor to the dish.",
+          "inLanguage": "en-US"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Question",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406285007",
+        "position": 4,
+        "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406285007",
+        "name": "Can I use dried beans instead of canned?",
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but you'll need to soak and cook them first according to the package instructions. One can of beans is approximately 1.5 cups of cooked beans.",
+          "inLanguage": "en-US"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Question",
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406444103",
+        "position": 5,
+        "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#faq-question-1686406444103",
+        "name": "What if I don't have dried herbs? Can I use fresh herbs?",
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can use fresh herbs. As a general rule, use three times the amount of fresh herbs as dry because dried herbs are more potent.",
+          "inLanguage": "en-US"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Recipe",
+        "name": "Tuscan White Bean Skillet Recipe",
+        "author": {
+          "@id": "https://thewanderlustkitchen.com/#/schema/person/3d5fef074d029d5768c9d4e068bad82a"
+        },
+        "description": "Whip up a delightful weeknight dinner with our Tuscan White Bean Skillet! Packed with pantry staples, this vegetarian masterpiece guarantees a quick and satisfying meal in just 30 minutes!",
+        "datePublished": "2016-10-18T06:19:00+00:00",
+        "image": [
+          "https://thewanderlustkitchen.com/wp-content/uploads/2016/10/Tuscan-White-Bean-Skillet-Recipe-square-1200.jpg",
+          "https://thewanderlustkitchen.com/wp-content/uploads/2016/10/Tuscan-White-Bean-Skillet-Recipe-square-1200-500x500.jpg",
+          "https://thewanderlustkitchen.com/wp-content/uploads/2016/10/Tuscan-White-Bean-Skillet-Recipe-square-1200-500x375.jpg",
+          "https://thewanderlustkitchen.com/wp-content/uploads/2016/10/Tuscan-White-Bean-Skillet-Recipe-square-1200-480x270.jpg"
+        ],
+        "video": {
+          "name": "30-Minute Tuscan White Bean Skillet",
+          "description": "This vegetarian Tuscan White Bean Skillet recipe is made from pantry staples for a quick weeknight dinner!",
+          "thumbnailUrl": "https://content.jwplatform.com/thumbs/e0xcjvss-720.jpg",
+          "contentUrl": "https://content.jwplatform.com/videos/e0xcjvss.mp4",
+          "uploadDate": "2020-10-09T00:00:00.000Z",
+          "@type": "VideoObject"
+        },
+        "recipeYield": ["4", "4 servings"],
+        "prepTime": "PT5M",
+        "cookTime": "PT25M",
+        "totalTime": "PT30M",
+        "recipeIngredient": [
+          "2 tablespoons extra virgin olive oil (divided)",
+          "8 ounces brown mushrooms (sliced)",
+          "1 1/2 cups diced yellow onion (about 1 large onion)",
+          "3 cloves garlic (minced)",
+          "2/3 cup drained and chopped oil-packed sun dried tomatoes",
+          "2 14.5 ounce cans fire-roasted diced tomatoes",
+          "2 14.5 ounce cans drained and rinsed Cannelini beans",
+          "14.5- ounce can quartered artichoke hearts (rinsed)",
+          "1/2 teaspoon kosher salt",
+          "1/2 teaspoon black pepper",
+          "1 teaspoon dried oregano",
+          "1/2 teaspoon dried thyme",
+          "1 teaspoon sugar",
+          "Parsley for garnish"
+        ],
+        "recipeInstructions": [
+          {
+            "@type": "HowToStep",
+            "text": "Heat one tablespoon of oil in a 10&quot; or 12&quot; cast iron skillet over medium-high heat until shimmering. Working in batches, add the mushrooms to the pan in a single layer. Brown for 1 to 2 minutes per side, then transfer to a bowl and repeat with the remaining mushrooms.",
+            "name": "Heat one tablespoon of oil in a 10&quot; or 12&quot; cast iron skillet over medium-high heat until shimmering. Working in batches, add the mushrooms to the pan in a single layer. Brown for 1 to 2 minutes per side, then transfer to a bowl and repeat with the remaining mushrooms.",
+            "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-0"
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Add the remaining tablespoon of oil to the pan. Add the onions and sauté until lightly browned, about 3 minutes. Add the garlic and sun-dried tomatoes, cooking until fragrant and softened, about another 2 minutes.",
+            "name": "Add the remaining tablespoon of oil to the pan. Add the onions and sauté until lightly browned, about 3 minutes. Add the garlic and sun-dried tomatoes, cooking until fragrant and softened, about another 2 minutes.",
+            "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-1"
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Add the diced tomatoes, beans, artichoke hearts, salt, pepper, oregano, thyme, and sugar to the pan. Cover the pan and reduce the heat to medium. Let it cook for about 10 minutes, until hot.",
+            "name": "Add the diced tomatoes, beans, artichoke hearts, salt, pepper, oregano, thyme, and sugar to the pan. Cover the pan and reduce the heat to medium. Let it cook for about 10 minutes, until hot.",
+            "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-2"
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Return the mushrooms to the pan and cook for another minute or two to warm them up.",
+            "name": "Return the mushrooms to the pan and cook for another minute or two to warm them up.",
+            "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-3"
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Garnish with chopped parsley and serve with plenty of crusty bread.",
+            "name": "Garnish with chopped parsley and serve with plenty of crusty bread.",
+            "url": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#wprm-recipe-13361-step-0-4"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.43",
+          "ratingCount": "871"
+        },
+        "recipeCategory": ["Main Dish"],
+        "recipeCuisine": ["Italian"],
+        "suitableForDiet": [
+          "https://schema.org/GlutenFreeDiet",
+          "https://schema.org/LowLactoseDiet",
+          "https://schema.org/VegetarianDiet"
+        ],
+        "keywords": "30 minute tuscan white bean skillet, tuscan white bean skillet, tuscan white bean skillet recipe",
+        "nutrition": {
+          "@type": "NutritionInformation",
+          "servingSize": "1 serving",
+          "calories": "542 kcal",
+          "carbohydrateContent": "73 g",
+          "proteinContent": "21 g",
+          "fatContent": "20 g",
+          "saturatedFatContent": "3 g",
+          "sodiumContent": "1063 mg",
+          "fiberContent": "16 g",
+          "sugarContent": "11 g",
+          "unsaturatedFatContent": "8 g"
+        },
+        "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#recipe",
+        "isPartOf": {
+          "@id": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/#article"
+        },
+        "mainEntityOfPage": "https://thewanderlustkitchen.com/tuscan-white-bean-skillet/"
+      }
+    ]
+  }
+]
