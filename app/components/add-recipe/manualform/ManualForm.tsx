@@ -61,10 +61,20 @@ const RecipeForm = () => {
     setPage(page + 1);
   };
 
-  const submitRecipe = async (customRecipe: any) => {
+  const submitRecipe = async () => {
     try {
+      let customRecipe = buildCustomRecipe(
+        name,
+        description,
+        servingSize,
+        cookTime,
+        ingredients,
+        instructions,
+        keywords,
+        file
+      );
       console.log("custom recipe: ", customRecipe);
-      await addCustomRecipe(customRecipe);
+      // await addCustomRecipe(customRecipe);
       // router.push("/");
     } catch (err) {
       console.error(err);
@@ -162,12 +172,11 @@ const RecipeForm = () => {
             handleFileSelected={handleFileSelected}
           />
         )}
-        {page === 5 && (
-          <CustomRecipeCard recipe={recipe} submitRecipe={submitRecipe} />
-        )}
+        {page === 5 && <CustomRecipeCard recipe={recipe} />}
       </div>
       {page === 5 ? (
-        <SubmitButton submitRecipe={submitRecipe} />
+        // <SubmitButton submitRecipe={submitRecipe} />
+        ""
       ) : (
         <NextPageButton pageChange={pageChange} />
       )}

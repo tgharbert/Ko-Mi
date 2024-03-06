@@ -13,20 +13,26 @@ import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordi
 import IngredientAccordion from "@/app/components/accordions/IngredientAccordion";
 import { addRecipe } from "@/lib/addRecipe";
 import { supabase } from "@/lib/supabase";
+import { addCustomRecipe } from "@/lib/addCustomRecipe";
 
 const CustomRecipeCard = ({
   recipe,
-  submitRecipe,
-}: {
-  recipe: any;
-  submitRecipe: Function;
+}: // submitRecipe,
+{
+  recipe: CustomRecipe;
+  // submitRecipe: Function;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<string | null | ArrayBuffer>(
+    null
+  );
 
   const router = useRouter();
 
   const handleFileInputChange = () => {
+    if (!recipe.photoFile) {
+      return;
+    }
     const file = recipe.photoFile;
     if (file) {
       const reader = new FileReader();
@@ -41,17 +47,31 @@ const CustomRecipeCard = ({
     handleFileInputChange();
   }, []);
 
-  const handleRecipeSubmission = async (recipe) => {
+  const handleRecipeSubmission = async () => {
+    console.log("inside submission: ", recipe);
+    // here is where the problem lies. I cannot pass the photo file to the backend...
+    // i'm hacking around it by copying the recipe object and giving it an any type
+    // then reassigning the photoFile key to a string of imagePreview.
+    // THINK OF ANOTHER WAY...
+    // SEND THE RECIPE AND FILE SEPERATELY THEN PERFORM THEIR WORK AT DIFFERENT TIMES??
+    let customRecipe: any = recipe;
+    // customRecipe.photoFile = imagePreview;
+
     try {
       const filename = `${recipe.name}Photo`;
-      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/recipes/${filename}`;
-      await supabase.storage.from("recipes").upload(filename, recipe.file, {
-        cacheControl: "3600",
-        upsert: true,
-      });
-      recipe.file = recipeAddress;
+      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
+      const { error } = await supabase.storage
+        .from("images")
+        .upload(filename, recipe.photoFile, {
+          cacheControl: "3600",
+          upsert: true,
+        });
+      if (error) {
+        console.error("error from upload: ", error);
+      }
+      customRecipe.photoFile = recipeAddress;
 
-      await addRecipe(recipe);
+      await addCustomRecipe(recipe);
       setIsLoading(true);
       router.push("/");
     } catch (error) {
@@ -70,10 +90,10 @@ const CustomRecipeCard = ({
         <p className="text-sm pt-2 italic">by: USERNAME (change later)</p>
       </div>
       <div className="pt-4 pb-4 flex items-center justify-center">
-        {imagePreview !== null && (
+        {typeof imagePreview === "string" && (
           <Image
-            width="400"
-            height="400"
+            width="100"
+            height="100"
             src={imagePreview}
             alt="recipe-photo"
             className="rounded-lg"
@@ -116,7 +136,7 @@ const CustomRecipeCard = ({
       </div>
       <div className="mx-4 pt-7 pb-10">
         <button
-          onClick={() => handleRecipeSubmission(recipe)}
+          onClick={() => handleRecipeSubmission()}
           className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3"
         >
           Add Recipe
