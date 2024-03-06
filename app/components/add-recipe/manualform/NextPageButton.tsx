@@ -2,13 +2,7 @@ import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
 
-const NextPageButton = ({
-  pageChange,
-  page,
-}: {
-  pageChange: Function;
-  page: Number;
-}) => {
+const NextPageButton = ({ pageChange }: { pageChange: Function }) => {
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -18,7 +12,7 @@ const NextPageButton = ({
           onClick={() => pageChange()}
           color="lime"
         >
-          {page !== 4 ? "Next Page" : "Submit"}
+          Next Page
         </Button>
       </ThemeProvider>
     </div>

@@ -6,15 +6,17 @@ const KeywordsAndPhoto = ({
   keywordChange,
   keyword,
   addKeyword,
-  handleSubmitPhoto,
+  // handleSubmitPhoto,
   handleFileSelected,
+  fileName,
 }: {
   keywords: string[];
   keywordChange: Function;
   keyword: string;
   addKeyword: Function;
-  handleSubmitPhoto: Function;
+  // handleSubmitPhoto: Function;
   handleFileSelected: Function;
+  fileName: string;
 }) => {
   return (
     <div>
@@ -25,8 +27,9 @@ const KeywordsAndPhoto = ({
         addKeyword={addKeyword}
       />
       <PhotoForm
-        handleSubmitPhoto={handleSubmitPhoto}
+        // handleSubmitPhoto={handleSubmitPhoto}
         handleFileSelected={handleFileSelected}
+        fileName={fileName}
       />
     </div>
   );

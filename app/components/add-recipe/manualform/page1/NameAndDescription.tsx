@@ -38,8 +38,7 @@ const NameAndDescription = ({
     <div className="px-8 justify-center flex">
       <form>
         <div className="pb-4">
-          <p className="pb-4">Enter your recipe info:</p>
-          <label>Recipe Name:</label>
+          <p>Recipe Name:</p>
           <input
             className="text-black rounded px-4 pt-1 pb-1 "
             type="text"
@@ -50,15 +49,15 @@ const NameAndDescription = ({
           />
         </div>
         <div className="pb-4">
-          <label>Cook Time:</label>
+          <p>Recipe Description:</p>
           <textarea
-            className="text-black rounded px-4 pt-1 pb-1 "
+            className="text-black rounded px-4 pt-1 pb-1"
             placeholder="Recipe Description"
             value={description}
             onChange={(e) => descriptionChange(e)}
           />
         </div>
-        <div className="pb-4">
+        <div className="pb-4 ">
           <label>Cook Time:</label>
           <span className="flex justify-center ">
             <CookTimeInput

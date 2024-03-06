@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import theme from "@/mui-styles/styles";
 import IngredientNode from "./IngredientNode";
 import LoadingPage from "../Loading";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -8,7 +9,6 @@ import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/mui-styles/styles";
 import AddListItemBar from "./NewIngredientBar";
 import { addItemToList } from "@/lib/addItemToList";
 

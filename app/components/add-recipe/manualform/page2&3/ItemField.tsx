@@ -8,7 +8,7 @@ const ItemField = ({
   text: string;
 }) => {
   return (
-    <div className="flex">
+    <div className="flex mt-2">
       <textarea
         className="text-black rounded px-4 pt-1 pb-1 height-auto resize-y"
         placeholder={`Enter ${text}`}

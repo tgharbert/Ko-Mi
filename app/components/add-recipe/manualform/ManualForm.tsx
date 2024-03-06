@@ -4,7 +4,10 @@ import NextPageButton from "./NextPageButton";
 import AddItems from "./page2&3/AddItem";
 import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
-import { supabase } from "@/lib/supabase";
+import buildCustomRecipe from "@/lib/buildCustomRecipe";
+import CustomRecipeCard from "./page5/CustomRecipeCard";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 const RecipeForm = () => {
   const [name, setName] = useState("");
@@ -19,8 +22,19 @@ const RecipeForm = () => {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [keyword, setKeyword] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState("");
+  const [recipe, setRecipe] = useState<CustomRecipe>();
+  const [isAlert, setIsAlert] = useState(false);
 
-  // refactor list add elements to reuse components...
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setIsAlert(false);
+  };
 
   const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -34,19 +48,52 @@ const RecipeForm = () => {
     setServingSize(value);
   };
 
-  // update this to submit recipe on page 4, also render diff text
-  // also if the page is 4 then we need to redirect to home on submission
   const pageChange = () => {
-    if (page === 4) {
-      // replace this with the redirect and build the new recipe card from provided info
-      setPage(1);
-    } else {
-      setPage(page + 1);
+    if (page === 1) {
+      if (name === "") {
+        setIsAlert(true);
+        return;
+      }
+      if (description === "") {
+        setIsAlert(true);
+        return;
+      }
+      if (cookTime === "PT0M") {
+        setIsAlert(true);
+        return;
+      }
     }
+    if (page === 2) {
+      if (ingredients.length === 0) {
+        setIsAlert(true);
+        return;
+      }
+    }
+    if (page === 3) {
+      if (instructions.length === 0) {
+        setIsAlert(true);
+        return;
+      }
+    }
+    if (page === 4) {
+      if (file === null) {
+        setIsAlert(true);
+        return;
+      }
+      let customRecipe = buildCustomRecipe(
+        name,
+        description,
+        servingSize,
+        cookTime,
+        ingredients,
+        instructions,
+        keywords,
+        file
+      );
+      setRecipe(customRecipe);
+    }
+    setPage(page + 1);
   };
-
-  // write a function that submits the recipe and returns us home
-  // which will then be invoked when the page is at 4 on the pageChange
 
   const formatTime = (hours: string, minutes: string) => {
     const formattedTime = convertTime(hours, minutes);
@@ -92,31 +139,33 @@ const RecipeForm = () => {
     setKeyword(e.target.value);
   };
 
-  // this isn't really needed...
-  // should be done later or as a server action when the state is saved..
-  // should this function be called on the backend when the rest of the recipe is saved??
-  const handleSubmitPhoto = async () => {
-    if (!file) {
-      return;
-    }
-    const filename = `${name}Photo`;
-    const address = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/recipes/${filename}`;
-    await supabase.storage.from("recipes").upload(filename, file, {
-      cacheControl: "3600",
-      upsert: true,
-    });
-    // update??
-    // update(address);
-    console.log(address);
-  };
-
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files?.[0] ?? null);
+    setFileName(e.target.files?.[0].name ?? "");
   };
 
   return (
     <div>
+      <p className="text-lg pb-4">Enter your recipe info:</p>
       <div className="px-8 justify-center flex">
+        {isAlert ? (
+          <Snackbar
+            open={isAlert}
+            autoHideDuration={4000}
+            onClose={handleClose}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="warning"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              Not all fields are filled in!
+            </Alert>
+          </Snackbar>
+        ) : (
+          ""
+        )}
         {page === 1 && (
           <NameAndDescription
             nameChange={nameChange}
@@ -134,7 +183,7 @@ const RecipeForm = () => {
             items={ingredients}
             item={ingredient}
             itemChange={ingredientChange}
-            text={"Ingredients"}
+            text={"Ingredient"}
           />
         )}
         {page === 3 && (
@@ -143,7 +192,7 @@ const RecipeForm = () => {
             items={instructions}
             item={instruction}
             itemChange={instructionChange}
-            text={"Instructions"}
+            text={"Instruction"}
           />
         )}
         {page === 4 && (
@@ -152,12 +201,16 @@ const RecipeForm = () => {
             keywordChange={keywordChange}
             keyword={keyword}
             addKeyword={addKeyword}
-            handleSubmitPhoto={handleSubmitPhoto}
             handleFileSelected={handleFileSelected}
+            fileName={fileName}
           />
         )}
       </div>
-      <NextPageButton pageChange={pageChange} page={page} />
+      {page === 5 && recipe !== undefined ? (
+        <CustomRecipeCard recipe={recipe} />
+      ) : (
+        <NextPageButton pageChange={pageChange} />
+      )}
     </div>
   );
 };
