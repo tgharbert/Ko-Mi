@@ -2,21 +2,21 @@ import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
 
-const NextPageButton = ({ pageChange }: { pageChange: Function }) => {
+const SubmitButton = ({ submitRecipe }: { submitRecipe: Function }) => {
   return (
     <div>
       <ThemeProvider theme={theme}>
         <Button
           variant="contained"
           className="px-4 bg-lime-500"
-          onClick={() => pageChange()}
+          onClick={() => submitRecipe()}
           color="lime"
         >
-          Next Page
+          Submit Recipe
         </Button>
       </ThemeProvider>
     </div>
   );
 };
 
-export default NextPageButton;
+export default SubmitButton;

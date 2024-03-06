@@ -5,22 +5,52 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
-import Loading from "../Loading";
-import { useState } from "react";
-import InstructionAccordion from "../accordions/InstructionAccordion";
-import DescriptionAccordion from "../accordions/DescriptionAccordion";
+import Loading from "@/app/components/Loading";
+import { useState, useEffect } from "react";
+import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
+import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 // unable to use this because ingredients are formatted as strings from URL
-import IngredientAccordion from "../accordions/IngredientAccordion";
+import IngredientAccordion from "@/app/components/accordions/IngredientAccordion";
 import { addRecipe } from "@/lib/addRecipe";
+import { supabase } from "@/lib/supabase";
 
-const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
+const CustomRecipeCard = ({
+  recipe,
+  submitRecipe,
+}: {
+  recipe: any;
+  submitRecipe: Function;
+}) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const router = useRouter();
 
-  const handleRecipeSubmission = async () => {
-    // console.log("recipe: ", recipe);
+  const handleFileInputChange = () => {
+    const file = recipe.photoFile;
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    handleFileInputChange();
+  }, []);
+
+  const handleRecipeSubmission = async (recipe) => {
     try {
+      const filename = `${recipe.name}Photo`;
+      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/recipes/${filename}`;
+      await supabase.storage.from("recipes").upload(filename, recipe.file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
+      recipe.file = recipeAddress;
+
       await addRecipe(recipe);
       setIsLoading(true);
       router.push("/");
@@ -37,16 +67,18 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
         <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
       </div>
       <div>
-        <p className="text-sm pt-2 italic">by: {recipe.author}</p>
+        <p className="text-sm pt-2 italic">by: USERNAME (change later)</p>
       </div>
       <div className="pt-4 pb-4 flex items-center justify-center">
-        <Image
-          width="400"
-          height="400"
-          src={recipe.image}
-          alt="recipe-photo"
-          className="rounded-lg"
-        />
+        {imagePreview !== null && (
+          <Image
+            width="400"
+            height="400"
+            src={imagePreview}
+            alt="recipe-photo"
+            className="rounded-lg"
+          />
+        )}
       </div>
       <div className="flex justify-center">
         <div className=" mt-7 rounded-lg sm:w-3/5">
@@ -72,7 +104,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
             </AccordionSummary>
             <AccordionDetails>
               <ul className="px-2 list-disc text-left">
-                {recipe.recipeIngredient.map((ingredient, idx: number) => (
+                {recipe.ingredients.map((ingredient: string, idx: number) => (
                   <li className="pb-4" key={idx}>
                     {ingredient}
                   </li>
@@ -84,7 +116,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
       </div>
       <div className="mx-4 pt-7 pb-10">
         <button
-          onClick={() => handleRecipeSubmission()}
+          onClick={() => handleRecipeSubmission(recipe)}
           className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3"
         >
           Add Recipe
@@ -94,4 +126,4 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
   );
 };
 
-export default RecipeCard;
+export default CustomRecipeCard;

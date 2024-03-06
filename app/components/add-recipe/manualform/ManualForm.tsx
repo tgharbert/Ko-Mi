@@ -4,7 +4,11 @@ import NextPageButton from "./NextPageButton";
 import AddItems from "./page2&3/AddItem";
 import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
-import { supabase } from "@/lib/supabase";
+import { addCustomRecipe } from "@/lib/addCustomRecipe";
+import buildCustomRecipe from "@/lib/buildCustomRecipe";
+import { useRouter } from "next/navigation";
+import SubmitButton from "./SubmitButton";
+import CustomRecipeCard from "./page5/CustomRecipeCard";
 
 const RecipeForm = () => {
   const [name, setName] = useState("");
@@ -19,8 +23,10 @@ const RecipeForm = () => {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [keyword, setKeyword] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [recipe, setRecipe] = useState({});
 
   // refactor list add elements to reuse components...
+  const router = useRouter();
 
   const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -36,17 +42,34 @@ const RecipeForm = () => {
 
   // update this to submit recipe on page 4, also render diff text
   // also if the page is 4 then we need to redirect to home on submission
+
   const pageChange = () => {
     if (page === 4) {
-      // replace this with the redirect and build the new recipe card from provided info
-      setPage(1);
-    } else {
-      setPage(page + 1);
+      let customRecipe = buildCustomRecipe(
+        name,
+        description,
+        servingSize,
+        cookTime,
+        ingredients,
+        instructions,
+        keywords,
+        file
+      );
+      console.log("custom recipe: ", customRecipe);
+      setRecipe(customRecipe);
     }
+    setPage(page + 1);
   };
 
-  // write a function that submits the recipe and returns us home
-  // which will then be invoked when the page is at 4 on the pageChange
+  const submitRecipe = async (customRecipe: any) => {
+    try {
+      console.log("custom recipe: ", customRecipe);
+      await addCustomRecipe(customRecipe);
+      // router.push("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const formatTime = (hours: string, minutes: string) => {
     const formattedTime = convertTime(hours, minutes);
@@ -92,24 +115,7 @@ const RecipeForm = () => {
     setKeyword(e.target.value);
   };
 
-  // this isn't really needed...
-  // should be done later or as a server action when the state is saved..
   // should this function be called on the backend when the rest of the recipe is saved??
-  const handleSubmitPhoto = async () => {
-    if (!file) {
-      return;
-    }
-    const filename = `${name}Photo`;
-    const address = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/recipes/${filename}`;
-    await supabase.storage.from("recipes").upload(filename, file, {
-      cacheControl: "3600",
-      upsert: true,
-    });
-    // update??
-    // update(address);
-    console.log(address);
-  };
-
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files?.[0] ?? null);
   };
@@ -152,12 +158,20 @@ const RecipeForm = () => {
             keywordChange={keywordChange}
             keyword={keyword}
             addKeyword={addKeyword}
-            handleSubmitPhoto={handleSubmitPhoto}
+            // handleSubmitPhoto={handleSubmitPhoto}
             handleFileSelected={handleFileSelected}
           />
         )}
+        {page === 5 && (
+          <CustomRecipeCard recipe={recipe} submitRecipe={submitRecipe} />
+        )}
       </div>
-      <NextPageButton pageChange={pageChange} page={page} />
+      {page === 5 ? (
+        <SubmitButton submitRecipe={submitRecipe} />
+      ) : (
+        <NextPageButton pageChange={pageChange} />
+      )}
+      {/* <NextPageButton pageChange={pageChange} page={page} /> */}
     </div>
   );
 };
