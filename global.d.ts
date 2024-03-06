@@ -27,10 +27,10 @@ type CustomRecipe = {
   ingredients: string[];
   instructions: string[];
   keywords: string[];
-  photoFile: File;
+  photoFile: fileObject;
   servingSize: string;
   cookTime: string;
-  file: string;
+  // photoFile: string;
 }
 
 type Ingredient = {

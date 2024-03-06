@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -9,19 +8,10 @@ import Loading from "@/app/components/Loading";
 import { useState, useEffect } from "react";
 import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
-// unable to use this because ingredients are formatted as strings from URL
-import IngredientAccordion from "@/app/components/accordions/IngredientAccordion";
-import { addRecipe } from "@/lib/addRecipe";
 import { supabase } from "@/lib/supabase";
 import { addCustomRecipe } from "@/lib/addCustomRecipe";
 
-const CustomRecipeCard = ({
-  recipe,
-}: // submitRecipe,
-{
-  recipe: CustomRecipe;
-  // submitRecipe: Function;
-}) => {
+const CustomRecipeCard = ({ recipe }: { recipe: CustomRecipe }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null | ArrayBuffer>(
     null
@@ -48,15 +38,10 @@ const CustomRecipeCard = ({
   }, []);
 
   const handleRecipeSubmission = async () => {
-    console.log("inside submission: ", recipe);
     // here is where the problem lies. I cannot pass the photo file to the backend...
     // i'm hacking around it by copying the recipe object and giving it an any type
     // then reassigning the photoFile key to a string of imagePreview.
-    // THINK OF ANOTHER WAY...
-    // SEND THE RECIPE AND FILE SEPERATELY THEN PERFORM THEIR WORK AT DIFFERENT TIMES??
     let customRecipe: any = recipe;
-    // customRecipe.photoFile = imagePreview;
-
     try {
       const filename = `${recipe.name}Photo`;
       const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
@@ -70,7 +55,6 @@ const CustomRecipeCard = ({
         console.error("error from upload: ", error);
       }
       customRecipe.photoFile = recipeAddress;
-
       await addCustomRecipe(recipe);
       setIsLoading(true);
       router.push("/");
@@ -92,8 +76,8 @@ const CustomRecipeCard = ({
       <div className="pt-4 pb-4 flex items-center justify-center">
         {typeof imagePreview === "string" && (
           <Image
-            width="100"
-            height="100"
+            width="400"
+            height="400"
             src={imagePreview}
             alt="recipe-photo"
             className="rounded-lg"

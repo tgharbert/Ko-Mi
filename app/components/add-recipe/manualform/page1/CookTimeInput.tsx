@@ -20,7 +20,7 @@ const CookTimeInput = ({
         value={units}
         onChange={(e) => valueChange(e)}
       ></input>
-      <label className="ml-2">{text}</label>
+      <label className="mx-2">{text}</label>
     </div>
   );
 };

@@ -17,15 +17,19 @@ const AddItems = ({
   return (
     <div>
       <form onSubmit={(e) => addItem(e, item)}>
-        <label>{text}:</label>
+        <p className="pb-2">{text}s:</p>
         <ul>
           {items.map((ingredient: string, idx) => {
-            return <li key={idx}>{ingredient}</li>;
+            return (
+              <li className="px-2 list-disc text-left" key={idx}>
+                {ingredient}
+              </li>
+            );
           })}
         </ul>
         <ItemField itemChange={itemChange} item={item} text={text} />
-        <button>
-          <label>Add Ingredient: </label>
+        <button className="pt-2 pb-2 mx-4 items-center ">
+          <label>Add {text}: </label>
           <AddIcon />
         </button>
       </form>
