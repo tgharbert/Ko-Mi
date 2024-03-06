@@ -26,7 +26,6 @@ const RecipeForm = () => {
   const [recipe, setRecipe] = useState<CustomRecipe>();
   const [isAlert, setIsAlert] = useState(false);
 
-  console.log(cookTime);
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string
