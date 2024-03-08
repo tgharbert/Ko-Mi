@@ -12,7 +12,7 @@ const NewRecipeYieldDropdown = ({
           onChange={(e) => servingsChange(e.target.value)}
           // defaultValue={1}
           value={String(servingSize)}
-          className="mr-2 border-2 border-primary rounded px-3 text-black"
+          className="mr-2 border-2 border-primary rounded-lg px-3 text-black"
         >
           {Array.from({ length: 10 }, (_, index) => (
             <option key={index} value={index + 1}>

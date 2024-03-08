@@ -4,6 +4,8 @@ import Dialog from "@mui/material/Dialog";
 import YieldDropdown from "./YieldDropdown";
 import AddIcon from "@mui/icons-material/Add";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 const AddIngredientsButton = ({
   recipeYield,
@@ -13,6 +15,7 @@ const AddIngredientsButton = ({
   recipeIngredients: Ingredient[];
 }) => {
   const [open, setOpen] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,8 +25,42 @@ const AddIngredientsButton = ({
     setOpen(false);
   };
 
+  // the alert should be here because otherwise it's closing when the dialog closes
+  // therefore only onscreen for moments
+  const handleSnackbarClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setIsAlert(false);
+  };
+
+  const openSnackbar = () => {
+    setIsAlert(true);
+  };
+
   return (
     <div className="px-5 bg-tertiary flex justify-center content-center">
+      {isAlert ? (
+        <Snackbar
+          open={isAlert}
+          autoHideDuration={2000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            Added Ingredients!
+          </Alert>
+        </Snackbar>
+      ) : (
+        ""
+      )}
       <button
         className="cursor-pointer hover:text-lime-600 flex "
         onClick={handleClickOpen}
@@ -47,6 +84,7 @@ const AddIngredientsButton = ({
           recipeYield={recipeYield}
           recipeIngredients={recipeIngredients}
           handleClose={handleClose}
+          openSnackbar={openSnackbar}
         />
       </Dialog>
     </div>

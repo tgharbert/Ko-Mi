@@ -8,10 +8,12 @@ export default function YieldDropdown({
   recipeYield,
   recipeIngredients,
   handleClose,
+  openSnackbar,
 }: {
   recipeYield: number;
   recipeIngredients: Ingredient[];
   handleClose: Function;
+  openSnackbar: Function;
 }) {
   const [multiplier, setMultiplier] = useState<number>(1);
 
@@ -20,6 +22,7 @@ export default function YieldDropdown({
     multiplier: number
   ) => {
     addIngredients(ingredients, multiplier);
+    openSnackbar();
     handleClose();
   };
 

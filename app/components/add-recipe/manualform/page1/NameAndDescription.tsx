@@ -35,12 +35,12 @@ const NameAndDescription = ({
   };
 
   return (
-    <div className="px-8 justify-center flex">
+    <div className=" justify-center w-4/5">
       <form>
         <div className="pb-4">
           <p>Recipe Name:</p>
           <input
-            className="text-black rounded px-4 pt-1 pb-1 "
+            className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
             type="text"
             placeholder="Recipe Name"
             autoFocus
@@ -51,7 +51,7 @@ const NameAndDescription = ({
         <div className="pb-4">
           <p>Recipe Description:</p>
           <textarea
-            className="text-black rounded px-4 pt-1 pb-1"
+            className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
             placeholder="Recipe Description"
             value={description}
             onChange={(e) => descriptionChange(e)}

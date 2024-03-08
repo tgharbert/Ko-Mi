@@ -15,7 +15,7 @@ const AddItems = ({
   text: string;
 }) => {
   return (
-    <div>
+    <div className="">
       <form onSubmit={(e) => addItem(e, item)}>
         <p className="pb-2">{text}s:</p>
         <ul>
