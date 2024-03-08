@@ -18,13 +18,20 @@ const Login = () => {
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      <div className="flex justify-center items-center pr-6 pl-6 text-center pt-80">
-        <div className="-mt-20">
+      <div className=" flex justify-center items-center pr-6 pl-6 text-center pt-80">
+        <div className="-mt-40 bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
           <p className="text-xl pb-3 font-bold">Welcome to Ko-Mi!</p>
           <p className="pb-3">
-            At the moment, we only support Google accounts.
+            Ko-Mi is your ultimate grocery shopping assistant and cookbook
+            companion! With Ko-Mi, planning meals, creating shopping lists, and
+            discovering new recipes has never been easier. Seamlessly browse
+            through a vast collection of delicious recipes and streamline your
+            shopping experience, all in one intuitive app.
           </p>
-          <p className="pb-3">Sign-In or Sign Up with the button below:</p>
+          <p className="pb-3">
+            At the moment, we only support <b>Google</b> accounts.
+          </p>
+          {/* <p className="pb-3">Sign-In or Sign Up with the button below:</p> */}
           <div className=" text-center  ">
             <SignInPageButton />
           </div>

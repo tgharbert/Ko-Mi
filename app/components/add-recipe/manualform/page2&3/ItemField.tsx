@@ -10,7 +10,7 @@ const ItemField = ({
   return (
     <div className="flex mt-2">
       <textarea
-        className="text-black rounded px-4 pt-1 pb-1 height-auto resize-y"
+        className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary"
         placeholder={`Enter ${text}`}
         value={item}
         onChange={(e) => itemChange(e)}

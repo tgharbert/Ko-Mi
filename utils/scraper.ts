@@ -9,7 +9,7 @@ const ldScraper = async (url: string) => {
     const response = await axios
       .get(url)
       .catch((err: string) => console.error(err));
-    const html = response.data;
+    const html = await response.data;
     const $ = await cheerio.load(html);
     const jsonLDData: string[] = [];
     $('script[type="application/ld+json"]').each((index: number, element: string) => {
