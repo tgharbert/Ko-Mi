@@ -11,7 +11,7 @@ const CookTimeInput = ({
     <div>
       <input
         type="number"
-        className="text-black rounded"
+        className="text-black rounded-lg border-2 border-primary pl-2"
         id="quantity"
         name="quantity"
         min="0"

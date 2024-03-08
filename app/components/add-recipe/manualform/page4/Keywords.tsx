@@ -22,7 +22,7 @@ const Keywords = ({
           value={keyword}
           placeholder="Enter Keyword..."
           onChange={(e) => keywordsChange(e)}
-          className="text-black rounded px-4 pt-1 pb-1 mt-2"
+          className="text-black rounded-lg px-4 pt-1 pb-1 mt-2 border-2 border-primary w-full sm:w-2/5"
           autoFocus
         ></input>
         <div className="mt-2 items-center">
