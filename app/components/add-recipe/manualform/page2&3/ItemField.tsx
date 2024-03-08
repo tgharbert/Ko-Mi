@@ -9,8 +9,8 @@ const ItemField = ({
 }) => {
   return (
     <div className="flex mt-2">
-      <textarea
-        className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary"
+      <input
+        className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full"
         placeholder={`Enter ${text}`}
         value={item}
         onChange={(e) => itemChange(e)}
