@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <body className={inter.className}> */}
-      <body className="bg-primary font-roboto text-tertiary overflow-y-scroll ">
+      <body className="bg-primary font-roboto text-tertiary overflow-y-scroll  ">
         <AppRouterCacheProvider>
           <Providers>
             <Appbar />
