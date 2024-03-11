@@ -26,8 +26,8 @@ const RecipeList = async ({
         </div>
       </div>
       {recipes.length === 0 ? (
-        <div>
-          <p>Temp Error Message: Sorry, no recipes!</p>
+        <div className=" bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
+          <p>Sorry, no recipes match with &apos;{query}&apos;!</p>
         </div>
       ) : (
         <div className="float-center justify">
