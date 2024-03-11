@@ -1,9 +1,9 @@
 <!-- # Ko-Mi -->
 <div align="center">
-  <img src="./images/ko-mi_logo_1.png" alt="ko-mi logo">
-  <a href="https://ko-mi.io">View Live</a>
-</div>
+  <img src="./images/ko-mi_logo_1.png" alt="ko-mi logo" width="100" height="100">
 <h1 align="center">Ko-Mi</h1>
+<a href="https://ko-mi.io">View Live</a>
+</div>
 
 ## About
 
@@ -18,12 +18,13 @@ Some of our key features are:
     <li>
       <h3>Secure Sign-in</h3>
       <p>Sign in with Google OAuth. Rest easy knowing that your safety and privacy are a top priority!</p>
+      <img src="./src/gifs/demo/Auth.gif" alt="auth demo" width="278" />
     </li>
     <br/>
     <li>
       <h3>Main Page</h3>
       <p>Browse all the recipes that you've added. A custom cookbook with only the necessary information for each recipe! You're able to add ingredients to your shopping list and scale them appropriately. </p>
-        <!-- <img src="./demo/PetPalsProfileDemo.gif" alt="profile demo" width="1080" /> -->
+        <img src="./src/gifs/demo/HomePage.gif" alt="homepage demo" width="278" />
     </li>
     <br/>
     <li>
@@ -31,21 +32,22 @@ Some of our key features are:
       <p>
         Filter and search recipes to find whatever you desire in your cookbook. Search by Keyword, Author, Title, or Ingredients!
       </p>
-      <!-- <img src="./demo/find-friends.gif" alt="friends demo" /> -->
+      <img src="./src/gifs/demo/SearchBar.gif" alt="searchbar demo" width="278"/>
     </li>
     <br/>
     <li>
       <h3>Add a Recipe</h3>
       <p>Add to your cookbook by inputting a URL or build a custom recipe card! Our site is able to grab the necessary information from most sites then create a recipe card. </p>
-        <!-- <img src="./demo/PetPalsPetManagementDemo.gif" alt="profile pet demo" width="1080" /> -->
+        <img src="./src/gifs/demo/URL_Input.gif" alt="add recipe demo" width="278" />
     </li>
     <br/>
     <li>
       <h3>Shopping List</h3>
       <p>View items in your shopping list and check them off as needed. Add custom items to make it your single resource when looking through your supplies at home or browsing the store.</p>
-      <!-- <img src="./demo/PetPalsChatDemo.gif" alt="chat demo" width="1154px" /> -->
+      <img src="./src/gifs/demo/ShoppingList.gif" alt="shopping list demo" width="278" />
     </li>
     <br/>
+
   </ul>
 </div>
 
@@ -62,7 +64,7 @@ Some of our key features are:
 ![Supabase](https://img.shields.io/badge/Supabase-%23000000.svg?style=for-the-badge&logo=Supabase)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-000000?style=for-the-badge&logo=tailwind-css&logoColor=0EA5E9)
 
-<!-- need to add MUI, vercel, docker? -->
+<!-- need to add MUI, vercel -->
 
 ## Getting Started
 
@@ -99,17 +101,12 @@ node --version
    ```
 3. Rename `.env.example` to `.env` and fill in the following fields:
    ```
-   DATABASE_URL
-   NEXTAUTH_URL
-   NEXTAUTH_SECRET (use # openssl rand base64 32 to generate)
-   GITHUB_CLIENT_ID
-   GITHUB_CLIENT_SECRET
-   GOOGLE_CLIENT_ID
-   GOOGLE_CLIENT_SECRET
-   FACEBOOK_CLIENT_ID
-   FACEBOOK_CLIENT_SECRET
-   NEXT_PUBLIC_SUPABASE_URL
-   NEXT_PUBLIC_SUPABASE_ANON_KEY
+    GOOGLE_CLIENT_ID
+    GOOGLE_CLIENT_SECRET
+    DATABASE_URL
+    NEXTAUTH_SECRET
+    NEXT_PUBLIC_SUPABASE_URL
+    NEXT_PUBLIC_SUPABASE_ANON_KEY
    ```
    Check NextAuth.js documentation for more information on how to set up OAuth providers
 4. Run Prisma generate to generate the Prisma client
