@@ -45,7 +45,7 @@ const PageNavigation = ({
           ""
         )}
         <span className="text-lg italic">Page {currentPage}</span>
-        {numberOfResults < 6 ? (
+        {numberOfResults < 9 ? (
           ""
         ) : (
           <span className="hover:text-lime-500">

@@ -6,14 +6,14 @@ const RecipeList = async ({
   query,
   currentPage,
   category,
+  random,
 }: {
   query: string;
   currentPage: number;
   category: string;
+  random: string;
 }) => {
-  // query for recipes
-  // current page will get passed in here to add pagination
-  let response = await getRecipes(query, category, currentPage);
+  let response = await getRecipes(query, category, currentPage, random);
   let recipes = await response?.json();
 
   return (

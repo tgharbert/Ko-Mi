@@ -3,8 +3,8 @@ import RecipeList from "./components/homepage/RecipeList";
 import { Suspense } from "react";
 import LoadingPage from "./loading";
 import RecipeSearchBar from "./components/homepage/SearchBar";
+import RandomButton from "./components/homepage/RandomButton";
 import verifyUser from "@/utils/verifyUser";
-import PageNavigation from "./components/homepage/PageNavigation";
 
 export default async function Home({
   searchParams,
@@ -13,12 +13,13 @@ export default async function Home({
     category?: string;
     query?: string;
     page?: string;
+    random?: string;
   };
 }) {
   const query = searchParams?.query || "";
   const category = searchParams?.category || "name";
-  // at the moment pagination is half-built...
   const currentPage = Number(searchParams?.page) || 1;
+  const random = searchParams?.random || "false";
 
   await verifyUser();
 
@@ -28,15 +29,15 @@ export default async function Home({
         <Header />
       </div>
       <RecipeSearchBar category={category} currentPage={currentPage} />
+      {/* SET UP RANDOM BUTTON WHICH WILL SET THE 'RANDOM' VALUE TO QUERY IN THE SAME MANNER THAT THE SEARCH BAR DOES */}
+      <RandomButton random={random} />
       <Suspense fallback={<LoadingPage />} key={query + currentPage}>
         <RecipeList
           query={query}
           currentPage={currentPage}
           category={category}
+          random={random}
         />
-        {/* <div className="float-center">
-          <PageNavigation currentPage={currentPage} />
-        </div> */}
       </Suspense>
     </div>
   );
