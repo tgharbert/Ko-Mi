@@ -101,11 +101,11 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
               <div className="rounded-lg pb-">
                 <DescriptionAccordion description={recipe.description} />
               </div>
-              <div className="rounded-lg">
-                <InstructionAccordion instructions={recipe.instructions} />
-              </div>
               <div>
                 <IngredientAccordion ingredients={recipe.ingredients} />
+              </div>
+              <div className="rounded-lg">
+                <InstructionAccordion instructions={recipe.instructions} />
               </div>
               <div>
                 <AdditionalAccordion

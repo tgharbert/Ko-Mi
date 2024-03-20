@@ -53,11 +53,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
           <DescriptionAccordion description={recipe.description} />
         </div>
       </div>
-      <div className="flex justify-center">
-        <div className="mt-7 rounded-lg sm:w-3/5">
-          <InstructionAccordion instructions={recipe.instructions} />
-        </div>
-      </div>
+
       {/* REFACTOR BASED ON SHARED ACCORDIONS */}
       <div className="flex justify-center">
         <div className="sm:w-3/5">
@@ -70,6 +66,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
             >
               Recipe Ingredients
             </AccordionSummary>
+
             <AccordionDetails>
               <ul className="px-2 list-disc text-left">
                 {recipe.recipeIngredient.map((ingredient, idx: number) => (
@@ -80,6 +77,11 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
               </ul>
             </AccordionDetails>
           </Accordion>
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <div className="mt-7 rounded-lg sm:w-3/5">
+          <InstructionAccordion instructions={recipe.instructions} />
         </div>
       </div>
       <div className="mx-4 pt-7 pb-10">

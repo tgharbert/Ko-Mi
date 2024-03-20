@@ -1,15 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import theme from "@/mui-styles/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import IngredientNode from "./IngredientNode";
 import LoadingPage from "../Loading";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
-import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@mui/material/styles";
 import AddListItemBar from "./NewIngredientBar";
+import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
+import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { addItemToList } from "@/lib/addItemToList";
 
 const IngredientsList = () => {
@@ -20,9 +20,10 @@ const IngredientsList = () => {
   const getIngredients = async () => {
     try {
       setIsLoading(true);
+      const data = await getUserIngredients();
       const ingredientData: any = await getUserIngredients();
+      console.log(ingredientData);
       setIngredients(ingredientData);
-      // display a success message??
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -74,7 +75,6 @@ const IngredientsList = () => {
         <div>
           <div className="pb-4 mt-8">
             <Stack
-              // spacing={2}
               direction="row"
               className="flex justify-center content-center "
             >
