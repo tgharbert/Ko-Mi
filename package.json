@@ -1,6 +1,6 @@
 {
   "name": "ko-mi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -30,6 +30,7 @@
     "axios": "^1.6.5",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.2",
+    "he": "^1.2.0",
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "postgres": "^3.4.3",

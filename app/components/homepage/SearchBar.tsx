@@ -22,6 +22,7 @@ const RecipeSearchBar = ({
     if (term) {
       params.set("page", newPage);
       params.set("query", term);
+      params.set("random", "false");
     } else {
       params.delete("query");
     }
@@ -37,6 +38,7 @@ const RecipeSearchBar = ({
     if (term) {
       params.set("page", newPage);
       params.set("category", term);
+      params.set("random", "false");
     } else {
       params.delete("category");
     }
@@ -60,12 +62,13 @@ const RecipeSearchBar = ({
           handleCategory(e.target.value);
         }}
         defaultValue={category || "Name"}
+        aria-label="filter categories"
       >
-        <option>Name</option>
-        <option>Ingredient</option>
-        <option>Keyword</option>
-        <option>Author</option>
-        <option>Publisher</option>
+        <option value="name">Name</option>
+        <option value="ingredient">Ingredient</option>
+        <option value="keyword">Keyword</option>
+        <option value="author">Author</option>
+        <option value="publisher">Publisher</option>
       </select>
     </div>
   );

@@ -51,7 +51,7 @@ type IngredientEntry = {
 type Keywords = {
   id: number;
   name: string;
-  recipeId: number;
+  recipeId: number?;
 };
 
 
@@ -84,7 +84,7 @@ type User = {
 }
 
 type AddedIngredient = {
-  name: string | null;
+  name: string;
   checked: boolean;
   ingredientId: number;
   id: number;
