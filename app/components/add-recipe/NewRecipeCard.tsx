@@ -53,7 +53,6 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
           <DescriptionAccordion description={recipe.description} />
         </div>
       </div>
-
       {/* REFACTOR BASED ON SHARED ACCORDIONS */}
       <div className="flex justify-center">
         <div className="sm:w-3/5">
@@ -66,7 +65,6 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
             >
               Recipe Ingredients
             </AccordionSummary>
-
             <AccordionDetails>
               <ul className="px-2 list-disc text-left">
                 {recipe.recipeIngredient.map((ingredient, idx: number) => (
