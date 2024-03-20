@@ -21,7 +21,7 @@ const AdditionalAccordion = ({
   keywords: Keywords[];
 }) => {
   // filter the keywords due to raw SQL query for random recipes
-  keywords = keywords.reduce((acc, keyword: Keywords) => {
+  keywords = keywords.reduce((acc: Keywords[], keyword: Keywords) => {
     if (!acc.find((item: Keywords) => item.id === keyword.id)) {
       acc.push(keyword);
     }

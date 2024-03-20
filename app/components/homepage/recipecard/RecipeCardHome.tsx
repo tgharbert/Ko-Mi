@@ -41,6 +41,9 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
     setExpanded(!expanded);
   };
 
+  // library that parses punctuation from HTML elements
+  var he = require("he");
+
   return (
     <div className="flex justify-center">
       <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
@@ -53,7 +56,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
             // }
             title={
               <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
-                {recipe.name}
+                {he.decode(recipe.name)}
               </h2>
             }
           />
