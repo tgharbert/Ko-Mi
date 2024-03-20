@@ -22,6 +22,7 @@ const RecipeSearchBar = ({
     if (term) {
       params.set("page", newPage);
       params.set("query", term);
+      params.set("random", "false");
     } else {
       params.delete("query");
     }
@@ -37,6 +38,7 @@ const RecipeSearchBar = ({
     if (term) {
       params.set("page", newPage);
       params.set("category", term);
+      params.set("random", "false");
     } else {
       params.delete("category");
     }

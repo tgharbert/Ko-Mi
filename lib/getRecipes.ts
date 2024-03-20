@@ -13,7 +13,7 @@ export async function getRecipes(query: string, category: string, page: number, 
     const session = await getServerSession(authOptions);
     const user = session?.user as User;
 
-    if (random) {
+    if (random !== "false") {
       const allRecipes = await prisma.$queryRaw`SELECT
       r.*,
       ARRAY_AGG(
