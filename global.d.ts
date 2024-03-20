@@ -51,7 +51,7 @@ type IngredientEntry = {
 type Keywords = {
   id: number;
   name: string;
-  recipeId: number;
+  recipeId: number?;
 };
 
 

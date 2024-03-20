@@ -9,12 +9,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import LinkIcon from "@mui/icons-material/Link";
 
-type Keywords = {
-  id: number;
-  name: string;
-  recipeId: number;
-};
-
 const AdditionalAccordion = ({
   url,
   recipeYield,
@@ -26,6 +20,14 @@ const AdditionalAccordion = ({
   publisher: string;
   keywords: Keywords[];
 }) => {
+  // filter the keywords due to raw SQL query for random recipes
+  keywords = keywords.reduce((acc, keyword: Keywords) => {
+    if (!acc.find((item: Keywords) => item.id === keyword.id)) {
+      acc.push(keyword);
+    }
+    return acc;
+  }, []);
+
   return (
     <Accordion className="rounded-lg">
       <AccordionSummary
