@@ -22,8 +22,8 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
 
   const router = useRouter();
 
+  const he = require("he");
   const handleRecipeSubmission = async () => {
-    // console.log("recipe: ", recipe);
     try {
       await addRecipe(recipe);
       setIsLoading(true);
@@ -85,7 +85,8 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
                 <ul className="px-2 list-disc text-left">
                   {recipe.recipeIngredient.map((ingredient, idx: number) => (
                     <li className="pb-4" key={idx}>
-                      {ingredient}
+                      {/* {ingredient} */}
+                      {he.decode(ingredient)}
                     </li>
                   ))}
                 </ul>
@@ -98,14 +99,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
             <InstructionAccordion instructions={recipe.instructions} />
           </div>
         </div>
-        <div className="mx-4 pt-7 pb-10">
-          {/* <button
-          onClick={() => handleRecipeSubmission()}
-          className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3"
-        >
-          Add Recipe
-        </button> */}
-        </div>
+        <div className="mx-4 pt-7 pb-10"></div>
       </div>
     </ThemeProvider>
   );

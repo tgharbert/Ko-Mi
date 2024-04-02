@@ -9,6 +9,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 
 const InstructionAccordion = ({ instructions }: { instructions: string[] }) => {
+  const he = require("he");
+
   return (
     <div>
       <Accordion>
@@ -25,7 +27,7 @@ const InstructionAccordion = ({ instructions }: { instructions: string[] }) => {
             {instructions.map((instruction: string, idx) => {
               return (
                 <div className="pb-2 pt-2" key={idx}>
-                  {instruction}
+                  {he.decode(instruction)}
                 </div>
               );
             })}

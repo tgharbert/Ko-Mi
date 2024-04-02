@@ -42,7 +42,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
   };
 
   // library that parses punctuation from HTML elements
-  var he = require("he");
+  const he = require("he");
 
   return (
     <div className="flex justify-center">
