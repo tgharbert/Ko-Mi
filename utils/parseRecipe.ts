@@ -57,6 +57,9 @@ const getImage = (recipe: any) => {
 };
 
 const getAuthor = (recipe: any) => {
+  if (recipe.author === undefined) {
+    recipe.author = "Not Provided";
+  }
   // if it's an object inside of an array of length 1
   if (Array.isArray(recipe.author)) {
     recipe.author = recipe.author[0].name;
@@ -65,7 +68,7 @@ const getAuthor = (recipe: any) => {
     recipe.author = recipe.author.name;
   } else {
     // if it wasn't provided
-    recipe.author = "";
+    recipe.author = "Not Provided";
   }
 };
 

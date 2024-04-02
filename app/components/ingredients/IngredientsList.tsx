@@ -22,7 +22,6 @@ const IngredientsList = () => {
       setIsLoading(true);
       const data = await getUserIngredients();
       const ingredientData: any = await getUserIngredients();
-      console.log(ingredientData);
       setIngredients(ingredientData);
       setIsLoading(false);
     } catch (error) {
