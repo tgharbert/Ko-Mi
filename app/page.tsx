@@ -15,12 +15,14 @@ export default async function Home({
     query?: string;
     page?: string;
     random?: string;
+    all?: string;
   };
 }) {
   const query = searchParams?.query || "";
   const category = searchParams?.category || "name";
   const currentPage = Number(searchParams?.page) || 1;
   const random = searchParams?.random || "false";
+  const all = searchParams?.all || "false";
 
   await verifyUser();
 
@@ -40,6 +42,7 @@ export default async function Home({
           currentPage={currentPage}
           category={category}
           random={random}
+          all={all}
         />
       </Suspense>
     </div>
