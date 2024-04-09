@@ -20,14 +20,13 @@ const RandomButton = ({ random }: { random: string }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="mb-4">
-        {/* <button onClick={() => randomClick()}>I am a random button!</button> */}
         <Button
           variant="contained"
           className=" bg-lime-500"
           onClick={() => randomClick()}
           color="lime"
         >
-          Get Random Recipes
+          Randomize Recipes
           <ShuffleIcon />
         </Button>
       </div>
