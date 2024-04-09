@@ -16,6 +16,7 @@ const RecipeList = async ({
   let response = await getRecipes(query, category, currentPage, random);
   let recipes = await response?.json();
 
+  console.log("query: ", category);
   return (
     <div>
       <div className="sm:flex justify-center items-center pb-8">

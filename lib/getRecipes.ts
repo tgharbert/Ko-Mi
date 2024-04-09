@@ -12,7 +12,7 @@ export async function getRecipes(query: string, category: string, page: number, 
     const user = session?.user as User;
 
     // this should be the main query
-    if (random !== "false" || random === 'false') {
+    if (random !== "false") {
       const allRecipes = await prisma.$queryRaw`SELECT
       r.*,
       ARRAY_AGG(
@@ -51,7 +51,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       return new Response(JSON.stringify(allRecipes));
     }
 
-    if (category === 'name') {
+    if (category === 'name' && query !== '') {
     const allRecipes = await prisma.recipe.findMany({
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
@@ -161,24 +161,27 @@ export async function getRecipes(query: string, category: string, page: number, 
   }
 
   // HOLDING ON TO THIS BECAUSE I DON'T KNOW IF I'LL NEED IT AGAIN
-  // const allRecipes = await prisma.recipe.findMany({
-  //   skip: (page - 1) * resultsPerPage,
-  //   take: resultsPerPage,
-  //   where: {
-  //     userId: user?.id,
-  //     name: {
-  //       contains: query,
-  //       mode: 'insensitive'
-  //     },
-  //   },
-  //   include: {
-  //     ingredients: true,
-  //     keywords: true,
-  //   },
-  // });
-  // console.log(allRecipes)
-  // await prisma.$disconnect();
-  // return new Response(JSON.stringify(allRecipes));
+  const allRecipes = await prisma.recipe.findMany({
+    skip: (page - 1) * resultsPerPage,
+    take: resultsPerPage,
+    where: {
+      userId: user?.id,
+      name: {
+        contains: query,
+        mode: 'insensitive'
+      },
+    },
+    orderBy: {
+      id: 'desc'
+    },
+    include: {
+      ingredients: true,
+      keywords: true,
+    },
+  });
+  console.log(allRecipes)
+  await prisma.$disconnect();
+  return new Response(JSON.stringify(allRecipes));
   } catch (error) {
     console.error(error);
     return new Response("Error retrieving recipes");
