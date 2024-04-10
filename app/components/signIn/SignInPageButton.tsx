@@ -3,17 +3,12 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
 import Button from "@mui/material/Button";
+import LoginIcon from "@mui/icons-material/Login";
 
 const SignInPageButton = () => {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        {/* <button
-          className="bg-lime-500 px-3 rounded hover:bg-lime-600"
-          onClick={() => signIn()}
-        >
-          Sign In
-        </button> */}
         <Button
           variant="contained"
           className=" bg-lime-500"
@@ -21,6 +16,7 @@ const SignInPageButton = () => {
           color="lime"
         >
           Sign In
+          <LoginIcon className="pl-1" />
         </Button>
       </div>
     </ThemeProvider>

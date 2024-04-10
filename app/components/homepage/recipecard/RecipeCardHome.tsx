@@ -3,14 +3,14 @@ import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
+// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 import AddIngredientsButton from "./AddIngredientsButton";
 
@@ -42,7 +42,7 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
   };
 
   // library that parses punctuation from HTML elements
-  var he = require("he");
+  const he = require("he");
 
   return (
     <div className="flex justify-center">

@@ -1,7 +1,7 @@
 // Refactor this to break into smaller components with more descriptive naming
 
 const getRecipeObject = (recipeData: any): RawRecipe => {
-  console.log('initial data: ', recipeData)
+  // console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
     if (recipeData[0]["@graph"]) {
       let graphArray = recipeData[0]["@graph"];
@@ -57,6 +57,9 @@ const getImage = (recipe: any) => {
 };
 
 const getAuthor = (recipe: any) => {
+  if (recipe.author === undefined) {
+    recipe.author = "Not Provided";
+  }
   // if it's an object inside of an array of length 1
   if (Array.isArray(recipe.author)) {
     recipe.author = recipe.author[0].name;
@@ -65,7 +68,7 @@ const getAuthor = (recipe: any) => {
     recipe.author = recipe.author.name;
   } else {
     // if it wasn't provided
-    recipe.author = "";
+    recipe.author = "Not Provided";
   }
 };
 
