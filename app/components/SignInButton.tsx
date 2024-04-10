@@ -1,6 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const SignInButton = ({ name, image }: { name: string; image: string }) => {
   const { data: session } = useSession();
@@ -18,7 +19,8 @@ const SignInButton = ({ name, image }: { name: string; image: string }) => {
         />
         <p className="float-left">{name}</p>
         <button className="float-right" onClick={() => signOut()}>
-          Sign Out
+          Log Out
+          <LogoutIcon className="pl-1" />
         </button>
       </div>
     );
@@ -27,8 +29,9 @@ const SignInButton = ({ name, image }: { name: string; image: string }) => {
   return (
     <div>
       {status === "unauthenticated" ? (
-        <button onClick={() => signIn()}>Sign In</button>
+        <></>
       ) : (
+        // <button onClick={() => signIn()}>Sign In</button>
         <div>
           <Image
             src={image}

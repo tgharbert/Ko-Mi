@@ -7,13 +7,15 @@ const RecipeList = async ({
   currentPage,
   category,
   random,
+  all,
 }: {
   query: string;
   currentPage: number;
   category: string;
   random: string;
+  all: string;
 }) => {
-  let response = await getRecipes(query, category, currentPage, random);
+  let response = await getRecipes(query, category, currentPage, random, all);
   let recipes = await response?.json();
 
   return (
