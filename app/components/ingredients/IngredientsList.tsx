@@ -11,6 +11,7 @@ import AddListItemBar from "./NewIngredientBar";
 import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { addItemToList } from "@/lib/addItemToList";
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 const IngredientsList = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -83,7 +84,8 @@ const IngredientsList = () => {
                 onClick={handleDeleteChecked}
                 color="lime"
               >
-                <DeleteIcon className="" />
+                {/* <DeleteIcon className="" /> */}
+                <PlaylistRemoveIcon className="mr-2" />
                 Delete Checked
               </Button>
               <div className="px-4">
@@ -93,7 +95,7 @@ const IngredientsList = () => {
                   onClick={handleDeleteIngredients}
                   color="lime"
                 >
-                  <DeleteIcon className="" />
+                  <DeleteIcon className="mr-2" />
                   Delete All
                 </Button>
               </div>

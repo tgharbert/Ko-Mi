@@ -64,15 +64,19 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
             <AddIcon className="pl-1" />
           </Button>
         </div>
-        <div className="flex justify-center">
-          <div className=" mt-7 rounded-lg sm:w-3/5">
-            <DescriptionAccordion description={recipe.description} />
+        {recipe.description ? (
+          <div className="flex justify-center">
+            <div className="mt-4 rounded-lg sm:w-3/5">
+              <DescriptionAccordion description={recipe.description} />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="mt-4"></div>
+        )}
         {/* REFACTOR BASED ON SHARED ACCORDIONS */}
         <div className="flex justify-center">
           <div className="sm:w-3/5">
-            <Accordion className="mt-7 rounded-lg">
+            <Accordion className="rounded-lg">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
@@ -95,7 +99,7 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="mt-7 rounded-lg sm:w-3/5">
+          <div className="rounded-lg sm:w-3/5">
             <InstructionAccordion instructions={recipe.instructions} />
           </div>
         </div>

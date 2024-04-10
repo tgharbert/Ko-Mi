@@ -26,8 +26,8 @@ const RandomButton = ({ random }: { random: string }) => {
           onClick={() => randomClick()}
           color="lime"
         >
-          Randomize Recipes
-          <ShuffleIcon />
+          Randomize
+          <ShuffleIcon className="ml-2" />
         </Button>
       </div>
     </ThemeProvider>

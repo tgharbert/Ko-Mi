@@ -28,6 +28,7 @@ const InstructionAccordion = ({ instructions }: { instructions: string[] }) => {
               return (
                 <div className="pb-2 pt-2" key={idx}>
                   {he.decode(instruction)}
+                  {/* {instruction} */}
                 </div>
               );
             })}

@@ -7,17 +7,36 @@ export default function UserToggle() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const toggleRecipes = () => {
+  let all = searchParams.get("all");
+
+  const toggleAllRecipes = () => {
     const params = new URLSearchParams(searchParams);
     params.set("all", "true");
+    params.delete("page");
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const toggleMyRecipes = () => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("all");
+    params.delete("page");
     replace(`${pathname}?${params.toString()}`);
   };
 
   return (
-    <div>
-      <label>My Recipes</label>
-      <Switch onChange={toggleRecipes} />
-      <label>All Recipes</label>
+    <div className="pb-2">
+      <button
+        className={!all ? "mx-4 underline" : "mx-4"}
+        onClick={toggleMyRecipes}
+      >
+        My Recipes
+      </button>
+      <button
+        className={all ? "mx-4 underline" : "mx-4"}
+        onClick={toggleAllRecipes}
+      >
+        All Recipes
+      </button>
     </div>
   );
 }

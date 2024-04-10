@@ -87,8 +87,6 @@ export async function getRecipes(query: string, category: string, page: number, 
       return new Response(JSON.stringify(allRecipes));
     }
 
-
-
     if (category === 'name' && query !== '') {
     const allRecipes = await prisma.recipe.findMany({
       skip: (page - 1) * resultsPerPage,
@@ -137,7 +135,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
       where: {
-        userId: user?.id,
+        userId: all === 'false' ? user.id : undefined,
         keywords: {
           some: {
             name: {
@@ -162,7 +160,7 @@ export async function getRecipes(query: string, category: string, page: number, 
           skip: (page - 1) * resultsPerPage,
           take: resultsPerPage,
           where: {
-            userId: user?.id,
+            userId: all === 'false' ? user.id : undefined,
             author: {
               contains: query,
               mode: 'insensitive'
@@ -183,7 +181,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
       where: {
-        userId: user?.id,
+        userId: all === 'false' ? user.id : undefined,
         publisherName: {
           contains: query,
           mode: 'insensitive'
@@ -203,10 +201,7 @@ export async function getRecipes(query: string, category: string, page: number, 
     skip: (page - 1) * resultsPerPage,
     take: resultsPerPage,
     where: {
-      // userId: user?.id,
-      // userId: 'undefined',
       userId: all === 'false' ? user.id : undefined,
-
       name: {
         contains: query,
         mode: 'insensitive'
