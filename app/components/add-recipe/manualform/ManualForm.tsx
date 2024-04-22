@@ -9,7 +9,7 @@ import CustomRecipeCard from "./page5/CustomRecipeCard";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 
-const RecipeForm = () => {
+function RecipeForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [page, setPage] = useState(1);
@@ -213,6 +213,6 @@ const RecipeForm = () => {
       )}
     </div>
   );
-};
+}
 
 export default RecipeForm;

@@ -9,7 +9,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import LinkIcon from "@mui/icons-material/Link";
 
-const AdditionalAccordion = ({
+function AdditionalAccordion({
   url,
   recipeYield,
   publisher,
@@ -19,7 +19,7 @@ const AdditionalAccordion = ({
   recipeYield: number;
   publisher: string;
   keywords: Keywords[];
-}) => {
+}) {
   // filter the keywords due to raw SQL query for random recipes
   keywords = keywords.reduce((acc: Keywords[], keyword: Keywords) => {
     if (!acc.find((item: Keywords) => item.id === keyword.id)) {
@@ -73,6 +73,6 @@ const AdditionalAccordion = ({
       </AccordionDetails>
     </Accordion>
   );
-};
+}
 
 export default AdditionalAccordion;

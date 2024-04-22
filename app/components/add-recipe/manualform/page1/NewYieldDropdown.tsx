@@ -1,10 +1,10 @@
-const NewRecipeYieldDropdown = ({
+function NewRecipeYieldDropdown({
   servingsChange,
   servingSize,
 }: {
   servingsChange: Function;
   servingSize: string;
-}) => {
+}) {
   return (
     <div className="flexbox justify-center content-center pb-4 px-8">
       <div className="pb-4 px-8 flex justify-center content-center ">
@@ -24,6 +24,6 @@ const NewRecipeYieldDropdown = ({
       </div>
     </div>
   );
-};
+}
 
 export default NewRecipeYieldDropdown;

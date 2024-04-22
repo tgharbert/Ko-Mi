@@ -4,7 +4,7 @@ import { useState } from "react";
 import Switch from "@mui/material/Switch";
 import ManualForm from "./manualform/ManualForm";
 
-const AddRecipeForm = () => {
+function AddRecipeForm() {
   // use state to conditionally render which form to use, url or manual
   const [isManual, setIsManual] = useState(false);
 
@@ -22,6 +22,6 @@ const AddRecipeForm = () => {
       {isManual ? <ManualForm /> : <RecipeURLForm />}
     </div>
   );
-};
+}
 
 export default AddRecipeForm;

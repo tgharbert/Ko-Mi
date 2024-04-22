@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const DescriptionAccordion = ({ description }: { description: string }) => {
+function DescriptionAccordion({ description }: { description: string }) {
   return (
     <Accordion>
       <AccordionSummary
@@ -21,6 +21,6 @@ const DescriptionAccordion = ({ description }: { description: string }) => {
       </AccordionDetails>
     </Accordion>
   );
-};
+}
 
 export default DescriptionAccordion;

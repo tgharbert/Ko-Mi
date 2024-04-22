@@ -8,7 +8,7 @@ import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 
-const InstructionAccordion = ({ instructions }: { instructions: string[] }) => {
+function InstructionAccordion({ instructions }: { instructions: string[] }) {
   const he = require("he");
 
   return (
@@ -37,6 +37,6 @@ const InstructionAccordion = ({ instructions }: { instructions: string[] }) => {
       </Accordion>
     </div>
   );
-};
+}
 
 export default InstructionAccordion;

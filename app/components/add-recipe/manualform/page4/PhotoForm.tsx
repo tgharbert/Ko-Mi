@@ -2,13 +2,13 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-const PhotoForm = ({
+function PhotoForm({
   handleFileSelected,
   fileName,
 }: {
   handleFileSelected: Function;
   fileName: string;
-}) => {
+}) {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -47,6 +47,6 @@ const PhotoForm = ({
       </div>
     </div>
   );
-};
+}
 
 export default PhotoForm;

@@ -5,7 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
-const RandomButton = ({ random }: { random: string }) => {
+function RandomButton({ random }: { random: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -32,6 +32,6 @@ const RandomButton = ({ random }: { random: string }) => {
       </div>
     </ThemeProvider>
   );
-};
+}
 
 export default RandomButton;

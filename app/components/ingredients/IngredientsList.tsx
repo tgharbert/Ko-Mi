@@ -13,7 +13,7 @@ import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { addItemToList } from "@/lib/addItemToList";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
-const IngredientsList = () => {
+function IngredientsList() {
   const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [item, setItem] = useState("");
@@ -122,6 +122,6 @@ const IngredientsList = () => {
       </div>
     </ThemeProvider>
   );
-};
+}
 
 export default IngredientsList;

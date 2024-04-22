@@ -7,8 +7,8 @@ interface Props {
   children: ReactNode;
 }
 
-const Providers = (props: Props) => {
+function Providers(props: Props) {
   return <SessionProvider>{props.children}</SessionProvider>;
-};
+}
 
 export default Providers;

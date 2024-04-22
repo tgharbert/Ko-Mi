@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
 
-const NextPageButton = ({ pageChange }: { pageChange: Function }) => {
+function NextPageButton({ pageChange }: { pageChange: Function }) {
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -17,6 +17,6 @@ const NextPageButton = ({ pageChange }: { pageChange: Function }) => {
       </ThemeProvider>
     </div>
   );
-};
+}
 
 export default NextPageButton;
