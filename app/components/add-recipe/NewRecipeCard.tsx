@@ -17,7 +17,7 @@ import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 
-const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
+function RecipeCard({ recipe }: { recipe: RawRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -107,6 +107,6 @@ const RecipeCard = ({ recipe }: { recipe: RawRecipe }) => {
       </div>
     </ThemeProvider>
   );
-};
+}
 
 export default RecipeCard;

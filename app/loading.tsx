@@ -1,11 +1,11 @@
 import Loading from "./components/Loading";
 
-const LoadingPage = () => {
+function LoadingPage() {
   return (
     <div>
       <Loading />
     </div>
   );
-};
+}
 
 export default LoadingPage;

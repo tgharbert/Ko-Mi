@@ -1,6 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
 
-const Keywords = ({
+function Keywords({
   keywords,
   keywordsChange,
   keyword,
@@ -10,7 +10,7 @@ const Keywords = ({
   keywordsChange: Function;
   keyword: string;
   addKeyword: Function;
-}) => {
+}) {
   return (
     <div className="pb-4">
       {keywords.map((keyword: string, idx) => {
@@ -32,6 +32,6 @@ const Keywords = ({
       </form>
     </div>
   );
-};
+}
 
 export default Keywords;

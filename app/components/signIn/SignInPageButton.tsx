@@ -5,7 +5,7 @@ import theme from "@/mui-styles/styles";
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 
-const SignInPageButton = () => {
+function SignInPageButton() {
   return (
     <ThemeProvider theme={theme}>
       <div>
@@ -21,6 +21,6 @@ const SignInPageButton = () => {
       </div>
     </ThemeProvider>
   );
-};
+}
 
 export default SignInPageButton;

@@ -1,4 +1,4 @@
-const ItemField = ({
+function ItemField({
   item,
   itemChange,
   text,
@@ -6,7 +6,7 @@ const ItemField = ({
   item: string;
   itemChange: Function;
   text: string;
-}) => {
+}) {
   return (
     <div className="flex mt-2">
       <input
@@ -18,6 +18,6 @@ const ItemField = ({
       />
     </div>
   );
-};
+}
 
 export default ItemField;
