@@ -1,6 +1,17 @@
 const path = require("path");
+const withPWA = require("@ducanh2912/next-pwa").default({
+  dest: "public",
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  swcMinify: true,
+  disable: false,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
 
-module.exports = {
+module.exports = withPWA({
   images: {
     remotePatterns: [
       {
@@ -15,4 +26,4 @@ module.exports = {
     config.resolve.alias["@"] = path.join(__dirname, "");
     return config;
   },
-};
+});
