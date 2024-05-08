@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
+  themeColor: "#233329",
 };
 
 export default function RootLayout({
@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <body className={inter.className}> */}
-      <body className="bg-primary font-roboto text-tertiary overflow-y-scroll  ">
+      <body className="bg-primary font-roboto text-tertiary overflow-y-scroll h-lvh ">
         <AppRouterCacheProvider>
           <Providers>
             <Appbar />
