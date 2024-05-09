@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-const SignInButton = ({ name, image }: { name: string; image: string }) => {
+function SignInButton({ name, image }: { name: string; image: string }) {
   const { data: session } = useSession();
   const { data: sessionData, status } = useSession();
 
@@ -45,6 +45,6 @@ const SignInButton = ({ name, image }: { name: string; image: string }) => {
       )}
     </div>
   );
-};
+}
 
 export default SignInButton;

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import NewRecipeYieldDropdown from "./NewYieldDropdown";
 import CookTimeInput from "./CookTimeInput";
 
-const NameAndDescription = ({
+function NameAndDescription({
   nameChange,
   descriptionChange,
   name,
@@ -18,7 +18,7 @@ const NameAndDescription = ({
   description: string;
   servingSize: string;
   formatTime: Function;
-}) => {
+}) {
   const [minutes, setMinutes] = useState("0");
   const [hours, setHours] = useState("0");
 
@@ -80,6 +80,6 @@ const NameAndDescription = ({
       </form>
     </div>
   );
-};
+}
 
 export default NameAndDescription;

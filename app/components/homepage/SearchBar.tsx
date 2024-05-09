@@ -2,13 +2,13 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-const RecipeSearchBar = ({
+function RecipeSearchBar({
   category,
   currentPage,
 }: {
   category: string;
   currentPage: number;
-}) => {
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -72,6 +72,6 @@ const RecipeSearchBar = ({
       </select>
     </div>
   );
-};
+}
 
 export default RecipeSearchBar;

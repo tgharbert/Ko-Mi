@@ -1,4 +1,4 @@
-const CookTimeInput = ({
+function CookTimeInput({
   units,
   valueChange,
   text,
@@ -6,7 +6,7 @@ const CookTimeInput = ({
   units: string;
   valueChange: Function;
   text: string;
-}) => {
+}) {
   return (
     <div>
       <input
@@ -23,6 +23,6 @@ const CookTimeInput = ({
       <label className="mx-2">{text}</label>
     </div>
   );
-};
+}
 
 export default CookTimeInput;

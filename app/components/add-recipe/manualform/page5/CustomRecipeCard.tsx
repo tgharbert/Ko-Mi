@@ -11,7 +11,7 @@ import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordi
 import { supabase } from "@/lib/supabase";
 import { addCustomRecipe } from "@/lib/addCustomRecipe";
 
-const CustomRecipeCard = ({ recipe }: { recipe: CustomRecipe }) => {
+function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null | ArrayBuffer>(
     null
@@ -128,6 +128,6 @@ const CustomRecipeCard = ({ recipe }: { recipe: CustomRecipe }) => {
       </div>
     </div>
   );
-};
+}
 
 export default CustomRecipeCard;
