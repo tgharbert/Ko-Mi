@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: APP_TITLE_TEMPLATE,
   },
   description: "Your kitchen companion!",
-  manifest: "/manifest.json",
+  manifest: "./manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -36,20 +36,20 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: APP_NAME,
+    siteName: "ko-mi.io",
     title: {
       default: "Ko-Mi",
-      template: APP_TITLE_TEMPLATE,
+      template: "",
     },
-    description: APP_DESCRIPTION,
+    description: "Your kitchen companion",
   },
   twitter: {
     card: "summary",
     title: {
       default: "Ko-Mi",
-      template: APP_TITLE_TEMPLATE,
+      template: "Ko-Mi",
     },
-    description: APP_DESCRIPTION,
+    description: "Your kitchen companion",
   },
 };
 
