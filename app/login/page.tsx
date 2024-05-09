@@ -8,7 +8,7 @@ import LoadingPage from "../loading";
 import Image from "next/image";
 import logo from "@/images/ko-mi_logo_1.png";
 
-const Login = () => {
+function Login() {
   const { data: sessionData, status } = useSession();
   const router = useRouter();
 
@@ -44,6 +44,6 @@ const Login = () => {
       </div>
     </Suspense>
   );
-};
+}
 
 export default Login;

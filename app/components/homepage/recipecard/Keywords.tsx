@@ -4,7 +4,7 @@ type Keywords = {
   recipeId: number;
 };
 
-const Keywords = ({ keywords }: { keywords: Keywords[] }) => {
+function Keywords({ keywords }: { keywords: Keywords[] }) {
   return (
     <div>
       Keywords:
@@ -17,6 +17,6 @@ const Keywords = ({ keywords }: { keywords: Keywords[] }) => {
       })}
     </div>
   );
-};
+}
 
 export default Keywords;

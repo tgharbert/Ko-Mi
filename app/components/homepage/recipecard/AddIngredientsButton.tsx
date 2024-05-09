@@ -7,13 +7,13 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 
-const AddIngredientsButton = ({
+function AddIngredientsButton({
   recipeYield,
   recipeIngredients,
 }: {
   recipeYield: number;
   recipeIngredients: Ingredient[];
-}) => {
+}) {
   const [open, setOpen] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
 
@@ -89,6 +89,6 @@ const AddIngredientsButton = ({
       </Dialog>
     </div>
   );
-};
+}
 
 export default AddIngredientsButton;

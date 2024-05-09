@@ -1,7 +1,7 @@
 import Keywords from "./Keywords";
 import PhotoForm from "./PhotoForm";
 
-const KeywordsAndPhoto = ({
+function KeywordsAndPhoto({
   keywords,
   keywordChange,
   keyword,
@@ -17,7 +17,7 @@ const KeywordsAndPhoto = ({
   // handleSubmitPhoto: Function;
   handleFileSelected: Function;
   fileName: string;
-}) => {
+}) {
   return (
     <div>
       <Keywords
@@ -33,6 +33,6 @@ const KeywordsAndPhoto = ({
       />
     </div>
   );
-};
+}
 
 export default KeywordsAndPhoto;

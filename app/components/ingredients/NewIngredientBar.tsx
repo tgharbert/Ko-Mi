@@ -1,4 +1,4 @@
-const AddListItemBar = ({
+function AddListItemBar({
   handleSubmit,
   setValue,
   item,
@@ -6,7 +6,7 @@ const AddListItemBar = ({
   handleSubmit: Function;
   setValue: Function;
   item: string;
-}) => {
+}) {
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -24,6 +24,6 @@ const AddListItemBar = ({
       </form>
     </div>
   );
-};
+}
 
 export default AddListItemBar;

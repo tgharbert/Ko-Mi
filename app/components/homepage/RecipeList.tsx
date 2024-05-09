@@ -2,7 +2,7 @@ import RecipeCard from "./recipecard/RecipeCardHome";
 import PageNavigation from "./PageNavigation";
 import { getRecipes } from "@/lib/getRecipes";
 
-const RecipeList = async ({
+async function RecipeList({
   query,
   currentPage,
   category,
@@ -14,7 +14,7 @@ const RecipeList = async ({
   category: string;
   random: string;
   all: string;
-}) => {
+}) {
   let response = await getRecipes(query, category, currentPage, random, all);
   let recipes = await response?.json();
 
@@ -41,6 +41,6 @@ const RecipeList = async ({
       )}
     </div>
   );
-};
+}
 
 export default RecipeList;

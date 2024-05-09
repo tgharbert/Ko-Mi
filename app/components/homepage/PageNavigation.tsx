@@ -3,13 +3,13 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-const PageNavigation = ({
+function PageNavigation({
   currentPage,
   numberOfResults,
 }: {
   currentPage: number;
   numberOfResults: number;
-}) => {
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -59,6 +59,6 @@ const PageNavigation = ({
       </div>
     </div>
   );
-};
+}
 
 export default PageNavigation;

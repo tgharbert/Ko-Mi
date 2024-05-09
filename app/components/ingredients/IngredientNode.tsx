@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
+function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
   const [isChecked, setIsChecked] = useState(ingredient.checked);
 
   const onCheckIngredient = async () => {
@@ -36,6 +36,6 @@ const IngredientNode = ({ ingredient }: { ingredient: Ingredient }) => {
       </li>
     </span>
   );
-};
+}
 
 export default IngredientNode;

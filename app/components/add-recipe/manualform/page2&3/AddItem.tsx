@@ -1,7 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import ItemField from "./ItemField";
 
-const AddItems = ({
+function AddItems({
   addItem,
   items,
   item,
@@ -13,7 +13,7 @@ const AddItems = ({
   item: string;
   itemChange: Function;
   text: string;
-}) => {
+}) {
   return (
     <div className="">
       <form onSubmit={(e) => addItem(e, item)}>
@@ -35,6 +35,6 @@ const AddItems = ({
       </form>
     </div>
   );
-};
+}
 
 export default AddItems;

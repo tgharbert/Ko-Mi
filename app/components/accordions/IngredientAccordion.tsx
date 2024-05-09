@@ -13,11 +13,7 @@ type Ingredient = {
   types: string[];
 };
 
-const IngredientAccordion = ({
-  ingredients,
-}: {
-  ingredients: Ingredient[];
-}) => {
+function IngredientAccordion({ ingredients }: { ingredients: Ingredient[] }) {
   return (
     <Accordion className="rounded-lg">
       <AccordionSummary
@@ -39,6 +35,6 @@ const IngredientAccordion = ({
       </AccordionDetails>
     </Accordion>
   );
-};
+}
 
 export default IngredientAccordion;

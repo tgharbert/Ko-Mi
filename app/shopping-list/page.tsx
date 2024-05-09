@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import LoadingPage from "../loading";
 import verifyUser from "@/utils/verifyUser";
 
-const Ingredients = async () => {
+async function Ingredients() {
   await verifyUser();
 
   return (
@@ -19,6 +19,6 @@ const Ingredients = async () => {
       </Suspense>
     </div>
   );
-};
+}
 
 export default Ingredients;

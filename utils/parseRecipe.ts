@@ -1,5 +1,3 @@
-// Refactor this to break into smaller components with more descriptive naming
-
 const getRecipeObject = (recipeData: any): RawRecipe => {
   // console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
@@ -42,7 +40,6 @@ const formatRecipe = (recipe: object) => {
 };
 
 const getImage = (recipe: any) => {
-  // if it's an array of images just grab the first one
   if (Array.isArray(recipe.image)) {
     recipe.image = recipe.image[0];
   }
@@ -163,11 +160,11 @@ const getInstructions = (recipe: any) => {
       item.itemListElement.map((instruction: any) => {
         instructions.push(instruction.text);
       });
+    } else if (typeof item === 'string') {
+      instructions.push(item);
     } else if (item.text) {
       // if the instructions are just an array of text
       instructions.push(item.text);
-    } else {
-      instructions.push(item)
     }
   });
 }

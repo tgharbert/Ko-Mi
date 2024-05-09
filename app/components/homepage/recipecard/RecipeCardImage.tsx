@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const RecipeCardImage = ({ image, name }: { image: string; name: string }) => {
+function RecipeCardImage({ image, name }: { image: string; name: string }) {
   return (
     <div>
       <Image
@@ -12,6 +12,6 @@ const RecipeCardImage = ({ image, name }: { image: string; name: string }) => {
       />
     </div>
   );
-};
+}
 
 export default RecipeCardImage;
