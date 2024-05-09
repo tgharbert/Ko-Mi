@@ -163,9 +163,11 @@ const getInstructions = (recipe: any) => {
       item.itemListElement.map((instruction: any) => {
         instructions.push(instruction.text);
       });
-    } else {
+    } else if (item.text) {
       // if the instructions are just an array of text
       instructions.push(item.text);
+    } else {
+      instructions.push(item)
     }
   });
 }
