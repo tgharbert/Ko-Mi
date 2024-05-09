@@ -162,7 +162,7 @@ const getInstructions = (recipe: any) => {
       });
     } else if (typeof item === 'string') {
       instructions.push(item);
-    } else {
+    } else if (item.text) {
       // if the instructions are just an array of text
       instructions.push(item.text);
     }

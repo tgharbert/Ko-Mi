@@ -16,6 +16,9 @@ const ldScraper = async (url: string) => {
       const json = JSON.parse($(element).html());
       jsonLDData.push(json);
     });
+    if (!jsonLDData) {
+      return `${url} is not supported`;
+    }
     return jsonLDData;
   } catch (error) {
     console.error("error retrieving from URL: ", error);
@@ -25,6 +28,7 @@ const ldScraper = async (url: string) => {
 const getData = async (url: string) => {
   try {
     const result = await ldScraper(url);
+    console.log(result);
     // using this for test info
     // console.log(JSON.stringify(result))
     return result;
