@@ -18,7 +18,7 @@ function AddListItemBar({
           placeholder="Item to add..."
           autoFocus
         />
-        <button className="bg-lime-500 hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
+        <button className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
           Add Item
         </button>
       </form>
