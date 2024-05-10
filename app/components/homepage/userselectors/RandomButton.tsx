@@ -22,7 +22,7 @@ function RandomButton({ random }: { random: string }) {
       <div className="mb-4">
         <Button
           variant="contained"
-          className=" bg-lime-500"
+          className=" secondary"
           onClick={() => randomClick()}
           color="lime"
         >

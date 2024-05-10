@@ -9,7 +9,7 @@ function SignInButton({ name, image }: { name: string; image: string }) {
 
   if (session && session.user) {
     return (
-      <div className="flow-root w-full	">
+      <div className="flow-root w-full">
         <Image
           src={image}
           width="40"
@@ -18,7 +18,10 @@ function SignInButton({ name, image }: { name: string; image: string }) {
           alt="profile-image"
         />
         <p className="float-left">{name}</p>
-        <button className="float-right" onClick={() => signOut()}>
+        <button
+          className="float-right hover:text-secondary"
+          onClick={() => signOut()}
+        >
           Log Out
           <LogoutIcon className="pl-1" />
         </button>
