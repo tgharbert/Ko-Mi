@@ -19,7 +19,7 @@ declare module "@mui/material/Button" {
 const theme = createTheme({
   palette: {
     lime: {
-      main: "#84CC16",
+      main: "#487509",
       light: "#65A30D",
       dark: "#65A30D",
       contrastText: "#F7F9F9",
@@ -31,5 +31,6 @@ const theme = createTheme({
     }
   }
 });
-
+// old main
+// main: "#84CC16",
 export default theme;

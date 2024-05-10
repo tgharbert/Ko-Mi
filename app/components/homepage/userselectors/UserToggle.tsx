@@ -26,13 +26,21 @@ export default function UserToggle() {
   return (
     <div className="pb-2">
       <button
-        className={!all ? "mx-4 underline" : "mx-4"}
+        className={
+          !all
+            ? "mx-4 underline hover:text-lime-600"
+            : "mx-4 hover:text-lime-600"
+        }
         onClick={toggleMyRecipes}
       >
         My Recipes
       </button>
       <button
-        className={all ? "mx-4 underline" : "mx-4"}
+        className={
+          all
+            ? "mx-4 underline hover:text-lime-600"
+            : "mx-4 hover:text-lime-600"
+        }
         onClick={toggleAllRecipes}
       >
         All Recipes
