@@ -10,7 +10,7 @@ import { getUserIngredients } from "@/lib/ingredients";
 async function Ingredients() {
   await verifyUser();
 
-  let ingredients: Ingredient[] = await getUserIngredients();
+  const ingredients: Ingredient[] = await getUserIngredients();
 
   return (
     <div className="text-center pb-10">

@@ -1,6 +1,25 @@
 const getRecipeObject = (recipeData: any): RawRecipe => {
-  // console.log('initial data: ', recipeData)
+  console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
+    //
+    // if (recipeData[0]["@type"] === "Recipe") {
+    //   const recipe = recipeData[0]
+    //   formatRecipe(recipe)
+    //   return recipe;
+    // }
+    // if (recipeData[1]["@type"] === "Recipe") {
+    //   const recipe = recipeData[1]
+    //   formatRecipe(recipe)
+    //   return recipe;
+    // }
+    for (let key in recipeData) {
+      if (recipeData[key]["@type"] === "Recipe") {
+        const recipe = recipeData[key]
+        formatRecipe(recipe);
+        return recipe;
+      }
+    }
+    //
     if (recipeData[0]["@graph"]) {
       let graphArray = recipeData[0]["@graph"];
       for (let key in graphArray) {
