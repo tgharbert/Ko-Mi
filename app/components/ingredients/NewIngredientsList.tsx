@@ -12,20 +12,35 @@ import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { addItemToList } from "@/lib/addItemToList";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+import { revalidatePath } from "next/cache";
+// import getIngredients from "@/app/shopping-list/actions/handleDeleteIngredients";
 
-function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
+function IngredientsList() {
+  const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [item, setItem] = useState("");
 
-  useEffect(() => {
-    if (ingredients) {
+  const getIngredients = async () => {
+    try {
+      setIsLoading(true);
+      const ingredientData: any = await getUserIngredients();
+      setIngredients(ingredientData);
       setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      // should set an error message in the DOM
     }
+  };
+
+  useEffect(() => {
+    getIngredients();
   }, []);
 
   const handleDeleteIngredients = async () => {
     try {
       await deleteUserIngredients();
+      // await getIngredients();
+      // revalidatePath("/shopping-list");
     } catch (error) {
       console.error("ERROR: ", error);
     }
@@ -34,6 +49,8 @@ function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
   const handleDeleteChecked = async () => {
     try {
       await deleteCheckedIngredients();
+      // await getIngredients();
+      // revalidatePath("/shopping-list");
     } catch (error) {
       console.error(error);
     }
@@ -42,6 +59,8 @@ function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
   const handleItemSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     await addItemToList(item);
+    // revalidatePath("/shopping-list");
+    // await getIngredients();
     setItem("");
   };
 
@@ -69,6 +88,7 @@ function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
                 onClick={handleDeleteChecked}
                 color="lime"
               >
+                {/* <DeleteIcon className="" /> */}
                 <PlaylistRemoveIcon className="mr-2" />
                 Delete Checked
               </Button>
@@ -85,6 +105,7 @@ function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
               </div>
             </Stack>
           </div>
+          {/* SHOULD BE AN INFINITE SCROLL?? */}
           {isLoading ? (
             <LoadingPage />
           ) : (

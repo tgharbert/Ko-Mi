@@ -1,3 +1,5 @@
+"use client";
+
 import { checkIngredient } from "../../../lib/checkIngredient";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
