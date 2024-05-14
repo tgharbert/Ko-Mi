@@ -2,12 +2,10 @@ function AddListItemBar({
   handleSubmit,
   setValue,
   item,
-}: // submitItem,
-{
+}: {
   handleSubmit: Function;
   setValue: Function;
   item: string;
-  // submitItem: Function;
 }) {
   return (
     <div>

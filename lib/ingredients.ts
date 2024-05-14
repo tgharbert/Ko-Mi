@@ -7,7 +7,6 @@ import { revalidatePath } from "next/cache";
 
 export async function getUserIngredients() {
   try {
-    // should this be passed a userId??
     const session = await getServerSession(authOptions);
     const user = session?.user as User;
 
@@ -27,7 +26,7 @@ export async function getUserIngredients() {
     return allIngredients;
   } catch (error) {
     console.error("error", error);
-    return;
+    return undefined;
   }
 }
 

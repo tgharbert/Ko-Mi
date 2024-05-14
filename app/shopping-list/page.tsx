@@ -1,13 +1,12 @@
 "use server";
 import Header from "../components/Header";
-import IngredientsList from "./components/IngredientsList";
 import verifyUser from "@/utils/verifyUser";
 import NewIngredientsList from "./components/NewIngredientsList";
 import { getUserIngredients } from "@/lib/ingredients";
 import { addItemToList } from "@/lib/addItemToList";
 
 async function Ingredients() {
-  let ingredients: any = await getUserIngredients();
+  let ingredients = await getUserIngredients();
   await verifyUser();
 
   const submitItem = async (item: string) => {
@@ -29,9 +28,11 @@ async function Ingredients() {
       <div className="-mt-9">
         <Header />
       </div>
-      <NewIngredientsList ingredients={ingredients} submitItem={submitItem} />
-      {/* {ingredients ? <IngredientsList ingredients={ingredients} /> : <></>} */}
-      {/* <IngredientsList /> */}
+      <NewIngredientsList
+        ingredients={ingredients}
+        submitItem={submitItem}
+        getIngredients={getIngredients}
+      />
     </div>
   );
 }
