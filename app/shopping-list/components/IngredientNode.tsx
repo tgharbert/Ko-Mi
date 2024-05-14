@@ -1,3 +1,5 @@
+"use client";
+
 import { checkIngredient } from "../../../lib/checkIngredient";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
@@ -23,7 +25,11 @@ function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
           }
         >
           <span className="mt-4 mb-4 flex">
-            <IconButton onClick={() => onCheckIngredient()} className="">
+            <IconButton
+              onClick={() => onCheckIngredient()}
+              className=""
+              aria-label="check item"
+            >
               {isChecked ? (
                 <RemoveShoppingCartIcon className=" text-red-500 text-left" />
               ) : (
