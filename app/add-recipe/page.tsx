@@ -1,9 +1,9 @@
-import RecipeURLForm from "../components/add-recipe/RecipeURLForm";
+import RecipeURLForm from "./components/RecipeURLForm";
 import Header from "../components/Header";
 import LoadingPage from "../loading";
 import { Suspense } from "react";
 import verifyUser from "@/utils/verifyUser";
-import AddRecipeForm from "../components/add-recipe/AddRecipeForm";
+import AddRecipeForm from "./components/AddRecipeForm";
 
 const AddRecipe = async () => {
   await verifyUser();

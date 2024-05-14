@@ -22,6 +22,7 @@ export async function addItemToList (item: string) {
       }
     })
     revalidatePath('/shopping-list')
+    // revalidatePath('/shopping-list')
   } catch (error) {
     console.error("Error adding ingredient to list: ", error)
   }

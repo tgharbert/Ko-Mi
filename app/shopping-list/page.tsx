@@ -1,16 +1,16 @@
 import Header from "../components/Header";
-import IngredientsList from "../components/ingredients/IngredientsList";
+import IngredientsList from "./components/IngredientsList";
 // import AddListItemBar from "../components/ingredients/NewIngredientBar";
 // import { Suspense } from "react";
 import LoadingPage from "../loading";
 import verifyUser from "@/utils/verifyUser";
-import NewIngredientsList from "../components/ingredients/NewIngredientsList";
+import NewIngredientsList from "./components/NewIngredientsList";
 import { getUserIngredients } from "@/lib/ingredients";
 
 async function Ingredients() {
+  let ingredients: Ingredient[] = await getUserIngredients();
   await verifyUser();
-
-  const ingredients: Ingredient[] = await getUserIngredients();
+  // console.log(ingredients);
 
   return (
     <div className="text-center pb-10">
@@ -19,9 +19,9 @@ async function Ingredients() {
       </div>
       {/* <AddListItemBar /> */}
       {/* <Suspense fallback={<LoadingPage />}> */}
-      {/* <NewIngredientsList /> */}
-      {ingredients ? <IngredientsList ingredients={ingredients} /> : <></>}
-      {/* <IngredientsList ingredients={ingredients} /> */}
+      <NewIngredientsList ingredients={ingredients} />
+      {/* {ingredients ? <IngredientsList ingredients={ingredients} /> : <></>} */}
+      {/* <IngredientsList /> */}
     </div>
   );
 }

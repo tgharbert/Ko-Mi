@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";
 import IngredientNode from "./IngredientNode";
-import LoadingPage from "../Loading";
+import LoadingPage from "../../components/Loading";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -12,6 +12,7 @@ import { deleteUserIngredients, getUserIngredients } from "@/lib/ingredients";
 import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
 import { addItemToList } from "@/lib/addItemToList";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+import { Suspense } from "react";
 
 function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -88,18 +89,20 @@ function IngredientsList({ ingredients }: { ingredients: Ingredient[] }) {
           {isLoading ? (
             <LoadingPage />
           ) : (
-            <div className="flex-col">
-              <ul>
-                {ingredients.map((ingredient: Ingredient) => {
-                  return (
-                    <IngredientNode
-                      key={ingredient.id}
-                      ingredient={ingredient}
-                    />
-                  );
-                })}
-              </ul>
-            </div>
+            <Suspense fallback={<LoadingPage />}>
+              <div className="flex-col">
+                <ul>
+                  {ingredients.map((ingredient: Ingredient) => {
+                    return (
+                      <IngredientNode
+                        key={ingredient.id}
+                        ingredient={ingredient}
+                      />
+                    );
+                  })}
+                </ul>
+              </div>
+            </Suspense>
           )}
         </div>
       </div>
