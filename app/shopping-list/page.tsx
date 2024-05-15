@@ -6,8 +6,8 @@ import { getUserIngredients } from "@/lib/ingredients";
 import { addItemToList } from "@/lib/addItemToList";
 
 async function Ingredients() {
-  let ingredients = await getUserIngredients();
   await verifyUser();
+  let ingredients = await getUserIngredients();
 
   const submitItem = async (item: string) => {
     "use server";
