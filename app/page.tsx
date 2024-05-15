@@ -3,7 +3,6 @@ import RecipeList from "./components/homepage/RecipeList";
 import { Suspense } from "react";
 import LoadingPage from "./loading";
 import RecipeSearchBar from "./components/homepage/SearchBar";
-import RandomButton from "./components/homepage/userselectors/RandomButton";
 import UserSelectors from "./components/homepage/userselectors/UserSelectors";
 import verifyUser from "@/utils/verifyUser";
 
@@ -32,9 +31,6 @@ export default async function Home({
         <Header />
       </div>
       <RecipeSearchBar category={category} currentPage={currentPage} />
-
-      {/* TOGGLE FOR THE USER OR ALL RECIPES */}
-      {/* <RandomButton random={random} /> */}
       <UserSelectors random={random} />
       <Suspense fallback={<LoadingPage />} key={query + currentPage}>
         <RecipeList
