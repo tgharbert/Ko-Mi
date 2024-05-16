@@ -5,6 +5,7 @@ import LoadingPage from "./loading";
 import RecipeSearchBar from "./components/homepage/SearchBar";
 import UserSelectors from "./components/homepage/userselectors/UserSelectors";
 import verifyUser from "@/utils/verifyUser";
+import { getRecipes } from "@/lib/getRecipes";
 
 export default async function Home({
   searchParams,
@@ -25,6 +26,13 @@ export default async function Home({
 
   await verifyUser();
 
+  const getUserRecipes = async () => {
+    "use server";
+    let response = await getRecipes(query, category, currentPage, random, all);
+    let recipeData = await response?.json();
+    return recipeData;
+  };
+
   return (
     <div className="text-center flexbox content-center">
       <div className="-mt-9">
@@ -39,6 +47,7 @@ export default async function Home({
           category={category}
           random={random}
           all={all}
+          getUserRecipes={getUserRecipes}
         />
       </Suspense>
     </div>
