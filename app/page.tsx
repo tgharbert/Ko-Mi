@@ -26,9 +26,10 @@ export default async function Home({
 
   await verifyUser();
 
-  const getUserRecipes = async () => {
+  const getUserRecipes = async (page: number) => {
     "use server";
-    let response = await getRecipes(query, category, currentPage, random, all);
+    console.log("on the server: ", page);
+    let response = await getRecipes(query, category, page, random, all);
     let recipeData = await response?.json();
     return recipeData;
   };
@@ -43,7 +44,6 @@ export default async function Home({
       <Suspense fallback={<LoadingPage />} key={query + currentPage}>
         <RecipeList
           query={query}
-          currentPage={currentPage}
           category={category}
           random={random}
           all={all}
