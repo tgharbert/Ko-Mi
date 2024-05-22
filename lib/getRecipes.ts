@@ -11,6 +11,8 @@ export async function getRecipes(query: string, category: string, page: number, 
     const session = await getServerSession(authOptions);
     const user = session?.user as User;
 
+
+    console.log('server page', page)
     if (random !== "false" && all === 'true') {
       const allRecipes = await prisma.$queryRaw`SELECT
       r.*,

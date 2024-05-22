@@ -1,9 +1,8 @@
 "use client";
 import RecipeCard from "./recipecard/RecipeCardHome";
-import PageNavigation from "./PageNavigation";
+// import PageNavigation from "./PageNavigation";
 import { useState, useEffect, useCallback, useRef } from "react";
 import LoadingPage from "@/app/loading";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 function RecipeList({
   query,
@@ -24,12 +23,14 @@ function RecipeList({
   const [isEnd, setIsEnd] = useState(false);
   const loaderRef = useRef(null);
 
+  console.log("random: ", random);
+
   const getRecipes = useCallback(async () => {
     if (isLoading) return;
 
     setIsLoading(true);
 
-    let userRecipes = await getUserRecipes(page);
+    let userRecipes = await getUserRecipes(page, query, category, all, random);
     if (userRecipes.length === 0) {
       setIsLoading(false);
       setIsEnd(true);
@@ -39,17 +40,6 @@ function RecipeList({
     setPage((prevPage) => prevPage + 1);
     setIsLoading(false);
   }, [page, isLoading]);
-
-  console.log(isEnd);
-
-  const turnPage = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
-
-  // useEffect(() => {
-  //   getRecipes();
-  // }, []);
-  // console.log("recipes: ", recipes);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

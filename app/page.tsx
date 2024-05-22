@@ -26,9 +26,14 @@ export default async function Home({
 
   await verifyUser();
 
-  const getUserRecipes = async (page: number) => {
+  const getUserRecipes = async (
+    page: number,
+    query: string,
+    category: string,
+    all: string,
+    random: string
+  ) => {
     "use server";
-    console.log("on the server: ", page);
     let response = await getRecipes(query, category, page, random, all);
     let recipeData = await response?.json();
     return recipeData;
