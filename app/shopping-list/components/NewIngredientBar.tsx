@@ -9,7 +9,7 @@ function AddListItemBar({
 }) {
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)} action={handleSubmit()}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <input
           className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
           type="text"

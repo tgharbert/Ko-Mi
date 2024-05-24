@@ -1,25 +1,86 @@
+"use client";
 import RecipeCard from "./recipecard/RecipeCardHome";
-import PageNavigation from "./PageNavigation";
-import { getRecipes } from "@/lib/getRecipes";
+// import PageNavigation from "./PageNavigation";
+import { useState, useEffect, useCallback, useRef } from "react";
+import LoadingPage from "@/app/loading";
+import EndOfRecipes from "./EndOfRecipes";
 
-async function RecipeList({
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+
+function RecipeList({
   query,
-  currentPage,
   category,
   random,
   all,
+  currentPage,
+  getUserRecipes,
 }: {
-  query: string;
+  query: String;
+  category: String;
+  random: String;
+  all: String;
   currentPage: number;
-  category: string;
-  random: string;
-  all: string;
+  getUserRecipes: Function;
 }) {
-  let response = await getRecipes(query, category, currentPage, random, all);
-  let recipes = await response?.json();
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [isEnd, setIsEnd] = useState(false);
+  const loaderRef = useRef(null);
+
+  const searchParams = useSearchParams();
+
+  const setPage1 = (currentPage: number) => {
+    setPage(currentPage);
+    return;
+  };
+
+  // RIGHT NOW THE PAGE ON THE SERVER IS OVER 1 WHEN CHANGING THE CATEGORY...
+  useEffect(() => {
+    setIsEnd(false);
+    setRecipes([]);
+    if (page > 1) {
+      setPage1(1);
+    }
+  }, [searchParams, currentPage, setPage]);
+
+  const getRecipes = useCallback(async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
+
+    let userRecipes = await getUserRecipes(page, query, category, all, random);
+    if (userRecipes.length === 0) {
+      setIsLoading(false);
+      setIsEnd(true);
+    }
+
+    setRecipes((prevRecipes) => [...prevRecipes, ...userRecipes]);
+    setPage((prevPage) => prevPage + 1);
+    setIsLoading(false);
+  }, [page, isLoading]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const target = entries[0];
+      if (target.isIntersecting) {
+        getRecipes();
+      }
+    });
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [getRecipes]);
 
   return (
-    <div>
+    <div className="w-120%" id="scrollableDiv">
       <div className="sm:flex justify-center items-center pb-8">
         <div className="grid sm:grid-cols-3 gap-2 sm:w-4/5 ">
           {recipes.map((recipe: Recipe) => {
@@ -27,17 +88,15 @@ async function RecipeList({
           })}
         </div>
       </div>
-      {recipes.length === 0 ? (
-        <div className=" bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
-          <p>Sorry, no recipes match with &apos;{query}&apos;!</p>
+      {!isEnd ? (
+        <div className="mb-3">
+          <div ref={loaderRef}>{isLoading && <LoadingPage />}</div>
         </div>
       ) : (
-        <div className="float-center justify">
-          <PageNavigation
-            currentPage={currentPage}
-            numberOfResults={recipes.length}
-          />
+        <div className="mb-4">
+          <EndOfRecipes />
         </div>
+        // <div className="mb-8 mt-4">No More Recipes!</div>
       )}
     </div>
   );
