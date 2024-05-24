@@ -50,6 +50,7 @@ export default async function Home({
         <RecipeList
           query={query}
           category={category}
+          currentPage={currentPage}
           random={random}
           all={all}
           getUserRecipes={getUserRecipes}

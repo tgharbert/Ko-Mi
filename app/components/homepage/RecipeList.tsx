@@ -3,18 +3,23 @@ import RecipeCard from "./recipecard/RecipeCardHome";
 // import PageNavigation from "./PageNavigation";
 import { useState, useEffect, useCallback, useRef } from "react";
 import LoadingPage from "@/app/loading";
+import EndOfRecipes from "./EndOfRecipes";
+
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 function RecipeList({
   query,
   category,
   random,
   all,
+  currentPage,
   getUserRecipes,
 }: {
   query: String;
   category: String;
   random: String;
   all: String;
+  currentPage: number;
   getUserRecipes: Function;
 }) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -23,7 +28,21 @@ function RecipeList({
   const [isEnd, setIsEnd] = useState(false);
   const loaderRef = useRef(null);
 
-  console.log("random: ", random);
+  const searchParams = useSearchParams();
+
+  const setPage1 = (currentPage: number) => {
+    setPage(currentPage);
+    return;
+  };
+
+  // RIGHT NOW THE PAGE ON THE SERVER IS OVER 1 WHEN CHANGING THE CATEGORY...
+  useEffect(() => {
+    setIsEnd(false);
+    setRecipes([]);
+    if (page > 1) {
+      setPage1(1);
+    }
+  }, [searchParams, currentPage, setPage]);
 
   const getRecipes = useCallback(async () => {
     if (isLoading) return;
@@ -74,7 +93,10 @@ function RecipeList({
           <div ref={loaderRef}>{isLoading && <LoadingPage />}</div>
         </div>
       ) : (
-        <div className="mb-8 mt-4">No More Recipes!</div>
+        <div className="mb-4">
+          <EndOfRecipes />
+        </div>
+        // <div className="mb-8 mt-4">No More Recipes!</div>
       )}
     </div>
   );
