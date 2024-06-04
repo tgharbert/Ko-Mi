@@ -88,6 +88,7 @@ export async function getRecipes(query: string, category: string, page: number, 
     }
 
     if (category === 'name' && query !== '') {
+
     const allRecipes = await prisma.recipe.findMany({
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
@@ -197,6 +198,7 @@ export async function getRecipes(query: string, category: string, page: number, 
   }
 
   // HOLDING ON TO THIS BECAUSE I DON'T KNOW IF I'LL NEED IT AGAIN
+
   const allRecipes = await prisma.recipe.findMany({
     skip: (page - 1) * resultsPerPage,
     take: resultsPerPage,

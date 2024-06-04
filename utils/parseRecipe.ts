@@ -1,23 +1,22 @@
-const getRecipeObject = (recipeData: any): RawRecipe => {
+const getRecipeObject = (recipeData: any): RawRecipe | undefined => {
   // console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
-    if (recipeData[0]["@graph"]) {
-      let graphArray = recipeData[0]["@graph"];
-      for (let key in graphArray) {
-        if (graphArray[key]["@type"] === "Recipe") {
-          const recipe = graphArray[key]
-          formatRecipe(recipe)
-          return recipe;
+    for (let key in recipeData) {
+      if (recipeData[key]["@type"] === "Recipe") {
+        const recipe = recipeData[key]
+        formatRecipe(recipe);
+        return recipe;
+      } else if (recipeData[key]["@graph"]) {
+        // getRecipeObject(recipeData[key]["@graph"])
+        let graphArray = recipeData[key]["@graph"];
+        for (let key in graphArray) {
+          if (graphArray[key]["@type"] === "Recipe") {
+            let recipe = graphArray[key];
+            formatRecipe(recipe);
+            return recipe;
+          }
         }
       }
-      if (recipeData[1]["@type"] === 'Recipe') {
-        const recipe = recipeData[1]
-        formatRecipe(recipe)
-        return recipe;
-      }
-      let recipe = recipeData[0]["@graph"][recipeData[0]["@graph"].length - 1];
-      formatRecipe(recipe);
-      return recipe;
     }
     return getRecipeObject(recipeData[0]);
   } else {

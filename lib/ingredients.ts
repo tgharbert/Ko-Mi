@@ -3,10 +3,10 @@
 import prisma from "@/app/api/_base"
 import { getServerSession } from "next-auth";
 import {authOptions} from "@/utils/authOptions"
+import { revalidatePath } from "next/cache";
 
 export async function getUserIngredients() {
   try {
-    // should this be passed a userId??
     const session = await getServerSession(authOptions);
     const user = session?.user as User;
 
@@ -26,7 +26,7 @@ export async function getUserIngredients() {
     return allIngredients;
   } catch (error) {
     console.error("error", error);
-    return;
+    return undefined;
   }
 }
 
@@ -42,6 +42,7 @@ export async function deleteUserIngredients() {
     const deletedIngredients = await prisma.userIngredient.deleteMany({
       where: { userId: user?.id },
     });
+    revalidatePath('/shopping-list')
     return deletedIngredients;
   } catch (error) {
     console.error("ERROR DELETING ALL INGREDIENTS: ", error);

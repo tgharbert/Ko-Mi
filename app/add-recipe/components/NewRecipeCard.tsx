@@ -5,12 +5,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
-import Loading from "../Loading";
+import Loading from "../../components/Loading";
 import { useState } from "react";
-import InstructionAccordion from "../accordions/InstructionAccordion";
-import DescriptionAccordion from "../accordions/DescriptionAccordion";
+import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
+import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 // unable to use this because ingredients are formatted as strings from URL
-import IngredientAccordion from "../accordions/IngredientAccordion";
+import IngredientAccordion from "@/app/components/accordions/IngredientAccordion";
 import { addRecipe } from "@/lib/addRecipe";
 import Button from "@mui/material/Button";
 import theme from "@/mui-styles/styles";

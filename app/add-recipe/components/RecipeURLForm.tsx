@@ -13,22 +13,32 @@ export default function RecipeURLForm() {
   const [isError, setIsError] = useState(false);
 
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newRecipe = await getData(recipeURL);
-    if (!newRecipe) {
-      setIsError(true);
-      setBadURL(recipeURL);
+    try {
+      e.preventDefault();
+      const newRecipe = await getData(recipeURL);
+      if (!newRecipe) {
+        setError();
+      }
+      let recipeObject: RawRecipe | undefined = getRecipeObject(newRecipe);
+      if (recipeObject === undefined) {
+        setIsError(true);
+        return;
+      }
+      recipeObject.url = recipeURL;
+      setBadURL("");
+      setIsError(false);
+      setRecipe(recipeObject);
       setRecipeURL("");
-      return;
+    } catch (err) {
+      setError();
     }
-    let recipeObject: RawRecipe = getRecipeObject(newRecipe);
-    // using this for test info
-    // console.log("here", JSON.stringify(recipeObject));
-    recipeObject.url = recipeURL;
-    setBadURL("");
-    setIsError(false);
-    setRecipe(recipeObject);
+  };
+
+  const setError = () => {
+    setIsError(true);
+    setBadURL(recipeURL);
     setRecipeURL("");
+    return;
   };
 
   return (
