@@ -37,7 +37,7 @@ function RecipeCard({ recipe }: { recipe: RawRecipe }) {
     <Loading />
   ) : (
     <ThemeProvider theme={theme}>
-      <div className="mr-20 ml-20 flexbox">
+      <div className="mr-8 ml-8 sm:mr-20 sm:ml-20 flexbox">
         <div>
           <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
         </div>
