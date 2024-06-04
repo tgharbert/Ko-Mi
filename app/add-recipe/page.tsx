@@ -9,7 +9,7 @@ const AddRecipe = async () => {
 
   return (
     <div className="text-center">
-      <div className="-mt-9">
+      <div className="-mt-12">
         <Header />
       </div>
       <Suspense fallback={<LoadingPage />}>

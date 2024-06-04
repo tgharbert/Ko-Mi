@@ -25,7 +25,7 @@ async function Ingredients() {
 
   return (
     <div className="text-center pb-10">
-      <div className="-mt-9">
+      <div className="-mt-12">
         <Header />
       </div>
       <NewIngredientsList
