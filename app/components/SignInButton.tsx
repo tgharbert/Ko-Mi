@@ -2,6 +2,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import LogoutIcon from "@mui/icons-material/Logout";
+import MainDropDownMenu from "../friends/components/MainDropdown";
 
 function SignInButton({ name, image }: { name: string; image: string }) {
   const { data: session } = useSession();
@@ -17,14 +18,17 @@ function SignInButton({ name, image }: { name: string; image: string }) {
           className="rounded-full float-left mr-4"
           alt="profile-image"
         />
-        <p className="float-left">{name}</p>
-        <button
+        {/* <p className="float-left">{name}</p> */}
+        <div className="float-right">
+          <MainDropDownMenu />
+        </div>
+        {/* <button
           className="float-right hover:text-secondary"
           onClick={() => signOut()}
         >
           Log Out
           <LogoutIcon className="pl-1" />
-        </button>
+        </button> */}
       </div>
     );
   }
