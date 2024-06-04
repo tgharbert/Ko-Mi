@@ -20,7 +20,7 @@ export default function MainDropDownMenu() {
   };
 
   return (
-    <div>
+    <div className="-mt-2">
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -28,7 +28,7 @@ export default function MainDropDownMenu() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <MenuIcon />
+        <MenuIcon style={{ color: "white" }} sx={{ fontSize: 30 }} />
       </Button>
       <Menu
         id="basic-menu"
