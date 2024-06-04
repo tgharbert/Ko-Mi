@@ -27,6 +27,7 @@ export default function MainDropDownMenu() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        aria-label="open-menu"
       >
         <MenuIcon style={{ color: "white" }} sx={{ fontSize: 30 }} />
       </Button>

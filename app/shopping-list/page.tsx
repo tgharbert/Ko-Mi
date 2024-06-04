@@ -6,7 +6,7 @@ import { getUserIngredients } from "@/lib/ingredients";
 import { addItemToList } from "@/lib/addItemToList";
 
 async function Ingredients() {
-  // await verifyUser();
+  await verifyUser();
   let ingredients = await getUserIngredients();
 
   const submitItem = async (item: string) => {
@@ -25,7 +25,7 @@ async function Ingredients() {
 
   return (
     <div className="text-center pb-10">
-      <div className="-mt-9">
+      <div className="-mt-12">
         <Header />
       </div>
       <NewIngredientsList
