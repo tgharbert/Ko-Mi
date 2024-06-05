@@ -1,3 +1,4 @@
+"use server";
 import Header from "../components/Header";
 
 const Friends = () => {
