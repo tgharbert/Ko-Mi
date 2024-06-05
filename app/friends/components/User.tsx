@@ -31,6 +31,8 @@ const UserCard = ({ user }: { user: User }) => {
               height="40"
             />
             <p className="float-center">{user.name}</p>
+            {/* IF THE USER HAS A PENDING FRIEND REQUEST THEN IT MEANS THAT THEIR B IS 1 LONG? */}
+            <div className="ml-6">{user.sender}</div>
           </span>
         </span>
       </div>

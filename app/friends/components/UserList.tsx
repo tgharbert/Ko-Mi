@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import UserCard from "./User";
 
 const UserList = ({ getUsers }: { getUsers: Function }) => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
     const getUsersData = async () => {
-      let usersData: User[] = await getUsers();
+      let usersData: any[] = await getUsers();
       setUsers(usersData);
     };
     getUsersData();
   }, [getUsers]);
+
+  console.log("users: ", users);
 
   return (
     <div>
