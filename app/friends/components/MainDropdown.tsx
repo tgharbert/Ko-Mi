@@ -42,7 +42,7 @@ export default function MainDropDownMenu() {
         }}
       >
         <Link href="/friends">
-          <MenuItem>Friends</MenuItem>
+          <MenuItem onClick={handleClose}>Friends</MenuItem>
         </Link>
         <MenuItem onClick={() => signOut()}>
           Logout

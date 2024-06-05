@@ -5,16 +5,13 @@ import UserCard from "./User";
 const UserList = ({ getUsers }: { getUsers: Function }) => {
   const [users, setUsers] = useState<User[]>([]);
 
-  const getUsersData = async () => {
-    let usersData: User[] = await getUsers();
-    setUsers(usersData);
-  };
-
   useEffect(() => {
+    const getUsersData = async () => {
+      let usersData: User[] = await getUsers();
+      setUsers(usersData);
+    };
     getUsersData();
-  }, []);
-
-  // console.log(users);
+  }, [getUsers]);
 
   return (
     <div>
