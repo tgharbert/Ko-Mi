@@ -3,8 +3,6 @@ import Header from "../components/Header";
 import getUsers from "@/lib/getUsers";
 import UserList from "./components/UserList";
 import addFriend from "@/lib/addFriend";
-import { Suspense } from "react";
-import LoadingPage from "../loading";
 
 const Friends = async () => {
   const getAllUsers = async () => {
@@ -24,12 +22,10 @@ const Friends = async () => {
 
   return (
     <div className="text-center pb-10">
-      <Suspense fallback={<LoadingPage />}>
-        <div className="-mt-12">
-          <Header />
-        </div>
-        <UserList getUsers={getAllUsers} />
-      </Suspense>
+      <div className="-mt-12">
+        <Header />
+      </div>
+      <UserList getUsers={getAllUsers} />
     </div>
   );
 };

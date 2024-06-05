@@ -3,9 +3,9 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import addFriend from "@/lib/addFriend";
 
 const UserCard = ({ user }: { user: User }) => {
+  // this is working as intended
   const addFriendClick = async () => {
     const result = await addFriend(user.id);
-    console.log(result);
     if (result === "PENDING") {
       console.log("success!");
     } else {

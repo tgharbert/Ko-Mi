@@ -163,5 +163,5 @@ model Friend {
 
   status FriendStatus
 
-  // @@unique([friendAId, friendBId])
+  @@unique([friendAId, friendBId])
 }
