@@ -2,6 +2,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -40,7 +41,9 @@ export default function MainDropDownMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Friends</MenuItem>
+        <Link href="/friends">
+          <MenuItem>Friends</MenuItem>
+        </Link>
         <MenuItem onClick={() => signOut()}>
           Logout
           <LogoutIcon className="pl-1" />
