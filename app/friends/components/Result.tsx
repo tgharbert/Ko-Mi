@@ -2,7 +2,7 @@ import Image from "next/image";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import addFriend from "@/lib/addFriend";
 
-const UserCard = ({ user }: { user: Friend }) => {
+const Result = ({ user }: { user: UserData }) => {
   const addFriendClick = async () => {
     const result = await addFriend(user.id);
     if (result === "PENDING") {
@@ -31,7 +31,6 @@ const UserCard = ({ user }: { user: Friend }) => {
               height="40"
             />
             <p className="float-center">{user.name}</p>
-            <div className="ml-6">{user.direction}</div>
           </span>
         </span>
       </div>
@@ -39,4 +38,4 @@ const UserCard = ({ user }: { user: Friend }) => {
   );
 };
 
-export default UserCard;
+export default Result;

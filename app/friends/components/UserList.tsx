@@ -2,25 +2,22 @@
 import { useEffect, useState } from "react";
 import UserCard from "./User";
 
-const UserList = ({ getUsers }: { getUsers: Function }) => {
-  const [users, setUsers] = useState<any[]>([]);
+const UserList = ({ getAllRequests }: { getAllRequests: Function }) => {
+  const [requests, setRequests] = useState<Friend[]>([]);
 
   useEffect(() => {
-    const getUsersData = async () => {
-      let usersData: any[] = await getUsers();
-      setUsers(usersData);
+    const getRequestsData = async () => {
+      let usersData: Friend[] = await getAllRequests();
+      setRequests(usersData);
     };
-    getUsersData();
-  }, [getUsers]);
-
-  console.log("users: ", users);
+    getRequestsData();
+  }, [getAllRequests]);
 
   return (
     <div>
-      <div className="text-xl">Users:</div>
-      {/* THIS SHOULD FILTER THE CURRENT USER FROM THE LIST */}
-      {users.map((user) => {
-        return <UserCard user={user} key={user.id} />;
+      <div className="text-xl">Friend Requests:</div>
+      {requests.map((request) => {
+        return <UserCard user={request} key={request.id} />;
       })}
     </div>
   );

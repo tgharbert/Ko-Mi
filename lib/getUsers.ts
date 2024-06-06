@@ -27,15 +27,15 @@ export default async function getUsers () {
 
   allUsers.map((friend: any) => {
     if (friend.friendA.id === user.id) {
-      friend.friendB.sender = "sent";
+      friend.friendB.direction = "sent";
       response.push(friend.friendB)
     } else {
-      friend.friendA.sender = 'recieved'
+      friend.friendA.direction = "recieved"
       response.push(friend.friendA)
     }
   })
 
-  console.log('response: ', response)
+  // console.log('response: ', response)
   await prisma.$disconnect();
   return new Response(JSON.stringify(response));
 }

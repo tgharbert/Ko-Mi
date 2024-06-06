@@ -5,9 +5,6 @@ import { getServerSession } from "next-auth";
 import {authOptions} from '@/utils/authOptions'
 
 export default async function addFriend (id: string) {
-  console.log('here is the id: ', id)
-
-
   const session = await getServerSession(authOptions);
   const user = session?.user as User;
 
