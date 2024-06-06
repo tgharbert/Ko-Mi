@@ -23,7 +23,6 @@ const Search = () => {
     } else {
       setNoFriendsFound(true);
     }
-    console.log(searchResults);
   };
 
   return (

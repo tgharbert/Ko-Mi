@@ -5,7 +5,14 @@ import UserList from "./components/UserList";
 import Requests from "./components/Requests";
 
 const Friends = async () => {
-  const getAllUsers = async () => {
+  // const getAllUsers = async () => {
+  //   "use server";
+  //   const response = await getUsers();
+  //   const userData: User[] = await response?.json();
+  //   return userData;
+  // };
+
+  const getAllRequests = async () => {
     "use server";
     const response = await getUsers();
     const userData: User[] = await response?.json();
@@ -17,11 +24,8 @@ const Friends = async () => {
       <div className="-mt-12">
         <Header />
       </div>
-      {/* SEARCH BAR */}
-
-      <Requests />
-      {/* ACTUALLY WHAT I WANT HERE IS SOMETHING DIFFERENT... */}
-      {/* <UserList getUsers={getAllUsers} /> */}
+      {/* FRIENDS */}
+      <Requests getAllRequests={getAllRequests} />
     </div>
   );
 };
