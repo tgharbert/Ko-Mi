@@ -1,6 +1,8 @@
 "use client";
 import { Switch } from "@mui/material";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import PeopleIcon from "@mui/icons-material/People";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function UserToggle() {
   const searchParams = useSearchParams();
@@ -33,6 +35,7 @@ export default function UserToggle() {
         }
         onClick={toggleMyRecipes}
       >
+        <PersonIcon className="pr-2" />
         My Recipes
       </button>
       <button
@@ -43,6 +46,7 @@ export default function UserToggle() {
         }
         onClick={toggleAllRecipes}
       >
+        <PeopleIcon className="pr-2" />
         All Recipes
       </button>
     </div>

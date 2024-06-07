@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+import ShareButton from "./ShareButton";
 
 export default function TopStack({
   handleDeleteChecked,
@@ -12,7 +13,7 @@ export default function TopStack({
   handleDeleteIngredients: any;
 }) {
   return (
-    <div className="pb-4 mt-8">
+    <div className="pb-4 mt-4 sm:mt-6 ml-4">
       <Stack direction="row" className="flex justify-center content-center ">
         <Button
           variant="contained"
@@ -36,6 +37,8 @@ export default function TopStack({
           </Button>
         </div>
       </Stack>
+      <ShareButton />
+      {/* <button>Share</button> */}
     </div>
   );
 }

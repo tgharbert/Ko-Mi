@@ -1,12 +1,22 @@
+"use server";
 import Header from "../components/Header";
+import getUsers from "@/lib/getUsers";
+import FriendsToggle from "./components/FriendsToggle";
 
-const Friends = () => {
+const Friends = async () => {
+  const getAllRequests = async () => {
+    "use server";
+    const response = await getUsers();
+    const userData: User[] = await response?.json();
+    return userData;
+  };
+
   return (
     <div className="text-center pb-10">
       <div className="-mt-12">
         <Header />
       </div>
-      <div>Hello future friends component!</div>
+      <FriendsToggle getAllRequests={getAllRequests} />
     </div>
   );
 };

@@ -18,17 +18,9 @@ function SignInButton({ name, image }: { name: string; image: string }) {
           className="rounded-full float-left mr-4"
           alt="profile-image"
         />
-        {/* <p className="float-left">{name}</p> */}
         <div className="float-right">
           <MainDropDownMenu />
         </div>
-        {/* <button
-          className="float-right hover:text-secondary"
-          onClick={() => signOut()}
-        >
-          Log Out
-          <LogoutIcon className="pl-1" />
-        </button> */}
       </div>
     );
   }
@@ -38,7 +30,6 @@ function SignInButton({ name, image }: { name: string; image: string }) {
       {status === "unauthenticated" ? (
         <></>
       ) : (
-        // <button onClick={() => signIn()}>Sign In</button>
         <div>
           <Image
             src={image}

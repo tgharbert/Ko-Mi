@@ -12,26 +12,26 @@ export default function Header() {
           <a href="/">Ko-Mi</a>
         </h1>
       </span>
-      <span className="mt-4">
+      <div className=" grid grid-cols-3 gap-1">
         <a
-          className="font-bold pr-6 pl-6 hover:text-lime-600 sm:text-xl sm:font-normal"
+          className="font-bold  hover:text-lime-600 sm:text-xl sm:font-normal sm:ml-80"
           href="/"
         >
-          Home
+          Recipes
         </a>
         <a
-          className="font-bold pr-6 pl-6 hover:text-lime-600 sm:text-xl sm:font-normal"
+          className="font-bold  hover:text-lime-600 sm:text-xl sm:font-normal "
           href="/add-recipe"
         >
           Add Recipe
         </a>
         <a
-          className="font-bold pr-6 pl-6 hover:text-lime-600 sm:text-xl sm:font-normal"
+          className="font-bold  hover:text-lime-600 sm:text-xl sm:font-normal sm:mr-80"
           href="/shopping-list"
         >
           Shopping List
         </a>
-      </span>
+      </div>
     </div>
   );
 }

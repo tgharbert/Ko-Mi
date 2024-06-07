@@ -89,3 +89,22 @@ type AddedIngredient = {
   ingredientId: number;
   id: number;
 }[]
+
+type Friend = {
+  email: string;
+  emailVerified: boolean;
+  id: string;
+  image: string;
+  name: string;
+  direction: string;
+};
+
+type UserData = {
+  email: string | null;
+  emailVerified: Date | null;
+  id: string;
+  image: string | null;
+  name: string | null;
+}
+
+// { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; }[]
