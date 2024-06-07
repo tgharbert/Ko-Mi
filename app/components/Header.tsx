@@ -12,7 +12,7 @@ export default function Header() {
           <a href="/">Ko-Mi</a>
         </h1>
       </span>
-      <span className="mt-4">
+      <span className="mt-4 pl-8">
         <a
           className="font-bold pr-6 pl-6 hover:text-lime-600 sm:text-xl sm:font-normal"
           href="/"

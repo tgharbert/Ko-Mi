@@ -19,7 +19,7 @@ const Requests = ({ getAllRequests }: { getAllRequests: Function }) => {
     getRequestsData();
   }, []);
 
-  const loadFriends = async (userId: string) => {
+  const loadFriends = async (userId: string, accepted: boolean) => {
     setIsLoading(true);
     const friends = await addFriend(userId);
     setRequests(friends);
@@ -32,11 +32,11 @@ const Requests = ({ getAllRequests }: { getAllRequests: Function }) => {
         <LoadingPage />
       ) : (
         <div>
-          <div>
+          <div className="pt-4">
             <Search loadFriends={loadFriends} />
           </div>
           <div>
-            <UserList getAllRequests={getAllRequests} requests={requests} />
+            <UserList requests={requests} loadFriends={loadFriends} />
           </div>
         </div>
       )}

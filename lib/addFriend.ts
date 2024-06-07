@@ -9,14 +9,30 @@ export default async function addFriend (id: string) {
   const user = session?.user as User;
 
   try {
-    const newFriend = await prisma.friend.create({
-      data: {
-        friendAId: user.id,
-        friendBId: id,
-        status: "PENDING"
-      }
+    const existingFriend = await prisma.friend.findFirst({
+      where: {
+        OR: [
+          {
+            friendAId: user.id,
+            friendBId: id,
+          },
+          {
+            friendAId: id,
+            friendBId: user.id,
+          },
+        ],
+      },
     });
 
+    if (!existingFriend && user.id !== id) {
+      const newFriend = await prisma.friend.create({
+        data: {
+          friendAId: user.id,
+          friendBId: id,
+          status: "PENDING"
+        }
+      });;
+    }
 
     const allUsers = await prisma.friend.findMany({
       where: {

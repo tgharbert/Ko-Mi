@@ -9,7 +9,7 @@ const FriendSearchResult = ({
   loadFriends: Function;
 }) => {
   const addFriendClick = async () => {
-    loadFriends(user.id);
+    loadFriends(user.id, false);
   };
 
   return (

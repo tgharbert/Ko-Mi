@@ -9,17 +9,21 @@ const FriendsList = () => {
 
   const getUserFriends = async () => {
     let result = await getFriends();
-    setFriends(result);
+    if (result) {
+      setFriends(result);
+    } else {
+      // error message thrown...
+    }
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getUserFriends();
-    setIsLoading(false);
   }, []);
 
   return (
     <div>
-      <div>Your Friends:</div>
+      <div className="text-xl pt-4">Your Friends:</div>
       {isLoading ? (
         <LoadingPage />
       ) : (

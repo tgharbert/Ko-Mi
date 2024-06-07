@@ -1,18 +1,9 @@
 "use server";
 import Header from "../components/Header";
 import getUsers from "@/lib/getUsers";
-import UserList from "./components/UserList";
-import Requests from "./components/Requests";
 import FriendsToggle from "./components/FriendsToggle";
 
 const Friends = async () => {
-  // const getAllUsers = async () => {
-  //   "use server";
-  //   const response = await getUsers();
-  //   const userData: User[] = await response?.json();
-  //   return userData;
-  // };
-
   const getAllRequests = async () => {
     "use server";
     const response = await getUsers();
@@ -25,14 +16,7 @@ const Friends = async () => {
       <div className="-mt-12">
         <Header />
       </div>
-      {/*
-          friends toggle?
-            - toggle
-          FriendsList
-          Requests
-      */}
       <FriendsToggle getAllRequests={getAllRequests} />
-      {/* <Requests getAllRequests={getAllRequests} /> */}
     </div>
   );
 };

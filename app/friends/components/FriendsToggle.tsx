@@ -14,7 +14,9 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
   return (
     <div>
       <div>
+        <label>Friends</label>
         <Switch onChange={onSwitch} />
+        <label>Requests</label>
       </div>
       {isFriendsList ? (
         <FriendsList />

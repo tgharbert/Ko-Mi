@@ -1,29 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
 import UserCard from "./User";
 
 const UserList = ({
-  getAllRequests,
   requests,
+  loadFriends,
 }: {
-  getAllRequests: Function;
   requests: Friend[];
+  loadFriends: Function;
 }) => {
-  // const [requests, setRequests] = useState<Friend[]>([]);
-
-  // useEffect(() => {
-  //   const getRequestsData = async () => {
-  //     let usersData: Friend[] = await getAllRequests();
-  //     setRequests(usersData);
-  //   };
-  //   getRequestsData();
-  // }, [getAllRequests]);
-
   return (
     <div>
-      <div className="text-xl">Friend Requests:</div>
+      <div className="text-xl pt-4">Friend Requests:</div>
       {requests.map((request) => {
-        return <UserCard user={request} key={request.id} />;
+        return (
+          <UserCard user={request} key={request.id} loadFriends={loadFriends} />
+        );
       })}
     </div>
   );
