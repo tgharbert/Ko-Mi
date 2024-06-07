@@ -22,8 +22,7 @@ const FriendsList = () => {
   }, []);
 
   return (
-    <div>
-      <div className="text-xl pt-4">Your Friends:</div>
+    <div className="justify-center text-center">
       {isLoading ? (
         <LoadingPage />
       ) : (

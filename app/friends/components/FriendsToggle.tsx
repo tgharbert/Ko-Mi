@@ -19,7 +19,11 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
         <label>Requests</label>
       </div>
       {isFriendsList ? (
-        <FriendsList />
+        <div>
+          <div className="text-xl pt-4 float-center">Your Friends:</div>
+
+          <FriendsList />
+        </div>
       ) : (
         <Requests getAllRequests={getAllRequests} />
       )}

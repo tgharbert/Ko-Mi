@@ -3,7 +3,7 @@ import Image from "next/image";
 const FriendCard = ({ friend }: { friend: User }) => {
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
-      <div className="flexbox overflow-y-auto mx-4 px-4 text-left border-2 sm:w-1/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
+      <div className="flexbox overflow-y-auto mx-4 px-4 text-left border-2  border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
         <span className="w-full float-center text-lg">
           <span className="mt-4 mb-4 flex">
             <Image

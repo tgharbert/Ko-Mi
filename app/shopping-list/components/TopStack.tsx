@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+import ShareButton from "./ShareButton";
 
 export default function TopStack({
   handleDeleteChecked,
@@ -36,6 +37,8 @@ export default function TopStack({
           </Button>
         </div>
       </Stack>
+      <ShareButton />
+      {/* <button>Share</button> */}
     </div>
   );
 }
