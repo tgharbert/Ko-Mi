@@ -4,25 +4,43 @@ import UserList from "./UserList";
 import getUsers from "@/lib/getUsers";
 import Search from "./Search";
 import LoadingPage from "@/app/loading";
+import addFriend from "@/lib/addFriend";
 
 const Requests = ({ getAllRequests }: { getAllRequests: Function }) => {
-  // USE LOADING STATE AND PASS IT TO FOR RERENDER??
+  const [requests, setRequests] = useState<Friend[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const getAllRequests = async () => {
-  //   "use server";
-  //   const response = await getUsers();
-  //   const userData: User[] = await response?.json();
-  //   return userData;
-  // };
+  const getRequestsData = async () => {
+    let usersData: Friend[] = await getAllRequests();
+    setRequests(usersData);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getRequestsData();
+  }, []);
+
+  const loadFriends = async (userId: string) => {
+    setIsLoading(true);
+    const friends = await addFriend(userId);
+    setRequests(friends);
+    setIsLoading(false);
+  };
 
   return (
     <div>
-      <div>
-        <Search />
-      </div>
-      <div>
-        <UserList getAllRequests={getAllRequests} />
-      </div>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <div>
+          <div>
+            <Search loadFriends={loadFriends} />
+          </div>
+          <div>
+            <UserList getAllRequests={getAllRequests} requests={requests} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

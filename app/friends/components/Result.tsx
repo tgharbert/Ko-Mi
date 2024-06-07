@@ -2,15 +2,15 @@ import Image from "next/image";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import addFriend from "@/lib/addFriend";
 
-const Result = ({ user }: { user: UserData }) => {
+const Result = ({
+  user,
+  loadFriends,
+}: {
+  user: UserData;
+  loadFriends: Function;
+}) => {
   const addFriendClick = async () => {
-    const result = await addFriend(user.id);
-    if (result === "PENDING") {
-      // modal like adding ingredients!
-      console.log("success!");
-    } else {
-      console.log("failure!");
-    }
+    loadFriends(user.id);
   };
 
   return (
@@ -24,7 +24,7 @@ const Result = ({ user }: { user: UserData }) => {
               </button>
             </span>
             <Image
-              src={user.image}
+              src={user.image ? user.image : ""}
               className="rounded-full float-left mr-4 ml-6"
               alt={`${user.name} photo`}
               width="40"
