@@ -1,8 +1,7 @@
 import Image from "next/image";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import addFriend from "@/lib/addFriend";
 
-const Result = ({
+const FriendSearchResult = ({
   user,
   loadFriends,
 }: {
@@ -38,4 +37,4 @@ const Result = ({
   );
 };
 
-export default Result;
+export default FriendSearchResult;

@@ -43,13 +43,8 @@ export default async function addFriend (id: string) {
         response.push(friend.friendA)
       }
     })
-
-    console.log(response)
-
     await prisma.$disconnect();
     return response;
-    // console.log(newFriend.status)
-    // return newFriend.status;
   } catch (error) {
     console.error("Error adding friend: ", error)
     throw error;

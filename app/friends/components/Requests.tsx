@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import UserList from "./UserList";
-import getUsers from "@/lib/getUsers";
 import Search from "./Search";
 import LoadingPage from "@/app/loading";
 import addFriend from "@/lib/addFriend";

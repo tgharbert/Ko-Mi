@@ -2,9 +2,8 @@
 import FriendSearchBar from "./FriendSearchbar";
 import { useEffect, useState } from "react";
 import findFriends from "@/lib/findFriends";
-import Results from "./Results";
+import FriendSearchResults from "./FriendSearchResults";
 import LoadingPage from "@/app/loading";
-import addFriend from "@/lib/addFriend";
 
 const Search = ({ loadFriends }: { loadFriends: Function }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,8 +15,6 @@ const Search = ({ loadFriends }: { loadFriends: Function }) => {
     setSearchTerm(e.target.value);
     setNoFriendsFound(false);
   };
-
-  console.log(searchResults);
 
   useEffect(() => {
     setIsLoading(false);
@@ -45,7 +42,10 @@ const Search = ({ loadFriends }: { loadFriends: Function }) => {
             onNameChange={onNameChange}
             handleSearch={handleSearch}
           />
-          <Results searchResults={searchResults} loadFriends={loadFriends} />
+          <FriendSearchResults
+            searchResults={searchResults}
+            loadFriends={loadFriends}
+          />
         </div>
       )}
     </div>
