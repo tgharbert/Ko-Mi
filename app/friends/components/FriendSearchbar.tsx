@@ -13,7 +13,7 @@ const FriendSearchBar = ({
     <div>
       <form onSubmit={handleSearch}>
         <input
-          className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
+          className="text-black w-1/2 rounded px-4 pt-1 pb-1 sm:w-1/5"
           placeholder="Enter Friend to Search"
           value={searchTerm}
           onChange={onNameChange}

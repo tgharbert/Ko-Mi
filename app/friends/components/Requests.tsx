@@ -19,7 +19,7 @@ const Requests = ({ getAllRequests }: { getAllRequests: Function }) => {
     getRequestsData();
   }, []);
 
-  const loadFriends = async (userId: string, accepted: boolean) => {
+  const loadFriends = async (userId: string) => {
     setIsLoading(true);
     const friends = await addFriend(userId);
     setRequests(friends);

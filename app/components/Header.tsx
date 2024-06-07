@@ -12,7 +12,7 @@ export default function Header() {
           <a href="/">Ko-Mi</a>
         </h1>
       </span>
-      <span className="mt-4 pl-8">
+      {/* <span className="mt-4 pl-8">
         <a
           className="font-bold pr-6 pl-6 hover:text-lime-600 sm:text-xl sm:font-normal"
           href="/"
@@ -31,7 +31,27 @@ export default function Header() {
         >
           Shopping List
         </a>
-      </span>
+      </span> */}
+      <div className=" grid grid-cols-3 gap-1">
+        <a
+          className="font-bold  hover:text-lime-600 sm:text-xl sm:font-normal sm:ml-80"
+          href="/"
+        >
+          Recipes
+        </a>
+        <a
+          className="font-bold  hover:text-lime-600 sm:text-xl sm:font-normal "
+          href="/add-recipe"
+        >
+          Add Recipe
+        </a>
+        <a
+          className="font-bold  hover:text-lime-600 sm:text-xl sm:font-normal sm:mr-80"
+          href="/shopping-list"
+        >
+          Shopping List
+        </a>
+      </div>
     </div>
   );
 }

@@ -22,6 +22,9 @@ const Search = ({ loadFriends }: { loadFriends: Function }) => {
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (searchTerm === "") {
+      return;
+    }
     setSearchTerm("");
     let users = await findFriends(searchTerm);
     if (users) {
