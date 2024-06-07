@@ -5,7 +5,7 @@ import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import FriendsList from "@/app/friends/components/FriendsList";
+import FriendsDropDown from "./FriendsDropdown";
 
 const ShareButton = () => {
   const [open, setOpen] = useState(false);
@@ -49,7 +49,7 @@ const ShareButton = () => {
             variant="filled"
             sx={{ width: "100%" }}
           >
-            Added Ingredients!
+            Shared Ingredients!
           </Alert>
         </Snackbar>
       ) : (
@@ -71,8 +71,11 @@ const ShareButton = () => {
           onClose={handleClose}
           className="justify-center content-center "
         >
-          <div className="px-10 pt-4 pb-8 justify-center flex font-bold text-lg bg-tertiary">
-            <FriendsList />
+          <div className="px-10 pt-4 pb-8 justify-center flex  text-lg bg-tertiary">
+            <FriendsDropDown
+              openSnackbar={openSnackbar}
+              handleClose={handleClose}
+            />
           </div>
         </Dialog>
       </div>
