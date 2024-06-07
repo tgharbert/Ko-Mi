@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import getUsers from "@/lib/getUsers";
 import UserList from "./components/UserList";
 import Requests from "./components/Requests";
+import FriendsToggle from "./components/FriendsToggle";
 
 const Friends = async () => {
   // const getAllUsers = async () => {
@@ -24,8 +25,14 @@ const Friends = async () => {
       <div className="-mt-12">
         <Header />
       </div>
-      {/* FRIENDS */}
-      <Requests getAllRequests={getAllRequests} />
+      {/*
+          friends toggle?
+            - toggle
+          FriendsList
+          Requests
+      */}
+      <FriendsToggle getAllRequests={getAllRequests} />
+      {/* <Requests getAllRequests={getAllRequests} /> */}
     </div>
   );
 };
