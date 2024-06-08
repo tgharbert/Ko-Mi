@@ -22,6 +22,10 @@ export async function shareIngredients(friendId: string) {
       },
     });
 
+    if (allIngredients.length === 0) {
+      return 'no ingredients';
+    }
+
     let newEntry: IngredientEntry[] = [];
 
     allIngredients.map((ingredient) => {
@@ -33,12 +37,12 @@ export async function shareIngredients(friendId: string) {
       newEntry.push(entry);
     });
 
-    const addedIngredients = await prisma.userIngredient.createMany({
+    await prisma.userIngredient.createMany({
       data: newEntry,
     });
 
     prisma.$disconnect();
-    return allIngredients;
+    return 'success';
   } catch (error) {
     console.error("error", error);
     return undefined;

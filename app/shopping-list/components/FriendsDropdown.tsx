@@ -14,6 +14,7 @@ const FriendsDropDown = ({
   const [friends, setFriends] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [friend, setFriend] = useState("");
+  const [isErrGettingFriends, setIsErrGettingFriends] = useState(false);
 
   const getUserFriends = async () => {
     let result = await getFriends();
@@ -21,6 +22,7 @@ const FriendsDropDown = ({
       setFriends(result);
     } else {
       // error message thrown...
+      setIsErrGettingFriends(true);
     }
     setIsLoading(false);
   };
@@ -33,9 +35,13 @@ const FriendsDropDown = ({
     setFriend(selection);
   };
 
-  const handleShareIngredients = () => {
-    shareIngredients(friend);
-    openSnackbar();
+  const handleShareIngredients = async () => {
+    const response = await shareIngredients(friend);
+    console.log(response);
+    // need to handle error for other cases??
+    if (response === "success") {
+      openSnackbar();
+    }
     handleClose();
   };
 
@@ -44,9 +50,9 @@ const FriendsDropDown = ({
       {isLoading ? (
         <LoadingPage />
       ) : (
-        <div>
-          <div className="font-bold text-lg mb-3">
-            Select Friend to Share List With:
+        <div className=" text-center">
+          <div className="px-10 pt-4 pb-4 justify-center flex font-bold ">
+            Share list with:
           </div>
           <form>
             <select
@@ -57,7 +63,11 @@ const FriendsDropDown = ({
               defaultValue={"Select Friend"}
               aria-label="filter categories"
             >
-              <option>Select a friend...</option>
+              {friends.length === 0 ? (
+                <option>You have no friends 😭</option>
+              ) : (
+                <option>Select a friend...</option>
+              )}
               {friends.map((friend) => {
                 return (
                   <option value={friend.id} key={friend.id}>
@@ -66,17 +76,16 @@ const FriendsDropDown = ({
                 );
               })}
             </select>
-            <span className="ml-6">
+            <div className="pt-4 float-center">
               <Button
                 variant="contained"
                 className="bg-lime-500 "
                 onClick={handleShareIngredients}
                 color="lime"
               >
-                {/* <DeleteIcon className="mr-2" /> */}
-                Share
+                Share List
               </Button>
-            </span>
+            </div>
           </form>
         </div>
       )}
