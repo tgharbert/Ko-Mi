@@ -21,7 +21,6 @@ export default function TopStack({
           onClick={handleDeleteChecked}
           color="lime"
         >
-          {/* <DeleteIcon className="" /> */}
           <PlaylistRemoveIcon className="mr-2" />
           Delete Checked
         </Button>
@@ -38,7 +37,6 @@ export default function TopStack({
         </div>
       </Stack>
       <ShareButton />
-      {/* <button>Share</button> */}
     </div>
   );
 }
