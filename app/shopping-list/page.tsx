@@ -6,7 +6,7 @@ import { getUserIngredients } from "@/lib/ingredients";
 import { addItemToList } from "@/lib/addItemToList";
 
 async function Ingredients() {
-  // await verifyUser();
+  await verifyUser();
   let ingredients = await getUserIngredients();
 
   const submitItem = async (item: string) => {
