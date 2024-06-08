@@ -22,7 +22,6 @@ const UserCard = ({
                   loadFriends={loadFriends}
                 />
               )}
-              {/* <div className="">{user.direction}</div> */}
             </span>
             <Image
               src={user.image}
