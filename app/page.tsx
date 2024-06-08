@@ -24,7 +24,7 @@ export default async function Home({
   const random = searchParams?.random || "false";
   const all = searchParams?.all || "false";
 
-  await verifyUser();
+  // await verifyUser();
 
   const getUserRecipes = async (
     page: number,

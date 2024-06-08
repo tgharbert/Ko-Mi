@@ -72,7 +72,7 @@ function AddIngredientsButton({
         onClose={handleClose}
         className="mx-10 justify-center content-center"
       >
-        <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-lg">
+        <p className="px-10 pt-4 pb-4 justify-center flex font-bold ">
           Adjust Serving Size:
         </p>
         <div className="flex justify-center content-center">
