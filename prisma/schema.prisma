@@ -8,18 +8,18 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // directUrl = env("DIRECT_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Recipe {
-  id          Int       @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   url         String
   author      String
   description String
   name        String
 
-  keywordId   Int?
-  keywords    Keyword[]
+  keywordId Int?
+  keywords  Keyword[]
 
   ingredients Ingredient[]
   userId      String?
@@ -69,11 +69,11 @@ model Ingredient {
 model UserIngredient {
   id           Int     @id @default(autoincrement())
   userId       String
-  ingredientId Int?  @map("ingredient_id") // Define custom foreign key name
+  ingredientId Int?    @map("ingredient_id") // Define custom foreign key name
   checked      Boolean @default(false)
   name         String?
 
-  user       User       @relation(fields: [userId], references: [id])
+  user       User        @relation(fields: [userId], references: [id])
   ingredient Ingredient? @relation(fields: [ingredientId], references: [id])
 
   @@unique([id])

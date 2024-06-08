@@ -41,7 +41,7 @@ export default async function Home({
 
   return (
     <div className="text-center flexbox content-center">
-      <div className="-mt-9">
+      <div className="-mt-12">
         <Header />
       </div>
       <RecipeSearchBar category={category} currentPage={currentPage} />
