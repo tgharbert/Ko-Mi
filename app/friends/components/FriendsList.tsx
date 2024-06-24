@@ -13,7 +13,7 @@ const FriendsList = ({
       {isLoading ? (
         <LoadingPage />
       ) : (
-        <div>
+        <div className="flex flex-col items-center ">
           {friends.map((friend) => {
             return <FriendCard friend={friend} key={friend.id} />;
           })}

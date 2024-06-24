@@ -57,7 +57,6 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
       {isFriendsList ? (
         <div>
           <div className="text-xl pt-4 float-center">Your Friends:</div>
-
           <FriendsList friends={friends} isLoading={isLoading} />
         </div>
       ) : (
