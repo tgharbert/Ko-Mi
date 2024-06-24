@@ -89,14 +89,13 @@ function RecipeList({
         </div>
       </div>
       {!isEnd ? (
-        <div className="mb-3">
+        <div className="mb-4">
           <div ref={loaderRef}>{isLoading && <LoadingPage />}</div>
         </div>
       ) : (
         <div className="mb-4">
           <EndOfRecipes />
         </div>
-        // <div className="mb-8 mt-4">No More Recipes!</div>
       )}
     </div>
   );

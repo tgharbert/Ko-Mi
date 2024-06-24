@@ -1,7 +1,6 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import LogoutIcon from "@mui/icons-material/Logout";
 import MainDropDownMenu from "../friends/components/MainDropdown";
 
 function SignInButton({ name, image }: { name: string; image: string }) {
@@ -26,11 +25,11 @@ function SignInButton({ name, image }: { name: string; image: string }) {
   }
 
   return (
-    <div>
+    <div className="flow-root w-full">
       {status === "unauthenticated" ? (
         <></>
       ) : (
-        <div>
+        <div className="flow-root w-full">
           <Image
             src={image}
             width="40"
@@ -38,7 +37,9 @@ function SignInButton({ name, image }: { name: string; image: string }) {
             className="rounded-full float-left mr-4"
             alt="profile-image"
           />
-          <>{name}</>
+          <div className="float-right">
+            <MainDropDownMenu />
+          </div>
         </div>
       )}
     </div>
