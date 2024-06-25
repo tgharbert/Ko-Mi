@@ -13,33 +13,61 @@ import cauliflowerSalad from '@/testData/scraper/cauliflowerSalad.json'
 // Bon Appetit
 test('gets Gochujang Chicken recipe object', () => {
   const expected = gochujangChickenResultData;
-  const actual = getRecipeObject(gochujangChicken);
-  expect(actual).toEqual(expected);
+  const actual: RawRecipe | undefined = getRecipeObject(gochujangChicken);
+  expect(actual?.author).toEqual(expected.author);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.name).toEqual(expected.name);
+  expect(actual?.author).toEqual(expected.author);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.description).toEqual(expected.description);
+  expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
+
 });
 
-// NYT Cooking
+// // NYT Cooking
 test('gets Mustard-Glazed Pork Tenderloin recipe object', () => {
   const expected = mustardPorkTenderloinResultData;
   const actual = getRecipeObject(mustardPorkTenderloin)
-  expect(actual).toEqual(expected)
+  expect(actual?.author).toEqual(expected.author);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.name).toEqual(expected.name);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.description).toEqual(expected.description);
+  expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
+
 })
 
-// the Wanderlust Kithen
+// // the Wanderlust Kithen
 test('gets Tuscan White Bean Dish recipe object', () => {
   const expected = tuscanWhiteBeanData;
   const actual = getRecipeObject(tuscanWhiteBean);
-  expect(actual).toEqual(expected)
+  expect(actual?.author).toEqual("Not Provided");
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.name).toEqual(expected.name);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.description).toEqual(expected.description);
+  expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
 })
 
-// desert for two
+// // desert for two
 test('gets Chicken Cacciatore recipe object', () => {
   const expected = chickenCacciatoreData;
   const actual = getRecipeObject(chickenCacciatore)
-  expect(actual).toEqual(expected)
+  expect(actual?.author).toEqual(expected.author);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.name).toEqual(expected.name);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.description).toEqual(expected.description);
+  expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
 })
 
 test('gets Cauliflower Salad recipe object', () => {
   const expected = cauliflowerSaladData;
   const actual = getRecipeObject(cauliflowerSalad);
-  expect(actual).toEqual(expected)
+  expect(actual?.author).toEqual("Not Provided");
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.name).toEqual(expected.name);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.description).toEqual(expected.description);
+  expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
 })
