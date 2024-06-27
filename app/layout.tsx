@@ -7,28 +7,23 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const APP_NAME = "PWA App";
-const APP_DEFAULT_TITLE = "My Awesome PWA App";
-const APP_TITLE_TEMPLATE = "%s - PWA App";
-const APP_DESCRIPTION = "Best PWA app in the world!";
-
-// export const metadata: Metadata = {
-//   title: "Ko-Mi",
-//   description: "Your online kitchen companion!",
-// };
+const APP_NAME = "Ko-Mi";
+const APP_DEFAULT_TITLE = "Ko-Mi";
+const APP_TITLE_TEMPLATE = "%s - Ko-Mi";
+const APP_DESCRIPTION = "Your kitchen companion!";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
   title: {
-    default: "Ko-Mi",
+    default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
   },
-  description: "Your kitchen companion!",
+  description: APP_DESCRIPTION,
   manifest: "./manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Ko-Mi",
+    title: APP_NAME,
     // startUpImage: [],
   },
   formatDetection: {
@@ -38,18 +33,18 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "ko-mi.io",
     title: {
-      default: "Ko-Mi",
+      default: APP_DEFAULT_TITLE,
       template: "",
     },
-    description: "Your kitchen companion",
+    description: APP_DESCRIPTION,
   },
   twitter: {
     card: "summary",
     title: {
-      default: "Ko-Mi",
-      template: "Ko-Mi",
+      default: APP_DEFAULT_TITLE,
+      template: APP_DEFAULT_TITLE,
     },
-    description: "Your kitchen companion",
+    description: APP_DESCRIPTION,
   },
 };
 
@@ -64,7 +59,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body className={inter.className}> */}
       <body className="bg-primary font-roboto text-tertiary overflow-y-scroll h-lvh ">
         <AppRouterCacheProvider>
           <Providers>

@@ -1,3 +1,4 @@
+// "use server";
 import Image from "next/image";
 import logo from "@/images/ko-mi_logo_1.png";
 
