@@ -1,3 +1,4 @@
+// "use server";
 import SignInButton from "./SignInButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
@@ -8,7 +9,7 @@ async function Appbar() {
 
   return (
     <header className="flex gap-4 p-4">
-      <SignInButton name={user?.name} image={user?.image} />
+      <SignInButton name={user?.name} image={user?.image} session={session} />
     </header>
   );
 }
