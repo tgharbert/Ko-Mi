@@ -1,3 +1,4 @@
+"use client";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -8,7 +9,6 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-// import { sign } from "crypto";
 
 export default function MainDropDownMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
