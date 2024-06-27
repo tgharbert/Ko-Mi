@@ -107,4 +107,16 @@ type UserData = {
   name: string | null;
 }
 
+type Session = {
+  user: User;
+};
+
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  id: string;
+};
+
+
 // { id: string; name: string | null; email: string | null; emailVerified: Date | null; image: string | null; }[]

@@ -1,18 +1,6 @@
-// "use server";
 import SignInButton from "./SignInButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
-
-type Session = {
-  user: User;
-};
-
-type User = {
-  name: string;
-  email: string;
-  image: string;
-  id: string;
-};
 
 async function Appbar() {
   const defaultSession = {
