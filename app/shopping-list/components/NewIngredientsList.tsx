@@ -28,6 +28,7 @@ function IngredientsList({
 
   const handleDeleteIngredients = async () => {
     try {
+      setIsLoading(true);
       await deleteUserIngredients();
     } catch (error) {
       console.error("ERROR: ", error);
@@ -36,6 +37,7 @@ function IngredientsList({
 
   const handleDeleteChecked = async () => {
     try {
+      setIsLoading(true);
       await deleteCheckedIngredients();
     } catch (error) {
       console.error(error);
@@ -44,6 +46,7 @@ function IngredientsList({
 
   const handleItemSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     submitItem(item);
     setItem("");
   };
