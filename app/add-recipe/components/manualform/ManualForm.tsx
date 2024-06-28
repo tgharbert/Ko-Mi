@@ -105,6 +105,10 @@ function RecipeForm() {
     ingredient: string
   ) => {
     e.preventDefault();
+    if (!ingredient) {
+      setIsAlert(true);
+      return;
+    }
     setIngredients([...ingredients, ingredient]);
     setIngredient("");
   };

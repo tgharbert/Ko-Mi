@@ -10,6 +10,10 @@ import InstructionAccordion from "@/app/components/accordions/InstructionAccordi
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";
 import { addCustomRecipe } from "@/lib/addCustomRecipe";
+import Button from "@mui/material/Button";
+import theme from "@/mui-styles/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import AddIcon from "@mui/icons-material/Add";
 
 function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +22,7 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   );
 
   const router = useRouter();
+  // console.log(recipe.name)
 
   const handleFileInputChange = () => {
     if (!recipe.photoFile) {
@@ -66,67 +71,79 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   return isLoading ? (
     <Loading />
   ) : (
-    <div className="mr-20 ml-20 flexbox">
-      <div>
-        <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
-      </div>
-      <div>
-        <p className="text-sm pt-2 italic">by: USERNAME (change later)</p>
-      </div>
-      <div className="pt-4 pb-4 flex items-center justify-center">
-        {typeof imagePreview === "string" && (
-          <Image
-            width="400"
-            height="400"
-            src={imagePreview}
-            alt="recipe-photo"
-            className="rounded-lg"
-          />
-        )}
-      </div>
-      <div className="flex justify-center">
-        <div className=" mt-7 rounded-lg sm:w-3/5">
-          <DescriptionAccordion description={recipe.description} />
+    <ThemeProvider theme={theme}>
+      <div className="mr-20 ml-20 flexbox">
+        <div>
+          <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
         </div>
-      </div>
-      <div className="flex justify-center">
-        <div className="mt-7 rounded-lg sm:w-3/5">
-          <InstructionAccordion instructions={recipe.instructions} />
+        {/* <div>
+          <p className="text-sm pt-2 italic">by: USERNAME (change later)</p>
+        </div> */}
+        <div className="pt-4 pb-4 flex items-center justify-center">
+          {typeof imagePreview === "string" && (
+            <Image
+              width="400"
+              height="400"
+              src={imagePreview}
+              alt="recipe-photo"
+              className="rounded-lg"
+            />
+          )}
         </div>
-      </div>
-      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
-      <div className="flex justify-center">
-        <div className="sm:w-3/5">
-          <Accordion className="mt-7 rounded-lg">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              className="font-semibold text-center"
-            >
-              Recipe Ingredients
-            </AccordionSummary>
-            <AccordionDetails>
-              <ul className="px-2 list-disc text-left">
-                {recipe.ingredients.map((ingredient: string, idx: number) => (
-                  <li className="pb-4" key={idx}>
-                    {ingredient}
-                  </li>
-                ))}
-              </ul>
-            </AccordionDetails>
-          </Accordion>
+        <div className="flex justify-center">
+          <div className=" rounded-lg sm:w-3/5">
+            <DescriptionAccordion description={recipe.description} />
+          </div>
         </div>
-      </div>
-      <div className="mx-4 pt-7 pb-10">
-        <button
+        <div className="flex justify-center">
+          <div className="rounded-lg sm:w-3/5">
+            <InstructionAccordion instructions={recipe.instructions} />
+          </div>
+        </div>
+        {/* REFACTOR BASED ON SHARED ACCORDIONS */}
+        <div className="flex justify-center">
+          <div className="sm:w-3/5">
+            <Accordion className="rounded-lg">
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                className="font-semibold text-center"
+              >
+                Recipe Ingredients
+              </AccordionSummary>
+              <AccordionDetails>
+                <ul className="px-2 list-disc text-left">
+                  {recipe.ingredients.map((ingredient: string, idx: number) => (
+                    <li className="pb-4" key={idx}>
+                      {ingredient}
+                    </li>
+                  ))}
+                </ul>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+        </div>
+        <div className="mx-4 pt-7 pb-10">
+          {/* CHANGE THIS BUTTON */}
+          <Button
+            variant="contained"
+            className=" bg-lime-500"
+            onClick={handleRecipeSubmission}
+            color="lime"
+          >
+            Add Recipe
+            <AddIcon className="pl-1" />
+          </Button>
+          {/* <button
           onClick={() => handleRecipeSubmission()}
           className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3"
         >
           Add Recipe
-        </button>
+        </button> */}
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
