@@ -22,7 +22,6 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   );
 
   const router = useRouter();
-  // console.log(recipe.name)
 
   const handleFileInputChange = () => {
     if (!recipe.photoFile) {
@@ -76,9 +75,6 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
         <div>
           <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
         </div>
-        {/* <div>
-          <p className="text-sm pt-2 italic">by: USERNAME (change later)</p>
-        </div> */}
         <div className="pt-4 pb-4 flex items-center justify-center">
           {typeof imagePreview === "string" && (
             <Image

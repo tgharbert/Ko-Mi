@@ -1,5 +1,5 @@
 const getRecipeObject = (recipeData: any): RawRecipe | undefined => {
-  // console.log('initial data: ', recipeData)
+  console.log('initial data: ', recipeData)
   if (Array.isArray(recipeData)) {
     for (let key in recipeData) {
       if (recipeData[key]["@type"] === "Recipe") {

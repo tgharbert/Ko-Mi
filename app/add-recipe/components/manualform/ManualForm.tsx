@@ -122,6 +122,10 @@ function RecipeForm() {
     instruction: string
   ) => {
     e.preventDefault();
+    if (!instruction) {
+      setIsAlert(true);
+      return;
+    }
     setInstructions([...instructions, instruction]);
     setInstruction("");
   };
