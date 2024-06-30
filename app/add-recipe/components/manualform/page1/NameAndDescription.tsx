@@ -35,7 +35,7 @@ function NameAndDescription({
   };
 
   return (
-    <div className=" justify-center w-4/5">
+    <div className=" justify-center w-4/5 sm:w-3/5">
       <form>
         <div className="pb-4">
           <p>Recipe Name:</p>

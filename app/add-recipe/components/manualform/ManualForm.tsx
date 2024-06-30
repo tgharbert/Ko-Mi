@@ -105,6 +105,10 @@ function RecipeForm() {
     ingredient: string
   ) => {
     e.preventDefault();
+    if (!ingredient) {
+      setIsAlert(true);
+      return;
+    }
     setIngredients([...ingredients, ingredient]);
     setIngredient("");
   };
@@ -118,6 +122,10 @@ function RecipeForm() {
     instruction: string
   ) => {
     e.preventDefault();
+    if (!instruction) {
+      setIsAlert(true);
+      return;
+    }
     setInstructions([...instructions, instruction]);
     setInstruction("");
   };
@@ -145,7 +153,7 @@ function RecipeForm() {
   };
   // <div className="-mt-40 bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
   return (
-    <div className=" bg-tertiary text-black sm:mx-80 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
+    <div className=" bg-tertiary text-black sm:mx-96 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
       <div className="px-8 justify-center flex">
         {isAlert ? (

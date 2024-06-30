@@ -48,7 +48,7 @@ function RecipeSearchBar({
   return (
     <div className="pb-4">
       <input
-        className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
+        className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1 "
         autoFocus
         onChange={(e) => {
           handleSearch(e.target.value);
