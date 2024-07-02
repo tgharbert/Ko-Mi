@@ -1,10 +1,3 @@
-// 'use server'
-// import groceryStore from "./ingredientValues"
-
-// import the grocery list
-
-// get all ingredients
-
 import { PrismaClient } from "@prisma/client";
 import groceryStore from "./ingredientValues.mjs";
 
@@ -21,7 +14,6 @@ const getEveryIngredient = async () => {
 };
 
 let allIngredients = await getEveryIngredient();
-// console.log(allIngredients.length);
 
 const removeLastS = (word) => {
   let lastLett = word[word.length - 1];
@@ -33,7 +25,7 @@ const removeLastS = (word) => {
   return word;
 };
 
-// loop through the ingredients and assign values
+// loop through the ingredients and assign values - getting 84% of the words atm
 const assignValues = (ingredients) => {
   // console.log(ingredients);
   let secArr = [];
@@ -55,7 +47,6 @@ const assignValues = (ingredients) => {
           unAssigned.push(currWord);
         }
       }
-      // unAssigned.push(nameArr[word]);
     }
   }
 
@@ -69,11 +60,8 @@ const assignValues = (ingredients) => {
 // need to write a handle plural function
 
 assignValues(allIngredients);
-// let test = allIngredients.slice(0, 1);
-// assignValues(test);
 
 // have an array of ingredient objects with name property
-
 // HOW TO ASSIGN VALUES
 // loop through each ingredient
 // look at the .name property
@@ -84,5 +72,3 @@ assignValues(allIngredients);
 // iterate through the ingredient names and assign values by checking the grocery list obj
 
 // don't worry about shitty schema rn
-
-// write to the locations if they're found in the groceryStore obj that's the case
