@@ -46,6 +46,7 @@ type IngredientEntry = {
   userId: string;
   ingredientId: number;
   name: string;
+  // location: string;
 };
 
 type Keywords = {

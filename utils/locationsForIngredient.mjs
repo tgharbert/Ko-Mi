@@ -25,11 +25,28 @@ const removeLastS = (word) => {
   return word;
 };
 
+// writing the value to the db
+const addSection = async (locationData) => {
+  console.log(locationData);
+  const locations = await prisma.location.createMany({
+    data: locationData,
+  });
+};
+
+const addType = async (locationData) => {
+  const data = await prisma.ingredient.createMany({
+    where: {
+      id: ingredientId,
+    },
+    types: types.push(locationData.sectionWord),
+  });
+  console.log("data", data);
+};
+
 // loop through the ingredients and assign values - getting 84% of the words atm
-const assignValues = (ingredients) => {
-  // console.log(ingredients);
+const assignValues = async (ingredients) => {
   let secArr = [];
-  let capturedWords = [];
+  // let capturedWords = [];
   let unAssigned = [];
   for (let ingredient in ingredients) {
     let name = ingredients[ingredient].name;
@@ -40,8 +57,13 @@ const assignValues = (ingredients) => {
       for (let section in groceryStore) {
         if (groceryStore[section][currWord]) {
           let sectionWord = groceryStore[section][currWord];
-          secArr.push(sectionWord);
-          capturedWords.push(currWord);
+          let location = {
+            ingredientId: ingredients[ingredient].id,
+            store: sectionWord,
+            home: "",
+          };
+          secArr.push(location);
+          // capturedWords.push(currWord);
           break;
         } else {
           unAssigned.push(currWord);
@@ -49,12 +71,14 @@ const assignValues = (ingredients) => {
       }
     }
   }
-
-  console.log(capturedWords);
+  // console.log(capturedWords);
   // console.log(unAssigned);
+  let test = await addSection(secArr);
+  await addType(secArr);
+  // console.log(test);
   // console.log(secArr);
-  console.log(ingredients.length);
-  console.log(secArr.length);
+  // console.log(ingredients.length);
+  // console.log(secArr.length);
 };
 
 // need to write a handle plural function
