@@ -15,8 +15,6 @@ const getEveryIngredient = async () => {
 
 let allIngredients = await getEveryIngredient();
 
-// COMBINE THESE FUNCTIONS TO REMOVE 'S' AND COMMA IF BACK TO BACK
-// CASE: 4–6 medjool dates, pitted
 const removeLastS = (word) => {
   let lastLett = word[word.length - 1];
   if (lastLett === "s") {
@@ -53,9 +51,10 @@ const assignValues = async (ingredients) => {
     let name = ingredients[ingredient].name;
     let nameArr = name.split(" ");
     for (let word in nameArr) {
-      let currWord = removeComma(nameArr[word]);
-      currWord = removeLastS(currWord);
+      let currWord = nameArr[word];
       currWord = currWord.toLowerCase();
+      currWord = removeComma(currWord);
+      currWord = removeLastS(currWord);
       for (let section in groceryStore) {
         if (groceryStore[section][currWord]) {
           let sectionWord = groceryStore[section][currWord];
