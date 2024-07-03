@@ -15,6 +15,8 @@ const getEveryIngredient = async () => {
 
 let allIngredients = await getEveryIngredient();
 
+// COMBINE THESE FUNCTIONS TO REMOVE 'S' AND COMMA IF BACK TO BACK
+// CASE: 4–6 medjool dates, pitted
 const removeLastS = (word) => {
   let lastLett = word[word.length - 1];
   if (lastLett === "s") {
@@ -25,34 +27,34 @@ const removeLastS = (word) => {
   return word;
 };
 
+const removeComma = (word) => {
+  let lastLett = word[word.length - 1];
+  if (lastLett === ",") {
+    word = word.slice(0, word.length - 1);
+  } else {
+    word = word;
+  }
+  return word;
+};
+
 // writing the value to the db
 const addSection = async (locationData) => {
-  console.log(locationData);
   const locations = await prisma.location.createMany({
     data: locationData,
   });
 };
 
-const addType = async (locationData) => {
-  const data = await prisma.ingredient.createMany({
-    where: {
-      id: ingredientId,
-    },
-    types: types.push(locationData.sectionWord),
-  });
-  console.log("data", data);
-};
-
 // loop through the ingredients and assign values - getting 84% of the words atm
 const assignValues = async (ingredients) => {
   let secArr = [];
-  // let capturedWords = [];
+  let capturedWords = [];
   let unAssigned = [];
   for (let ingredient in ingredients) {
     let name = ingredients[ingredient].name;
     let nameArr = name.split(" ");
     for (let word in nameArr) {
-      let currWord = removeLastS(nameArr[word]);
+      let currWord = removeComma(nameArr[word]);
+      currWord = removeLastS(currWord);
       currWord = currWord.toLowerCase();
       for (let section in groceryStore) {
         if (groceryStore[section][currWord]) {
@@ -63,7 +65,7 @@ const assignValues = async (ingredients) => {
             home: "",
           };
           secArr.push(location);
-          // capturedWords.push(currWord);
+          capturedWords.push(currWord);
           break;
         } else {
           unAssigned.push(currWord);
@@ -71,14 +73,12 @@ const assignValues = async (ingredients) => {
       }
     }
   }
-  // console.log(capturedWords);
+  console.log("captured:", capturedWords.length);
   // console.log(unAssigned);
-  let test = await addSection(secArr);
-  await addType(secArr);
-  // console.log(test);
+  await addSection(secArr);
   // console.log(secArr);
-  // console.log(ingredients.length);
-  // console.log(secArr.length);
+  console.log(ingredients.length);
+  console.log(secArr.length);
 };
 
 // need to write a handle plural function

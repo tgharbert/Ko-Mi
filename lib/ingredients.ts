@@ -5,12 +5,12 @@ import { getServerSession } from "next-auth";
 import {authOptions} from "@/utils/authOptions"
 import { revalidatePath } from "next/cache";
 
-type IngredientData = {
+type IngredientWithLocation = {
   id: number;
     ingredientId: number | null;
     checked: boolean;
     name: string | null;
-    // location: string | null;
+    location: string | null;
 }
 
 export async function getUserIngredients() {
@@ -18,19 +18,6 @@ export async function getUserIngredients() {
     const session = await getServerSession(authOptions);
     const user = session?.user as User;
 
-
-    // let allIngredients: IngredientData[] = await prisma.userIngredient.findMany({
-    //   where: {
-    //     userId: user?.id,
-    //     checked: false
-    //   },
-    //   select: {
-    //     id: true,
-    //     ingredientId: true,
-    //     name: true,
-    //     checked: true,
-    //   },
-    // });
 
     let allIngredients = await prisma.userIngredient.findMany({
       where: {
@@ -42,23 +29,9 @@ export async function getUserIngredients() {
         ingredientId: true,
         name: true,
         checked: true,
-        // location: true,
-      },
-      include: {
-        location: true, // Include the related location data
       },
     });
 
-    console.log(allIngredients);
-
-
-
-    // let ingredientIds = []
-    // for (let i = 0; i < allIngredients.length; i++) {
-    //   if (allIngredients[i].ingredientId) {
-    //     ingredientIds.push(allIngredients[i].ingredientId)
-    //   }
-    // }
 
     const ingredientIds: number[] = allIngredients.map((ingredient) => {
       if (ingredient.ingredientId) {
@@ -84,19 +57,25 @@ export async function getUserIngredients() {
       return acc;
     }, {})
 
-    allIngredients.map((ingredient) => {
+    const ingWithLoc: IngredientWithLocation[] = []
+
+    const allIngWithLocations = allIngredients.map((ingredient) => {
       // console.log(locationsObj[ingredient.ingredientId?.toString()])
       if (ingredient.ingredientId) {
-        ingredient.location = locationsObj[ingredient.ingredientId.toString()]
-      } else {
-        // ingredient.location = "other"
+        // return ingredient.location = locationsObj[ingredient.ingredientId.toString()]
+        let newIng = {
+          ...ingredient,
+          location: locationsObj[ingredient.ingredientId.toString()],
+        }
+        ingWithLoc.push(newIng)
       }
     })
 
-    console.log(allIngredients)
+    // console.log('final ingredients:', allIngredients)
 
     prisma.$disconnect();
-    return allIngredients;
+    // return allIngredients;
+    return ingWithLoc;
   } catch (error) {
     console.error("error", error);
     return undefined;

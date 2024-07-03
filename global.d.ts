@@ -40,6 +40,7 @@ type Ingredient = {
   recipeId: number;
   types: string[];
   checked: boolean;
+  location: string;
 };
 
 type IngredientEntry = {

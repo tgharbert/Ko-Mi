@@ -37,6 +37,7 @@ function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
               )}
             </IconButton>
             <p className="px-20">{ingredient.name}</p>
+            <p className="px-20">{ingredient.location}</p>
           </span>
         </span>
       </li>
