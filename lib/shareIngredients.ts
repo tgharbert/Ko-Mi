@@ -22,8 +22,6 @@ export async function shareIngredients(friendId: string) {
       },
     });
 
-    console.log(allIngredients)
-
     if (allIngredients.length === 0) {
       return 'no ingredients';
     }
