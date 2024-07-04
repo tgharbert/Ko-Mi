@@ -80,6 +80,34 @@ const assignValues = async (ingredients) => {
   console.log(secArr.length);
 };
 
+const assignValueToIng = async (ingredient) => {
+  let name = ingredient.name;
+  let nameArr = name.split(" ");
+  for (let word in nameArr) {
+    let currWord = nameArr[word];
+    currWord = currWord.toLowerCase();
+    currWord = removeComma(currWord);
+    currWord = removeLastS(currWord);
+    for (let section in groceryStore) {
+      if (groceryStore[section][currWord]) {
+        let sectionWord = groceryStore[section][currWord];
+        let location = {
+          ingredientId: ingredients[ingredient].id,
+          store: sectionWord,
+          home: "",
+        };
+        return location;
+        // secArr.push(location);
+        // capturedWords.push(currWord);
+        break;
+      }
+      // else {
+      //   unAssigned.push(currWord);
+      // }
+    }
+  }
+};
+
 // need to write a handle plural function
 
 assignValues(allIngredients);
@@ -95,3 +123,4 @@ assignValues(allIngredients);
 // iterate through the ingredient names and assign values by checking the grocery list obj
 
 // don't worry about shitty schema rn
+export default assignValueToIng;
