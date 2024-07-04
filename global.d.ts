@@ -45,7 +45,7 @@ type Ingredient = {
 
 type IngredientEntry = {
   userId: string;
-  ingredientId: number;
+  ingredientId: number | null;
   name: string;
   // location: string;
 };

@@ -22,6 +22,8 @@ export async function shareIngredients(friendId: string) {
       },
     });
 
+    console.log(allIngredients)
+
     if (allIngredients.length === 0) {
       return 'no ingredients';
     }
@@ -29,12 +31,12 @@ export async function shareIngredients(friendId: string) {
     let newEntry: IngredientEntry[] = [];
 
     allIngredients.map((ingredient) => {
-      let entry: IngredientEntry = {
-        userId: friendId || "",
-        ingredientId: ingredient.id,
-        name: ingredient.name || "",
-      };
-      newEntry.push(entry);
+        let entry: IngredientEntry = {
+          userId: friendId || "",
+          ingredientId: ingredient.ingredientId || null,
+          name: ingredient.name || "",
+        }
+        newEntry.push(entry);
     });
 
     await prisma.userIngredient.createMany({

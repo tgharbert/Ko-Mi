@@ -31,7 +31,7 @@ export async function getUserIngredients() {
         checked: true,
       },
     });
-
+    console.log(allIngredients)
 
     const ingredientIds: number[] = allIngredients.map((ingredient) => {
       if (ingredient.ingredientId) {
