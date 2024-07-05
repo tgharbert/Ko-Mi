@@ -436,6 +436,7 @@ const baking = {
   honey: "baking",
   yeast: "baking",
   starch: "baking",
+  sugar: "baking",
   cornstarch: "baking",
 };
 

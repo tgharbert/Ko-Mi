@@ -439,6 +439,7 @@ const baking: StringMap = {
   oil: "baking",
   honey: "baking",
   yeast: "baking",
+  sugar: "baking",
   starch: "baking",
   cornstarch: "baking",
 };

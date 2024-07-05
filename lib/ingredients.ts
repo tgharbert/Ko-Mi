@@ -6,14 +6,6 @@ import {authOptions} from "@/utils/authOptions"
 import { revalidatePath } from "next/cache";
 import assignValueToIng from '../utils/assignCustomIng'
 
-type IngredientWithLocation = {
-  id: number;
-    ingredientId: number | null;
-    checked: boolean;
-    name: string | null;
-    location: string | null;
-}
-
 export async function getUserIngredients() {
   try {
     const session = await getServerSession(authOptions);
@@ -55,7 +47,7 @@ export async function getUserIngredients() {
 
     const ingWithLoc: IngredientWithLocation[] = []
 
-    const allIngWithLocations = allIngredients.map((ingredient) => {
+    allIngredients.map((ingredient) => {
       if (ingredient.ingredientId) {
         let newIng = {
           ...ingredient,
@@ -68,7 +60,55 @@ export async function getUserIngredients() {
       }
     })
     prisma.$disconnect();
-    return ingWithLoc;
+
+    // order that locations are displayed in
+    const desiredLocationOrder = [
+      "produce",
+      "fish",
+      "meat",
+      "liquor",
+      "spice",
+      "baking",
+      "beans & rice",
+      "asian",
+      "pasta",
+      "dairy",
+      "other",
+    ];
+
+    type StringMap = {
+      [key: string]: Array<IngredientWithLocation>;
+    };
+    let locationOrderMap: StringMap = {
+      'produce': [],
+      'fish': [],
+      'meat': [],
+      'dairy': [],
+      'spice': [],
+      'baking': [],
+      'liquor': [],
+      'beans & rice': [],
+      'asian': [],
+      'pasta': [],
+      'other': [],
+    }
+
+    for (let ing in ingWithLoc) {
+      let curr = ingWithLoc[ing]
+      if (!curr.location) {
+        locationOrderMap.other.push(curr)
+      } else {
+        locationOrderMap[curr.location].push(curr);
+      }
+    }
+
+    let ordered: IngredientWithLocation[] = [];
+
+    for (let idx in desiredLocationOrder) {
+      let currVal = desiredLocationOrder[idx];
+      ordered = ordered.concat(locationOrderMap[currVal]);
+    }
+    return ordered;
   } catch (error) {
     console.error("error", error);
     return undefined;

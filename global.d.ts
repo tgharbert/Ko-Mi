@@ -43,11 +43,18 @@ type Ingredient = {
   location: string;
 };
 
+type IngredientWithLocation = {
+  id: number;
+  ingredientId: number | null;
+  checked: boolean;
+  name: string | null;
+  location: string | null;
+}
+
 type IngredientEntry = {
   userId: string;
   ingredientId: number | null;
   name: string;
-  // location: string;
 };
 
 type IngWithLoc = {

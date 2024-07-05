@@ -6,7 +6,11 @@ import IconButton from "@mui/material/IconButton";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
+function IngredientNode({
+  ingredient,
+}: {
+  ingredient: IngredientWithLocation;
+}) {
   const [isChecked, setIsChecked] = useState(ingredient.checked);
 
   const onCheckIngredient = async () => {
@@ -16,7 +20,7 @@ function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
 
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
-      <li className="flexbox overflow-y-auto mx-4 px-4 text-left border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
+      <li className="flexbox overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
         <span
           className={
             isChecked
@@ -31,13 +35,17 @@ function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
               aria-label="check item"
             >
               {isChecked ? (
-                <RemoveShoppingCartIcon className=" text-red-500 text-left" />
+                <RemoveShoppingCartIcon className=" text-red-500 " />
               ) : (
-                <AddShoppingCartIcon className=" text-lime-500 float-left " />
+                <AddShoppingCartIcon className=" text-lime-500 " />
               )}
             </IconButton>
-            <p className="px-20">{ingredient.name}</p>
-            <p className="">{ingredient.location}</p>
+            <p className="px-20 text-left">{ingredient.name}</p>
+            <div className="bg-tertiary w-16 h-16 rounded-full flex items-center float-right">
+              <p className="text-primary italic">
+                {ingredient.location !== "other" ? ingredient.location : ""}
+              </p>
+            </div>
           </span>
         </span>
       </li>
