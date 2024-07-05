@@ -28,11 +28,15 @@ async function Ingredients() {
       <div className="-mt-12">
         <Header />
       </div>
-      <NewIngredientsList
-        ingredients={ingredients}
-        submitItem={submitItem}
-        getIngredients={getIngredients}
-      />
+      {ingredients !== undefined ? (
+        <NewIngredientsList
+          ingredients={ingredients}
+          submitItem={submitItem}
+          getIngredients={getIngredients}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
