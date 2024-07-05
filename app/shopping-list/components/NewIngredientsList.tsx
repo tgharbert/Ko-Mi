@@ -21,6 +21,29 @@ function IngredientsList({
   const [isLoading, setIsLoading] = useState(true);
   const [item, setItem] = useState("");
 
+  const desiredLocationOrder = [
+    "produce",
+    "fish",
+    "meat",
+    "dairy",
+    "spice",
+    "baking",
+    "alcohol",
+    "beans",
+    "asian",
+    "pasta",
+  ];
+
+  const locationOrderMap: { [key: string]: number } = {};
+  desiredLocationOrder.forEach((location, index) => {
+    locationOrderMap[location] = index;
+  });
+  ingredients.sort((a: Ingredient, b: Ingredient) => {
+    const locationA = locationOrderMap[a.location];
+    const locationB = locationOrderMap[b.location];
+    return locationA - locationB;
+  });
+
   useEffect(() => {
     getIngredients();
     setIsLoading(false);

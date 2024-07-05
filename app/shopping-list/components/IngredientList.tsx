@@ -5,7 +5,6 @@ export default function IngredientList({
 }: {
   ingredients: Ingredient[];
 }) {
-  console.log(ingredients);
   return (
     <div className="flex-col">
       <ul>
