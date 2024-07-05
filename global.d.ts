@@ -50,12 +50,32 @@ type IngredientEntry = {
   // location: string;
 };
 
+type IngWithLoc = {
+  userId: string;
+  ingredientId: number | null;
+  name: string;
+  location: string;
+}
+
+type LocData = {
+  ingredientId: number;
+  store: string;
+  home: string;
+}
+
 type Keywords = {
   id: number;
   name: string;
   recipeId: number?;
 };
 
+type IngredientData = {
+  id: number;
+  name: string;
+  types: Array;
+  locationId: number | null;
+  recipeId: number;
+}
 
 type RawRecipe = {
   aggregateRating: number;

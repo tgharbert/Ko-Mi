@@ -7,9 +7,9 @@ import prisma from "@/app/api/_base"
 
 import modifyIngredientAmount from "@/utils/modifyIngredientAmount";
 
-type LocationsObj = {
-  location: string,
-}
+// type LocationsObj = {
+//   location: string,
+// }
 
 export async function addIngredients(ingredients: Ingredient[], multiplier: number) {
   try {
@@ -19,47 +19,39 @@ export async function addIngredients(ingredients: Ingredient[], multiplier: numb
 
     let newEntry: IngredientEntry[] = [];
 
-    const ingredientIds = ingredients.map(ingredient => ingredient.id);
+    // const ingredientIds = ingredients.map(ingredient => ingredient.id);
 
     // get all the locations from the Location table where the ingredientId matches the ingredient.id
-    const locationsArr = await prisma.location.findMany({
-      where: {
-        ingredientId: {
-          in: ingredientIds
-        }
-      }
-    })
+    // const locationsArr = await prisma.location.findMany({
+    //   where: {
+    //     ingredientId: {
+    //       in: ingredientIds
+    //     }
+    //   }
+    // })
 
-    const locationsObj = locationsArr.reduce((acc: any, location) => {
-      if (!acc[location.ingredientId.toString()]) {
-        acc[location.ingredientId.toString()] = location.store
-      }
-      return acc;
-    }, {})
-
-    // console.log(locationsObj)
-
-    // console.log(locations)
+    // const locationsObj = locationsArr.reduce((acc: any, location) => {
+    //   if (!acc[location.ingredientId.toString()]) {
+    //     acc[location.ingredientId.toString()] = location.store
+    //   }
+    //   return acc;
+    // }, {})
 
     if (multiplier === 1) {
       ingredients.map((ingredient: Ingredient) => {
-        // let itemLoc = locationsObj[ingredient.id.toString()]
         let entry: IngredientEntry = {
           userId: user?.id || "",
           ingredientId: ingredient.id,
           name: ingredient.name,
-          // location: itemLoc,
         };
         newEntry.push(entry);
       });
     } else {
       ingredients.map((ingredient: Ingredient) => {
-        // let itemLoc = locationsObj[ingredient.id.toString()]
         let entry: IngredientEntry = {
           userId: user?.id || "",
           ingredientId: ingredient.id,
           name: modifyIngredientAmount(ingredient.name, multiplier),
-          // location: itemLoc,
         };
         newEntry.push(entry);
       });
