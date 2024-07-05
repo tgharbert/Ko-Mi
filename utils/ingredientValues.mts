@@ -1,6 +1,10 @@
 // PRODUCE
 // WHAT IF PLURAL CASE? REMOVE LAST LETTER IF S THEN REF THE OBJ?
-const vegetables = {
+type StringMap = {
+  [key: string]: string;
+};
+
+const vegetables: StringMap = {
   artichoke: "produce",
   arugula: "produce",
   asparagus: "produce",
@@ -81,7 +85,7 @@ const vegetables = {
   sorrel: "produce",
 };
 
-const fruits = {
+const fruits: StringMap = {
   apple: "produce",
   apricot: "produce",
   avocado: "produce",
@@ -199,7 +203,7 @@ const fruits = {
   yuzu: "produce",
 };
 
-const fish = {
+const fish: StringMap = {
   anchovy: "fish",
   bass: "fish",
   catfish: "fish",
@@ -276,7 +280,7 @@ const fish = {
   weakfish: "fish",
 };
 
-const proteins = {
+const proteins: StringMap = {
   beef: "meat",
   chicken: "meat",
   pork: "meat",
@@ -331,7 +335,7 @@ const proteins = {
   pastrami: "meat",
 };
 
-const dairy = {
+const dairy: StringMap = {
   milk: "dairy",
   cream: "dairy",
   butter: "dairy",
@@ -375,7 +379,7 @@ const dairy = {
   babybel: "dairy",
 };
 
-const spices = {
+const spices: StringMap = {
   allspice: "spice",
   anise: "spice",
   asafoetida: "spice",
@@ -429,7 +433,7 @@ const spices = {
   seasoning: "spice",
 };
 
-const baking = {
+const baking: StringMap = {
   baking: "baking",
   flour: "baking",
   oil: "baking",
@@ -439,7 +443,7 @@ const baking = {
   cornstarch: "baking",
 };
 
-const alcohol = {
+const alcohol: StringMap = {
   beer: "liquor",
   wine: "liquor",
   whiskey: "liquor",
@@ -448,12 +452,12 @@ const alcohol = {
   campari: "liquor",
 };
 
-const beans = {
+const beans: StringMap = {
   rice: "beans & rice",
   bean: "beans & rice",
 };
 
-const asian = {
+const asian: StringMap = {
   gochujang: "asian",
   soy: "asian",
   mirin: "asian",
@@ -461,7 +465,7 @@ const asian = {
   sambal: "asian",
 };
 
-const pasta = {
+const pasta: StringMap = {
   spaghetti: "pasta",
   penne: "pasta",
   fusilli: "pasta",
@@ -491,7 +495,7 @@ const pasta = {
 };
 
 // obj that stores all values
-const groceryStore = {
+const groceryStore: GroceryStore = {
   fruits: fruits,
   vegetables: vegetables,
   fish: fish,
@@ -505,5 +509,19 @@ const groceryStore = {
   pasta: pasta,
 };
 
+type GroceryStore = {
+  fruits: StringMap;
+  vegetables: StringMap;
+  fish: StringMap;
+  meat: StringMap;
+  dairy: StringMap;
+  spice: StringMap;
+  baking: StringMap;
+  alcohol: StringMap;
+  beans: StringMap;
+  asian: StringMap;
+  pasta: StringMap;
+}
+
 // so annoying I don't know how to fix
-export default groceryStore;
+export default groceryStore as any;

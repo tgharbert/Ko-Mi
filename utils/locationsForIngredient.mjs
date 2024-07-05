@@ -1,3 +1,5 @@
+// RUN THIS FILE TO WRITE LOCATION INFO FOR RECIPES/INGREDIENTS ALREADY IN DB
+
 import { PrismaClient } from "@prisma/client";
 import groceryStore from "./ingredientValues.mjs";
 
@@ -72,12 +74,12 @@ const assignValues = async (ingredients) => {
       }
     }
   }
-  console.log("captured:", capturedWords.length);
+  // console.log("captured:", capturedWords.length);
   // console.log(unAssigned);
   await addSection(secArr);
   // console.log(secArr);
-  console.log(ingredients.length);
-  console.log(secArr.length);
+  // console.log(ingredients.length);
+  // console.log(secArr.length);
 };
 
 const assignValueToIng = async (ingredient) => {

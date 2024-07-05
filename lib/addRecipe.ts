@@ -7,7 +7,6 @@ import prisma from "@/app/api/_base"
 import assignValues from "@/utils/assignRecipeIngLoc";
 
 export async function addRecipe(recipe: any) {
-
   try {
     const session = await getServerSession(authOptions);
     const user = session?.user as User
@@ -15,10 +14,9 @@ export async function addRecipe(recipe: any) {
     recipe.keywords = recipe.keywords || ["No available keywords"]
     recipe.instructions = recipe.instructions || ['No available instructions']
 
-    // write the ingredient location info to the db...
     const addSection = async (locationData: LocData[]) => {
       try {
-        const locations = await prisma.location.createMany({
+        await prisma.location.createMany({
           data: locationData,
         });
       } catch (err) {
@@ -26,11 +24,6 @@ export async function addRecipe(recipe: any) {
         return err;
       }
     };
-
-
-    // const locationData: LocData[] = assignValues(recipeIngredient)
-
-    // addSection(locationData)
 
     const newRecipe = await prisma.recipe.upsert({
       where: {
@@ -68,15 +61,11 @@ export async function addRecipe(recipe: any) {
         prepTime: recipe.prepTime || "Value not assigned",
       },
     });
-    console.log(newRecipe)
-
     let ingredients = await prisma.ingredient.findMany({
       where: {
         recipeId: newRecipe.id
       }
     })
-    // console.log("Ingredients: ", ingredients)
-    // do the work...
     const locationData: LocData[] = assignValues(ingredients)
     await addSection(locationData)
     await prisma.$disconnect();
