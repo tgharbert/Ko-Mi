@@ -6,7 +6,11 @@ import IconButton from "@mui/material/IconButton";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
+function IngredientNode({
+  ingredient,
+}: {
+  ingredient: IngredientWithLocation;
+}) {
   const [isChecked, setIsChecked] = useState(ingredient.checked);
 
   const onCheckIngredient = async () => {
@@ -16,29 +20,36 @@ function IngredientNode({ ingredient }: { ingredient: Ingredient }) {
 
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
-      <li className="flexbox overflow-y-auto mx-4 px-4 text-left border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black">
+      <li className=" overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
         <span
           className={
             isChecked
-              ? "w-full float-center line-through text-lg text-red-500"
-              : "w-full float-center text-lg "
+              ? "w-full line-through text-lg text-red-500"
+              : "w-full text-lg"
           }
         >
-          <span className="mt-4 mb-4 flex">
-            <IconButton
-              onClick={() => onCheckIngredient()}
-              className=""
-              aria-label="check item"
-            >
-              {isChecked ? (
-                <RemoveShoppingCartIcon className=" text-red-500 text-left" />
-              ) : (
-                <AddShoppingCartIcon className=" text-lime-500 float-left " />
-              )}
-            </IconButton>
-            <p className="px-20">{ingredient.name}</p>
+          <span className="mt-4 mb-4 flex ">
+            <div className="">
+              <IconButton
+                onClick={() => onCheckIngredient()}
+                className=""
+                aria-label="check item"
+              >
+                {isChecked ? (
+                  <RemoveShoppingCartIcon className=" text-red-500 " />
+                ) : (
+                  <AddShoppingCartIcon className=" text-lime-500 " />
+                )}
+              </IconButton>
+            </div>
+            <p className="pl-2 content-center text-left pr-4">
+              {ingredient.name}
+            </p>
           </span>
         </span>
+        <p className="text-primary italic flex  justify-end -mt-4 ">
+          {ingredient.location !== "other" ? ingredient.location : ""}
+        </p>
       </li>
     </span>
   );
