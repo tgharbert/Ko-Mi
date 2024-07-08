@@ -20,7 +20,7 @@ function IngredientNode({
 
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
-      <li className=" overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
+      <div className=" overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
         <span
           className={
             isChecked
@@ -47,10 +47,16 @@ function IngredientNode({
             </p>
           </span>
         </span>
-        <p className="text-primary italic flex  justify-end -mt-4 ">
-          {ingredient.location !== "other" ? ingredient.location : ""}
-        </p>
-      </li>
+        <div>
+          {ingredient.location === "other" || !ingredient.location ? (
+            <></>
+          ) : (
+            <p className="text-primary italic flex justify-end -mt-4">
+              {ingredient.location}
+            </p>
+          )}
+        </div>
+      </div>
     </span>
   );
 }
