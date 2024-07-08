@@ -40,13 +40,35 @@ type Ingredient = {
   recipeId: number;
   types: string[];
   checked: boolean;
+  location: string;
 };
+
+type IngredientWithLocation = {
+  id: number;
+  ingredientId: number | null;
+  checked: boolean;
+  name: string | null;
+  location: string | null;
+}
 
 type IngredientEntry = {
   userId: string;
-  ingredientId: number;
+  ingredientId: number | null;
   name: string;
 };
+
+type IngWithLoc = {
+  userId: string;
+  ingredientId: number | null;
+  name: string;
+  location: string;
+}
+
+type LocData = {
+  ingredientId: number;
+  store: string;
+  home: string;
+}
 
 type Keywords = {
   id: number;
@@ -54,6 +76,13 @@ type Keywords = {
   recipeId: number?;
 };
 
+type IngredientData = {
+  id: number;
+  name: string;
+  types: Array;
+  locationId: number | null;
+  recipeId: number;
+}
 
 type RawRecipe = {
   aggregateRating: number;
