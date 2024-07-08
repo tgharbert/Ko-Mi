@@ -9,12 +9,8 @@ import modifyIngredientAmount from "@/utils/modifyIngredientAmount";
 
 export async function addIngredients(ingredients: Ingredient[], multiplier: number) {
   try {
-    // I could put this somewhere else...
     const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email || "";
-    const user = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
+    const user = session?.user as User
 
     let newEntry: IngredientEntry[] = [];
 

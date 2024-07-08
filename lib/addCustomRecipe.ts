@@ -6,10 +6,7 @@ import prisma from "@/app/api/_base"
 export async function addCustomRecipe(recipe: any) {
   try {
     const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email || "";
-    const user = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
+    const user = session?.user as User
 
     recipe.keywords = recipe.keywords || ["No available keywords"]
     recipe.instructions = recipe.instructions || ['No available instructions']

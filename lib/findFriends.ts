@@ -2,8 +2,7 @@
 import prisma from "../app/api/_base"
 
 export default async function findFriends (inputName: string) {
-  try{
-
+  try {
     const foundUsers = await prisma.user.findMany({
       where: {
         name: {
@@ -12,7 +11,6 @@ export default async function findFriends (inputName: string) {
         },
       }
     })
-
     await prisma.$disconnect();
     return foundUsers;
   } catch (error) {

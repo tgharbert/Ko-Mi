@@ -11,7 +11,7 @@ function AddListItemBar({
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
-          className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
+          className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1  "
           type="text"
           value={item}
           onChange={(e) => setValue(e)}

@@ -14,8 +14,8 @@ function IngredientsList({
   submitItem,
   getIngredients,
 }: {
-  ingredients: any;
-  submitItem: any;
+  ingredients: IngredientWithLocation[];
+  submitItem: Function;
   getIngredients: Function;
 }) {
   const [isLoading, setIsLoading] = useState(true);
