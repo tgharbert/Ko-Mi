@@ -20,7 +20,7 @@ function IngredientNode({
 
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
-      <div className=" overflow-y-auto mx-4 px-4  border-2 sm:w-1/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
+      <div className=" overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
         <span
           className={
             isChecked
