@@ -1,9 +1,7 @@
 "use client";
-// import { addItemToList } from "@/lib/addItemToList";
 import { useFormState, useFormStatus } from "react-dom";
 import { addItemAction } from "../actions";
 import { useRef } from "react";
-import Loading from "../loading";
 
 function AddListItemBar() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -26,9 +24,6 @@ function AddListItemBar() {
           placeholder="Item to add..."
           autoFocus
         />
-        {/* <button className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
-          Add Item
-        </button> */}
         <Button />
       </form>
     </div>
@@ -39,7 +34,6 @@ export function Button() {
   const status = useFormStatus();
   return (
     <button className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
-      {/* Add Item */}
       {status.pending ? "Adding..." : "Add Item"}
     </button>
   );
