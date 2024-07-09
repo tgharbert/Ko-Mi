@@ -6,7 +6,7 @@ import {authOptions} from "@/utils/authOptions"
 import { revalidatePath } from "next/cache";
 import assignValueToIng from '../utils/assignCustomIng'
 
-export async function getUserIngredients() {
+export async function getUserIngredients () {
   try {
     const session = await getServerSession(authOptions);
     const user = session?.user as User;

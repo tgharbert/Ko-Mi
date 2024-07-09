@@ -4,39 +4,55 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import ShareButton from "./ShareButton";
+import { deleteUserIngredients } from "@/lib/ingredients";
+import { deleteCheckedIngredients } from "@/lib/deleteCheckedIngredients";
+import theme from "@/mui-styles/styles";
+import { ThemeProvider } from "@mui/material/styles";
 
-export default function TopStack({
-  handleDeleteChecked,
-  handleDeleteIngredients,
-}: {
-  handleDeleteChecked: any;
-  handleDeleteIngredients: any;
-}) {
+export default function TopStack() {
+  const handleDeleteIngredients = async () => {
+    try {
+      await deleteUserIngredients();
+    } catch (error) {
+      console.error("ERROR: ", error);
+    }
+  };
+
+  const handleDeleteChecked = async () => {
+    try {
+      await deleteCheckedIngredients();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="pb-4 mt-4 sm:mt-6 ml-4">
-      <Stack direction="row" className="flex justify-center content-center ">
-        <Button
-          variant="contained"
-          className=" bg-lime-500"
-          onClick={handleDeleteChecked}
-          color="lime"
-        >
-          <PlaylistRemoveIcon className="mr-2" />
-          Delete Checked
-        </Button>
-        <div className="px-4">
+    <ThemeProvider theme={theme}>
+      <div className="pb-4 mt-4 sm:mt-6 ml-4">
+        <Stack direction="row" className="flex justify-center content-center ">
           <Button
             variant="contained"
-            className="bg-lime-500"
-            onClick={handleDeleteIngredients}
+            className=" bg-lime-500"
+            onClick={handleDeleteChecked}
             color="lime"
           >
-            <DeleteIcon className="mr-2" />
-            Delete All
+            <PlaylistRemoveIcon className="mr-2" />
+            Delete Checked
           </Button>
-        </div>
-      </Stack>
-      <ShareButton />
-    </div>
+          <div className="px-4">
+            <Button
+              variant="contained"
+              className="bg-lime-500"
+              onClick={handleDeleteIngredients}
+              color="lime"
+            >
+              <DeleteIcon className="mr-2" />
+              Delete All
+            </Button>
+          </div>
+        </Stack>
+        <ShareButton />
+      </div>
+    </ThemeProvider>
   );
 }
