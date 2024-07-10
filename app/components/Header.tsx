@@ -15,7 +15,7 @@ export default function Header() {
       </span>
       <div className="grid grid-cols-3 gap-1">
         <a
-          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal  sm:ml-80"
+          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal sm:ml-96"
           href="/"
         >
           Recipes
@@ -27,7 +27,7 @@ export default function Header() {
           Add Recipe
         </a>
         <a
-          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal  sm:mr-80"
+          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal sm:mr-80"
           href="/shopping-list"
         >
           Shopping List
