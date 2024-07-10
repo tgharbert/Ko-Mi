@@ -12,7 +12,6 @@ export async function addItemToList (item: string) {
       data: {
         name: item,
         userId: user?.id || "",
-        // ingredientId: -1,
       }
     })
   } catch (error) {

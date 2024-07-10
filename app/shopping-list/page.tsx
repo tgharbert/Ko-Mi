@@ -1,7 +1,9 @@
 "use server";
 import Header from "../components/Header";
 import verifyUser from "@/utils/verifyUser";
-import NewIngredientsList from "./components/NewIngredientsList";
+import AddListItemBar from "./components/NewIngredientBar";
+import TopStack from "./components/TopStack";
+import IngredientList from "./components/IngredientList";
 
 async function Ingredients() {
   await verifyUser();
@@ -11,7 +13,13 @@ async function Ingredients() {
       <div className="-mt-12">
         <Header />
       </div>
-      <NewIngredientsList />
+      <div>
+        <AddListItemBar />
+        <div>
+          <TopStack />
+          <IngredientList />
+        </div>
+      </div>
     </div>
   );
 }
