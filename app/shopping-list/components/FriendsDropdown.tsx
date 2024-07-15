@@ -37,7 +37,7 @@ const FriendsDropDown = ({
 
   const handleShareIngredients = async () => {
     const response = await shareIngredients(friend);
-    console.log(response);
+    // console.log(response);
     // need to handle error for other cases??
     if (response === "success") {
       openSnackbar();
@@ -83,7 +83,6 @@ const FriendsDropDown = ({
                 onClick={handleShareIngredients}
                 color="lime"
               >
-                {/* <DeleteIcon className="mr-2" /> */}
                 Share
               </Button>
             </div>
