@@ -36,9 +36,9 @@ const assignValueToIng = (ingredient: any) => {
         return ingredient;
       }
     }
-    ingredient.location = 'other'
-    return ingredient;
   }
+  ingredient.location = 'other'
+  return ingredient;
 };
 
 export default assignValueToIng
