@@ -1,17 +1,15 @@
 import IngredientNode from "./IngredientNode";
+import { getUserIngredients } from "@/lib/ingredients";
 
-export default function IngredientList({
-  ingredients,
-}: {
-  ingredients: IngredientWithLocation[];
-}) {
+export default async function IngredientList() {
+  let ingredients: IngredientWithLocation[] | undefined =
+    await getUserIngredients();
+
   return (
     <div className="flex-col -mt-4">
-      <ul>
-        {ingredients.map((ingredient: IngredientWithLocation) => {
-          return <IngredientNode key={ingredient.id} ingredient={ingredient} />;
-        })}
-      </ul>
+      {ingredients?.map((ingredient: IngredientWithLocation) => {
+        return <IngredientNode key={ingredient.id} ingredient={ingredient} />;
+      })}
     </div>
   );
 }

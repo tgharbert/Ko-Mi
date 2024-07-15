@@ -2,7 +2,6 @@
 
 import { getServerSession } from "next-auth";
 import {authOptions} from '@/utils/authOptions'
-import { revalidatePath } from "next/cache";
 import prisma from "@/app/api/_base"
 
 export async function addItemToList (item: string) {
@@ -13,10 +12,8 @@ export async function addItemToList (item: string) {
       data: {
         name: item,
         userId: user?.id || "",
-        // ingredientId: -1,
       }
     })
-    revalidatePath('/shopping-list')
   } catch (error) {
     console.error("Error adding ingredient to list: ", error)
   }
