@@ -1,5 +1,5 @@
 'use server'
-import prisma from "../app/api/_base"
+import prisma from "@/app/api/_base";
 
 export async function checkIngredient (targetId: number, bool: boolean) {
   try {

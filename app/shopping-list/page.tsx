@@ -13,13 +13,9 @@ async function Ingredients() {
       <div className="-mt-12">
         <Header />
       </div>
-      <div>
-        <AddListItemBar />
-        <div>
-          <TopStack />
-          <IngredientList />
-        </div>
-      </div>
+      <AddListItemBar />
+      <TopStack />
+      <IngredientList />
     </div>
   );
 }

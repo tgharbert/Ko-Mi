@@ -4,7 +4,7 @@ import NextPageButton from "./NextPageButton";
 import AddItems from "./page2&3/AddItem";
 import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
-import buildCustomRecipe from "@/lib/buildCustomRecipe";
+import buildCustomRecipe from "../../data/buildCustomRecipe";
 import CustomRecipeCard from "./page5/CustomRecipeCard";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";

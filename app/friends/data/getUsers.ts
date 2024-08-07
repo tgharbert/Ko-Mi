@@ -1,5 +1,5 @@
 'use server'
-import prisma from "../app/api/_base"
+import prisma from "../../api/_base"
 import { getServerSession } from "next-auth";
 import {authOptions} from '@/utils/authOptions'
 import { FriendStatus } from "@prisma/client";

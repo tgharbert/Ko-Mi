@@ -1,6 +1,6 @@
 'use server'
 import { revalidatePath } from "next/cache"
-import prisma from "../app/api/_base"
+import prisma from "../../api/_base"
 
 export async function deleteCheckedIngredients () {
   try {

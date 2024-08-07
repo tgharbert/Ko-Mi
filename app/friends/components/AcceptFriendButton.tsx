@@ -1,4 +1,4 @@
-import acceptFriend from "@/lib/acceptFriend";
+import acceptFriend from "@/app/friends/data/acceptFriend";
 
 const AcceptFriendButton = ({
   userId,

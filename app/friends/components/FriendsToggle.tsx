@@ -3,7 +3,7 @@ import Switch from "@mui/material/Switch";
 import { useState, useEffect } from "react";
 import Requests from "./Requests";
 import FriendsList from "./FriendsList";
-import getFriends from "@/lib/getFriends";
+import getFriends from "@/app/friends/data/getFriends";
 import addFriend from "@/app/friends/data/addFriend";
 
 const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {

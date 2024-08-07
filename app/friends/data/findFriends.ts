@@ -1,5 +1,5 @@
 'use server'
-import prisma from "../app/api/_base"
+import prisma from "../../api/_base"
 
 export default async function findFriends (inputName: string) {
   try {

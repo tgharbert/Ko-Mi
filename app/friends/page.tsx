@@ -1,6 +1,6 @@
 "use server";
 import Header from "../components/Header";
-import getUsers from "@/lib/getUsers";
+import getUsers from "@/app/friends/data/getUsers";
 import FriendsToggle from "./components/FriendsToggle";
 
 const Friends = async () => {

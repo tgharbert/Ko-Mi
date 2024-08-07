@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";
-import { addCustomRecipe } from "@/lib/addCustomRecipe";
+import { addCustomRecipe } from "@/app/add-recipe/data/addCustomRecipe";
 import Button from "@mui/material/Button";
 import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";

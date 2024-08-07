@@ -35,8 +35,6 @@ const ShareButton = () => {
     setIsAlert(true);
   };
 
-  const success = () => {};
-
   return (
     <div className="px-5 flex justify-center content-center">
       {isAlert ? (
