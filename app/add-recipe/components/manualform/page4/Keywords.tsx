@@ -13,7 +13,7 @@ function Keywords({
 }) {
   return (
     <div className="pb-4">
-      {keywords.map((keyword: string, idx) => {
+      {keywords.map((keyword: string, idx: number) => {
         return <p key={idx}>#{keyword}</p>;
       })}
       <form onSubmit={(e) => addKeyword(e, keyword)}>
