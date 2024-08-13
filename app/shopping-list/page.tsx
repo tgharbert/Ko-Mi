@@ -1,11 +1,12 @@
-"use server";
 import Header from "../components/Header";
 import verifyUser from "@/utils/verifyUser";
 import AddListItemBar from "./components/NewIngredientBar";
 import TopStack from "./components/TopStack";
 import IngredientList from "./components/IngredientList";
+import LoadingPage from "../loading";
+import { Suspense } from "react";
 
-async function Ingredients() {
+export default async function Ingredients() {
   await verifyUser();
 
   return (
@@ -13,11 +14,11 @@ async function Ingredients() {
       <div className="-mt-12">
         <Header />
       </div>
-      <AddListItemBar />
-      <TopStack />
-      <IngredientList />
+      <Suspense fallback={<LoadingPage />}>
+        <AddListItemBar />
+        <TopStack />
+        <IngredientList />
+      </Suspense>
     </div>
   );
 }
-
-export default Ingredients;
