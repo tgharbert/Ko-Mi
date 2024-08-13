@@ -139,6 +139,9 @@ function RecipeForm() {
     keyword: string
   ) => {
     e.preventDefault();
+    if (!keyword) {
+      return;
+    }
     setKeywords([...keywords, keyword]);
     setKeyword("");
   };

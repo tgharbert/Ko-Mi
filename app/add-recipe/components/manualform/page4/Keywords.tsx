@@ -26,8 +26,10 @@ function Keywords({
           autoFocus
         ></input>
         <div className="mt-2 items-center">
-          <button>Add Keyword: </button>
-          <AddIcon />
+          <button>
+            <label>Add Keyword:</label>
+            <AddIcon />
+          </button>
         </div>
       </form>
     </div>
