@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";
-import { addCustomRecipe } from "@/lib/addCustomRecipe";
+import { addCustomRecipe } from "@/app/add-recipe/data/addCustomRecipe";
 import Button from "@mui/material/Button";
 import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";
@@ -23,23 +23,22 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
 
   const router = useRouter();
 
-  const handleFileInputChange = () => {
-    if (!recipe.photoFile) {
-      return;
-    }
-    const file = recipe.photoFile;
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   useEffect(() => {
+    const handleFileInputChange = () => {
+      if (!recipe.photoFile) {
+        return;
+      }
+      const file = recipe.photoFile;
+      if (file instanceof Blob) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreview(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
     handleFileInputChange();
-  }, []);
+  }, [recipe.photoFile]);
 
   const handleRecipeSubmission = async () => {
     // here is where the problem lies. I cannot pass the photo file to the backend...
@@ -131,12 +130,6 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
             Add Recipe
             <AddIcon className="pl-1" />
           </Button>
-          {/* <button
-          onClick={() => handleRecipeSubmission()}
-          className="bg-lime-500 hover:bg-lime-600 rounded mx-3 px-3"
-        >
-          Add Recipe
-        </button> */}
         </div>
       </div>
     </ThemeProvider>

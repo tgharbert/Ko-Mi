@@ -5,7 +5,7 @@ import LoadingPage from "./loading";
 import RecipeSearchBar from "./components/homepage/SearchBar";
 import UserSelectors from "./components/homepage/userselectors/UserSelectors";
 import verifyUser from "@/utils/verifyUser";
-import { getRecipes } from "@/lib/getRecipes";
+import { getRecipes } from "./data/getRecipes";
 
 export default async function Home({
   searchParams,

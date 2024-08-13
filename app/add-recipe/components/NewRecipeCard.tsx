@@ -11,18 +11,17 @@ import InstructionAccordion from "@/app/components/accordions/InstructionAccordi
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 // unable to use this because ingredients are formatted as strings from URL
 import IngredientAccordion from "@/app/components/accordions/IngredientAccordion";
-import { addRecipe } from "@/lib/addRecipe";
+import { addRecipe } from "@/app/add-recipe/data/addRecipe";
 import Button from "@mui/material/Button";
 import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
-
 function RecipeCard({ recipe }: { recipe: RawRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
 
+  const he = require("he");
   const router = useRouter();
 
-  const he = require("he");
   const handleRecipeSubmission = async () => {
     try {
       await addRecipe(recipe);

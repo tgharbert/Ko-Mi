@@ -4,7 +4,7 @@ import prisma from "@/app/api/_base"
 import { getServerSession } from "next-auth";
 import {authOptions} from "@/utils/authOptions"
 import { revalidatePath } from "next/cache";
-import assignValueToIng from '../utils/assignCustomIng'
+import assignValueToIng from '../../../utils/assignCustomIng'
 
 export async function getUserIngredients () {
   try {

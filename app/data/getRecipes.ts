@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from "../app/api/_base"
+import prisma from "../api/_base"
 import { getServerSession } from "next-auth";
 import {authOptions} from '@/utils/authOptions'
 
@@ -47,7 +47,6 @@ export async function getRecipes(query: string, category: string, page: number, 
     await prisma.$disconnect();
       return new Response(JSON.stringify(allRecipes));
     }
-
     if (random !== "false") {
       const allRecipes = await prisma.$queryRaw`SELECT
       r.*,
@@ -106,6 +105,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       },
     });
     await prisma.$disconnect();
+
     return new Response(JSON.stringify(allRecipes));
   }
 

@@ -1,5 +1,5 @@
 'use server'
-import { addItemToList } from "@/lib/addItemToList";
+import { addItemToList } from "./data/addItemToList";
 import { revalidatePath } from "next/cache";
 
 export async function addItemAction (

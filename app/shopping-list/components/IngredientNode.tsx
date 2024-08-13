@@ -1,6 +1,6 @@
 "use client";
 
-import { checkIngredient } from "../../../lib/checkIngredient";
+import { checkIngredient } from "../data/checkIngredient";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
