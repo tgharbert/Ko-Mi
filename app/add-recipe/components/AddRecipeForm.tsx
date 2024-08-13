@@ -16,7 +16,21 @@ function AddRecipeForm() {
     <div>
       <div className="mb-4">
         <label>Enter URL</label>
-        <Switch onChange={onToggle} />
+        <Switch
+          onChange={onToggle}
+          // figure out a way to have the theme provider add this
+          sx={{
+            "& .MuiSwitch-switchBase.Mui-checked": {
+              color: "#65A30D", // Thumb color when checked
+            },
+            "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+              backgroundColor: "#65A30D", // Track color when checked
+            },
+            "& .MuiSwitch-track": {
+              backgroundColor: "lightgray", // Track color when unchecked
+            },
+          }}
+        />
         <label>Enter Recipe Manually</label>
       </div>
       {isManual ? <ManualForm /> : <RecipeURLForm />}
