@@ -46,13 +46,9 @@ export async function shareIngredients(friendId: string) {
       }
     })
 
-    // do work with targetIngs
     const existingSet = new Set(targetIngs.map(ingredient => ingredient.name))
-
     const uniqueEntries = newEntry.filter(entry => !existingSet.has(entry.name))
     console.log("uniqueEntries: ", uniqueEntries)
-
-    // where the ingredient names aren't the same
     await prisma.userIngredient.createMany({
       data: uniqueEntries,
     });
