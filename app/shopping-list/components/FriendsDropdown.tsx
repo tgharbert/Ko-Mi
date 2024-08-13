@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import getFriends from "@/lib/getFriends";
+import getFriends from "@/app/friends/data/getFriends";
 import { Button } from "@mui/material";
 import LoadingPage from "@/app/loading";
-import { shareIngredients } from "@/lib/shareIngredients";
+import { shareIngredients } from "@/app/shopping-list/data/shareIngredients";
 
 const FriendsDropDown = ({
   openSnackbar,

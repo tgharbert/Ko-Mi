@@ -1,5 +1,6 @@
+"use server";
 import IngredientNode from "./IngredientNode";
-import { getUserIngredients } from "@/lib/ingredients";
+import { getUserIngredients } from "@/app/shopping-list/data/ingredients";
 
 export default async function IngredientList() {
   let ingredients: IngredientWithLocation[] | undefined =

@@ -1,11 +1,10 @@
 "use client";
 import RecipeCard from "./recipecard/RecipeCardHome";
-// import PageNavigation from "./PageNavigation";
 import { useState, useEffect, useCallback, useRef } from "react";
 import LoadingPage from "@/app/loading";
 import EndOfRecipes from "./EndOfRecipes";
 
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 function RecipeList({
   query,
@@ -30,51 +29,44 @@ function RecipeList({
 
   const searchParams = useSearchParams();
 
-  const setPage1 = (currentPage: number) => {
-    setPage(currentPage);
+  const pageReset = () => {
+    setPage(1);
     return;
   };
 
-  // RIGHT NOW THE PAGE ON THE SERVER IS OVER 1 WHEN CHANGING THE CATEGORY...
   useEffect(() => {
     setIsEnd(false);
     setRecipes([]);
-    if (page > 1) {
-      setPage1(1);
-    }
+    pageReset();
   }, [searchParams, currentPage, setPage]);
 
   const getRecipes = useCallback(async () => {
     if (isLoading) return;
-
     setIsLoading(true);
-
     let userRecipes = await getUserRecipes(page, query, category, all, random);
     if (userRecipes.length === 0) {
       setIsLoading(false);
       setIsEnd(true);
     }
-
     setRecipes((prevRecipes) => [...prevRecipes, ...userRecipes]);
     setPage((prevPage) => prevPage + 1);
     setIsLoading(false);
-  }, [page, isLoading]);
+  }, [page, isLoading, query, random, all, category, getUserRecipes]);
 
   useEffect(() => {
+    let curr = loaderRef.current;
     const observer = new IntersectionObserver((entries) => {
       const target = entries[0];
       if (target.isIntersecting) {
         getRecipes();
       }
     });
-
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
     }
-
     return () => {
-      if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
+      if (curr) {
+        observer.unobserve(curr);
       }
     };
   }, [getRecipes]);

@@ -1,7 +1,7 @@
 "use client";
 import FriendSearchBar from "./FriendSearchbar";
 import { useEffect, useState } from "react";
-import findFriends from "@/lib/findFriends";
+import findFriends from "@/app/friends/data/findFriends";
 import FriendSearchResults from "./FriendSearchResults";
 import LoadingPage from "@/app/loading";
 

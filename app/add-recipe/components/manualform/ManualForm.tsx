@@ -4,7 +4,7 @@ import NextPageButton from "./NextPageButton";
 import AddItems from "./page2&3/AddItem";
 import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
-import buildCustomRecipe from "@/lib/buildCustomRecipe";
+import buildCustomRecipe from "../../data/buildCustomRecipe";
 import CustomRecipeCard from "./page5/CustomRecipeCard";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
@@ -139,6 +139,9 @@ function RecipeForm() {
     keyword: string
   ) => {
     e.preventDefault();
+    if (!keyword) {
+      return;
+    }
     setKeywords([...keywords, keyword]);
     setKeyword("");
   };
@@ -151,7 +154,6 @@ function RecipeForm() {
     setFile(e.target.files?.[0] ?? null);
     setFileName(e.target.files?.[0].name ?? "");
   };
-  // <div className="-mt-40 bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
   return (
     <div className=" bg-tertiary text-black sm:mx-96 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>

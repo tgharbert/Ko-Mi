@@ -13,7 +13,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 import AddIngredientsButton from "./AddIngredientsButton";
-
 import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
