@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";

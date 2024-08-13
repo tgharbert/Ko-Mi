@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addIngredients } from "@/lib/addIngredients";
+import { addIngredients } from "@/app/data/addIngredients";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/mui-styles/styles";
