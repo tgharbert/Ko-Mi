@@ -1,6 +1,6 @@
 "use client";
 import Switch from "@mui/material/Switch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Requests from "./Requests";
 import FriendsList from "./FriendsList";
 import getFriends from "@/app/friends/data/getFriends";
@@ -25,18 +25,18 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
     setIsLoading(false);
   };
 
+  const getRequestsData = useCallback(async () => {
+    let usersData: Friend[] = await getAllRequests();
+    setRequests(usersData);
+  }, [getAllRequests]);
+
   useEffect(() => {
     getUserFriends();
     getRequestsData();
-  }, []);
+  }, [getRequestsData]);
 
   const onSwitch = () => {
     setIsFriendsList(!isFriendsList);
-  };
-
-  const getRequestsData = async () => {
-    let usersData: Friend[] = await getAllRequests();
-    setRequests(usersData);
   };
 
   const loadFriends = async (userId: string) => {
