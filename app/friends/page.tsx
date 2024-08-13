@@ -2,8 +2,13 @@
 import Header from "../components/Header";
 import getUsers from "@/app/friends/data/getUsers";
 import FriendsToggle from "./components/FriendsToggle";
+import LoadingPage from "../loading";
+import { Suspense } from "react";
+import verifyUser from "@/utils/verifyUser";
 
 const Friends = async () => {
+  await verifyUser();
+
   const getAllRequests = async () => {
     "use server";
     const response = await getUsers();
@@ -16,7 +21,9 @@ const Friends = async () => {
       <div className="-mt-12">
         <Header />
       </div>
-      <FriendsToggle getAllRequests={getAllRequests} />
+      <Suspense fallback={<LoadingPage />}>
+        <FriendsToggle getAllRequests={getAllRequests} />
+      </Suspense>
     </div>
   );
 };

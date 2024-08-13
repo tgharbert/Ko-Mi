@@ -1,3 +1,4 @@
+"use server";
 import Header from "../components/Header";
 import verifyUser from "@/utils/verifyUser";
 import AddListItemBar from "./components/NewIngredientBar";
