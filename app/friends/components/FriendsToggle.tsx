@@ -55,21 +55,7 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
       <ThemeProvider theme={theme}>
         <div>
           <label>Friends</label>
-          <Switch
-            onChange={onSwitch}
-            // fix this with the theme provider
-            sx={{
-              "& .MuiSwitch-switchBase.Mui-checked": {
-                color: "#65A30D", // Thumb color when checked
-              },
-              "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-                backgroundColor: "#65A30D", // Track color when checked
-              },
-              "& .MuiSwitch-track": {
-                backgroundColor: "lightgray", // Track color when unchecked
-              },
-            }}
-          />
+          <Switch onChange={onSwitch} />
           <label>Requests</label>
         </div>
         {isFriendsList ? (
