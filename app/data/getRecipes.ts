@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import {authOptions} from '@/utils/authOptions'
 
 export async function getRecipes(query: string, category: string, page: number, random: string, all: string) {
-  const resultsPerPage = 9;
+  const resultsPerPage = 12;
 
   try {
     const session = await getServerSession(authOptions);
