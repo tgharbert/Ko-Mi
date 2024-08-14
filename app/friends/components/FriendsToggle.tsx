@@ -1,6 +1,8 @@
 "use client";
 import Switch from "@mui/material/Switch";
-import { useState, useEffect } from "react";
+import theme from "@/mui-styles/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import { useState, useEffect, useCallback } from "react";
 import Requests from "./Requests";
 import FriendsList from "./FriendsList";
 import getFriends from "@/app/friends/data/getFriends";
@@ -11,6 +13,7 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
   const [friends, setFriends] = useState<User[]>([]);
   const [requests, setRequests] = useState<Friend[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  // state is unused but can be used to set error message...
   const [isErrGettingFriends, setIsErrGettingFriends] = useState(false);
 
   const getUserFriends = async () => {
@@ -25,18 +28,18 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
     setIsLoading(false);
   };
 
+  const getRequestsData = useCallback(async () => {
+    let usersData: Friend[] = await getAllRequests();
+    setRequests(usersData);
+  }, [getAllRequests]);
+
   useEffect(() => {
     getUserFriends();
     getRequestsData();
-  }, []);
+  }, [getRequestsData]);
 
   const onSwitch = () => {
     setIsFriendsList(!isFriendsList);
-  };
-
-  const getRequestsData = async () => {
-    let usersData: Friend[] = await getAllRequests();
-    setRequests(usersData);
   };
 
   const loadFriends = async (userId: string) => {
@@ -49,24 +52,26 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
 
   return (
     <div>
-      <div>
-        <label>Friends</label>
-        <Switch onChange={onSwitch} />
-        <label>Requests</label>
-      </div>
-      {isFriendsList ? (
+      <ThemeProvider theme={theme}>
         <div>
-          <div className="text-xl pt-4 float-center">Your Friends:</div>
-          <FriendsList friends={friends} isLoading={isLoading} />
+          <label>Friends</label>
+          <Switch onChange={onSwitch} />
+          <label>Requests</label>
         </div>
-      ) : (
-        <Requests
-          getAllRequests={getAllRequests}
-          requests={requests}
-          loadFriends={loadFriends}
-          isLoading={isLoading}
-        />
-      )}
+        {isFriendsList ? (
+          <div>
+            <div className="text-xl pt-4 float-center">Your Friends:</div>
+            <FriendsList friends={friends} isLoading={isLoading} />
+          </div>
+        ) : (
+          <Requests
+            getAllRequests={getAllRequests}
+            requests={requests}
+            loadFriends={loadFriends}
+            isLoading={isLoading}
+          />
+        )}
+      </ThemeProvider>
     </div>
   );
 };

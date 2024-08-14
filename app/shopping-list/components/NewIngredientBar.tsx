@@ -3,9 +3,17 @@ import { useFormState, useFormStatus } from "react-dom";
 import { addItemAction } from "../actions";
 import { useRef } from "react";
 
-function AddListItemBar() {
+function AddListItemBar({ id }: { id: string }) {
+  function wrappedAddItemAction(
+    prevState: { item: string; message: string },
+    formData: FormData
+  ) {
+    const userId: string = id;
+    return addItemAction(prevState, formData, userId);
+  }
+
   const formRef = useRef<HTMLFormElement>(null);
-  const [state, action] = useFormState(addItemAction, {
+  const [state, action] = useFormState(wrappedAddItemAction, {
     item: "",
     message: "",
   });

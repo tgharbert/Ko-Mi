@@ -24,17 +24,21 @@ export default async function Home({
   const random = searchParams?.random || "false";
   const all = searchParams?.all || "false";
 
-  await verifyUser();
+  const user: User | null = await verifyUser();
+  if (user === null) {
+    return;
+  }
 
   const getUserRecipes = async (
     page: number,
     query: string,
     category: string,
     all: string,
-    random: string
+    random: string,
+    id: string
   ) => {
     "use server";
-    let response = await getRecipes(query, category, page, random, all);
+    let response = await getRecipes(query, category, page, random, all, id);
     let recipeData = await response?.json();
     return recipeData;
   };
@@ -53,6 +57,7 @@ export default async function Home({
           currentPage={currentPage}
           random={random}
           all={all}
+          id={user.id}
           getUserRecipes={getUserRecipes}
         />
       </Suspense>

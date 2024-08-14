@@ -29,6 +29,23 @@ const theme = createTheme({
     button: {
       textTransform: 'none'
     }
+  },
+  components: {
+    MuiSwitch: {
+      styleOverrides: {
+        switchBase: {
+          '&.Mui-checked': {
+            color: '#65A30D', // Change the color of the switch thumb when checked
+            '& + .MuiSwitch-track': {
+              backgroundColor: 'lightgreen', // Change the color of the track when checked
+            },
+          },
+        },
+        track: {
+          backgroundColor: '#E9E9EA', // Change the color of the track when not checked
+        },
+      },
+    }
   }
 });
 // old main

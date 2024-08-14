@@ -13,6 +13,7 @@ function RecipeList({
   all,
   currentPage,
   getUserRecipes,
+  id,
 }: {
   query: String;
   category: String;
@@ -20,6 +21,7 @@ function RecipeList({
   all: String;
   currentPage: number;
   getUserRecipes: Function;
+  id: string;
 }) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +45,14 @@ function RecipeList({
   const getRecipes = useCallback(async () => {
     if (isLoading) return;
     setIsLoading(true);
-    let userRecipes = await getUserRecipes(page, query, category, all, random);
+    let userRecipes = await getUserRecipes(
+      page,
+      query,
+      category,
+      all,
+      random,
+      id
+    );
     if (userRecipes.length === 0) {
       setIsLoading(false);
       setIsEnd(true);
@@ -51,7 +60,7 @@ function RecipeList({
     setRecipes((prevRecipes) => [...prevRecipes, ...userRecipes]);
     setPage((prevPage) => prevPage + 1);
     setIsLoading(false);
-  }, [page, isLoading, query, random, all, category, getUserRecipes]);
+  }, [page, isLoading, query, random, all, category, getUserRecipes, id]);
 
   useEffect(() => {
     let curr = loaderRef.current;
@@ -74,7 +83,7 @@ function RecipeList({
   return (
     <div className="w-120%" id="scrollableDiv">
       <div className="sm:flex justify-center items-center pb-8">
-        <div className="grid sm:grid-cols-3 gap-2 sm:w-4/5 ">
+        <div className="grid xl:grid-cols-3 gap-2 sm:w-4/5 lg:grid-cols-2">
           {recipes.map((recipe: Recipe) => {
             return <RecipeCard key={recipe.id} recipe={recipe} />;
           })}
