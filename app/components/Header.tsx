@@ -13,21 +13,21 @@ export default function Header() {
           <a href="/">Ko-Mi</a>
         </h1>
       </span>
-      <div className="grid grid-cols-3 gap-1">
+      <div className="grid grid-cols-3 gap-1 ">
         <a
-          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal sm:ml-96"
+          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal xl:ml-96 "
           href="/"
         >
           Recipes
         </a>
         <a
-          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal sm:ml-40 sm:mr-40"
+          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal xl:ml-40 xl:mr-40"
           href="/add-recipe"
         >
           Add Recipe
         </a>
         <a
-          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal sm:mr-80"
+          className="font-bold hover:text-lime-600 sm:text-xl sm:font-normal xl:mr-80"
           href="/shopping-list"
         >
           Shopping List
