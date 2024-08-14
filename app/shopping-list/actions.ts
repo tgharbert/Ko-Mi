@@ -7,7 +7,8 @@ export async function addItemAction (
     item: string,
     message: string,
   },
-  formData: FormData
+  formData: FormData,
+  id: string
 ) {
   const newItem = formData.get("item") as string;
   if (!newItem) {
@@ -16,7 +17,7 @@ export async function addItemAction (
       message: 'failure'
     };
   }
-  await addItemToList(newItem);
+  await addItemToList(newItem, id);
   revalidatePath('/shopping-list')
   return {
     item: '',

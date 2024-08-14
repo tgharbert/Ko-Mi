@@ -7,6 +7,8 @@ import {authOptions} from '@/utils/authOptions'
 export async function getRecipes(query: string, category: string, page: number, random: string, all: string) {
   const resultsPerPage = 12;
 
+  // MODIFY THIS QUERY TO ACCEPT USER ID...
+
   try {
     const session = await getServerSession(authOptions);
     const user = session?.user as User;

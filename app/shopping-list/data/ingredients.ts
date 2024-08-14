@@ -6,14 +6,19 @@ import {authOptions} from "@/utils/authOptions"
 import { revalidatePath } from "next/cache";
 import assignValueToIng from '../../../utils/assignCustomIng'
 
-export async function getUserIngredients () {
+export async function getUserIngredients (id: string) {
   try {
-    const session = await getServerSession(authOptions);
-    const user = session?.user as User;
+    // console.time("all")
+    // console.time("ordered")
+    // const session = await getServerSession(authOptions);
+    // const user = session?.user as User;
+    // console.log(session?.user.id)
+    // console.log("backend: ", id)
 
     let allIngredients = await prisma.userIngredient.findMany({
       where: {
-        userId: user?.id,
+        // userId: user?.id,
+        userId: id,
         checked: false
       },
       select: {
@@ -23,6 +28,9 @@ export async function getUserIngredients () {
         checked: true,
       },
     });
+
+    // TIME TEST FOR ORDERED VS ALL -- ORDERING TAKES ABOUT 250 MS
+    // console.timeEnd("all")
 
     const ingredientIds: number[] = allIngredients.map((ingredient) => {
       if (ingredient.ingredientId) {
@@ -108,6 +116,8 @@ export async function getUserIngredients () {
       let currVal = desiredLocationOrder[idx];
       ordered = ordered.concat(locationOrderMap[currVal]);
     }
+    // console.timeEnd("ordered")
+
     return ordered;
   } catch (error) {
     console.error("error", error);
