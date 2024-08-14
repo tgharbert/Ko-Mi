@@ -13,6 +13,7 @@ function RecipeList({
   all,
   currentPage,
   getUserRecipes,
+  id,
 }: {
   query: String;
   category: String;
@@ -20,6 +21,7 @@ function RecipeList({
   all: String;
   currentPage: number;
   getUserRecipes: Function;
+  id: string;
 }) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +45,14 @@ function RecipeList({
   const getRecipes = useCallback(async () => {
     if (isLoading) return;
     setIsLoading(true);
-    let userRecipes = await getUserRecipes(page, query, category, all, random);
+    let userRecipes = await getUserRecipes(
+      page,
+      query,
+      category,
+      all,
+      random,
+      id
+    );
     if (userRecipes.length === 0) {
       setIsLoading(false);
       setIsEnd(true);
@@ -51,7 +60,7 @@ function RecipeList({
     setRecipes((prevRecipes) => [...prevRecipes, ...userRecipes]);
     setPage((prevPage) => prevPage + 1);
     setIsLoading(false);
-  }, [page, isLoading, query, random, all, category, getUserRecipes]);
+  }, [page, isLoading, query, random, all, category, getUserRecipes, id]);
 
   useEffect(() => {
     let curr = loaderRef.current;

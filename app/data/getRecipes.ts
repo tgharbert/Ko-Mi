@@ -4,14 +4,16 @@ import prisma from "../api/_base"
 import { getServerSession } from "next-auth";
 import {authOptions} from '@/utils/authOptions'
 
-export async function getRecipes(query: string, category: string, page: number, random: string, all: string) {
+export async function getRecipes(query: string, category: string, page: number, random: string, all: string, id: string) {
   const resultsPerPage = 12;
 
   // MODIFY THIS QUERY TO ACCEPT USER ID...
+  // console.log("user id: ", id)
 
   try {
-    const session = await getServerSession(authOptions);
-    const user = session?.user as User;
+    // console.time("user")
+    // const session = await getServerSession(authOptions);
+    // const user = session?.user as User;
 
     if (random !== "false" && all === 'true') {
       const allRecipes = await prisma.$queryRaw`SELECT
@@ -77,7 +79,7 @@ export async function getRecipes(query: string, category: string, page: number, 
               FROM "Keyword"
           ) k ON r.id = k."recipeId"
       WHERE
-          r."userId" = ${user.id}
+          r."userId" = ${id}
       GROUP BY
           r.id
       ORDER BY
@@ -95,7 +97,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       take: resultsPerPage,
       where: {
         // userId: user?.id,
-        userId: all === 'false' ? user.id : undefined,
+        userId: all === 'false' ? id : undefined,
         name: {
           contains: query,
           mode: 'insensitive'
@@ -116,7 +118,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
       where: {
-        userId: user?.id,
+        userId: id,
         ingredients: {
           some: {
             name: {
@@ -138,7 +140,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
       where: {
-        userId: all === 'false' ? user.id : undefined,
+        userId: all === 'false' ? id : undefined,
         keywords: {
           some: {
             name: {
@@ -163,7 +165,7 @@ export async function getRecipes(query: string, category: string, page: number, 
           skip: (page - 1) * resultsPerPage,
           take: resultsPerPage,
           where: {
-            userId: all === 'false' ? user.id : undefined,
+            userId: all === 'false' ? id : undefined,
             author: {
               contains: query,
               mode: 'insensitive'
@@ -184,7 +186,7 @@ export async function getRecipes(query: string, category: string, page: number, 
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
       where: {
-        userId: all === 'false' ? user.id : undefined,
+        userId: all === 'false' ? id : undefined,
         publisherName: {
           contains: query,
           mode: 'insensitive'
@@ -205,7 +207,7 @@ export async function getRecipes(query: string, category: string, page: number, 
     skip: (page - 1) * resultsPerPage,
     take: resultsPerPage,
     where: {
-      userId: all === 'false' ? user.id : undefined,
+      userId: all === 'false' ? id : undefined,
       name: {
         contains: query,
         mode: 'insensitive'
@@ -220,6 +222,7 @@ export async function getRecipes(query: string, category: string, page: number, 
     },
   });
   await prisma.$disconnect();
+  // console.timeEnd("user")
   return new Response(JSON.stringify(allRecipes));
   } catch (error) {
     console.error(error);
