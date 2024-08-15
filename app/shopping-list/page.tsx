@@ -20,7 +20,7 @@ export default async function Ingredients() {
         <Header />
       </div>
       <AddListItemBar id={user.id} />
-      <TopStack />
+      <TopStack id={user.id} />
       <Suspense fallback={<LoadingPage />}>
         <IngredientList id={user.id} />
       </Suspense>

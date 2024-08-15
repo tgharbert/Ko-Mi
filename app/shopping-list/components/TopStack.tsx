@@ -9,10 +9,10 @@ import { deleteCheckedIngredients } from "@/app/shopping-list/data/deleteChecked
 import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";
 
-export default function TopStack() {
+export default function TopStack({ id }: { id: string }) {
   const handleDeleteIngredients = async () => {
     try {
-      await deleteUserIngredients();
+      await deleteUserIngredients(id);
     } catch (error) {
       console.error("ERROR: ", error);
     }
@@ -20,7 +20,7 @@ export default function TopStack() {
 
   const handleDeleteChecked = async () => {
     try {
-      await deleteCheckedIngredients();
+      await deleteCheckedIngredients(id);
     } catch (error) {
       console.error(error);
     }

@@ -1,15 +1,11 @@
 'use server'
 
 import prisma from "../api/_base"
-import { getServerSession } from "next-auth";
-import {authOptions} from '@/utils/authOptions'
+// import { getServerSession } from "next-auth";
+// import {authOptions} from '@/utils/authOptions'
 
 export async function getRecipes(query: string, category: string, page: number, random: string, all: string, id: string) {
   const resultsPerPage = 12;
-
-  // MODIFY THIS QUERY TO ACCEPT USER ID...
-  // console.log("user id: ", id)
-
   try {
     // console.time("user")
     // const session = await getServerSession(authOptions);
