@@ -23,18 +23,16 @@ function AddListItemBar({ id }: { id: string }) {
   }
 
   return (
-    <div>
-      <form ref={formRef} action={action}>
-        <input
-          className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1  "
-          type="text"
-          name="item"
-          placeholder="Item to add..."
-          autoFocus
-        />
-        <Button />
-      </form>
-    </div>
+    <form ref={formRef} action={action}>
+      <input
+        className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1  "
+        type="text"
+        name="item"
+        placeholder="Item to add..."
+        autoFocus
+      />
+      <Button />
+    </form>
   );
 }
 

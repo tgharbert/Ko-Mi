@@ -1,8 +1,8 @@
-// "use server";
+"use server";
 import Image from "next/image";
 import logo from "@/images/ko-mi_logo_1.png";
 
-export default function Header() {
+export default async function Header() {
   return (
     <div className="bg-green pb-4 sm:pb-6">
       <span className="flex justify-center pr-8 pb-2">

@@ -1,23 +1,11 @@
 'use server';
-
 import prisma from "@/app/api/_base"
-import { getServerSession } from "next-auth";
-import {authOptions} from "@/utils/authOptions"
-import { revalidatePath } from "next/cache";
 import assignValueToIng from '../../../utils/assignCustomIng'
 
 export async function getUserIngredients (id: string) {
   try {
-    // console.time("all")
-    // console.time("ordered")
-    // const session = await getServerSession(authOptions);
-    // const user = session?.user as User;
-    // console.log(session?.user.id)
-    // console.log("backend: ", id)
-
     let allIngredients = await prisma.userIngredient.findMany({
       where: {
-        // userId: user?.id,
         userId: id,
         checked: false
       },
@@ -30,8 +18,6 @@ export async function getUserIngredients (id: string) {
     });
 
     // TIME TEST FOR ORDERED VS ALL -- ORDERING TAKES ABOUT 250 MS
-    // console.timeEnd("all")
-
     const ingredientIds: number[] = allIngredients.map((ingredient) => {
       if (ingredient.ingredientId) {
         return ingredient.ingredientId
@@ -116,24 +102,9 @@ export async function getUserIngredients (id: string) {
       let currVal = desiredLocationOrder[idx];
       ordered = ordered.concat(locationOrderMap[currVal]);
     }
-    // console.timeEnd("ordered")
-
     return ordered;
   } catch (error) {
     console.error("error", error);
     return undefined;
   }
 }
-
-export async function deleteUserIngredients(id: string) {
-  try {
-    const deletedIngredients = await prisma.userIngredient.deleteMany({
-      where: { userId: id },
-    });
-    revalidatePath('/shopping-list')
-    return deletedIngredients;
-  } catch (error) {
-    console.error("ERROR DELETING ALL INGREDIENTS: ", error);
-  }
-}
-

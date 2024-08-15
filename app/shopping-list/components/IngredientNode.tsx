@@ -29,33 +29,29 @@ function IngredientNode({
           }
         >
           <span className="mt-4 mb-4 flex ">
-            <div className="">
-              <IconButton
-                onClick={() => onCheckIngredient()}
-                className=""
-                aria-label="check item"
-              >
-                {isChecked ? (
-                  <RemoveShoppingCartIcon className=" text-red-500 " />
-                ) : (
-                  <AddShoppingCartIcon className=" text-lime-500 " />
-                )}
-              </IconButton>
-            </div>
+            <IconButton
+              onClick={() => onCheckIngredient()}
+              className=""
+              aria-label="check item"
+            >
+              {isChecked ? (
+                <RemoveShoppingCartIcon className=" text-red-500 " />
+              ) : (
+                <AddShoppingCartIcon className=" text-lime-500 " />
+              )}
+            </IconButton>
             <p className="pl-2 content-center text-left pr-4">
               {ingredient.name}
             </p>
           </span>
         </span>
-        <div>
-          {ingredient.location === "other" || !ingredient.location ? (
-            <></>
-          ) : (
-            <p className="text-primary italic flex justify-end -mt-4">
-              {ingredient.location}
-            </p>
-          )}
-        </div>
+        {ingredient.location === "other" || !ingredient.location ? (
+          <></>
+        ) : (
+          <p className="text-primary italic flex justify-end -mt-4">
+            {ingredient.location}
+          </p>
+        )}
       </div>
     </span>
   );

@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import ShareButton from "./ShareButton";
-import { deleteUserIngredients } from "@/app/shopping-list/data/ingredients";
+import { deleteUserIngredients } from "@/app/shopping-list/data/deleteAllIngredients";
 import { deleteCheckedIngredients } from "@/app/shopping-list/data/deleteCheckedIngredients";
 import theme from "@/mui-styles/styles";
 import { ThemeProvider } from "@mui/material/styles";

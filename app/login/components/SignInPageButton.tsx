@@ -8,17 +8,15 @@ import LoginIcon from "@mui/icons-material/Login";
 function SignInPageButton() {
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <Button
-          variant="contained"
-          className=" bg-lime-500"
-          onClick={() => signIn()}
-          color="lime"
-        >
-          Sign In
-          <LoginIcon className="pl-1" />
-        </Button>
-      </div>
+      <Button
+        variant="contained"
+        className=" bg-lime-500"
+        onClick={() => signIn()}
+        color="lime"
+      >
+        Sign In
+        <LoginIcon className="pl-1" />
+      </Button>
     </ThemeProvider>
   );
 }
