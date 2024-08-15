@@ -74,12 +74,7 @@ const assignValues = async (ingredients) => {
       }
     }
   }
-  // console.log("captured:", capturedWords.length);
-  // console.log(unAssigned);
   await addSection(secArr);
-  // console.log(secArr);
-  // console.log(ingredients.length);
-  // console.log(secArr.length);
 };
 
 const assignValueToIng = async (ingredient) => {
@@ -99,30 +94,12 @@ const assignValueToIng = async (ingredient) => {
           home: "",
         };
         return location;
-        // secArr.push(location);
-        // capturedWords.push(currWord);
         break;
       }
-      // else {
-      //   unAssigned.push(currWord);
-      // }
     }
   }
 };
 
-// need to write a handle plural function
-
 assignValues(allIngredients);
 
-// have an array of ingredient objects with name property
-// HOW TO ASSIGN VALUES
-// loop through each ingredient
-// look at the .name property
-// loop through the name property
-// loop through the keys on the groceryStore
-// check each word and verify whether the word is in the groceryStore
-
-// iterate through the ingredient names and assign values by checking the grocery list obj
-
-// don't worry about shitty schema rn
 export default assignValueToIng;

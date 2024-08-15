@@ -1,20 +1,10 @@
 'use server'
 
 import prisma from "../api/_base"
-import { getServerSession } from "next-auth";
-import {authOptions} from '@/utils/authOptions'
 
 export async function getRecipes(query: string, category: string, page: number, random: string, all: string, id: string) {
   const resultsPerPage = 12;
-
-  // MODIFY THIS QUERY TO ACCEPT USER ID...
-  // console.log("user id: ", id)
-
   try {
-    // console.time("user")
-    // const session = await getServerSession(authOptions);
-    // const user = session?.user as User;
-
     if (random !== "false" && all === 'true') {
       const allRecipes = await prisma.$queryRaw`SELECT
       r.*,
@@ -96,7 +86,6 @@ export async function getRecipes(query: string, category: string, page: number, 
       skip: (page - 1) * resultsPerPage,
       take: resultsPerPage,
       where: {
-        // userId: user?.id,
         userId: all === 'false' ? id : undefined,
         name: {
           contains: query,
@@ -202,7 +191,6 @@ export async function getRecipes(query: string, category: string, page: number, 
   }
 
   // HOLDING ON TO THIS BECAUSE I DON'T KNOW IF I'LL NEED IT AGAIN
-
   const allRecipes = await prisma.recipe.findMany({
     skip: (page - 1) * resultsPerPage,
     take: resultsPerPage,
@@ -222,7 +210,6 @@ export async function getRecipes(query: string, category: string, page: number, 
     },
   });
   await prisma.$disconnect();
-  // console.timeEnd("user")
   return new Response(JSON.stringify(allRecipes));
   } catch (error) {
     console.error(error);

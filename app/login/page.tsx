@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import SignInPageButton from "../components/signIn/SignInPageButton";
+import SignInPageButton from "./components/SignInPageButton";
 import { Suspense } from "react";
 import LoadingPage from "../loading";
 import Image from "next/image";
@@ -36,7 +36,6 @@ function Login() {
           <p className="pb-3">
             At the moment, we only support <b>Google</b> accounts.
           </p>
-          {/* <p className="pb-3">Sign-In or Sign Up with the button below:</p> */}
           <div className=" text-center  ">
             <SignInPageButton />
           </div>
