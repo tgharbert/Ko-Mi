@@ -37,7 +37,6 @@ const FriendsDropDown = ({
 
   const handleShareIngredients = async () => {
     const response = await shareIngredients(friend);
-    // console.log(response);
     // need to handle error for other cases??
     if (response === "success") {
       openSnackbar();
