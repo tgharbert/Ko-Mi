@@ -19,6 +19,7 @@ type Recipe = {
   recipeYield: number;
   totalTime: string;
   url: string;
+  userId: string;
 };
 
 type CustomRecipe = {

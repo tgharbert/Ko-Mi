@@ -10,13 +10,14 @@ import Collapse from "@mui/material/Collapse";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 // import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import MoreVertIcon from "@mui/icons-material/MoreVert";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 import AddIngredientsButton from "./AddIngredientsButton";
 import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
+import MoreRecipeClick from "./MoreRecipeClick";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -33,7 +34,13 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
+export default function RecipeReviewCard({
+  recipe,
+  user,
+}: {
+  recipe: Recipe;
+  user: User;
+}) {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -48,15 +55,35 @@ export default function RecipeReviewCard({ recipe }: { recipe: Recipe }) {
       <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
         <div className="bg-tertiary">
           <CardHeader
-            // action={
-            //   <IconButton aria-label="settings">
-            //     <MoreVertIcon />
-            //   </IconButton>
-            // }
+            action={
+              <IconButton aria-label="settings">
+                {user.name === recipe.author || user.id !== recipe.userId ? (
+                  <MoreRecipeClick
+                    user={user}
+                    added={recipe.userId}
+                    author={recipe.author}
+                    recipeId={recipe.id}
+                  />
+                ) : (
+                  <></>
+                )}
+              </IconButton>
+            }
             title={
-              <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
-                {he.decode(recipe.name)}
-              </h2>
+              <span>
+                <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
+                  {he.decode(recipe.name)}
+                </h2>
+                {/* {user.name === recipe.author || user.id !== recipe.userId ? (
+                  <MoreRecipeClick
+                    user={user}
+                    added={recipe.userId}
+                    author={recipe.author}
+                  />
+                ) : (
+                  <></>
+                )} */}
+              </span>
             }
           />
           <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
