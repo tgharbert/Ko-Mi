@@ -1,8 +1,18 @@
 import ModifyIngredients from "./ModifyIngredients";
+import Image from "next/image";
 
 const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
   return (
     <form>
+      <div className="flex justify-center">
+        <Image
+          className="rounded-lg"
+          src={recipe.image}
+          alt={`photo of ${recipe.name}`}
+          width={200}
+          height={200}
+        ></Image>
+      </div>
       <h1 className="text-xl font-semibold mb-2">{recipe.name}</h1>
       {/* need to figure out the onchange */}
       <div className="pb-4">
