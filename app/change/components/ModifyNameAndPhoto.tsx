@@ -42,28 +42,32 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
   }
 
   return (
-    <form action={modifyNameAndPhoto}>
-      <div className="flex justify-center">
+    <form action={modifyNameAndPhoto} className="pb-6">
+      <div className="flex justify-center pb-4">
         <Image
           className="rounded-lg"
           src={recipe.image}
           alt={`photo of ${recipe.name}`}
-          width={200}
-          height={200}
+          width={300}
+          height={300}
         ></Image>
       </div>
       <Button
-        role={undefined}
-        className="px-4"
+        className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
         variant="contained"
-        tabIndex={-1}
         startIcon={<CloudUploadIcon />}
       >
-        <input type="file" name="photo"></input>
+        <input
+          type="file"
+          name="photo"
+          // making the input invisible
+          className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+        ></input>
+        Upload New Photo
       </Button>
-      <h1 className="text-xl font-semibold mb-2">{recipe.name}</h1>
-      <div className="pb-4">
-        <h3 className="text-lg">Name:</h3>
+      {/* <h1 className="text-xl font-semibold mb-2">{recipe.name}</h1> */}
+      <div className="pb-4 pt-4">
+        {/* <h3 className="text-lg">Name:</h3> */}
         <input
           className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
           type="text"
@@ -71,7 +75,7 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           defaultValue={`${recipe.name}`}
         />
       </div>
-      <Button>UPDATE</Button>
+      <Button variant="contained">Update Name and Photo</Button>
     </form>
   );
 };
