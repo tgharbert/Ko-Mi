@@ -30,7 +30,7 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
         .from("images")
         .upload(filename, buffer, {
           contentType: rawFormData.photo.type,
-          cacheControl: "3600",
+          // cacheControl: "3600",
           upsert: true,
         });
       updatePhoto(recipe.id, recipeAddress);
@@ -43,6 +43,7 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
 
   return (
     <form action={modifyNameAndPhoto} className="pb-6">
+      <h1 className="text-2xl">{recipe.name}</h1>
       <div className="flex justify-center pb-4">
         <Image
           className="rounded-lg"
@@ -52,22 +53,21 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           height={300}
         ></Image>
       </div>
-      <Button
+      {/* <Button
         className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
         variant="contained"
         startIcon={<CloudUploadIcon />}
-      >
-        <input
-          type="file"
-          name="photo"
-          // making the input invisible
-          className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
-        ></input>
-        Upload New Photo
-      </Button>
-      {/* <h1 className="text-xl font-semibold mb-2">{recipe.name}</h1> */}
+      > */}
+      <input
+        type="file"
+        name="photo"
+        // making the input invisible
+        className="rounded-xl bg-secondary hover:bg-lime-600 ml-2 px-2 pt-1 pb-1"
+        // className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+      ></input>
+      {/* Upload New Photo */}
+      {/* </Button> */}
       <div className="pb-4 pt-4">
-        {/* <h3 className="text-lg">Name:</h3> */}
         <input
           className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
           type="text"
@@ -75,7 +75,9 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           defaultValue={`${recipe.name}`}
         />
       </div>
-      <Button variant="contained">Update Name and Photo</Button>
+      <button className="ml-2 pt-1 pb-1 text-bold text-lg bg-secondary hover:bg-lime-600 rounded-lg px-4">
+        Update Name and Photo
+      </button>
     </form>
   );
 };

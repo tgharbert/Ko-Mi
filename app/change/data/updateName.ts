@@ -12,9 +12,10 @@ export default async function updateName(recipeId: number, name: string) {
       }
     })
     await prisma.$disconnect();
-    return new Response(JSON.stringify(recipe))
+    return
+    // return new Response(JSON.stringify(recipe))
   } catch (error) {
-    console.error("ERROR: ", error);
+    console.error("ERROR updating name: ", error);
     return new Response();
   }
 }
