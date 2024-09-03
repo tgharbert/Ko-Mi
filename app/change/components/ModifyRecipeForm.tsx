@@ -1,29 +1,10 @@
 import ModifyIngredients from "./ModifyIngredients";
-import Image from "next/image";
+import ModifyNameAndPhoto from "./ModifyNameAndPhoto";
 
 const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
   return (
-    <form>
-      <div className="flex justify-center">
-        <Image
-          className="rounded-lg"
-          src={recipe.image}
-          alt={`photo of ${recipe.name}`}
-          width={200}
-          height={200}
-        ></Image>
-      </div>
-      <h1 className="text-xl font-semibold mb-2">{recipe.name}</h1>
-      {/* need to figure out the onchange */}
-      <div className="pb-4">
-        <h3 className="text-lg">Name:</h3>
-        <input
-          className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
-          type="text"
-          defaultValue={`${recipe.name}`}
-        />
-      </div>
-
+    <div>
+      <ModifyNameAndPhoto recipe={recipe} />
       {/* INGREDIENTS */}
       <h3 className="text-lg">Ingredients:</h3>
       <div className="overflow-auto h-80">
@@ -31,8 +12,7 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
         <ModifyIngredients ingredients={recipe.ingredients} />
       </div>
       {/* METHOD */}
-      {/* PHOTO */}
-    </form>
+    </div>
   );
 };
 
