@@ -1,16 +1,44 @@
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import updateName from "../data/updateName";
+import updatePhoto from "../data/updatePhoto";
+import { revalidatePath } from "next/cache";
+import { supabase } from "@/lib/supabase";
+
 const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
   async function modifyNameAndPhoto(formData: FormData) {
     "use server";
     const rawFormData = {
-      name: formData.get("name"),
-      photo: formData.get("photo"),
+      name: formData.get("name") as string,
+      photo: formData.get("photo") as File,
     };
 
-    console.log(rawFormData);
-    // write this to the db???
+    let newName = rawFormData.name;
+    if (newName) {
+      newName = newName.toString();
+      await updateName(recipe.id, newName);
+    }
+
+    if (rawFormData.photo instanceof File) {
+      const arrayBuffer = await rawFormData.photo.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+
+      const filename = `${recipe.name}Photo`;
+      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
+      const { error } = await supabase.storage
+        .from("images")
+        .upload(filename, buffer, {
+          contentType: rawFormData.photo.type,
+          cacheControl: "3600",
+          upsert: true,
+        });
+      updatePhoto(recipe.id, recipeAddress);
+      if (error) {
+        console.error("error from upload: ", error);
+      }
+    }
+    revalidatePath(`/change/${recipe.id}`);
   }
 
   return (
@@ -25,7 +53,6 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
         ></Image>
       </div>
       <Button
-        // component="label"
         role={undefined}
         className="px-4"
         variant="contained"
@@ -44,6 +71,7 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           defaultValue={`${recipe.name}`}
         />
       </div>
+      <Button>UPDATE</Button>
     </form>
   );
 };

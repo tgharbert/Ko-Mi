@@ -9,7 +9,7 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
       <h3 className="text-lg">Ingredients:</h3>
       <div className="overflow-auto h-80">
         {/* I could reuse this component for the method, should be a scrollable div */}
-        <ModifyIngredients ingredients={recipe.ingredients} />
+        {/* <ModifyIngredients ingredients={recipe.ingredients} /> */}
       </div>
       {/* METHOD */}
     </div>
