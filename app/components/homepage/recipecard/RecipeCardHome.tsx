@@ -55,34 +55,24 @@ export default function RecipeReviewCard({
       <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
         <div className="bg-tertiary">
           <CardHeader
-            action={
-              <IconButton aria-label="settings">
-                {user.name === recipe.author || user.id !== recipe.userId ? (
-                  <MoreRecipeClick
-                    user={user}
-                    added={recipe.userId}
-                    author={recipe.author}
-                    recipeId={recipe.id}
-                  />
-                ) : (
-                  <></>
-                )}
-              </IconButton>
-            }
+            // action={<IconButton aria-label="settings"></IconButton>}
             title={
-              <span>
-                <h2 className="text-lg font-semibold flex-fill line-clamp-1 ">
+              <span className="inline-flex items-center">
+                <p className="text-lg font-semibold line-clamp-1 ">
                   {he.decode(recipe.name)}
-                </h2>
-                {/* {user.name === recipe.author || user.id !== recipe.userId ? (
-                  <MoreRecipeClick
-                    user={user}
-                    added={recipe.userId}
-                    author={recipe.author}
-                  />
-                ) : (
-                  <></>
-                )} */}
+                </p>
+                <div className="mb-2">
+                  {user.name === recipe.author || user.id !== recipe.userId ? (
+                    <MoreRecipeClick
+                      user={user}
+                      added={recipe.userId}
+                      author={recipe.author}
+                      recipeId={recipe.id}
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
               </span>
             }
           />

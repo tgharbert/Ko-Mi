@@ -1,24 +1,31 @@
 "use server";
 import verifyUser from "@/utils/verifyUser";
 import Header from "@/app/components/Header";
+import getRecipe from "@/app/change/data/getRecipe";
+import UnableToModify from "../components/UnableToModify";
+import ModifyRecipeForm from "../components/ModifyRecipeForm";
 
 export default async function ChangeRecipe({
   params,
 }: {
-  params: { slug: string };
+  params: { "recipe.id": number };
 }) {
-  await verifyUser();
+  const user = await verifyUser();
+  let recipeId: number = params["recipe.id"];
 
-  // I need to figure out a way to prevent users from altering indredients by manually entering url.
-
-  // do checks on the backend to ensure the user should be able to edit the recipe I'm retrieving
+  let response = await getRecipe(recipeId);
+  let recipe: Recipe = await response?.json();
 
   return (
     <div className="text-center flexbox content-center">
       <div className="-mt-12">
         <Header />
       </div>
-      <h1>HIIIII {params.slug} </h1>
+      {user?.name !== recipe.author ? (
+        <UnableToModify name={recipe.name} />
+      ) : (
+        <ModifyRecipeForm recipe={recipe} />
+      )}
     </div>
   );
 }

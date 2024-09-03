@@ -53,7 +53,6 @@ const MoreRecipeClick = ({
           "aria-labelledby": "basic-button",
         }}
       >
-        {/* THIS PAGE WILL BE /[RECIPE.ID] WHERE THE USER WILL BE ABLE TO ADD PHOTO AND MODIFY A RECIPE */}
         <Link href={`/change/${recipeId}`}>
           {user.name === author && (
             <MenuItem onClick={() => router.push(`/change/${recipeId}`)}>
