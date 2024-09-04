@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import updateMethods from "../data/updateMethod";
 
-const ModifyMethods = ({ methods }: { methods: string[] }) => {
+const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
   const [newMethods, setNewMethods] = useState<string[]>([]);
 
   useEffect(() => {
@@ -13,12 +14,13 @@ const ModifyMethods = ({ methods }: { methods: string[] }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let newIngs: string[] = [];
+    let methodValues: string[] = [];
     newMethods.forEach((method) => {
-      newIngs.push(method);
+      methodValues.push(method);
     });
     // do db work...
-    console.log(newIngs);
+    updateMethods(id, methodValues);
+    console.log(methodValues);
   };
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
@@ -69,7 +71,7 @@ const ModifyMethods = ({ methods }: { methods: string[] }) => {
           type="submit"
           className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4 text-white"
         >
-          Update Ingredients
+          Update Methods
         </button>
       </form>
     </div>
