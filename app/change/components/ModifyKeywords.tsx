@@ -6,7 +6,6 @@ import AddIcon from "@mui/icons-material/Add";
 const ModifyKeywords = ({ keywords }: { keywords: Keywords[] }) => {
   const [newKeywords, setNewKeywords] = useState<string[]>([]);
 
-  console.log("on render: ", keywords);
   useEffect(() => {
     const justNames = keywords.map((ing) => ing.name);
     setNewKeywords(justNames);

@@ -43,7 +43,15 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
 
   return (
     <form action={modifyNameAndPhoto} className="pb-6">
-      <h1 className="text-2xl">{recipe.name}</h1>
+      {/* <h1 className="text-2xl">{recipe.name}</h1> */}
+      <div className="pb-4 pt-4">
+        <input
+          className="text-black text-center font-bold rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
+          type="text"
+          name="name"
+          defaultValue={`${recipe.name}`}
+        />
+      </div>
       <div className="flex justify-center pb-4">
         <Image
           className="rounded-lg"
@@ -62,22 +70,16 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
         type="file"
         name="photo"
         // making the input invisible
-        className="rounded-xl bg-secondary hover:bg-lime-600 ml-2 px-2 pt-1 pb-1"
+        className="rounded-xl bg-secondary hover:bg-lime-600 ml-2 px-2 pt-1 pb-1 italic"
         // className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
       ></input>
       {/* Upload New Photo */}
       {/* </Button> */}
-      <div className="pb-4 pt-4">
-        <input
-          className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
-          type="text"
-          name="name"
-          defaultValue={`${recipe.name}`}
-        />
+      <div className="pt-4">
+        <button className="font-bold ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4">
+          Update Name and Photo
+        </button>
       </div>
-      <button className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4">
-        Update Name and Photo
-      </button>
     </form>
   );
 };

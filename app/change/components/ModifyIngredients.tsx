@@ -2,8 +2,15 @@
 import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import updateIngredients from "../data/updateIngredients";
 
-const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
+const ModifyIngredients = ({
+  id,
+  ingredients,
+}: {
+  id: number;
+  ingredients: Ingredient[];
+}) => {
   const [newIngredients, setNewIngredients] = useState<string[]>([]);
 
   useEffect(() => {
@@ -18,6 +25,7 @@ const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
       newIngs.push(ingredient);
     });
     // do db work...
+    updateIngredients(id, newIngs);
     console.log(newIngs);
   };
 
@@ -52,7 +60,7 @@ const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
               />
               <button
                 onClick={(e) => onDelClick(e, idx)}
-                className="pb-8 text-red-700"
+                className="text-red-700"
               >
                 <DeleteIcon />
               </button>

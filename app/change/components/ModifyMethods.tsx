@@ -52,7 +52,7 @@ const ModifyMethods = ({ methods }: { methods: string[] }) => {
               />
               <button
                 onClick={(e) => onDelClick(e, idx)}
-                className="pb-8 text-red-700"
+                className=" text-red-700"
               >
                 <DeleteIcon />
               </button>
