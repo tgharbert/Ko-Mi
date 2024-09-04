@@ -24,9 +24,7 @@ const ModifyIngredients = ({
     newIngredients.forEach((ingredient) => {
       newIngs.push(ingredient);
     });
-    // do db work...
     updateIngredients(id, newIngs);
-    console.log(newIngs);
   };
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {

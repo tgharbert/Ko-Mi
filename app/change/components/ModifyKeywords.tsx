@@ -24,7 +24,6 @@ const ModifyKeywords = ({
     newKeywords.forEach((keyword) => {
       newKeys.push(keyword);
     });
-    // do db work...
     updateKeywords(id, newKeys);
   };
 

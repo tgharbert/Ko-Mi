@@ -43,7 +43,6 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
 
   return (
     <form action={modifyNameAndPhoto} className="pb-6">
-      {/* <h1 className="text-2xl">{recipe.name}</h1> */}
       <div className="pb-4 pt-4">
         <input
           className="text-black text-center font-bold rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"

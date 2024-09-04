@@ -19,7 +19,6 @@ export default async function updateIngredients(recipeId: number, ingredients: s
     await prisma.$disconnect();
     revalidatePath(`/change/${recipeId}`)
     return
-    // return new Response(JSON.stringify(recipe))
   } catch (error) {
     console.error("ERROR updating name: ", error);
     return new Response();
