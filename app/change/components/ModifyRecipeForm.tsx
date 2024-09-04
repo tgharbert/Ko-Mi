@@ -1,6 +1,6 @@
 import ModifyIngredients from "./ModifyIngredients";
 import ModifyNameAndPhoto from "./ModifyNameAndPhoto";
-
+import ModifyMethods from "./ModifyMethods";
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -41,7 +41,7 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
               Recipe Method
             </AccordionSummary>
             <AccordionDetails>
-              <ModifyIngredients ingredients={recipe.ingredients} />
+              <ModifyMethods methods={recipe.instructions} />
             </AccordionDetails>
           </Accordion>
         </div>

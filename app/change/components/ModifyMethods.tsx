@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
-const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
-  const [newIngredients, setNewIngredients] = useState<string[]>([]);
+const ModifyMethods = ({ methods }: { methods: string[] }) => {
+  const [newMethods, setNewMethods] = useState<string[]>([]);
 
   useEffect(() => {
-    const justNames = ingredients.map((ing) => ing.name);
-    setNewIngredients(justNames);
-  }, [ingredients]);
+    const justNames = methods.map((ing) => ing);
+    setNewMethods(justNames);
+  }, [methods]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let newIngs: string[] = [];
-    newIngredients.forEach((ingredient) => {
-      newIngs.push(ingredient);
+    newMethods.forEach((method) => {
+      newIngs.push(method);
     });
     // do db work...
     console.log(newIngs);
@@ -23,21 +23,21 @@ const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
     e.preventDefault();
-    const newArray = newIngredients.filter((_, index) => index !== idx);
-    setNewIngredients(newArray);
+    const newArray = newMethods.filter((_, index) => index !== idx);
+    setNewMethods(newArray);
   };
 
   const onAddClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
     e.preventDefault();
-    let newArray = [...newIngredients];
+    let newArray = [...newMethods];
     newArray.splice(idx + 1, 0, "");
-    setNewIngredients(newArray);
+    setNewMethods(newArray);
   };
 
   return (
     <div className="overflow-auto ">
       <form onSubmit={handleSubmit} name="ingredientForm">
-        {newIngredients.map((ingredient: string, idx: number) => (
+        {newMethods.map((ingredient: string, idx: number) => (
           <div className="" key={idx}>
             <div className="flex justify-center item-center">
               <textarea
@@ -45,9 +45,9 @@ const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
                 className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
                 value={ingredient}
                 onChange={(e) => {
-                  const updatedIngredients = [...newIngredients];
+                  const updatedIngredients = [...newMethods];
                   updatedIngredients[idx] = e.target.value;
-                  setNewIngredients(updatedIngredients);
+                  setNewMethods(updatedIngredients);
                 }}
               />
               <button
@@ -76,4 +76,4 @@ const ModifyIngredients = ({ ingredients }: { ingredients: Ingredient[] }) => {
   );
 };
 
-export default ModifyIngredients;
+export default ModifyMethods;
