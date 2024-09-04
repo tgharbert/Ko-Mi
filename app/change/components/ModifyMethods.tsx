@@ -18,9 +18,7 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
     newMethods.forEach((method) => {
       methodValues.push(method);
     });
-    // do db work...
     updateMethods(id, methodValues);
-    console.log(methodValues);
   };
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
@@ -47,9 +45,9 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
                 className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2  border-primary w-full sm:w-96"
                 value={ingredient}
                 onChange={(e) => {
-                  const updatedIngredients = [...newMethods];
-                  updatedIngredients[idx] = e.target.value;
-                  setNewMethods(updatedIngredients);
+                  const updatedMethods = [...newMethods];
+                  updatedMethods[idx] = e.target.value;
+                  setNewMethods(updatedMethods);
                 }}
               />
               <button

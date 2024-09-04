@@ -2,8 +2,15 @@
 import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import updateKeywords from "../data/updateKeywords";
 
-const ModifyKeywords = ({ keywords }: { keywords: Keywords[] }) => {
+const ModifyKeywords = ({
+  id,
+  keywords,
+}: {
+  id: number;
+  keywords: Keywords[];
+}) => {
   const [newKeywords, setNewKeywords] = useState<string[]>([]);
 
   useEffect(() => {
@@ -18,7 +25,7 @@ const ModifyKeywords = ({ keywords }: { keywords: Keywords[] }) => {
       newKeys.push(keyword);
     });
     // do db work...
-    console.log(newKeys);
+    updateKeywords(id, newKeys);
   };
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
@@ -37,17 +44,17 @@ const ModifyKeywords = ({ keywords }: { keywords: Keywords[] }) => {
   return (
     <div className=" ">
       <form onSubmit={handleSubmit} name="ingredientForm">
-        {newKeywords.map((ingredient: string, idx: number) => (
+        {newKeywords.map((keyword: string, idx: number) => (
           <div className="" key={idx}>
             <div className="flex justify-center item-center">
               <input
                 name={`ingredient-${idx}`}
                 className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-48 text-center"
-                value={ingredient}
+                value={keyword}
                 onChange={(e) => {
-                  const updatedIngredients = [...newKeywords];
-                  updatedIngredients[idx] = e.target.value;
-                  setNewKeywords(updatedIngredients);
+                  const updatedKeywords = [...newKeywords];
+                  updatedKeywords[idx] = e.target.value;
+                  setNewKeywords(updatedKeywords);
                 }}
               />
               <button
@@ -68,7 +75,7 @@ const ModifyKeywords = ({ keywords }: { keywords: Keywords[] }) => {
           type="submit"
           className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4 text-white"
         >
-          Update Ingredients
+          Update Keywords
         </button>
       </form>
     </div>

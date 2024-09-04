@@ -64,7 +64,7 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
               Recipe Keywords
             </AccordionSummary>
             <AccordionDetails>
-              <ModifyKeywords keywords={recipe.keywords} />
+              <ModifyKeywords id={recipe.id} keywords={recipe.keywords} />
             </AccordionDetails>
           </Accordion>
         </div>
