@@ -3,68 +3,68 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
-const ModifyMethods = ({ methods }: { methods: string[] }) => {
-  const [newMethods, setNewMethods] = useState<string[]>([]);
+const ModifyKeywords = ({ keywords }: { keywords: Keywords[] }) => {
+  const [newKeywords, setNewKeywords] = useState<string[]>([]);
 
+  console.log("on render: ", keywords);
   useEffect(() => {
-    const justNames = methods.map((ing) => ing);
-    setNewMethods(justNames);
-  }, [methods]);
+    const justNames = keywords.map((ing) => ing.name);
+    setNewKeywords(justNames);
+  }, [keywords]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let newIngs: string[] = [];
-    newMethods.forEach((method) => {
-      newIngs.push(method);
+    let newKeys: string[] = [];
+    newKeywords.forEach((keyword) => {
+      newKeys.push(keyword);
     });
     // do db work...
-    console.log(newIngs);
+    console.log(newKeys);
   };
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
     e.preventDefault();
-    const newArray = newMethods.filter((_, index) => index !== idx);
-    setNewMethods(newArray);
+    const newArray = newKeywords.filter((_, index) => index !== idx);
+    setNewKeywords(newArray);
   };
 
-  const onAddClick = (e: React.MouseEvent<HTMLButtonElement>, idx: number) => {
+  const onAddClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let newArray = [...newMethods];
-    newArray.splice(idx + 1, 0, "");
-    setNewMethods(newArray);
+    let newArray = [...newKeywords];
+    newArray.push("");
+    setNewKeywords(newArray);
   };
 
   return (
     <div className=" ">
       <form onSubmit={handleSubmit} name="ingredientForm">
-        {newMethods.map((ingredient: string, idx: number) => (
+        {newKeywords.map((ingredient: string, idx: number) => (
           <div className="" key={idx}>
             <div className="flex justify-center item-center">
-              <textarea
+              <input
                 name={`ingredient-${idx}`}
-                className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2  border-primary w-full sm:w-96"
+                className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-48 text-center"
                 value={ingredient}
                 onChange={(e) => {
-                  const updatedIngredients = [...newMethods];
+                  const updatedIngredients = [...newKeywords];
                   updatedIngredients[idx] = e.target.value;
-                  setNewMethods(updatedIngredients);
+                  setNewKeywords(updatedIngredients);
                 }}
               />
               <button
                 onClick={(e) => onDelClick(e, idx)}
-                className="pb-8 text-red-700"
+                className=" text-red-700"
               >
                 <DeleteIcon />
               </button>
             </div>
-            <button
-              onClick={(e) => onAddClick(e, idx)}
-              className="text-green-600"
-            >
-              <AddIcon />
-            </button>
           </div>
         ))}
+        <div>
+          <button onClick={(e) => onAddClick(e)} className="text-green-600">
+            <AddIcon />
+          </button>
+        </div>
         <button
           type="submit"
           className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4 text-white"
@@ -76,4 +76,4 @@ const ModifyMethods = ({ methods }: { methods: string[] }) => {
   );
 };
 
-export default ModifyMethods;
+export default ModifyKeywords;
