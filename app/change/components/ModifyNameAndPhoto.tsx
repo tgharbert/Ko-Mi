@@ -75,7 +75,7 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           defaultValue={`${recipe.name}`}
         />
       </div>
-      <button className="ml-2 pt-1 pb-1 text-bold text-lg bg-secondary hover:bg-lime-600 rounded-lg px-4">
+      <button className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4">
         Update Name and Photo
       </button>
     </form>

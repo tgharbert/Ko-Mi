@@ -17,7 +17,7 @@ export default async function ChangeRecipe({
   let recipe: Recipe = await response?.json();
 
   return (
-    <div className="text-center flexbox content-center">
+    <div className="text-center flexbox content-center pb-8">
       <div className="-mt-12">
         <Header />
       </div>
