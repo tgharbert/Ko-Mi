@@ -1,4 +1,4 @@
-const convertTime = (inputHours: string, inputMinutes: string) => {
+export default function convertTime (inputHours: string, inputMinutes: string) {
   const hrs = parseInt(inputHours, 10) || 0;
   const minutes = parseInt(inputMinutes, 10) || 0;
 
@@ -7,5 +7,3 @@ const convertTime = (inputHours: string, inputMinutes: string) => {
 
   return iso8601Duration;
 }
-
-export default convertTime;
