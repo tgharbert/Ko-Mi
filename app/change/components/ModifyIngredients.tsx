@@ -48,7 +48,7 @@ const ModifyIngredients = ({
             <div className="flex justify-center item-center">
               <textarea
                 name={`ingredient-${idx}`}
-                className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
+                className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full"
                 value={ingredient}
                 onChange={(e) => {
                   const updatedIngredients = [...newIngredients];

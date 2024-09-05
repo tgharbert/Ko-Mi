@@ -16,9 +16,9 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
       <ModifyNameAndPhoto recipe={recipe} />
 
       {/* HERE WILL BE THE DESCRIPTION, SERVING SIZE, AND COOK TIME ACCORDION */}
-      <div className="flex justify-center">
-        <div className="sm:w-2/5">
-          <Accordion className="rounded-lg">
+      <div className="flex justify-center ">
+        <div className="sm:w-2/5 w-full">
+          <Accordion className="rounded-lg ">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
@@ -40,7 +40,7 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
       </div>
 
       <div className="flex justify-center">
-        <div className="sm:w-2/5">
+        <div className="sm:w-2/5 w-full">
           <Accordion className="rounded-lg">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -60,8 +60,8 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <div className="sm:w-2/5">
+      <div className="flex justify-center ">
+        <div className="sm:w-2/5 w-full">
           <Accordion className="rounded-lg">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -79,7 +79,7 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
       </div>
 
       <div className="flex justify-center">
-        <div className="sm:w-2/5">
+        <div className="sm:w-2/5 w-full">
           <Accordion className="rounded-lg">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

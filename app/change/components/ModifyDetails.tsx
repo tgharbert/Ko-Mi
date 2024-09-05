@@ -32,23 +32,6 @@ const ModifyDetails = async ({
     );
   }
 
-  // function convertISO8601ToTimeString(duration: string): string {
-  //   const regex = /PT(\d+)M/; // Matches the number of minutes in the format PTXXXM
-  //   const matches = duration.match(regex);
-
-  //   if (!matches) return "Invalid format";
-
-  //   const totalMinutes = parseInt(matches[1]);
-  //   const hours = Math.floor(totalMinutes / 60);
-  //   const minutes = totalMinutes % 60;
-
-  //   let timeString = "";
-  //   if (hours > 0) timeString += `${hours} hour${hours > 1 ? "s" : ""} `;
-  //   if (minutes > 0) timeString += `${minutes} minute${minutes > 1 ? "s" : ""}`;
-
-  //   return timeString.trim();
-  // }
-
   // wrap all of this into a single function and put it in utils
   const timeString = convertISO8601ToTimeString(time);
   const timeArr = timeString.split(" ");
@@ -75,10 +58,10 @@ const ModifyDetails = async ({
   let hours = getHours(timeArr);
 
   return (
-    <div>
+    <div className="">
       <form action={modifyDetails}>
         <textarea
-          className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
+          className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full h-40"
           name="description"
           defaultValue={description}
         ></textarea>
