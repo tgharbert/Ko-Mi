@@ -7,6 +7,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ModifyKeywords from "./ModifyKeywords";
+import ModifyDetails from "./ModifyDetails";
 
 const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
   return (
@@ -14,6 +15,28 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
       <ModifyNameAndPhoto recipe={recipe} />
 
       {/* HERE WILL BE THE DESCRIPTION, SERVING SIZE, AND COOK TIME ACCORDION */}
+      <div className="flex justify-center">
+        <div className="sm:w-2/5">
+          <Accordion className="rounded-lg">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              className="font-semibold text-center"
+            >
+              Recipe Details
+            </AccordionSummary>
+            <AccordionDetails>
+              <ModifyDetails
+                id={recipe.id}
+                description={recipe.description}
+                recipeYield={recipe.recipeYield}
+                time={recipe.cookTime}
+              />
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      </div>
 
       <div className="flex justify-center">
         <div className="sm:w-2/5">
