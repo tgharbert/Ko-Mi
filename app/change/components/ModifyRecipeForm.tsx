@@ -1,3 +1,4 @@
+"use server";
 import ModifyIngredients from "./ModifyIngredients";
 import ModifyNameAndPhoto from "./ModifyNameAndPhoto";
 import ModifyMethods from "./ModifyMethods";
