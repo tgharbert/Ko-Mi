@@ -18,8 +18,6 @@ import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
 import MoreRecipeClick from "./MoreRecipeClick";
-import theme from "tailwindcss/defaultTheme";
-import { ThemeProvider } from "@emotion/react";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -77,18 +75,6 @@ export default function RecipeReviewCard({
                   alt={`image of ${recipe.name}`}
                 />
               </div>
-              {/* <div className="absolute bottom-0 right-0 bg-tertiary mr-4 mb-2 pb-4 rounded-2xl">
-                {user.name === recipe.author || user.id !== recipe.userId ? (
-                  <MoreRecipeClick
-                    user={user}
-                    added={recipe.userId}
-                    author={recipe.author}
-                    recipeId={recipe.id}
-                  />
-                ) : (
-                  <></>
-                )}
-              </div> */}
             </div>
           </div>
           <CardContent>
@@ -96,7 +82,8 @@ export default function RecipeReviewCard({
               <div className="relative">
                 <p className="pb-2 italic">by: {recipe.author}</p>
                 <div className="absolute bottom-0 right-0 bg-tertiary pb-4 rounded-2xl">
-                  {user.name === recipe.author || user.id !== recipe.userId ? (
+                  {/* REMOVED THIS CONDITIONAL UNTIL FUNCTIONALITY IS ADDED || user.id !== recipe.userId */}
+                  {user.name === recipe.author ? (
                     <MoreRecipeClick
                       user={user}
                       added={recipe.userId}
