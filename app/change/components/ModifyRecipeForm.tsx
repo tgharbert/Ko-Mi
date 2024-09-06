@@ -15,7 +15,6 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
     <div className="flexbox mr-8 ml-8 sm:mr-20 sm:ml-20 ">
       <ModifyNameAndPhoto recipe={recipe} />
 
-      {/* HERE WILL BE THE DESCRIPTION, SERVING SIZE, AND COOK TIME ACCORDION */}
       <div className="flex justify-center ">
         <div className="sm:w-2/5 w-full">
           <Accordion className="rounded-lg ">

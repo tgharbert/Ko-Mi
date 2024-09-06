@@ -18,6 +18,8 @@ import InstructionAccordion from "../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
 import MoreRecipeClick from "./MoreRecipeClick";
+import theme from "tailwindcss/defaultTheme";
+import { ThemeProvider } from "@emotion/react";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -55,13 +57,45 @@ export default function RecipeReviewCard({
       <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
         <div className="bg-tertiary">
           <CardHeader
-            // action={<IconButton aria-label="settings"></IconButton>}
+            action={<IconButton aria-label="settings"></IconButton>}
             title={
-              <span className="inline-flex items-center">
+              <div className="inline-flex items-center">
                 <p className="text-lg font-semibold line-clamp-1 ">
                   {he.decode(recipe.name)}
                 </p>
-                <div className="mb-2">
+              </div>
+            }
+          />
+          <div className="relative">
+            <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
+              <div className="flex content-center  items-center  ">
+                <Image
+                  className="overflow-hidden rounded-lg "
+                  height={188}
+                  width={330}
+                  src={recipe.image}
+                  alt={`image of ${recipe.name}`}
+                />
+              </div>
+              {/* <div className="absolute bottom-0 right-0 bg-tertiary mr-4 mb-2 pb-4 rounded-2xl">
+                {user.name === recipe.author || user.id !== recipe.userId ? (
+                  <MoreRecipeClick
+                    user={user}
+                    added={recipe.userId}
+                    author={recipe.author}
+                    recipeId={recipe.id}
+                  />
+                ) : (
+                  <></>
+                )}
+              </div> */}
+            </div>
+          </div>
+          <CardContent>
+            {recipe.author ? (
+              <div className="relative">
+                <p className="pb-2 italic">by: {recipe.author}</p>
+                <div className="absolute bottom-0 right-0 bg-tertiary pb-4 rounded-2xl">
                   {user.name === recipe.author || user.id !== recipe.userId ? (
                     <MoreRecipeClick
                       user={user}
@@ -73,23 +107,7 @@ export default function RecipeReviewCard({
                     <></>
                   )}
                 </div>
-              </span>
-            }
-          />
-          <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
-            <div className="flex content-center  items-center  ">
-              <Image
-                className="overflow-hidden rounded-lg "
-                height={188}
-                width={330}
-                src={recipe.image}
-                alt={`image of ${recipe.name}`}
-              />
-            </div>
-          </div>
-          <CardContent>
-            {recipe.author ? (
-              <p className="pb-2 italic">by: {recipe.author}</p>
+              </div>
             ) : (
               <p className="pb-2 italic">No listed author</p>
             )}

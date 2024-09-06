@@ -42,7 +42,7 @@ const MoreRecipeClick = ({
         aria-label="open-menu"
       >
         {/* CHANGE THIS TO THE EDIT ICON?? */}
-        <MoreVertIcon />
+        <MoreVertIcon className=" text-black" />
       </Button>
       <Menu
         id="basic-menu"

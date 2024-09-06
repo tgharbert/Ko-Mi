@@ -59,18 +59,20 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           height={300}
         ></Image>
       </div>
-      <input
-        type="file"
-        name="photo"
-        className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
-      />
-      <label
-        htmlFor="file-upload"
-        className="cursor-pointer bg-secondary text-white hover:bg-lime-600 ml-2 px-4 py-2 rounded-lg italic"
-      >
-        <CloudUploadIcon className="mr-4" />
-        Click to Upload Photo
-      </label>
+      <div className="relative inline-block cursor-pointer ">
+        <input
+          type="file"
+          name="photo"
+          className="opacity-0 absolute inset-0 w-full h-full cursor-pointer "
+        ></input>
+        <label
+          htmlFor="file-upload"
+          className="cursor-pointer bg-secondary text-white hover:bg-lime-600 ml-2 px-4 py-2 rounded-lg italic"
+        >
+          <CloudUploadIcon className="mr-2 pb-1 cursor-pointer" />
+          Click to Upload Photo
+        </label>
+      </div>
       <div className="pt-4">
         <button className="font-bold ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4">
           Update Name and Photo
