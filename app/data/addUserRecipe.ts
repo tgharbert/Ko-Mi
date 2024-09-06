@@ -24,7 +24,6 @@ export async function addUserRecipe(recipeId: number) {
       let added = await prisma.recipe.create({
         data: {...newRecipe}
       });
-      console.log("added: ", added)
     }
     await prisma.$disconnect();
     return;

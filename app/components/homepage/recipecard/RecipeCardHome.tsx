@@ -89,6 +89,7 @@ export default function RecipeReviewCard({
                       added={recipe.userId}
                       author={recipe.author}
                       recipeId={recipe.id}
+                      recipeName={recipe.name}
                     />
                   ) : (
                     <></>
