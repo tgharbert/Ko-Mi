@@ -57,7 +57,7 @@ export default async function Home({
           currentPage={currentPage}
           random={random}
           all={all}
-          id={user.id}
+          user={user}
           getUserRecipes={getUserRecipes}
         />
       </Suspense>

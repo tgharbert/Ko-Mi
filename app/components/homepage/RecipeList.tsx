@@ -13,7 +13,7 @@ function RecipeList({
   all,
   currentPage,
   getUserRecipes,
-  id,
+  user,
 }: {
   query: String;
   category: String;
@@ -21,7 +21,7 @@ function RecipeList({
   all: String;
   currentPage: number;
   getUserRecipes: Function;
-  id: string;
+  user: User;
 }) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +51,7 @@ function RecipeList({
       category,
       all,
       random,
-      id
+      user.id
     );
     if (userRecipes.length === 0) {
       setIsLoading(false);
@@ -60,7 +60,7 @@ function RecipeList({
     setRecipes((prevRecipes) => [...prevRecipes, ...userRecipes]);
     setPage((prevPage) => prevPage + 1);
     setIsLoading(false);
-  }, [page, isLoading, query, random, all, category, getUserRecipes, id]);
+  }, [page, isLoading, query, random, all, category, getUserRecipes, user.id]);
 
   useEffect(() => {
     let curr = loaderRef.current;
@@ -85,7 +85,7 @@ function RecipeList({
       <div className="sm:flex justify-center items-center pb-8">
         <div className="grid xl:grid-cols-3 gap-2 sm:w-4/5 lg:grid-cols-2">
           {recipes.map((recipe: Recipe) => {
-            return <RecipeCard key={recipe.id} recipe={recipe} />;
+            return <RecipeCard key={recipe.id} recipe={recipe} user={user} />;
           })}
         </div>
       </div>
