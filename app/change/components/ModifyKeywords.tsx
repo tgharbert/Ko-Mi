@@ -22,7 +22,8 @@ const ModifyKeywords = ({
     e.preventDefault();
     let newKeys: string[] = [];
     newKeywords.forEach((keyword) => {
-      newKeys.push(keyword);
+      // cover for emtpy values
+      if (keyword.replace(/ /g, "") !== "") newKeys.push(keyword);
     });
     updateKeywords(id, newKeys);
   };
@@ -45,7 +46,7 @@ const ModifyKeywords = ({
       <form onSubmit={handleSubmit} name="ingredientForm">
         {newKeywords.map((keyword: string, idx: number) => (
           <div className="" key={idx}>
-            <div className="flex justify-center item-center">
+            <div className="flex justify-center item-center pl-6">
               <input
                 name={`ingredient-${idx}`}
                 className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-48 text-center"

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import updateName from "../data/updateName";
 import updatePhoto from "../data/updatePhoto";
@@ -60,20 +59,18 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
           height={300}
         ></Image>
       </div>
-      {/* <Button
-        className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
-        variant="contained"
-        startIcon={<CloudUploadIcon />}
-      > */}
       <input
         type="file"
         name="photo"
-        // making the input invisible
-        className="rounded-xl bg-secondary hover:bg-lime-600 ml-2 px-2 pt-1 pb-1 italic"
-        // className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
-      ></input>
-      {/* Upload New Photo */}
-      {/* </Button> */}
+        className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+      />
+      <label
+        htmlFor="file-upload"
+        className="cursor-pointer bg-secondary text-white hover:bg-lime-600 ml-2 px-4 py-2 rounded-lg italic"
+      >
+        <CloudUploadIcon className="mr-4" />
+        Click to Upload Photo
+      </label>
       <div className="pt-4">
         <button className="font-bold ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4">
           Update Name and Photo

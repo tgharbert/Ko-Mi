@@ -22,7 +22,7 @@ const ModifyIngredients = ({
     e.preventDefault();
     let newIngs: string[] = [];
     newIngredients.forEach((ingredient) => {
-      newIngs.push(ingredient);
+      if (ingredient.replace(/ /g, "") !== "") newIngs.push(ingredient);
     });
     updateIngredients(id, newIngs);
   };
@@ -58,14 +58,14 @@ const ModifyIngredients = ({
               />
               <button
                 onClick={(e) => onDelClick(e, idx)}
-                className="text-red-700"
+                className="text-red-500"
               >
                 <DeleteIcon />
               </button>
             </div>
             <button
               onClick={(e) => onAddClick(e, idx)}
-              className="text-green-600"
+              className="text-lime-500"
             >
               <AddIcon />
             </button>

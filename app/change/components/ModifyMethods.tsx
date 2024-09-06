@@ -16,7 +16,7 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
     e.preventDefault();
     let methodValues: string[] = [];
     newMethods.forEach((method) => {
-      methodValues.push(method);
+      if (method.replace(/ /g, "") !== "") methodValues.push(method);
     });
     updateMethods(id, methodValues);
   };
@@ -52,14 +52,14 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
               />
               <button
                 onClick={(e) => onDelClick(e, idx)}
-                className=" text-red-700"
+                className=" text-red-500"
               >
                 <DeleteIcon />
               </button>
             </div>
             <button
               onClick={(e) => onAddClick(e, idx)}
-              className="text-green-600"
+              className="text-lime-500"
             >
               <AddIcon />
             </button>
