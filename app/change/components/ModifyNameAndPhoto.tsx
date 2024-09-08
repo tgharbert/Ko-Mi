@@ -20,6 +20,9 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
     }
 
     if (rawFormData.photo instanceof File) {
+      if (rawFormData.photo.size === 0) {
+        return;
+      }
       const arrayBuffer = await rawFormData.photo.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
