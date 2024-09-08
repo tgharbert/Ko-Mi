@@ -19,20 +19,17 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
       await updateName(recipe.id, newName);
     }
 
+    if (rawFormData.photo.size === 0) {
+      return;
+    }
+    const filename = `${recipe.name}Photo`;
+    const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
     if (rawFormData.photo instanceof File) {
-      if (rawFormData.photo.size === 0) {
-        return;
-      }
-      const arrayBuffer = await rawFormData.photo.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-
       const filename = `${recipe.name}Photo`;
-      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
       const { error } = await supabase.storage
         .from("images")
-        .upload(filename, buffer, {
+        .upload(filename, rawFormData.photo, {
           contentType: rawFormData.photo.type,
-          // cacheControl: "3600",
           upsert: true,
         });
       updatePhoto(recipe.id, recipeAddress);
