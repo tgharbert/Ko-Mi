@@ -48,6 +48,9 @@ export default function MainDropDownMenu() {
           Logout
           <LogoutIcon className="pl-1" />
         </MenuItem>
+        <Link href="/about">
+          <MenuItem>About</MenuItem>
+        </Link>
       </Menu>
     </div>
   );

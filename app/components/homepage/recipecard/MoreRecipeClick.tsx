@@ -19,12 +19,14 @@ const MoreRecipeClick = ({
   author,
   recipeId,
   recipeName,
+  uploadedBy,
 }: {
   user: User;
   added: string;
   author: string;
   recipeId: number;
   recipeName: string;
+  uploadedBy: string;
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -94,11 +96,19 @@ const MoreRecipeClick = ({
                   Modify
                 </MenuItem>
               </Link>
+              {/* <MenuItem onClick={() => setDeleteClick(!isDeleteClick)}>
+                Delete Recipe
+              </MenuItem> */}
+            </div>
+          )}
+          {user.id === uploadedBy}{" "}
+          {
+            <div>
               <MenuItem onClick={() => setDeleteClick(!isDeleteClick)}>
                 Delete Recipe
               </MenuItem>
             </div>
-          )}
+          }
           {user.id !== added && (
             <MenuItem onClick={() => addUserRecipe(recipeId)}>
               Add to my Ko-Mi
