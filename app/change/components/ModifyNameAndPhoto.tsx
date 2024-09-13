@@ -46,6 +46,7 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
         <input
           className="text-black text-center font-bold rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
           type="text"
+          accept="image/*,.pdf"
           name="name"
           defaultValue={`${recipe.name}`}
         />

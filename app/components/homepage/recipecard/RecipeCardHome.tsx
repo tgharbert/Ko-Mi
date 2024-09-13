@@ -65,7 +65,7 @@ export default function RecipeReviewCard({
             }
           />
           <div className="relative">
-            <div className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
+            <figure className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
               <div className="flex content-center  items-center  ">
                 <Image
                   className="overflow-hidden rounded-lg "
@@ -75,7 +75,7 @@ export default function RecipeReviewCard({
                   alt={`image of ${recipe.name}`}
                 />
               </div>
-            </div>
+            </figure>
           </div>
           <CardContent>
             {recipe.author ? (
@@ -83,13 +83,14 @@ export default function RecipeReviewCard({
                 <p className="pb-2 italic">by: {recipe.author}</p>
                 <div className="absolute bottom-0 right-0 bg-tertiary pb-4 rounded-2xl">
                   {/* REMOVED THIS CONDITIONAL UNTIL FUNCTIONALITY IS ADDED || user.id !== recipe.userId */}
-                  {user.name === recipe.author ? (
+                  {user.name === recipe.author || user.id === recipe.userId ? (
                     <MoreRecipeClick
                       user={user}
                       added={recipe.userId}
                       author={recipe.author}
                       recipeId={recipe.id}
                       recipeName={recipe.name}
+                      uploadedBy={recipe.userId}
                     />
                   ) : (
                     <></>
@@ -108,7 +109,6 @@ export default function RecipeReviewCard({
             </div>
           </CardContent>
           <CardActions disableSpacing className="-mt-4">
-            {/* CHANGE THIS TO A MODAL WINDOW THAT POPS UP */}
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
