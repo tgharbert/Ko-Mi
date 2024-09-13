@@ -22,22 +22,26 @@ const Friends = async () => {
               and Ko-Mi is my creation!
             </p>
             <p className="pb-3 xl:pr-20 xl:pl-20">
-              As both a passionate home cook and engineer, I wanted to create a
-              simple, streamlined application that would help me keep track of
-              my favorite recipes, build shopping lists, and share my passion
-              with other home cooks.
+              As both a passionate home cook and an engineer, I set out to
+              create a simple, intuitive application. My goal home cooks like
+              myself track of their favorite recipes, streamline grocery
+              shopping, and share the joy of cooking with other likeminded
+              people.
             </p>
             <p className="pb-3 xl:pr-20 xl:pl-20">
-              Ko-Mi is a PWA (Progressive Web App), which means that you can
+              Ko-Mi is a PWA (Progressive Web App). This means that you can
               download it onto your mobile devices just like any other app! Your
               internet browser should have a process that allows you to download
               the page. For more information see this link:
             </p>
-            <Link href="https://www.bitcot.com/how-to-install-a-pwa-to-your-device/#What_is_a_Progressive_Web_Application_PWA">
-              <p className="underline text-secondary font-bold">
-                PWA Install Guide
-              </p>
-            </Link>
+            <p className="pb-3 xl:pr-20 xl:pl-20">
+              For more information see this link:{" "}
+              <Link href="https://www.bitcot.com/how-to-install-a-pwa-to-your-device/#What_is_a_Progressive_Web_Application_PWA">
+                <span className="underline text-secondary font-bold">
+                  PWA Install Guide
+                </span>
+              </Link>
+            </p>
           </div>
         </div>
       </Suspense>
