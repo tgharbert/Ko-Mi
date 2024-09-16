@@ -1,6 +1,8 @@
 'use server'
 import prisma from "@/app/api/_base"
 export default async function updatePhoto(recipeId: number, address: string) {
+  console.log("HIT THE END OF THE UPDATE PHOTO FUNC", address)
+
   try {
     let target = Number(recipeId)
     let recipe = await prisma.recipe.update({

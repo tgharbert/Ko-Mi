@@ -37,10 +37,12 @@ const ModifyDetails = async ({
   const timeArr = timeString.split(" ");
 
   const getHours = (timeArr: string[]) => {
-    const hoursIdx = timeArr.indexOf("hours") - 1;
+    let hoursIdx = timeArr.indexOf("hours") - 1;
+    if (timeArr.indexOf("hours") < 0) {
+      hoursIdx = timeArr.indexOf("hour") - 1;
+    }
     const hours = timeArr[hoursIdx];
     if (hours) {
-      console.log("hours: ", hours);
       return hours;
     }
     return "0";

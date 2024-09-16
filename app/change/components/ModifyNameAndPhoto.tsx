@@ -8,36 +8,51 @@ import { supabase } from "@/lib/supabase";
 const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
   async function modifyNameAndPhoto(formData: FormData) {
     "use server";
-    const rawFormData = {
-      name: formData.get("name") as string,
-      photo: formData.get("photo") as File,
-    };
+    console.log("submitted name and photo");
+    try {
+      const rawFormData = {
+        name: formData.get("name") as string,
+        photo: formData.get("photo") as File,
+      };
 
-    let newName = rawFormData.name;
-    if (newName) {
-      newName = newName.toString();
-      await updateName(recipe.id, newName);
-    }
+      let newName = rawFormData.name;
+      if (newName) {
+        newName = newName.toString();
+        await updateName(recipe.id, newName);
+      }
 
-    if (rawFormData.photo.size === 0) {
+      if (rawFormData.photo.size === 0) {
+        return;
+      }
+      const filename = `${recipe.name}Photo`;
+      // delete photo file
+      // const { error } = await supabase.storage.from("images").remove([filename]);
+      // if (error) {
+      //   console.error("error deleting old photo: ", error);
+      //   return;
+      // }
+
+      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
+      if (rawFormData.photo instanceof File) {
+        // const filename = `${recipe.name}Photo`;
+        const { error } = await supabase.storage
+          .from("images")
+          .upload(filename, rawFormData.photo, {
+            contentType: rawFormData.photo.type,
+            cacheControl: "3600",
+            upsert: true,
+          });
+        if (error) {
+          console.error("error from upload: ", error);
+          return;
+        }
+        updatePhoto(recipe.id, recipeAddress);
+      }
+      revalidatePath(`/change/${recipe.id}`);
+    } catch (error) {
+      console.error("error on submission: ", error);
       return;
     }
-    const filename = `${recipe.name}Photo`;
-    const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
-    if (rawFormData.photo instanceof File) {
-      const filename = `${recipe.name}Photo`;
-      const { error } = await supabase.storage
-        .from("images")
-        .upload(filename, rawFormData.photo, {
-          contentType: rawFormData.photo.type,
-          upsert: true,
-        });
-      updatePhoto(recipe.id, recipeAddress);
-      if (error) {
-        console.error("error from upload: ", error);
-      }
-    }
-    revalidatePath(`/change/${recipe.id}`);
   }
 
   return (
@@ -64,7 +79,9 @@ const ModifyNameAndPhoto = async ({ recipe }: { recipe: Recipe }) => {
         <input
           type="file"
           name="photo"
-          className="opacity-0 absolute inset-0 w-full h-full cursor-pointer "
+          className=" absolute inset-0 w-full h-full cursor-pointer "
+
+          // className="opacity-0 absolute inset-0 w-full h-full cursor-pointer "
         ></input>
         <label
           htmlFor="file-upload"
