@@ -20,6 +20,7 @@ const ModifyNameAndPhoto = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
+  const [name, setName] = useState(recipe.name);
 
   // Handle image selection
   const handleImageChange = (e: any) => {
@@ -34,25 +35,29 @@ const ModifyNameAndPhoto = ({
     // SO THE ISSUE HERE IS THAT HEIC ISN'T A FORMAT THAT BROWSERS SUPPORT....
     // OPTION IS TO USE THIRD PARTY LIB THAT WILL DO A CONVERSION....
     e.preventDefault();
-    if (!selectedImage) {
-      alert("Please select an image to upload.");
+    if (!selectedImage && name === recipe.name) {
       return;
+    } else if (!selectedImage) {
+      updateName(recipe.id, name);
+      revalidate;
+    } else {
+      const filename = `${recipe.name}Photo-${new Date().getTime()}`;
+      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
+      const { error } = await supabase.storage
+        .from("images")
+        .upload(filename, selectedImage, {
+          contentType: selectedImage.type,
+          cacheControl: "3600",
+          upsert: true,
+        });
+      // adjust this value to accept and adjust name as well....
+      updatePhoto(recipe.id, recipeAddress, name);
+      setSelectedImage(recipeAddress);
+      if (error) {
+        console.error("error from upload: ", error);
+      }
+      // revalidate();
     }
-    const filename = `${recipe.name}Photo-${new Date().getTime()}`;
-    const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
-    const { error } = await supabase.storage
-      .from("images")
-      .upload(filename, selectedImage, {
-        contentType: selectedImage.type,
-        cacheControl: "3600",
-        upsert: true,
-      });
-    updatePhoto(recipe.id, recipeAddress);
-    setSelectedImage(recipeAddress);
-    if (error) {
-      console.error("error from upload: ", error);
-    }
-    revalidate();
   };
 
   const VisuallyHiddenInput = styled("input")({
@@ -76,6 +81,9 @@ const ModifyNameAndPhoto = ({
             type="text"
             accept="image/*,.pdf"
             name="name"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
             defaultValue={`${recipe.name}`}
           />
         </div>
@@ -111,12 +119,14 @@ const ModifyNameAndPhoto = ({
             ""
           )}
         </div>
-
-        <div className="">
-          <Button className="bg-lime-500 px-4" variant="contained" color="lime">
-            Update Name and Photo
-          </Button>
-        </div>
+        <Button
+          className="bg-lime-500 px-4"
+          variant="contained"
+          color="lime"
+          onClick={handleSubmit}
+        >
+          Update Name and Photo
+        </Button>
       </form>
     </ThemeProvider>
   );
