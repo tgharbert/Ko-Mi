@@ -9,11 +9,17 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ModifyKeywords from "./ModifyKeywords";
 import ModifyDetails from "./ModifyDetails";
+import { revalidatePath } from "next/cache";
 
 const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
+  const revalidate = () => {
+    "use server";
+    revalidatePath(`/change/${recipe.id}`);
+  };
+
   return (
     <div className="flexbox mr-8 ml-8 sm:mr-20 sm:ml-20 ">
-      <ModifyNameAndPhoto recipe={recipe} />
+      <ModifyNameAndPhoto recipe={recipe} revalidate={revalidate} />
 
       <div className="flex justify-center ">
         <div className="sm:w-2/5 w-full">
