@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import updateMethods from "../data/updateMethod";
+import Button from "@mui/material/Button";
+import { ThemeProvider } from "@emotion/react";
+import theme from "@/mui-styles/styles";
 
 const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
   const [newMethods, setNewMethods] = useState<string[]>([]);
@@ -12,7 +15,7 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
     setNewMethods(justNames);
   }, [methods]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
     let methodValues: string[] = [];
     newMethods.forEach((method) => {
@@ -35,8 +38,8 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
   };
 
   return (
-    <div className=" ">
-      <form onSubmit={handleSubmit} name="ingredientForm">
+    <ThemeProvider theme={theme}>
+      <div>
         {newMethods.map((ingredient: string, idx: number) => (
           <div className="" key={idx}>
             <div className="flex justify-center item-center">
@@ -65,14 +68,16 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
             </button>
           </div>
         ))}
-        <button
-          type="submit"
-          className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4 text-white"
+        <Button
+          className="bg-lime-500 px-4"
+          variant="contained"
+          color="lime"
+          onClick={handleSubmit}
         >
           Update Methods
-        </button>
-      </form>
-    </div>
+        </Button>
+      </div>
+    </ThemeProvider>
   );
 };
 
