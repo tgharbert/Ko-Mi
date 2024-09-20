@@ -7,9 +7,10 @@ import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import theme from "@/mui-styles/styles";
-
+import heic2any from "heic2any";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import LoadingPage from "@/app/loading";
 
 const ModifyNameAndPhoto = ({
   recipe,
@@ -20,15 +21,37 @@ const ModifyNameAndPhoto = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState(recipe.name);
 
   // Handle image selection
-  const handleImageChange = (e: any) => {
+  const handleImageChange = async (e: any) => {
     const file = e.target.files[0]; // Get the selected file
-    if (file) {
+
+    const fileType = file.type;
+    if (fileType === "image/heic" || fileType === "image/heif") {
+      try {
+        setIsLoading(true);
+        const convertedImage = await heic2any({
+          blob: file,
+          toType: "image/jpg",
+        });
+        setIsLoading(false);
+        setSelectedImage(convertedImage);
+        let val;
+        Array.isArray(convertedImage)
+          ? (val = convertedImage[0])
+          : (val = convertedImage);
+        setPreviewUrl(URL.createObjectURL(val));
+      } catch (error) {
+        console.error("Error converted .heic/.heif image: ", error);
+      }
+    } else {
       setSelectedImage(file); // Set the file in state
       setPreviewUrl(URL.createObjectURL(file)); // Generate a preview URL for the image
     }
+    // if (file) {
+    // }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,7 +79,6 @@ const ModifyNameAndPhoto = ({
       if (error) {
         console.error("error from upload: ", error);
       }
-      // revalidate();
     }
   };
 
@@ -88,13 +110,20 @@ const ModifyNameAndPhoto = ({
           />
         </div>
         <div className="flex justify-center pb-4">
-          <Image
-            className="rounded-lg"
-            src={previewUrl ? previewUrl : recipe.image}
-            alt={`photo of ${recipe.name}`}
-            width={300}
-            height={300}
-          ></Image>
+          {isLoading ? (
+            <div className="pb-4">
+              <h2 className="bold italic text-xl">Processing Image...</h2>
+              <LoadingPage />
+            </div>
+          ) : (
+            <Image
+              className="rounded-lg"
+              src={previewUrl ? previewUrl : recipe.image}
+              alt={`photo of ${recipe.name}`}
+              width={300}
+              height={300}
+            ></Image>
+          )}
         </div>
         <div className="mb-4">
           <Button
@@ -110,14 +139,6 @@ const ModifyNameAndPhoto = ({
             Upload file
             <VisuallyHiddenInput type="file" />
           </Button>
-          {selectedImage !== null ? (
-            <p className="pb-2 pt-2">
-              <span className="italic pr-2">currently selected:</span>
-              <b>{selectedImage.name}</b>
-            </p>
-          ) : (
-            ""
-          )}
         </div>
         <Button
           className="bg-lime-500 px-4"
