@@ -24,7 +24,6 @@ const ModifyNameAndPhoto = ({
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState(recipe.name);
 
-  // Handle image selection
   const handleImageChange = async (e: any) => {
     const file = e.target.files[0]; // Get the selected file
 
@@ -38,6 +37,7 @@ const ModifyNameAndPhoto = ({
         });
         setIsLoading(false);
         setSelectedImage(convertedImage);
+        // handling type issues around Blob vs Blob[]
         let val;
         Array.isArray(convertedImage)
           ? (val = convertedImage[0])
@@ -47,16 +47,13 @@ const ModifyNameAndPhoto = ({
         console.error("Error converted .heic/.heif image: ", error);
       }
     } else {
-      setSelectedImage(file); // Set the file in state
-      setPreviewUrl(URL.createObjectURL(file)); // Generate a preview URL for the image
+      setSelectedImage(file);
+      // Generate a preview URL for the image
+      setPreviewUrl(URL.createObjectURL(file));
     }
-    // if (file) {
-    // }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // SO THE ISSUE HERE IS THAT HEIC ISN'T A FORMAT THAT BROWSERS SUPPORT....
-    // OPTION IS TO USE THIRD PARTY LIB THAT WILL DO A CONVERSION....
     e.preventDefault();
     if (!selectedImage && name === recipe.name) {
       return;

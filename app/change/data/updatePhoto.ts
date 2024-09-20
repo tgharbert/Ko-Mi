@@ -5,8 +5,6 @@ import { revalidatePath } from "next/cache";
 
 export default async function updatePhoto(recipeId: number, address: string, newName: string) {
   try {
-    console.log("HIT")
-
     let target = Number(recipeId)
     // delete recipe photo from supabase, then insert new address...
     let oldRecipeVals = await prisma.recipe.findUnique({
@@ -18,14 +16,22 @@ export default async function updatePhoto(recipeId: number, address: string, new
       return;
     }
     // this isn't deleting from the bucket...
+    // file paht instead of full url...
+    const getFilePath = (url: string) => {
+      // return everything after /images/
+      let urlArr = url.split('/')
+      const path = urlArr[urlArr.length - 1]
+      return path;
+    }
+
+    let filePath = getFilePath(oldRecipeVals.image)
+
     const { error } = await supabase.storage
       .from("images")
-      .remove([oldRecipeVals.image])
+      .remove([filePath])
     if (error) {
       console.error("WHOOPSIES, error deleting old photo from db: ", error)
     }
-
-    console.log("newName: ", newName)
     let recipe = await prisma.recipe.update({
       where: {
         id: target
