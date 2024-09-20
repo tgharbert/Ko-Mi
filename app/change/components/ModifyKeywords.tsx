@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import updateKeywords from "../data/updateKeywords";
+import Button from "@mui/material/Button";
+import { ThemeProvider } from "@emotion/react";
+import theme from "@/mui-styles/styles";
 
 const ModifyKeywords = ({
   id,
@@ -18,7 +21,7 @@ const ModifyKeywords = ({
     setNewKeywords(justNames);
   }, [keywords]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
     let newKeys: string[] = [];
     newKeywords.forEach((keyword) => {
@@ -42,43 +45,43 @@ const ModifyKeywords = ({
   };
 
   return (
-    <div className=" ">
-      <form onSubmit={handleSubmit} name="ingredientForm">
-        {newKeywords.map((keyword: string, idx: number) => (
-          <div className="" key={idx}>
-            <div className="flex justify-center item-center pl-6">
-              <input
-                name={`ingredient-${idx}`}
-                className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-48 text-center"
-                value={keyword}
-                onChange={(e) => {
-                  const updatedKeywords = [...newKeywords];
-                  updatedKeywords[idx] = e.target.value;
-                  setNewKeywords(updatedKeywords);
-                }}
-              />
-              <button
-                onClick={(e) => onDelClick(e, idx)}
-                className=" text-red-700"
-              >
-                <DeleteIcon />
-              </button>
-            </div>
+    <ThemeProvider theme={theme}>
+      {newKeywords.map((keyword: string, idx: number) => (
+        <div className="" key={idx}>
+          <div className="flex justify-center item-center pl-6">
+            <input
+              name={`ingredient-${idx}`}
+              className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-48 text-center"
+              value={keyword}
+              onChange={(e) => {
+                const updatedKeywords = [...newKeywords];
+                updatedKeywords[idx] = e.target.value;
+                setNewKeywords(updatedKeywords);
+              }}
+            />
+            <button
+              onClick={(e) => onDelClick(e, idx)}
+              className=" text-red-700"
+            >
+              <DeleteIcon />
+            </button>
           </div>
-        ))}
-        <div>
-          <button onClick={(e) => onAddClick(e)} className="text-green-600">
-            <AddIcon />
-          </button>
         </div>
-        <button
-          type="submit"
-          className="ml-2 pt-1 pb-1 text-bold bg-secondary hover:bg-lime-600 rounded-lg px-4 text-white"
-        >
-          Update Keywords
+      ))}
+      <div>
+        <button onClick={(e) => onAddClick(e)} className="text-green-600">
+          <AddIcon />
         </button>
-      </form>
-    </div>
+      </div>
+      <Button
+        className="bg-lime-500 px-4"
+        variant="contained"
+        color="lime"
+        onClick={handleSubmit}
+      >
+        Update Ingredients
+      </Button>
+    </ThemeProvider>
   );
 };
 
