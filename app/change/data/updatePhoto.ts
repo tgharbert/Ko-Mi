@@ -15,10 +15,8 @@ export default async function updatePhoto(recipeId: number, address: string, new
     if (oldRecipeVals == null) {
       return;
     }
-    // this isn't deleting from the bucket...
-    // file paht instead of full url...
     const getFilePath = (url: string) => {
-      // return everything after /images/
+      // gets everything after /images/ in the photo url
       let urlArr = url.split('/')
       const path = urlArr[urlArr.length - 1]
       return path;
@@ -44,7 +42,6 @@ export default async function updatePhoto(recipeId: number, address: string, new
     await prisma.$disconnect();
     revalidatePath(`/change/${recipeId}`)
     return;
-    // return new Response(JSON.stringify(recipe))
   } catch (error) {
     console.error("ERROR: ", error);
     return new Response();
