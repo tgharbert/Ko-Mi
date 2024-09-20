@@ -44,13 +44,13 @@ export default function MainDropDownMenu() {
         <Link href="/friends">
           <MenuItem onClick={handleClose}>Friends</MenuItem>
         </Link>
+        <Link href="/about">
+          <MenuItem>About</MenuItem>
+        </Link>
         <MenuItem onClick={() => signOut()}>
           Logout
           <LogoutIcon className="pl-1" />
         </MenuItem>
-        <Link href="/about">
-          <MenuItem>About</MenuItem>
-        </Link>
       </Menu>
     </div>
   );
