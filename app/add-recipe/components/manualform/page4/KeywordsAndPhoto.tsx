@@ -6,7 +6,6 @@ function KeywordsAndPhoto({
   keywordChange,
   keyword,
   addKeyword,
-  // handleSubmitPhoto,
   handleFileSelected,
   fileName,
 }: {
@@ -14,7 +13,6 @@ function KeywordsAndPhoto({
   keywordChange: Function;
   keyword: string;
   addKeyword: Function;
-  // handleSubmitPhoto: Function;
   handleFileSelected: Function;
   fileName: string;
 }) {
@@ -26,11 +24,7 @@ function KeywordsAndPhoto({
         keyword={keyword}
         addKeyword={addKeyword}
       />
-      <PhotoForm
-        // handleSubmitPhoto={handleSubmitPhoto}
-        handleFileSelected={handleFileSelected}
-        fileName={fileName}
-      />
+      <PhotoForm handleFileSelected={handleFileSelected} fileName={fileName} />
     </div>
   );
 }
