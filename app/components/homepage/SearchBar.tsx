@@ -19,7 +19,7 @@ function RecipeSearchBar({
     currentPage = 1;
     const newPage = String(currentPage);
 
-    // trim the final space from term
+    // trim the final space from term - mobile devices often add one automatically
     term = term.endsWith(" ") ? term.slice(0, -1) : term;
 
     if (term) {

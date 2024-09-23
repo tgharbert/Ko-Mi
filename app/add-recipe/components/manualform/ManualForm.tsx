@@ -156,7 +156,7 @@ function RecipeForm() {
     setFileName(e.target.files?.[0].name ?? "");
   };
   return (
-    <div className=" bg-tertiary text-black sm:mx-96 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
+    <div className=" bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
       <div className="px-8 justify-center flex">
         {isAlert ? (
@@ -220,6 +220,7 @@ function RecipeForm() {
       {page === 5 && recipe !== undefined ? (
         <CustomRecipeCard recipe={recipe} />
       ) : (
+        // <BackPageButton pageChange={pageChange} />
         <NextPageButton pageChange={pageChange} />
       )}
     </div>

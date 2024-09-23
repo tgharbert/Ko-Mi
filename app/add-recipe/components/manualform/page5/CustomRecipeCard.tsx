@@ -79,7 +79,7 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
     <Loading />
   ) : (
     <ThemeProvider theme={theme}>
-      <div className="mr-20 ml-20 flexbox">
+      <div className="flexbox mr-8 ml-8 sm:mr-20 sm:ml-20 md:ml-2 md:mr-2">
         <div>
           <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
         </div>
@@ -95,18 +95,18 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
           )}
         </div>
         <div className="flex justify-center">
-          <div className=" rounded-lg sm:w-3/5">
+          <div className="w-full md:w-full sm:w-2/5">
             <DescriptionAccordion description={recipe.description} />
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="rounded-lg sm:w-3/5">
+          <div className="w-full md:w-full sm:w-2/5">
             <InstructionAccordion instructions={recipe.instructions} />
           </div>
         </div>
         {/* REFACTOR BASED ON SHARED ACCORDIONS */}
         <div className="flex justify-center">
-          <div className="sm:w-3/5">
+          <div className="w-full md:w-full sm:w-2/5">
             <Accordion className="rounded-lg">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
