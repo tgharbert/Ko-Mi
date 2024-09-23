@@ -19,6 +19,9 @@ function RecipeSearchBar({
     currentPage = 1;
     const newPage = String(currentPage);
 
+    // trim the final space from term
+    term = term.endsWith(" ") ? term.slice(0, -1) : term;
+
     if (term) {
       params.set("page", newPage);
       params.set("query", term);
