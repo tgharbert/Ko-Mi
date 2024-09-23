@@ -76,6 +76,7 @@ function RecipeForm() {
       }
     }
     if (page === 4) {
+      // here is where we prevent a null file
       if (file === null) {
         setIsAlert(true);
         return;

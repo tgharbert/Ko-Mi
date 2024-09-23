@@ -79,7 +79,7 @@ const ModifyKeywords = ({
         color="lime"
         onClick={handleSubmit}
       >
-        Update Ingredients
+        Update Keywords
       </Button>
     </ThemeProvider>
   );
