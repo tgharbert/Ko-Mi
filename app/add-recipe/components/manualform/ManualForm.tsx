@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NameAndDescription from "./page1/NameAndDescription";
 import NextPageButton from "./NextPageButton";
+import BackPageButton from "./BackPageButton";
 import AddItems from "./page2&3/AddItem";
 import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
@@ -76,7 +77,7 @@ function RecipeForm() {
       }
     }
     if (page === 4) {
-      // here is where we prevent a null file
+      // here is where we prevent a null file - KILLED TO ALLOW TEMP PHOTOS FOR LATER UPDATES TO RECIPES
       // if (file === null) {
       //   setIsAlert(true);
       //   return;
@@ -94,6 +95,12 @@ function RecipeForm() {
       setRecipe(customRecipe);
     }
     setPage(page + 1);
+  };
+
+  const revertPage = () => {
+    if (page != 1) {
+      setPage(page - 1);
+    }
   };
 
   const formatTime = (hours: string, minutes: string) => {
@@ -155,6 +162,7 @@ function RecipeForm() {
     setFile(e.target.files?.[0] ?? null);
     setFileName(e.target.files?.[0].name ?? "");
   };
+
   return (
     <div className=" bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
@@ -220,8 +228,20 @@ function RecipeForm() {
       {page === 5 && recipe !== undefined ? (
         <CustomRecipeCard recipe={recipe} />
       ) : (
-        // <BackPageButton pageChange={pageChange} />
-        <NextPageButton pageChange={pageChange} />
+        <div>
+          {page !== 1 ? (
+            <div className="flex justify-center px-2">
+              <span className="px-2">
+                <BackPageButton revertPage={revertPage} />
+              </span>
+              <span className="px-2">
+                <NextPageButton pageChange={pageChange} />
+              </span>
+            </div>
+          ) : (
+            <NextPageButton pageChange={pageChange} />
+          )}
+        </div>
       )}
     </div>
   );
