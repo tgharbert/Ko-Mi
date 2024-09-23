@@ -26,6 +26,9 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   useEffect(() => {
     const handleFileInputChange = () => {
       if (!recipe.photoFile) {
+        setImagePreview(
+          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/ko-mi_recipe-placeholder.png`
+        );
         return;
       }
       const file = recipe.photoFile;
@@ -40,24 +43,30 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
     handleFileInputChange();
   }, [recipe.photoFile]);
 
+  // is this where I handle a null recipe???
   const handleRecipeSubmission = async () => {
     // here is where the problem lies. I cannot pass the photo file to the backend...
     // i'm hacking around it by copying the recipe object and giving it an any type
     // then reassigning the photoFile key to a string of imagePreview.
     let customRecipe: any = recipe;
     try {
-      const filename = `${recipe.name}Photo`;
-      const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
-      const { error } = await supabase.storage
-        .from("images")
-        .upload(filename, recipe.photoFile, {
-          cacheControl: "3600",
-          upsert: true,
-        });
-      if (error) {
-        console.error("error from upload: ", error);
+      if (recipe.photoFile === null) {
+        const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/ko-mi_recipe-placeholder.png`;
+        customRecipe.photoFile = recipeAddress;
+      } else {
+        const filename = `${recipe.name}Photo`;
+        const recipeAddress = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/${filename}`;
+        const { error } = await supabase.storage
+          .from("images")
+          .upload(filename, recipe.photoFile, {
+            cacheControl: "3600",
+            upsert: true,
+          });
+        if (error) {
+          console.error("error from upload: ", error);
+        }
+        customRecipe.photoFile = recipeAddress;
       }
-      customRecipe.photoFile = recipeAddress;
       await addCustomRecipe(recipe);
       setIsLoading(true);
       router.push("/");
@@ -120,7 +129,6 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
           </div>
         </div>
         <div className="mx-4 pt-7 pb-10">
-          {/* CHANGE THIS BUTTON */}
           <Button
             variant="contained"
             className=" bg-lime-500"
