@@ -14,6 +14,9 @@ const UserList = ({
   return (
     <div>
       <div className="text-xl pt-4">Friend Requests:</div>
+      {requests.length === 0 && (
+        <p className="pt-4 italic">You have no friend requests right now.</p>
+      )}
       {isLoading ? (
         <LoadingPage />
       ) : (

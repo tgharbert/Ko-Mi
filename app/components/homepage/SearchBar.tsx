@@ -19,6 +19,9 @@ function RecipeSearchBar({
     currentPage = 1;
     const newPage = String(currentPage);
 
+    // trim the final space from term - mobile devices often add one automatically
+    term = term.endsWith(" ") ? term.slice(0, -1) : term;
+
     if (term) {
       params.set("page", newPage);
       params.set("query", term);
@@ -46,7 +49,7 @@ function RecipeSearchBar({
   };
 
   return (
-    <div className="pb-4">
+    <div className="pb-4  ">
       <input
         className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1 "
         autoFocus

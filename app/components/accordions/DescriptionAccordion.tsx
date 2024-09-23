@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function DescriptionAccordion({ description }: { description: string }) {
   return (
-    <Accordion>
+    <Accordion className="rounded-lg">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1-content"

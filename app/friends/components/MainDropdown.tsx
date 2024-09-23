@@ -4,14 +4,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-
-import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function MainDropDownMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -45,7 +44,7 @@ export default function MainDropDownMenu() {
           <MenuItem onClick={handleClose}>Friends</MenuItem>
         </Link>
         <Link href="/about">
-          <MenuItem>About</MenuItem>
+          <MenuItem onClick={handleClose}>About</MenuItem>
         </Link>
         <MenuItem onClick={() => signOut()}>
           Logout
