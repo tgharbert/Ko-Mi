@@ -93,7 +93,7 @@ node --version
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/SA-BlueOcean/PetCentral.git
+   git clone https://github.com/tgharbert/Ko-Mi.git
    ```
 2. Install NPM packages
    ```sh
