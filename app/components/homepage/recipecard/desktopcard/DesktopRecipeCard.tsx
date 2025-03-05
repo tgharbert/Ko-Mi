@@ -16,14 +16,13 @@ import Dialog from "@mui/material/Dialog";
 
 // import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
-import AddIngredientsButton from "./AddIngredientsButton";
-import IngredientAccordion from "../../accordions/IngredientAccordion";
-import InstructionAccordion from "../../accordions/InstructionAccordion";
-import AdditionalAccordion from "../../accordions/AdditionalAccordion";
-import DescriptionAccordion from "../../accordions/DescriptionAccordion";
-import MoreRecipeClick from "./MoreRecipeClick";
+import AddIngredientsButton from "./../AddIngredientsButton";
+import IngredientAccordion from "../../../accordions/IngredientAccordion";
+import InstructionAccordion from "../../../accordions/InstructionAccordion";
+import AdditionalAccordion from "../../../accordions/AdditionalAccordion";
+import DescriptionAccordion from "../../../accordions/DescriptionAccordion";
+import MoreRecipeClick from "./../MoreRecipeClick";
 import RecipeCard from "@/app/add-recipe/components/NewRecipeCard";
-import DesktopRecipeCard from "./desktopcard/DesktopRecipeCard";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -40,7 +39,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function RecipeReviewCard({
+export default function DesktopRecipeCard({
   recipe,
   user,
 }: {
@@ -48,16 +47,6 @@ export default function RecipeReviewCard({
   user: User;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [open, setOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width:600px)");
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -68,7 +57,7 @@ export default function RecipeReviewCard({
 
   return (
     <div className="flex justify-center">
-      <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
+      <Card sx={{ maxWidth: 600, minWidth: 500 }} className="mt-2 mb-2">
         <div className="bg-tertiary">
           <CardHeader
             action={<IconButton aria-label="settings"></IconButton>}
@@ -127,36 +116,15 @@ export default function RecipeReviewCard({
           <CardActions disableSpacing className="-mt-4">
             {/* THIS IS WHAT WILL CHANGE THE VIEW WITH A MEDIA QUERY */}
             {/* conditionally render the functionality here */}
-            {!isMobile ? (
-              <>
-                <ExpandMore
-                  expand={expanded}
-                  onClick={handleOpen}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  className="mx-10 justify-center content-center"
-                >
-                  {/* should probably build a new component*/}
-                  {/* REPLACE WITH A CUSTOM COMPONENT */}
-                  <DesktopRecipeCard recipe={recipe} user={user} />
-                </Dialog>
-              </>
-            ) : (
-              <ExpandMore
-                expand={expanded}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon />
-              </ExpandMore>
-            )}
+
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
             {/* THIS IS THE END OF THE CURRENT CHANGES */}
             {/* FOR GOOD MEASURE */}
           </CardActions>
