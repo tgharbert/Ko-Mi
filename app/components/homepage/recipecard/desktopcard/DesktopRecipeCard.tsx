@@ -38,7 +38,7 @@ export default function DesktopRecipeCard({
   recipe: Recipe;
   user: User;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -48,17 +48,15 @@ export default function DesktopRecipeCard({
   const he = require("he");
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center scrollbar-hide">
       <Card sx={{ maxWidth: 400, minWidth: 400 }}>
         <div className="bg-tertiary">
           <CardHeader
             action={<IconButton aria-label="settings"></IconButton>}
             title={
-              <div className="inline-flex items-center">
-                <p className="text-lg font-semibold line-clamp-1 ">
-                  {he.decode(recipe.name)}
-                </p>
-              </div>
+              <p className="text-lg font-semibold text-center w-full">
+                {he.decode(recipe.name)}
+              </p>
             }
           />
           <div className="relative">
@@ -77,9 +75,8 @@ export default function DesktopRecipeCard({
           <CardContent>
             {recipe.author ? (
               <div className="relative">
-                <p className="pb-2 italic">by: {recipe.author}</p>
+                <p className="pb-2 italic text-center">by: {recipe.author}</p>
                 <div className="absolute bottom-0 right-0 bg-tertiary pb-4 rounded-2xl">
-                  {/* REMOVED THIS CONDITIONAL UNTIL FUNCTIONALITY IS ADDED || user.id !== recipe.userId */}
                   {user.name === recipe.author || user.id === recipe.userId ? (
                     <MoreRecipeClick
                       user={user}
@@ -104,20 +101,12 @@ export default function DesktopRecipeCard({
               />
             </div>
           </CardContent>
-          <CardActions disableSpacing className="-mt-4">
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <div className="rounded-lg pb-">
-                <DescriptionAccordion description={recipe.description} />
+              <div className="rounded-lg">
+                <DescriptionAccordion
+                  description={he.decode(recipe.description)}
+                />
               </div>
               <div>
                 <IngredientAccordion ingredients={recipe.ingredients} />
