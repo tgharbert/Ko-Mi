@@ -43,7 +43,8 @@ export default function RecipeReviewCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width:600px)");
+  // should work until recipes are single column
+  const isMobile = useMediaQuery("(max-width:1023px)");
 
   const handleOpen = () => {
     setOpen(true);
@@ -92,7 +93,6 @@ export default function RecipeReviewCard({
               <div className="relative">
                 <p className="pb-2 italic">by: {recipe.author}</p>
                 <div className="absolute bottom-0 right-0 bg-tertiary pb-4 rounded-2xl">
-                  {/* REMOVED THIS CONDITIONAL UNTIL FUNCTIONALITY IS ADDED || user.id !== recipe.userId */}
                   {user.name === recipe.author || user.id === recipe.userId ? (
                     <MoreRecipeClick
                       user={user}
