@@ -140,7 +140,7 @@ export default function RecipeReviewCard({
                 <Dialog
                   open={open}
                   onClose={handleClose}
-                  className="mx-10 justify-center content-center"
+                  className="justify-center content-center"
                 >
                   {/* should probably build a new component*/}
                   {/* REPLACE WITH A CUSTOM COMPONENT */}

@@ -25,7 +25,7 @@ function IngredientAccordion({ ingredients }: { ingredients: Ingredient[] }) {
         Recipe Ingredients
       </AccordionSummary>
       <AccordionDetails>
-        <ul className="px-2 list-disc text-left">
+        <ul className="list-disc text-left ml-2">
           {ingredients.map((ingredient, idx) => (
             <li className="pb-4" key={idx}>
               {ingredient.name}

@@ -3,18 +3,11 @@ import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import { useMediaQuery } from "@mui/material";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-// import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AddIcon from "@mui/icons-material/Add";
-import Dialog from "@mui/material/Dialog";
-
-// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 import AddIngredientsButton from "./../AddIngredientsButton";
 import IngredientAccordion from "../../../accordions/IngredientAccordion";
@@ -22,7 +15,6 @@ import InstructionAccordion from "../../../accordions/InstructionAccordion";
 import AdditionalAccordion from "../../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../../accordions/DescriptionAccordion";
 import MoreRecipeClick from "./../MoreRecipeClick";
-import RecipeCard from "@/app/add-recipe/components/NewRecipeCard";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -57,7 +49,7 @@ export default function DesktopRecipeCard({
 
   return (
     <div className="flex justify-center">
-      <Card sx={{ maxWidth: 600, minWidth: 500 }} className="mt-2 mb-2">
+      <Card sx={{ maxWidth: 400, minWidth: 400 }}>
         <div className="bg-tertiary">
           <CardHeader
             action={<IconButton aria-label="settings"></IconButton>}
@@ -105,7 +97,6 @@ export default function DesktopRecipeCard({
             ) : (
               <p className="pb-2 italic">No listed author</p>
             )}
-            {/* ADD THE DIALOG HERE */}
             <div className="float-left pt-4">
               <AddIngredientsButton
                 recipeYield={recipe.recipeYield}
@@ -114,9 +105,6 @@ export default function DesktopRecipeCard({
             </div>
           </CardContent>
           <CardActions disableSpacing className="-mt-4">
-            {/* THIS IS WHAT WILL CHANGE THE VIEW WITH A MEDIA QUERY */}
-            {/* conditionally render the functionality here */}
-
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -125,8 +113,6 @@ export default function DesktopRecipeCard({
             >
               <ExpandMoreIcon />
             </ExpandMore>
-            {/* THIS IS THE END OF THE CURRENT CHANGES */}
-            {/* FOR GOOD MEASURE */}
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
