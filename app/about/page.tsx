@@ -14,7 +14,7 @@ const Friends = async () => {
         <Header />
       </div>
       <Suspense fallback={<LoadingPage />}>
-        <div className=" flex justify-center items-center sm:pr-40 md:pr-4 md:pl-4 sm:pl-40 pr-6 pl-6 text-center sm:pt-60 pt-48">
+        <div className=" flex justify-center items-center xl:mr-40 xl:ml-40 sm:pr-40 md:pr-4 md:pl-4 sm:pl-40 pr-6 pl-6 text-center sm:pt-60 pt-48">
           <div className="-mt-40 bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
             <p className="text-xl pb-3 font-bold">What is Ko-Mi?</p>
             <p className="pb-3">

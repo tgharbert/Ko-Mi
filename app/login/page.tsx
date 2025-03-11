@@ -20,7 +20,7 @@ function Login() {
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      <div className=" flex justify-center items-center pr-6 pl-6 text-center sm:pt-80 pt-60">
+      <div className=" flex justify-center items-center pr-6 pl-6 text-center sm:pt-80 pt-60 xl:mr-48 xl:ml-48">
         <div className="-mt-40 bg-tertiary text-black sm:mx-40 pt-4 pb-4 rounded-lg border-2 border-black pr-4 pl-4 ">
           <div className="flex justify-center">
             <Image src={logo} alt="ko-mi logo" width={100} height={100}></Image>

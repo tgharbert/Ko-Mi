@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -25,7 +23,7 @@ function IngredientAccordion({ ingredients }: { ingredients: Ingredient[] }) {
         Recipe Ingredients
       </AccordionSummary>
       <AccordionDetails>
-        <ul className="px-2 list-disc text-left">
+        <ul className="list-disc text-left ml-2">
           {ingredients.map((ingredient, idx) => (
             <li className="pb-4" key={idx}>
               {ingredient.name}

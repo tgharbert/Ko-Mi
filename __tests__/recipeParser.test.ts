@@ -9,6 +9,8 @@ import chickenCacciatoreData from '@/testData/getRecipeObject/chickenCacciatore.
 import chickenCacciatore from '@/testData/scraper/chickenCacciatore.json'
 import cauliflowerSaladData from '@/testData/getRecipeObject/cauliflowerSalad.json'
 import cauliflowerSalad from '@/testData/scraper/cauliflowerSalad.json'
+import easyNoKneadFocaccia from '@/testData/scraper/easyNoKneadFocaccia.json'
+import easyNoKneadFocacciaData from '@/testData/getRecipeObject/easyNoKneadFocaccia.json'
 
 // Bon Appetit
 test('gets Gochujang Chicken recipe object', () => {
@@ -37,7 +39,7 @@ test('gets Mustard-Glazed Pork Tenderloin recipe object', () => {
 
 })
 
-// // the Wanderlust Kithen
+// the Wanderlust Kithen
 test('gets Tuscan White Bean Dish recipe object', () => {
   const expected = tuscanWhiteBeanData;
   const actual = getRecipeObject(tuscanWhiteBean);
@@ -49,7 +51,7 @@ test('gets Tuscan White Bean Dish recipe object', () => {
   expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
 })
 
-// // desert for two
+// desert for two
 test('gets Chicken Cacciatore recipe object', () => {
   const expected = chickenCacciatoreData;
   const actual = getRecipeObject(chickenCacciatore)
@@ -70,4 +72,12 @@ test('gets Cauliflower Salad recipe object', () => {
   expect(actual?.instructions).toEqual(expected.instructions);
   expect(actual?.description).toEqual(expected.description);
   expect(actual?.recipeIngredient).toEqual(expected.recipeIngredient);
+})
+
+test('gets `Easy No-Knead Focaccia Bread` recipe object', () => {
+  const expected = easyNoKneadFocacciaData;
+  const actual = getRecipeObject(easyNoKneadFocaccia);
+  expect(actual?.author).toEqual(expected.author);
+  expect(actual?.instructions).toEqual(expected.instructions);
+  expect(actual?.name).toEqual(expected.name);
 })
