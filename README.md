@@ -10,7 +10,6 @@
 <p>Ko-Mi is your ultimate grocery shopping assistant and cookbook companion! With Ko-Mi, planning meals, creating shopping lists, and discovering new recipes has never been easier. Seamlessly browse through a vast collection of delicious recipes, organize your ingredients, and streamline your shopping experience, all in one intuitive app.</p>
 
 <div>
-  PetCentral is a full-stack application that allows users to connect with other pet owners in their area.
 
 Some of our key features are:
 
