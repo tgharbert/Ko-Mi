@@ -4,7 +4,6 @@ import { useState } from "react";
 import getData from "../../../utils/scraper";
 import getRecipeObject from "@/utils/parseRecipe";
 import RecipeCardError from "./RecipeCardError";
-import LinkIcon from "@mui/icons-material/Link";
 
 export default function RecipeURLForm() {
   const [recipeURL, setRecipeURL] = useState("");
@@ -16,7 +15,6 @@ export default function RecipeURLForm() {
     try {
       e.preventDefault();
       const newRecipe = await getData(recipeURL);
-      console.log("newRecipe: ", newRecipe);
       if (!newRecipe) {
         setError();
       }
@@ -26,6 +24,8 @@ export default function RecipeURLForm() {
         return;
       }
       recipeObject.url = recipeURL;
+      // this is where I'm getting test data from
+      // console.log("JSON: ", JSON.stringify(recipeObject));
       setBadURL("");
       setIsError(false);
       setRecipe(recipeObject);

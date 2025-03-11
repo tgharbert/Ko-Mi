@@ -4,9 +4,7 @@ const getRecipeObject = (recipeData: any): RawRecipe | undefined => {
     for (let key in recipeData) {
       if (recipeData[key]["@type"] === "Recipe") {
         const recipe = recipeData[key]
-        // console.log('recipe BEFORE formatting: ', recipe)
         formatRecipe(recipe);
-        // console.log('recipe AFTER formatting: ', recipe)
         return recipe;
       } else if (recipeData[key]["@graph"]) {
         // getRecipeObject(recipeData[key]["@graph"])
