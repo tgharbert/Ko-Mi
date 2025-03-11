@@ -16,6 +16,7 @@ export default function RecipeURLForm() {
     try {
       e.preventDefault();
       const newRecipe = await getData(recipeURL);
+      console.log("newRecipe: ", newRecipe);
       if (!newRecipe) {
         setError();
       }

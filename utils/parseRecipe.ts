@@ -4,7 +4,9 @@ const getRecipeObject = (recipeData: any): RawRecipe | undefined => {
     for (let key in recipeData) {
       if (recipeData[key]["@type"] === "Recipe") {
         const recipe = recipeData[key]
+        // console.log('recipe BEFORE formatting: ', recipe)
         formatRecipe(recipe);
+        // console.log('recipe AFTER formatting: ', recipe)
         return recipe;
       } else if (recipeData[key]["@graph"]) {
         // getRecipeObject(recipeData[key]["@graph"])
@@ -81,10 +83,17 @@ const getRecipeYield = (recipe: any) => {
 
 // get just the number from recipe yield
 const parseYieldNumber = (string: string) => {
-  // at the moment not parsing if there's something like 5-6
-  const servingArray = string.split(' ');
+  let servingArray = string.split(' ');
   let number;
   servingArray.forEach((word) => {
+    // check for all types of dashes - things like '–' and '—' are not the same as '-'
+    // ex: "4–6 servings"
+    if (word.includes('-') || word.includes('–') || word.includes('—')) {
+      // replace the dash with a single dash
+      const normalizedWord = word.replace(/[-–—]/g, '-');
+      let splitWord = normalizedWord.split('-');
+      word = splitWord[0];
+    }
     if (parseInt(word) < 0 || parseInt(word) > 0) {
       number = eval(word)
     }

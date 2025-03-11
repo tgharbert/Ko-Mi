@@ -63,7 +63,6 @@ export async function addCustomRecipe(recipe: any) {
     return;
   } catch (error) {
     console.error("ERROR ADDING CUSTOM RECIPE: ", error);
-    // return new Response();
     return;
   }
 }
