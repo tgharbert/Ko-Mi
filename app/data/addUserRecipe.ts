@@ -1,11 +1,10 @@
 'use server'
-import { getServerSession } from "next-auth";
-import {authOptions} from '@/utils/authOptions'
+import { auth } from "@/auth";
 import prisma from "@/app/api/_base"
 
 export async function addUserRecipe(recipeId: number) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     const user = session?.user as User
 
     const recipe: any = await prisma.recipe.findUnique({

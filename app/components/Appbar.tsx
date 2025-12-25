@@ -1,6 +1,5 @@
 import SignInButton from "./SignInButton";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/utils/authOptions";
+import { auth } from "@/auth";
 
 async function Appbar() {
   const defaultSession = {
@@ -12,8 +11,7 @@ async function Appbar() {
     },
   };
 
-  const session: Session | null =
-    (await getServerSession(authOptions)) ?? defaultSession;
+  const session = (await auth()) ?? defaultSession;
   const user = session?.user as User;
 
   return (
