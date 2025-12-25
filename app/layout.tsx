@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./components/Providers";
 import Appbar from "./components/Appbar";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,12 +59,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-primary font-roboto text-tertiary overflow-y-scroll h-lvh ">
-        <AppRouterCacheProvider>
-          <Providers>
-            <Appbar />
-            {children}
-          </Providers>
-        </AppRouterCacheProvider>
+        <Providers>
+          <Appbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
