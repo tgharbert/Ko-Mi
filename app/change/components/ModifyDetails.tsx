@@ -4,8 +4,6 @@ import convertISO8601ToTimeString from "@/utils/convertToTimeString";
 import updateDetails from "../data/updateDetails";
 import convertTime from "@/utils/convertInputTime";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@emotion/react";
-import theme from "@/mui-styles/styles";
 
 const ModifyDetails = ({
   id,
@@ -60,7 +58,7 @@ const ModifyDetails = ({
   let hours = getHours(timeArr);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <textarea
         className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full h-40"
         name="description"
@@ -118,7 +116,7 @@ const ModifyDetails = ({
       >
         Update Details
       </Button>
-    </ThemeProvider>
+    </>
   );
 };
 

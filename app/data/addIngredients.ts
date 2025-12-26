@@ -1,7 +1,6 @@
 'use server'
 
-import { getServerSession } from "next-auth";
-import {authOptions} from '@/utils/authOptions'
+import { auth } from "@/auth";
 
 import prisma from "@/app/api/_base"
 
@@ -9,7 +8,7 @@ import modifyIngredientAmount from "@/utils/modifyIngredientAmount";
 
 export async function addIngredients(ingredients: Ingredient[], multiplier: number) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     const user = session?.user as User
 
     let newEntry: IngredientEntry[] = [];

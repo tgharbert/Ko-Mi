@@ -4,8 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import updateMethods from "../data/updateMethod";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@emotion/react";
-import theme from "@/mui-styles/styles";
 
 const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
   const [newMethods, setNewMethods] = useState<string[]>([]);
@@ -38,46 +36,41 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-        {newMethods.map((ingredient: string, idx: number) => (
-          <div className="" key={idx}>
-            <div className="flex justify-center item-center">
-              <textarea
-                name={`ingredient-${idx}`}
-                className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2  border-primary w-full sm:w-96 h-24"
-                value={ingredient}
-                onChange={(e) => {
-                  const updatedMethods = [...newMethods];
-                  updatedMethods[idx] = e.target.value;
-                  setNewMethods(updatedMethods);
-                }}
-              />
-              <button
-                onClick={(e) => onDelClick(e, idx)}
-                className=" text-red-500"
-              >
-                <DeleteIcon />
-              </button>
-            </div>
+    <div>
+      {newMethods.map((ingredient: string, idx: number) => (
+        <div className="" key={idx}>
+          <div className="flex justify-center item-center">
+            <textarea
+              name={`ingredient-${idx}`}
+              className="text-black rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2  border-primary w-full sm:w-96 h-24"
+              value={ingredient}
+              onChange={(e) => {
+                const updatedMethods = [...newMethods];
+                updatedMethods[idx] = e.target.value;
+                setNewMethods(updatedMethods);
+              }}
+            />
             <button
-              onClick={(e) => onAddClick(e, idx)}
-              className="text-lime-500"
+              onClick={(e) => onDelClick(e, idx)}
+              className=" text-red-500"
             >
-              <AddIcon />
+              <DeleteIcon />
             </button>
           </div>
-        ))}
-        <Button
-          className="bg-lime-500 px-4"
-          variant="contained"
-          color="lime"
-          onClick={handleSubmit}
-        >
-          Update Methods
-        </Button>
-      </div>
-    </ThemeProvider>
+          <button onClick={(e) => onAddClick(e, idx)} className="text-lime-500">
+            <AddIcon />
+          </button>
+        </div>
+      ))}
+      <Button
+        className="bg-lime-500 px-4"
+        variant="contained"
+        color="lime"
+        onClick={handleSubmit}
+      >
+        Update Methods
+      </Button>
+    </div>
   );
 };
 

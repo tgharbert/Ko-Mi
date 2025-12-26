@@ -1,12 +1,11 @@
 'use server'
 import prisma from "../../api/_base"
-import { getServerSession } from "next-auth";
-import {authOptions} from '@/utils/authOptions'
+import { auth } from "@/auth";
 import { FriendStatus } from "@prisma/client";
 
 export default async function getUsers () {
 
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const user = session?.user as User;
 
   const allUsers = await prisma.friend.findMany({

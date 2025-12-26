@@ -1,23 +1,19 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/mui-styles/styles";
+import { signIn } from "next-auth/react";
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 
 function SignInPageButton() {
   return (
-    <ThemeProvider theme={theme}>
-      <Button
-        variant="contained"
-        className=" bg-lime-500"
-        onClick={() => signIn()}
-        color="lime"
-      >
-        Sign In
-        <LoginIcon className="pl-1" />
-      </Button>
-    </ThemeProvider>
+    <Button
+      variant="contained"
+      className=" bg-lime-500"
+      onClick={() => signIn()}
+      color="lime"
+    >
+      Sign In
+      <LoginIcon className="pl-1" />
+    </Button>
   );
 }
 

@@ -1,12 +1,11 @@
 'use server';
 
 import prisma from "@/app/api/_base"
-import { getServerSession } from "next-auth";
-import {authOptions} from "@/utils/authOptions"
+import { auth } from "@/auth";
 
 export async function shareIngredients(friendId: string) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     const user = session?.user as User;
 
     const allIngredients = await prisma.userIngredient.findMany({

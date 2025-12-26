@@ -1,12 +1,11 @@
 'use server'
-import { getServerSession } from "next-auth";
-import {authOptions} from '@/utils/authOptions'
+import { auth } from "@/auth";
 import prisma from "@/app/api/_base"
 import assignValues from "@/utils/assignRecipeIngLoc";
 
 export async function addCustomRecipe(recipe: any) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     const user = session?.user as User
 
     recipe.keywords = recipe.keywords || ["No available keywords"]

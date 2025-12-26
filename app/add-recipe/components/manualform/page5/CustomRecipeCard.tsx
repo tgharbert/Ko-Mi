@@ -11,8 +11,6 @@ import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordi
 import { supabase } from "@/lib/supabase";
 import { addCustomRecipe } from "@/app/add-recipe/data/addCustomRecipe";
 import Button from "@mui/material/Button";
-import theme from "@/mui-styles/styles";
-import { ThemeProvider } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 
 function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
@@ -78,69 +76,67 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   return isLoading ? (
     <Loading />
   ) : (
-    <ThemeProvider theme={theme}>
-      <div className="flexbox mr-8 ml-8 sm:mr-20 sm:ml-20 md:ml-2 md:mr-2">
-        <div>
-          <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
-        </div>
-        <div className="pt-4 pb-4 flex items-center justify-center">
-          {typeof imagePreview === "string" && (
-            <Image
-              width="400"
-              height="400"
-              src={imagePreview}
-              alt="recipe-photo"
-              className="rounded-lg"
-            />
-          )}
-        </div>
-        <div className="flex justify-center">
-          <div className="w-full md:w-full sm:w-2/5">
-            <DescriptionAccordion description={recipe.description} />
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <div className="w-full md:w-full sm:w-2/5">
-            <InstructionAccordion instructions={recipe.instructions} />
-          </div>
-        </div>
-        {/* REFACTOR BASED ON SHARED ACCORDIONS */}
-        <div className="flex justify-center">
-          <div className="w-full md:w-full sm:w-2/5">
-            <Accordion className="rounded-lg">
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-                className="font-semibold text-center"
-              >
-                Recipe Ingredients
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul className="px-2 list-disc text-left">
-                  {recipe.ingredients.map((ingredient: string, idx: number) => (
-                    <li className="pb-4" key={idx}>
-                      {ingredient}
-                    </li>
-                  ))}
-                </ul>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        </div>
-        <div className="mx-4 pt-7 pb-10">
-          <Button
-            variant="contained"
-            className=" bg-lime-500"
-            onClick={handleRecipeSubmission}
-            color="lime"
-          >
-            Add Recipe
-            <AddIcon className="pl-1" />
-          </Button>
+    <div className="flexbox mr-8 ml-8 sm:mr-20 sm:ml-20 md:ml-2 md:mr-2">
+      <div>
+        <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
+      </div>
+      <div className="pt-4 pb-4 flex items-center justify-center">
+        {typeof imagePreview === "string" && (
+          <Image
+            width="400"
+            height="400"
+            src={imagePreview}
+            alt="recipe-photo"
+            className="rounded-lg"
+          />
+        )}
+      </div>
+      <div className="flex justify-center">
+        <div className="w-full md:w-full sm:w-2/5">
+          <DescriptionAccordion description={recipe.description} />
         </div>
       </div>
-    </ThemeProvider>
+      <div className="flex justify-center">
+        <div className="w-full md:w-full sm:w-2/5">
+          <InstructionAccordion instructions={recipe.instructions} />
+        </div>
+      </div>
+      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
+      <div className="flex justify-center">
+        <div className="w-full md:w-full sm:w-2/5">
+          <Accordion className="rounded-lg">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              className="font-semibold text-center"
+            >
+              Recipe Ingredients
+            </AccordionSummary>
+            <AccordionDetails>
+              <ul className="px-2 list-disc text-left">
+                {recipe.ingredients.map((ingredient: string, idx: number) => (
+                  <li className="pb-4" key={idx}>
+                    {ingredient}
+                  </li>
+                ))}
+              </ul>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      </div>
+      <div className="mx-4 pt-7 pb-10">
+        <Button
+          variant="contained"
+          className=" bg-lime-500"
+          onClick={handleRecipeSubmission}
+          color="lime"
+        >
+          Add Recipe
+          <AddIcon className="pl-1" />
+        </Button>
+      </div>
+    </div>
   );
 }
 
