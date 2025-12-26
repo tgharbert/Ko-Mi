@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/app/api/_base";
-import { parseRecipe } from "@/utils/parseRecipe";
+import getRecipeObject from "@/utils/parseRecipe";
+import getData from "@/utils/scraper";
 
 // GET recipes - list with filtering and pagination
 export async function GET(request: NextRequest) {
@@ -95,12 +96,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse recipe from URL
-    const recipeData = await parseRecipe(url, multiplier);
+    // Scrape and parse recipe from URL
+    const scrapedData = await getData(url);
+    if (!scrapedData) {
+      return NextResponse.json(
+        { error: "Failed to scrape recipe from URL" },
+        { status: 400 }
+      );
+    }
+
+    const recipeData = getRecipeObject(scrapedData);
 
     if (!recipeData) {
       return NextResponse.json(
-        { error: "Failed to parse recipe from URL" },
+        { error: "Failed to parse recipe data" },
         { status: 400 }
       );
     }
@@ -128,9 +137,8 @@ export async function POST(request: NextRequest) {
           create: keywords.map((kw: string) => ({ name: kw })),
         },
         ingredients: {
-          create: recipeData.ingredients?.map((ing: any) => ({
-            name: ing.name,
-            types: ing.types || [],
+          create: recipeData.recipeIngredient?.map((ingredient: string) => ({
+            name: ingredient,
           })) || [],
         },
       },

@@ -19,18 +19,18 @@ export async function GET(request: NextRequest) {
     }
 
     const friendsA = await prisma.friend.findMany({
-      where: { userIdA: user.id, status: "ACCEPTED" },
-      include: { userB: true },
+      where: { friendAId: user.id, status: "ACCEPTED" },
+      include: { friendB: true },
     });
 
     const friendsB = await prisma.friend.findMany({
-      where: { userIdB: user.id, status: "ACCEPTED" },
-      include: { userA: true },
+      where: { friendBId: user.id, status: "ACCEPTED" },
+      include: { friendA: true },
     });
 
     const friends = [
-      ...friendsA.map((f) => f.userB),
-      ...friendsB.map((f) => f.userA),
+      ...friendsA.map((f) => f.friendB),
+      ...friendsB.map((f) => f.friendA),
     ];
 
     return NextResponse.json(friends);
@@ -73,8 +73,8 @@ export async function POST(request: NextRequest) {
     const existing = await prisma.friend.findFirst({
       where: {
         OR: [
-          { userIdA: user.id, userIdB: friendId },
-          { userIdA: friendId, userIdB: user.id },
+          { friendAId: user.id, friendBId: friendId },
+          { friendAId: friendId, friendBId: user.id },
         ],
       },
     });
@@ -88,8 +88,8 @@ export async function POST(request: NextRequest) {
 
     const friendship = await prisma.friend.create({
       data: {
-        userIdA: user.id,
-        userIdB: friendId,
+        friendAId: user.id,
+        friendBId: friendId,
         status: "PENDING",
       },
     });

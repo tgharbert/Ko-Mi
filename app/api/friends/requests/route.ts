@@ -20,11 +20,11 @@ export async function GET(request: NextRequest) {
 
     const requests = await prisma.friend.findMany({
       where: {
-        userIdB: user.id,
+        friendBId: user.id,
         status: "PENDING",
       },
       include: {
-        userA: true,
+        friendA: true,
       },
     });
 

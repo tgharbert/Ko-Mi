@@ -27,13 +27,13 @@ export async function PATCH(
 
     if (action === "accept") {
       const friendship = await prisma.friend.update({
-        where: { id: parseInt(id) },
+        where: { id },
         data: { status: "ACCEPTED" },
       });
       return NextResponse.json(friendship);
     } else if (action === "reject") {
       await prisma.friend.delete({
-        where: { id: parseInt(id) },
+        where: { id },
       });
       return NextResponse.json({ success: true });
     }
@@ -62,7 +62,7 @@ export async function DELETE(
     const { id } = await params;
 
     await prisma.friend.delete({
-      where: { id: parseInt(id) },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });
