@@ -12,7 +12,7 @@ import ModifyDetails from "./ModifyDetails";
 import { revalidatePath } from "next/cache";
 
 const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
-  const revalidate = () => {
+  const revalidate = async () => {
     "use server";
     revalidatePath(`/change/${recipe.id}`);
   };

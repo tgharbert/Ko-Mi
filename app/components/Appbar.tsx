@@ -2,17 +2,8 @@ import SignInButton from "./SignInButton";
 import { auth } from "@/auth";
 
 async function Appbar() {
-  const defaultSession = {
-    user: {
-      name: "",
-      email: "",
-      image: "",
-      id: "",
-    },
-  };
-
-  const session = (await auth()) ?? defaultSession;
-  const user = session?.user as User;
+  const session = await auth();
+  const user = session?.user as User | undefined;
 
   return (
     <header className="flex gap-4 p-4">
