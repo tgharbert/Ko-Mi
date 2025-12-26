@@ -7,17 +7,16 @@ import UserSelectors from "./components/homepage/userselectors/UserSelectors";
 import verifyUser from "@/utils/verifyUser";
 import { getRecipes } from "./data/getRecipes";
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams?: {
+export default async function Home(props: {
+  searchParams?: Promise<{
     category?: string;
     query?: string;
     page?: string;
     random?: string;
     all?: string;
-  };
+  }>;
 }) {
+  const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
   const category = searchParams?.category || "name";
   const currentPage = Number(searchParams?.page) || 1;

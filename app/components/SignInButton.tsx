@@ -1,20 +1,21 @@
 import Image from "next/image";
 import MainDropDownMenu from "../friends/components/MainDropdown";
+import type { Session } from "next-auth";
 
 const SignInButton = async ({
   image,
   session,
 }: {
-  name: string;
-  image: string;
-  session: Session;
+  name?: string;
+  image?: string;
+  session: Session | null;
 }) => {
-  if (session && session.user.name !== "") {
+  if (session?.user) {
     return (
       <div className="flow-root w-full">
-        {session.user.image !== "" ? (
+        {session.user.image ? (
           <Image
-            src={image}
+            src={image || ""}
             width="40"
             height="40"
             className="rounded-full float-left mr-4"
@@ -29,7 +30,7 @@ const SignInButton = async ({
       </div>
     );
   } else {
-    <></>;
+    return <></>;
   }
 };
 

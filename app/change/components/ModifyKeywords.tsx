@@ -4,8 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import updateKeywords from "../data/updateKeywords";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@emotion/react";
-import theme from "@/mui-styles/styles";
 
 const ModifyKeywords = ({
   id,
@@ -45,7 +43,7 @@ const ModifyKeywords = ({
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {newKeywords.map((keyword: string, idx: number) => (
         <div className="" key={idx}>
           <div className="flex justify-center item-center pl-6">
@@ -81,7 +79,7 @@ const ModifyKeywords = ({
       >
         Update Keywords
       </Button>
-    </ThemeProvider>
+    </>
   );
 };
 

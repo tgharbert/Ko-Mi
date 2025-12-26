@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { addIngredients } from "@/app/data/addIngredients";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/mui-styles/styles";
 
 export default function YieldDropdown({
   recipeYield,
@@ -44,16 +42,14 @@ export default function YieldDropdown({
         <label className="ml-2">Servings</label>
       </div>
       <div className="flex justify-center content-center">
-        <ThemeProvider theme={theme}>
-          <Button
-            variant="contained"
-            className="px-4 bg-lime-500"
-            onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
-            color="lime"
-          >
-            Add Ingredients
-          </Button>
-        </ThemeProvider>
+        <Button
+          variant="contained"
+          className="px-4 bg-lime-500"
+          onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
+          color="lime"
+        >
+          Add Ingredients
+        </Button>
       </div>
     </div>
   );

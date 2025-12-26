@@ -5,8 +5,6 @@ import updateName from "../data/updateName";
 import updatePhoto from "../data/updatePhoto";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
-import { ThemeProvider } from "@emotion/react";
-import theme from "@/mui-styles/styles";
 import heic2any from "heic2any";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -92,61 +90,59 @@ const ModifyNameAndPhoto = ({
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <form className="pb-6" onSubmit={handleSubmit}>
-        <div className="pb-4 pt-4">
-          <input
-            className="text-black text-center font-bold rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
-            type="text"
-            accept="image/*,.pdf"
-            name="name"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            defaultValue={`${recipe.name}`}
-          />
-        </div>
-        <div className="flex justify-center pb-4">
-          {isLoading ? (
-            <div className="pb-4">
-              <h2 className="bold italic text-xl">Processing Image...</h2>
-              <LoadingPage />
-            </div>
-          ) : (
-            <Image
-              className="rounded-lg"
-              src={previewUrl ? previewUrl : recipe.image}
-              alt={`photo of ${recipe.name}`}
-              width={300}
-              height={300}
-            ></Image>
-          )}
-        </div>
-        <div className="mb-4">
-          <Button
-            component="label"
-            role={undefined}
-            onChange={handleImageChange}
-            variant="contained"
-            tabIndex={-1}
-            startIcon={<CloudUploadIcon />}
-            className="bg-lime-500 px-4"
-            color="lime"
-          >
-            Upload file
-            <VisuallyHiddenInput type="file" />
-          </Button>
-        </div>
+    <form className="pb-6" onSubmit={handleSubmit}>
+      <div className="pb-4 pt-4">
+        <input
+          className="text-black text-center font-bold rounded-lg px-4 pt-1 pb-1 height-auto resize-y border-2 border-primary w-full sm:w-96"
+          type="text"
+          accept="image/*,.pdf"
+          name="name"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          defaultValue={`${recipe.name}`}
+        />
+      </div>
+      <div className="flex justify-center pb-4">
+        {isLoading ? (
+          <div className="pb-4">
+            <h2 className="bold italic text-xl">Processing Image...</h2>
+            <LoadingPage />
+          </div>
+        ) : (
+          <Image
+            className="rounded-lg"
+            src={previewUrl ? previewUrl : recipe.image}
+            alt={`photo of ${recipe.name}`}
+            width={300}
+            height={300}
+          ></Image>
+        )}
+      </div>
+      <div className="mb-4">
         <Button
-          className="bg-lime-500 px-4"
+          component="label"
+          role={undefined}
+          onChange={handleImageChange}
           variant="contained"
+          tabIndex={-1}
+          startIcon={<CloudUploadIcon />}
+          className="bg-lime-500 px-4"
           color="lime"
-          onClick={handleSubmit}
         >
-          Update Name and Photo
+          Upload file
+          <VisuallyHiddenInput type="file" />
         </Button>
-      </form>
-    </ThemeProvider>
+      </div>
+      <Button
+        className="bg-lime-500 px-4"
+        variant="contained"
+        color="lime"
+        onClick={handleSubmit}
+      >
+        Update Name and Photo
+      </Button>
+    </form>
   );
 };
 

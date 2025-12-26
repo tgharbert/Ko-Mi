@@ -5,11 +5,10 @@ import getRecipe from "@/app/change/data/getRecipe";
 import UnableToModify from "../components/UnableToModify";
 import ModifyRecipeForm from "../components/ModifyRecipeForm";
 
-export default async function ChangeRecipe({
-  params,
-}: {
-  params: { "recipe.id": number };
+export default async function ChangeRecipe(props: {
+  params: Promise<{ "recipe.id": number }>;
 }) {
+  const params = await props.params;
   const user = await verifyUser();
   let recipeId: number = params["recipe.id"];
 
