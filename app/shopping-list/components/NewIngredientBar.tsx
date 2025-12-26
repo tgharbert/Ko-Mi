@@ -1,29 +1,41 @@
 "use client";
-import { useFormState, useFormStatus } from "react-dom";
-import { addItemAction } from "../actions";
-import { useRef } from "react";
+import { useRef, useTransition, useState } from "react";
+import { useRouter } from "next/navigation";
+import { ingredientApi } from "@/lib/api-client";
 
 function AddListItemBar({ id }: { id: string }) {
-  function wrappedAddItemAction(
-    prevState: { item: string; message: string },
-    formData: FormData
-  ) {
-    const userId: string = id;
-    return addItemAction(prevState, formData, userId);
-  }
-
   const formRef = useRef<HTMLFormElement>(null);
-  const [state, action] = useFormState(wrappedAddItemAction, {
-    item: "",
-    message: "",
-  });
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
-  if (state.message === "success") {
-    formRef.current?.reset();
-  }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const item = formData.get("item") as string;
+
+    if (!item?.trim()) {
+      setError("Please enter an item");
+      return;
+    }
+
+    try {
+      setError(null);
+      await ingredientApi.addItem(item.trim());
+      formRef.current?.reset();
+      startTransition(() => {
+        router.refresh();
+      });
+    } catch (error) {
+      console.error("Failed to add item:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to add item";
+      setError(errorMessage);
+    }
+  };
 
   return (
-    <form ref={formRef} action={action}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <input
         className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1  "
         type="text"
@@ -31,16 +43,20 @@ function AddListItemBar({ id }: { id: string }) {
         placeholder="Item to add..."
         autoFocus
       />
-      <Button />
+      <Button isPending={isPending} />
+      {error && <span className="text-red-500 ml-2">{error}</span>}
     </form>
   );
 }
 
-export function Button() {
-  const status = useFormStatus();
+export function Button({ isPending }: { isPending: boolean }) {
   return (
-    <button className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
-      {status.pending ? "Adding..." : "Add Item"}
+    <button
+      type="submit"
+      className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1"
+      disabled={isPending}
+    >
+      {isPending ? "Adding..." : "Add Item"}
     </button>
   );
 }

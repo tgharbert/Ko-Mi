@@ -89,11 +89,17 @@ function RecipeList({
           })}
         </div>
       </div>
-      {!isEnd ? (
+      {isLoading && (
         <div className="mb-4">
-          <div ref={loaderRef}>{isLoading && <LoadingPage />}</div>
+          <LoadingPage />
         </div>
-      ) : (
+      )}
+      {!isEnd && !isLoading && (
+        <div className="mb-4">
+          <div ref={loaderRef} className="h-10"></div>
+        </div>
+      )}
+      {isEnd && (
         <div className="mb-4">
           <EndOfRecipes />
         </div>

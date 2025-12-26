@@ -1,7 +1,5 @@
 "use client";
 import Switch from "@mui/material/Switch";
-import theme from "@/mui-styles/styles";
-import { ThemeProvider } from "@mui/material/styles";
 import { useState, useEffect, useCallback } from "react";
 import Requests from "./Requests";
 import FriendsList from "./FriendsList";
@@ -52,26 +50,24 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      <div>
+        <label>Friends</label>
+        <Switch onChange={onSwitch} />
+        <label>Requests</label>
+      </div>
+      {isFriendsList ? (
         <div>
-          <label>Friends</label>
-          <Switch onChange={onSwitch} />
-          <label>Requests</label>
+          <div className="text-xl pt-4 float-center">Your Friends:</div>
+          <FriendsList friends={friends} isLoading={isLoading} />
         </div>
-        {isFriendsList ? (
-          <div>
-            <div className="text-xl pt-4 float-center">Your Friends:</div>
-            <FriendsList friends={friends} isLoading={isLoading} />
-          </div>
-        ) : (
-          <Requests
-            getAllRequests={getAllRequests}
-            requests={requests}
-            loadFriends={loadFriends}
-            isLoading={isLoading}
-          />
-        )}
-      </ThemeProvider>
+      ) : (
+        <Requests
+          getAllRequests={getAllRequests}
+          requests={requests}
+          loadFriends={loadFriends}
+          isLoading={isLoading}
+        />
+      )}
     </div>
   );
 };
