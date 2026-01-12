@@ -139,6 +139,7 @@ export async function POST(request: NextRequest) {
         ingredients: {
           create: recipeData.recipeIngredient?.map((ingredient: string) => ({
             name: ingredient,
+            types: [], // Required field in schema
           })) || [],
         },
       },

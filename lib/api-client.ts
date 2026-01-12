@@ -248,3 +248,31 @@ export const userApi = {
     return response.json();
   },
 };
+
+// Reported URL API
+export const reportedUrlApi = {
+  async report(url: string) {
+    const response = await fetch("/api/reported-urls", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Failed to report URL");
+    }
+    return response.json();
+  },
+
+  async getAll(addressed?: boolean) {
+    const searchParams = new URLSearchParams();
+    if (addressed !== undefined) searchParams.set("addressed", addressed.toString());
+
+    const response = await fetch(`/api/reported-urls?${searchParams}`);
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Failed to fetch reported URLs");
+    }
+    return response.json();
+  },
+};
