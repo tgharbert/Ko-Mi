@@ -1,0 +1,113 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Alison Roman",
+      "url": "https://www.alisoneroman.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.alisoneroman.com/content/images/2025/09/ar-markers-mark.svg"
+      }
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Alison Roman",
+      "url": "https://www.alisoneroman.com/404/",
+      "sameAs": []
+    },
+    "headline": "One-Pot Chicken with Caramelized Lemon and Dates — Alison Roman",
+    "url": "https://www.alisoneroman.com/recipes/one-pot-chicken/",
+    "datePublished": "2021-09-10T16:05:09.000Z",
+    "dateModified": "2025-09-22T15:14:02.000Z",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.alisoneroman.com/content/images/size/w1200/images-squarespace-cdn-com/content/v1/541b1515e4b0a990b33a796e/1631289656261-K78OC505L9ZDBFINLXG2/https___bucketeer-e05bbc84-baa3-437e-9518-adb32be77984-s3-amazonaws-com_public_images_b1045dbc-a8ff-417f-9cd9-215832f04e7f_1600x2000.jpg",
+      "width": 1200,
+      "height": 1500
+    },
+    "keywords": "Recipes, Chicken, Dates, Shallot, Lemon, Gluten-Free",
+    "description": "This is a description.",
+    "mainEntityOfPage": "https://www.alisoneroman.com/recipes/one-pot-chicken/"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    "name": "One-Pot Chicken with Caramelized Lemon and Dates",
+    "image": "https://www.alisoneroman.com/content/images/images-squarespace-cdn-com/content/v1/541b1515e4b0a990b33a796e/1631289656261-K78OC505L9ZDBFINLXG2/https___bucketeer-e05bbc84-baa3-437e-9518-adb32be77984-s3-amazonaws-com_public_images_b1045dbc-a8ff-417f-9cd9-215832f04e7f_1600x2000.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Alison Roman"
+    },
+    "recipeYield": "YIELD — 4 servings",
+    "recipeIngredient": [
+      "1 3 ½ - 4 lb. chicken or 3 lbs. Bone-in, skin-on chicken thighs",
+      "Kosher salt, freshly ground pepper",
+      "1 tablespoon canola oil",
+      "1 lemon, cut into thick slices crosswise (about 1/4” thick), seeds removed",
+      "2 shallots, peeled if you want, halved lengthwise (or one red onion, peeled and cut into wedges)",
+      "4–6 medjool dates, pitted",
+      "4 sprigs thyme or oregano, plus more for serving  ",
+      "1–2  teaspoons crushed red pepper flakes"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": "Preheat oven to 425°."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Season chicken with salt and pepper. Heat oil in a large (at least 5.5 qt) dutch oven over medium–high heat. Place chicken, legs side down* and using tongs or your hands (be careful!) press lightly to make sure the skin comes into even contact with the pot. This is your chance to brown the legs! Rarely offered in whole chicken recipes, so take advantage."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "*If using parts, just sear the chicken skin side down, working in batches if you need to."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Cook, without moving, until chicken is nice and browned, 5– 8 minutes. Seriously, no peeking! Nothing exciting will happen before 5 minutes, I promise you."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Add lemon slices, maneuvering the chicken however you need so that the slices come into contact with the bottom of the pot."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "*If using parts, you may need to remove the chicken so that you can get the lemon slices nicely browned."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Let the lemons sizzle in the chicken fat until caramelized on one side, about 2 minutes. Add shallots, dates, thyme and 2 cups of water. Sprinkle the top of the chicken with crushed red pepper flakes and place the lid on."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "*If using parts, you can leave the lid off."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Place dutch oven in the oven and roast until the dates are plump, the lemon is jammy and the chicken is almost but not totally cooked through, 20–25 minutes (it will look mostly cooked through and a little anemic from getting covered with the lid)."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "*If using parts, the chicken will be done now, no need to keep roasting."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Remove the lid and continue to cook until the liquid has reduced by ½ and the top of the chicken has an illustrious golden-brown color, another 20–25 minutes."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Remove from oven and let chicken rest in the dutch oven for 10 minutes before transferring it to a cutting board and carving. Serve alongside shallots, lemons, and dates with some more thyme sprinkled over."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Notes"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "DO AHEAD: This chicken can be made a few hours ahead, kept in the dutch oven. If you wish to reheat it before serving, pop it back into the oven without a lid for 10–15 minutes or so."
+      }
+    ]
+  }
+]
