@@ -59,3 +59,15 @@ test('gets Alison Roman One-Pot Chicken recipe', async () => {
   expect(actualRecipe.recipeInstructions).toEqual(expectedRecipe.recipeInstructions);
   expect(actualRecipe.recipeYield).toEqual(expectedRecipe.recipeYield);
 })
+
+test('handles invalid URL gracefully', async () => {
+  const URL = "https://invalid-domain-that-does-not-exist-12345.com/recipe"
+  const actual = await getData(URL);
+  expect(actual).toContain('is not supported');
+})
+
+test('handles URL without JSON-LD or custom scraper', async () => {
+  const URL = "https://example.com/recipe"
+  const actual = await getData(URL);
+  expect(actual).toContain('is not supported');
+})
