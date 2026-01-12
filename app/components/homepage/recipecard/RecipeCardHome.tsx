@@ -149,11 +149,13 @@ export default function RecipeReviewCard({
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <div className="rounded-lg">
-                <DescriptionAccordion
-                  description={he.decode(recipe.description)}
-                />
-              </div>
+              {recipe.description && recipe.description.trim() !== "" && (
+                <div className="rounded-lg">
+                  <DescriptionAccordion
+                    description={he.decode(recipe.description)}
+                  />
+                </div>
+              )}
               <div>
                 <IngredientAccordion ingredients={recipe.ingredients} />
               </div>
