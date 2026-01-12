@@ -33,8 +33,8 @@ export async function addRecipe(recipe: any) {
       },
       create: {
         url: recipe.url || "No URL",
-        author: recipe.author,
-        description: recipe.description,
+        author: recipe.author || "",
+        description: recipe.description || "",
         name: recipe.name,
         keywords: {
           create: recipe.keywords.map((keyword: string) => ({
@@ -44,6 +44,7 @@ export async function addRecipe(recipe: any) {
         ingredients: {
           create: recipe.recipeIngredient.map((ingredient: string) => ({
             name: ingredient,
+            types: [], // Required field in schema
           })),
         },
         instructions: recipe.instructions,
