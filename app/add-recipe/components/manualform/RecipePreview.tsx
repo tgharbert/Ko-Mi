@@ -9,7 +9,7 @@ import { addCustomRecipe } from "@/app/add-recipe/data/addCustomRecipe";
 import { Plus } from "lucide-react";
 import PrimaryButton from "@/app/components/PrimaryButton";
 
-function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
+function RecipePreview({ recipe }: { recipe: CustomRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null | ArrayBuffer>(
     null
@@ -18,30 +18,23 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   const router = useRouter();
 
   useEffect(() => {
-    const handleFileInputChange = () => {
-      if (!recipe.photoFile) {
-        setImagePreview(
-          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/ko-mi_recipe-placeholder.png`
-        );
-        return;
-      }
-      const file = recipe.photoFile;
-      if (file instanceof Blob) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImagePreview(reader.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-    handleFileInputChange();
+    if (!recipe.photoFile) {
+      setImagePreview(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/ko-mi_recipe-placeholder.png`
+      );
+      return;
+    }
+    const file = recipe.photoFile;
+    if (file instanceof Blob) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   }, [recipe.photoFile]);
 
-  // is this where I handle a null recipe???
   const handleRecipeSubmission = async () => {
-    // here is where the problem lies. I cannot pass the photo file to the backend...
-    // i'm hacking around it by copying the recipe object and giving it an any type
-    // then reassigning the photoFile key to a string of imagePreview.
     let customRecipe: any = recipe;
     try {
       if (recipe.photoFile === null) {
@@ -125,4 +118,4 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
   );
 }
 
-export default CustomRecipeCard;
+export default RecipePreview;

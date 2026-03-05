@@ -1,87 +1,48 @@
-import { useState } from "react";
-import NameAndDescription from "./page1/NameAndDescription";
-import NextPageButton from "./NextPageButton";
-import BackPageButton from "./BackPageButton";
-import AddItems from "./page2&3/AddItem";
-import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
+import { useState, useEffect } from "react";
+import ListInput from "./ListInput";
+import RecipePreview from "./RecipePreview";
+import { CloudUpload } from "lucide-react";
 import convertTime from "@/utils/convertInputTime";
-import buildCustomRecipe from "../../data/buildCustomRecipe";
-import CustomRecipeCard from "./page5/CustomRecipeCard";
 import Toast from "@/app/components/Toast";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
-function RecipeForm() {
+function ManualForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [page, setPage] = useState(1);
   const [servingSize, setServingSize] = useState<string>("1");
   const [cookTime, setCookTime] = useState("");
+  const [hours, setHours] = useState("0");
+  const [minutes, setMinutes] = useState("0");
   const [ingredients, setIngredients] = useState<string[]>([]);
-  const [ingredient, setIngredient] = useState("");
   const [instructions, setInstructions] = useState<string[]>([]);
-  const [instruction, setInstruction] = useState("");
   const [keywords, setKeywords] = useState<string[]>([]);
-  const [keyword, setKeyword] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
   const [recipe, setRecipe] = useState<CustomRecipe>();
   const [isAlert, setIsAlert] = useState(false);
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setIsAlert(false);
-  };
-
-  const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const descriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(e.target.value);
-  };
-
-  const servingsChange = (value: string) => {
-    setServingSize(value);
-  };
+  useEffect(() => {
+    setCookTime(convertTime(hours, minutes));
+  }, [hours, minutes]);
 
   const pageChange = () => {
     if (page === 1) {
-      if (name === "") {
-        setIsAlert(true);
-        return;
-      }
-      if (description === "") {
-        setIsAlert(true);
-        return;
-      }
-      if (cookTime === "PT0M") {
+      if (!name || !description || cookTime === "PT0M") {
         setIsAlert(true);
         return;
       }
     }
-    if (page === 2) {
-      if (ingredients.length === 0) {
-        setIsAlert(true);
-        return;
-      }
+    if (page === 2 && ingredients.length === 0) {
+      setIsAlert(true);
+      return;
     }
-    if (page === 3) {
-      if (instructions.length === 0) {
-        setIsAlert(true);
-        return;
-      }
+    if (page === 3 && instructions.length === 0) {
+      setIsAlert(true);
+      return;
     }
     if (page === 4) {
-      // here is where we prevent a null file - KILLED TO ALLOW TEMP PHOTOS FOR LATER UPDATES TO RECIPES
-      // if (file === null) {
-      //   setIsAlert(true);
-      //   return;
-      // }
-      let customRecipe = buildCustomRecipe(
+      setRecipe({
         name,
         description,
         servingSize,
@@ -89,146 +50,164 @@ function RecipeForm() {
         ingredients,
         instructions,
         keywords,
-        file
-      );
-      setRecipe(customRecipe);
+        photoFile: file,
+      });
     }
     setPage(page + 1);
   };
 
   const revertPage = () => {
-    if (page != 1) {
-      setPage(page - 1);
-    }
-  };
-
-  const formatTime = (hours: string, minutes: string) => {
-    const formattedTime = convertTime(hours, minutes);
-    setCookTime(formattedTime);
-  };
-
-  const addIngredient = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    ingredient: string
-  ) => {
-    e.preventDefault();
-    if (!ingredient) {
-      setIsAlert(true);
-      return;
-    }
-    setIngredients([...ingredients, ingredient]);
-    setIngredient("");
-  };
-
-  const ingredientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIngredient(e.target.value);
-  };
-
-  const addInstruction = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    instruction: string
-  ) => {
-    e.preventDefault();
-    if (!instruction) {
-      setIsAlert(true);
-      return;
-    }
-    setInstructions([...instructions, instruction]);
-    setInstruction("");
-  };
-
-  const instructionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInstruction(e.target.value);
-  };
-
-  const addKeyword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    keyword: string
-  ) => {
-    e.preventDefault();
-    if (!keyword) {
-      return;
-    }
-    setKeywords([...keywords, keyword]);
-    setKeyword("");
-  };
-
-  const keywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
+    if (page > 1) setPage(page - 1);
   };
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files?.[0] ?? null);
-    setFileName(e.target.files?.[0].name ?? "");
+    setFileName(e.target.files?.[0]?.name ?? "");
   };
 
   return (
-    <div className=" bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
+    <div className="bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
       <div className="px-8 justify-center flex">
         {isAlert && (
-          <Toast message="Not all fields are filled in!" onClose={handleClose} variant="warning" />
+          <Toast message="Not all fields are filled in!" onClose={() => setIsAlert(false)} variant="warning" />
         )}
+
+        {/* Page 1: Details */}
         {page === 1 && (
-          <NameAndDescription
-            nameChange={nameChange}
-            descriptionChange={descriptionChange}
-            name={name}
-            description={description}
-            servingsChange={servingsChange}
-            servingSize={servingSize}
-            formatTime={formatTime}
-          />
+          <div className="justify-center w-4/5 sm:w-3/5">
+            <form>
+              <div className="pb-4">
+                <p>Recipe Name:</p>
+                <input
+                  className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
+                  type="text"
+                  placeholder="Recipe Name"
+                  autoFocus
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="pb-4">
+                <p>Recipe Description:</p>
+                <textarea
+                  className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
+                  placeholder="Recipe Description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className="pb-4">
+                <label>Cook Time:</label>
+                <span className="flex justify-center">
+                  <div>
+                    <input
+                      type="number"
+                      className="text-black rounded-lg border-2 border-primary pl-2"
+                      min="0" max="60" step="1"
+                      value={hours}
+                      onChange={(e) => setHours(e.target.value)}
+                    />
+                    <label className="mx-2">hours</label>
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      className="text-black rounded-lg border-2 border-primary pl-2"
+                      min="0" max="60" step="1"
+                      value={minutes}
+                      onChange={(e) => setMinutes(e.target.value)}
+                    />
+                    <label className="mx-2">minutes</label>
+                  </div>
+                </span>
+              </div>
+              <div className="pb-4">
+                <label>Servings:</label>
+                <div className="flex justify-center pb-4 px-8">
+                  <select
+                    onChange={(e) => setServingSize(e.target.value)}
+                    value={servingSize}
+                    className="mr-2 border-2 border-primary rounded-lg px-3 text-black"
+                  >
+                    {Array.from({ length: 10 }, (_, i) => (
+                      <option key={i} value={i + 1}>{i + 1}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
         )}
+
+        {/* Page 2: Ingredients */}
         {page === 2 && (
-          <AddItems
-            addItem={addIngredient}
+          <ListInput
             items={ingredients}
-            item={ingredient}
-            itemChange={ingredientChange}
-            text={"Ingredient"}
+            onAdd={(item) => setIngredients([...ingredients, item])}
+            onRemove={(idx) => setIngredients(ingredients.filter((_, i) => i !== idx))}
+            label="Ingredients"
+            placeholder="Enter Ingredient"
+            useTextarea
           />
         )}
+
+        {/* Page 3: Instructions */}
         {page === 3 && (
-          <AddItems
-            addItem={addInstruction}
+          <ListInput
             items={instructions}
-            item={instruction}
-            itemChange={instructionChange}
-            text={"Instruction"}
+            onAdd={(item) => setInstructions([...instructions, item])}
+            onRemove={(idx) => setInstructions(instructions.filter((_, i) => i !== idx))}
+            label="Instructions"
+            placeholder="Enter Instruction"
+            useTextarea
           />
         )}
+
+        {/* Page 4: Keywords & Photo */}
         {page === 4 && (
-          <KeywordsAndPhoto
-            keywords={keywords}
-            keywordChange={keywordChange}
-            keyword={keyword}
-            addKeyword={addKeyword}
-            handleFileSelected={handleFileSelected}
-            fileName={fileName}
-          />
+          <div>
+            <ListInput
+              items={keywords}
+              onAdd={(item) => setKeywords([...keywords, item])}
+              onRemove={(idx) => setKeywords(keywords.filter((_, i) => i !== idx))}
+              label="Keywords"
+              placeholder="Enter Keyword..."
+            />
+            <div className="mt-4 mb-4">
+              <p>Upload a Photo:</p>
+              <label className="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-tertiary px-4 py-2 rounded cursor-pointer">
+                <CloudUpload size={20} />
+                Upload file
+                <input
+                  type="file"
+                  className="sr-only"
+                  onChange={handleFileSelected}
+                />
+              </label>
+              {fileName && (
+                <p className="pb-2 pt-2">
+                  currently selected: <b>{fileName}</b>
+                </p>
+              )}
+            </div>
+          </div>
         )}
       </div>
-      {page === 5 && recipe !== undefined ? (
-        <CustomRecipeCard recipe={recipe} />
+
+      {/* Page 5: Preview */}
+      {page === 5 && recipe ? (
+        <RecipePreview recipe={recipe} />
       ) : (
-        <div>
-          {page !== 1 ? (
-            <div className="flex justify-center px-2">
-              <span className="px-2">
-                <BackPageButton revertPage={revertPage} />
-              </span>
-              <span className="px-2">
-                <NextPageButton pageChange={pageChange} />
-              </span>
-            </div>
-          ) : (
-            <NextPageButton pageChange={pageChange} />
+        <div className="flex justify-center gap-2 px-2">
+          {page > 1 && (
+            <PrimaryButton onClick={revertPage}>Previous</PrimaryButton>
           )}
+          <PrimaryButton onClick={pageChange}>Next Page</PrimaryButton>
         </div>
       )}
     </div>
   );
 }
 
-export default RecipeForm;
+export default ManualForm;
