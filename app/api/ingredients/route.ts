@@ -1,21 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/app/api/_base";
-import assignValueToIng from "@/utils/assignCustomIng";
-
-const desiredLocationOrder = [
-  "produce",
-  "fish",
-  "meat",
-  "liquor",
-  "spice",
-  "baking",
-  "beans & rice",
-  "asian",
-  "pasta",
-  "dairy",
-  "other",
-];
+import { matchLocation } from "@/utils/matchIngredientLocation";
+import { STORE_LOCATIONS } from "@/utils/ingredientMap";
 
 // GET all ingredients for user (unchecked, with location, sorted)
 export async function GET(request: NextRequest) {
@@ -58,11 +45,11 @@ export async function GET(request: NextRequest) {
           location: locationsObj[ingredient.ingredientId.toString()] || "other",
         };
       }
-      return assignValueToIng({ ...ingredient });
+      return { ...ingredient, location: matchLocation(ingredient.name || "") };
     });
 
     const locationOrderMap: Record<string, IngredientWithLocation[]> = {};
-    for (const loc of desiredLocationOrder) {
+    for (const loc of STORE_LOCATIONS) {
       locationOrderMap[loc] = [];
     }
 
@@ -76,7 +63,7 @@ export async function GET(request: NextRequest) {
     }
 
     const ordered: IngredientWithLocation[] = [];
-    for (const loc of desiredLocationOrder) {
+    for (const loc of STORE_LOCATIONS) {
       ordered.push(...locationOrderMap[loc]);
     }
 
