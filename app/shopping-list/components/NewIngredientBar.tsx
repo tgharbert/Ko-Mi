@@ -31,9 +31,9 @@ function AddListItemBar({ id }: { id: string }) {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit} className="flex items-center justify-center gap-2 max-w-lg mx-auto px-4">
       <input
-        className="text-black w-1/2 sm:w-1/5 rounded px-4 pt-1 pb-1  "
+        className="flex-1 rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
         type="text"
         name="item"
         placeholder="Item to add..."
@@ -49,7 +49,7 @@ export function Button({ isPending }: { isPending: boolean }) {
   return (
     <button
       type="submit"
-      className="bg-secondary hover:bg-red-700 active:scale-95 rounded ml-2 px-2 pt-1 pb-1 whitespace-nowrap transition-all duration-150"
+      className="bg-secondary hover:bg-red-700 active:scale-95 text-tertiary rounded-md px-4 py-2 whitespace-nowrap transition-all duration-150"
       disabled={isPending}
     >
       {isPending ? "Adding..." : "Add Item"}

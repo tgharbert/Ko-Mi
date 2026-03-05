@@ -10,41 +10,33 @@ function IngredientNode({
   onCheck: (id: number, checked: boolean) => void;
 }) {
   return (
-    <span className="sm:flex sm:items-center sm:justify-center">
-      <div className={`overflow-y-auto mx-4 px-4 border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black animate-slide-up transition-all duration-200 ${ingredient.checked ? "opacity-60" : "opacity-100"}`}>
-        <span
-          className={
-            ingredient.checked
-              ? "w-full line-through text-lg text-red-500 transition-colors duration-200"
-              : "w-full text-lg transition-colors duration-200"
-          }
-        >
-          <span className="mt-4 mb-4 flex">
+    <div className="flex justify-center">
+      <div className={`mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md animate-slide-up transition-all duration-200 ${ingredient.checked ? "opacity-60" : "opacity-100"}`}>
+        <div className="bg-card text-tertiary rounded-xl px-4 py-3">
+          <div className="flex items-center">
             <button
               onClick={() => onCheck(ingredient.id, !ingredient.checked)}
               aria-label="check item"
-              className="p-2 rounded-full hover:bg-gray-100 active:scale-90 transition-all duration-150"
+              className="p-2 rounded-full hover:bg-white/10 active:scale-90 transition-all duration-150"
             >
               {ingredient.checked ? (
-                <ShoppingCart className="text-red-500" size={24} />
+                <ShoppingCart className="text-red-500" size={22} />
               ) : (
-                <ShoppingCart className="text-accent" size={24} />
+                <ShoppingCart className="text-accent" size={22} />
               )}
             </button>
-            <p className="pl-2 content-center text-left pr-4">
+            <p className={`pl-2 text-left flex-1 ${ingredient.checked ? "line-through text-red-500" : ""}`}>
               {ingredient.name}
             </p>
-          </span>
-        </span>
-        {ingredient.location === "other" || !ingredient.location ? (
-          <></>
-        ) : (
-          <p className="text-primary italic flex justify-end -mt-4">
-            {ingredient.location}
-          </p>
-        )}
+          </div>
+          {ingredient.location && ingredient.location !== "other" && (
+            <p className="text-tertiary/50 italic text-sm text-right -mt-1">
+              {ingredient.location}
+            </p>
+          )}
+        </div>
       </div>
-    </span>
+    </div>
   );
 }
 
