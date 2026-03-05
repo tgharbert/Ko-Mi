@@ -49,6 +49,7 @@ const ShareButton = () => {
         <dialog
           ref={dialogRef}
           onClose={handleClose}
+          onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
           className="rounded-xl backdrop:bg-black/50 p-0"
         >
           <div className="px-10 pt-4 pb-8 justify-center flex text-lg bg-tertiary text-black">

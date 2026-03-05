@@ -119,6 +119,7 @@ export default function RecipeReviewCard({
                 <dialog
                   ref={dialogRef}
                   onClose={handleClose}
+                  onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
                   className="rounded-xl backdrop:bg-black/50 p-0"
                 >
                   <DesktopRecipeCard recipe={recipe} user={user} />

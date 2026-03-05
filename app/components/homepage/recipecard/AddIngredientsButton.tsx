@@ -49,6 +49,7 @@ function AddIngredientsButton({
       <dialog
         ref={dialogRef}
         onClose={handleClose}
+        onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
         className="rounded-xl backdrop:bg-black/50 p-0"
       >
         <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-black">
