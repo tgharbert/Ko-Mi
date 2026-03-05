@@ -58,7 +58,6 @@ export async function addCustomRecipe(recipe: any) {
     const locationData: LocData[] = matchLocations(ingredients)
     await addSection(locationData)
 
-    await prisma.$disconnect();
     return;
   } catch (error) {
     console.error("ERROR ADDING CUSTOM RECIPE: ", error);

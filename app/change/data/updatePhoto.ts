@@ -24,12 +24,9 @@ export default async function updatePhoto(recipeId: number, address: string, new
 
     let filePath = getFilePath(oldRecipeVals.image)
 
-    const { error } = await supabase.storage
+    await supabase.storage
       .from("images")
       .remove([filePath])
-    if (error) {
-      console.error("WHOOPSIES, error deleting old photo from db: ", error)
-    }
     let recipe = await prisma.recipe.update({
       where: {
         id: target
@@ -39,7 +36,6 @@ export default async function updatePhoto(recipeId: number, address: string, new
         image: address,
       }
     })
-    await prisma.$disconnect();
     revalidatePath(`/change/${recipeId}`)
     return;
   } catch (error) {

@@ -14,7 +14,6 @@ export default async function updateDetails(description: string, recipeYield: st
         cookTime: time,
       }
     })
-    await prisma.$disconnect();
     revalidatePath(`/change/${recipeId}`)
     return
   } catch (error) {

@@ -12,7 +12,6 @@ export default async function getUserRecipe(recipeId: number) {
         keywords: true,
       },
     })
-    await prisma.$disconnect();
     return new Response(JSON.stringify(recipe))
   } catch (error) {
     console.error("ERROR: ", error);

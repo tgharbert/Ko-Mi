@@ -81,28 +81,23 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
-    console.log("Session:", session);
 
     if (!session?.user?.email) {
-      console.log("Unauthorized: No session or email");
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await request.json();
-    console.log("Request body:", body);
 
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
     });
 
     if (!user) {
-      console.log("User not found:", session.user.email);
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Single item addition
     if (body.item && typeof body.item === "string") {
-      console.log("Creating ingredient:", body.item);
       const ingredient = await prisma.userIngredient.create({
         data: {
           name: body.item,
@@ -110,7 +105,6 @@ export async function POST(request: NextRequest) {
           checked: false,
         },
       });
-      console.log("Ingredient created:", ingredient);
       return NextResponse.json(ingredient);
     }
 

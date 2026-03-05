@@ -16,7 +16,6 @@ export default async function updateIngredients(recipeId: number, ingredients: s
         recipeId: target,
       })),
     });
-    await prisma.$disconnect();
     revalidatePath(`/change/${recipeId}`)
     return
   } catch (error) {

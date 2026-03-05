@@ -33,7 +33,6 @@ export default async function getFriends () {
     })
 
 
-    await prisma.$disconnect();
     return response;
   } catch (error) {
     console.error('Error retrieving friends: ', error)

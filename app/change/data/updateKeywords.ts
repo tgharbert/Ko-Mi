@@ -16,7 +16,6 @@ export default async function updateKeywords(recipeId: number, keywords: string[
         recipeId: target,
       })),
     });
-    await prisma.$disconnect();
     revalidatePath(`/change/${recipeId}`)
     return
   } catch (error) {
