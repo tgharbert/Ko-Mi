@@ -44,7 +44,7 @@ export default function RecipeURLForm() {
 
   return (
     <div>
-      <form onSubmit={handleRecipeSubmit} className="flex items-center justify-center gap-2 max-w-lg mx-auto">
+      <form onSubmit={handleRecipeSubmit} className="flex items-center justify-center gap-2 max-w-lg mx-auto px-4">
         <input
           className="flex-1 rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
           type="text"
