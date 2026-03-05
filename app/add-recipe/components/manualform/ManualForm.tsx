@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import ListInput from "./ListInput";
 import RecipePreview from "./RecipePreview";
 import { CloudUpload } from "lucide-react";
@@ -6,47 +6,89 @@ import convertTime from "@/utils/convertInputTime";
 import Toast from "@/app/components/Toast";
 import PrimaryButton from "@/app/components/PrimaryButton";
 
-function ManualForm() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [servingSize, setServingSize] = useState<string>("1");
-  const [hours, setHours] = useState("0");
-  const [minutes, setMinutes] = useState("0");
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const [instructions, setInstructions] = useState<string[]>([]);
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState("");
-  const [recipe, setRecipe] = useState<CustomRecipe>();
-  const [isAlert, setIsAlert] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
+type FormState = {
+  name: string;
+  description: string;
+  servingSize: string;
+  hours: string;
+  minutes: string;
+  ingredients: string[];
+  instructions: string[];
+  keywords: string[];
+  file: File | null;
+  fileName: string;
+  isAlert: boolean;
+  showPreview: boolean;
+};
 
-  const cookTime = convertTime(hours, minutes);
+type FormAction =
+  | { type: "SET_FIELD"; field: "name" | "description" | "servingSize" | "hours" | "minutes"; value: string }
+  | { type: "ADD_ITEM"; field: "ingredients" | "instructions" | "keywords"; value: string }
+  | { type: "REMOVE_ITEM"; field: "ingredients" | "instructions" | "keywords"; index: number }
+  | { type: "SET_FILE"; file: File | null; fileName: string }
+  | { type: "SET_ALERT"; value: boolean }
+  | { type: "SHOW_PREVIEW" };
+
+const initialState: FormState = {
+  name: "",
+  description: "",
+  servingSize: "1",
+  hours: "0",
+  minutes: "0",
+  ingredients: [],
+  instructions: [],
+  keywords: [],
+  file: null,
+  fileName: "",
+  isAlert: false,
+  showPreview: false,
+};
+
+function formReducer(state: FormState, action: FormAction): FormState {
+  switch (action.type) {
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "ADD_ITEM":
+      return { ...state, [action.field]: [...state[action.field], action.value] };
+    case "REMOVE_ITEM":
+      return { ...state, [action.field]: state[action.field].filter((_, i) => i !== action.index) };
+    case "SET_FILE":
+      return { ...state, file: action.file, fileName: action.fileName };
+    case "SET_ALERT":
+      return { ...state, isAlert: action.value };
+    case "SHOW_PREVIEW":
+      return { ...state, showPreview: true };
+  }
+}
+
+function ManualForm() {
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  const cookTime = convertTime(state.hours, state.minutes);
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files?.[0] ?? null);
-    setFileName(e.target.files?.[0]?.name ?? "");
+    const selected = e.target.files?.[0];
+    dispatch({ type: "SET_FILE", file: selected ?? null, fileName: selected?.name ?? "" });
   };
 
   const handleSubmit = () => {
-    if (!name || !description || cookTime === "PT0M" || ingredients.length === 0 || instructions.length === 0) {
-      setIsAlert(true);
+    if (!state.name || !state.description || cookTime === "PT0M" || state.ingredients.length === 0 || state.instructions.length === 0) {
+      dispatch({ type: "SET_ALERT", value: true });
       return;
     }
-    setRecipe({
-      name,
-      description,
-      servingSize,
-      cookTime,
-      ingredients,
-      instructions,
-      keywords,
-      photoFile: file,
-    });
-    setShowPreview(true);
+    dispatch({ type: "SHOW_PREVIEW" });
   };
 
-  if (showPreview && recipe) {
+  if (state.showPreview) {
+    const recipe: CustomRecipe = {
+      name: state.name,
+      description: state.description,
+      servingSize: state.servingSize,
+      cookTime,
+      ingredients: state.ingredients,
+      instructions: state.instructions,
+      keywords: state.keywords,
+      photoFile: state.file,
+    };
     return (
       <div className="bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
         <RecipePreview recipe={recipe} />
@@ -58,8 +100,8 @@ function ManualForm() {
     <div className="bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
 
-      {isAlert && (
-        <Toast message="Please fill in name, description, cook time, ingredients, and instructions." onClose={() => setIsAlert(false)} variant="warning" />
+      {state.isAlert && (
+        <Toast message="Please fill in name, description, cook time, ingredients, and instructions." onClose={() => dispatch({ type: "SET_ALERT", value: false })} variant="warning" />
       )}
 
       <div className="px-8 space-y-6">
@@ -73,8 +115,8 @@ function ManualForm() {
                 type="text"
                 placeholder="Recipe Name"
                 autoFocus
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={state.name}
+                onChange={(e) => dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })}
               />
             </div>
             <div>
@@ -82,8 +124,8 @@ function ManualForm() {
               <textarea
                 className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
                 placeholder="Recipe Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={state.description}
+                onChange={(e) => dispatch({ type: "SET_FIELD", field: "description", value: e.target.value })}
               />
             </div>
             <div>
@@ -94,8 +136,8 @@ function ManualForm() {
                     type="number"
                     className="text-black rounded-lg border-2 border-primary pl-2 w-20"
                     min="0" max="60" step="1"
-                    value={hours}
-                    onChange={(e) => setHours(e.target.value)}
+                    value={state.hours}
+                    onChange={(e) => dispatch({ type: "SET_FIELD", field: "hours", value: e.target.value })}
                   />
                   <label className="ml-2">hours</label>
                 </div>
@@ -104,8 +146,8 @@ function ManualForm() {
                     type="number"
                     className="text-black rounded-lg border-2 border-primary pl-2 w-20"
                     min="0" max="60" step="1"
-                    value={minutes}
-                    onChange={(e) => setMinutes(e.target.value)}
+                    value={state.minutes}
+                    onChange={(e) => dispatch({ type: "SET_FIELD", field: "minutes", value: e.target.value })}
                   />
                   <label className="ml-2">minutes</label>
                 </div>
@@ -114,8 +156,8 @@ function ManualForm() {
             <div>
               <label className="block pb-1">Servings:</label>
               <select
-                onChange={(e) => setServingSize(e.target.value)}
-                value={servingSize}
+                onChange={(e) => dispatch({ type: "SET_FIELD", field: "servingSize", value: e.target.value })}
+                value={state.servingSize}
                 className="border-2 border-primary rounded-lg px-3 text-black"
               >
                 {Array.from({ length: 10 }, (_, i) => (
@@ -129,9 +171,9 @@ function ManualForm() {
         {/* Ingredients */}
         <section>
           <ListInput
-            items={ingredients}
-            onAdd={(item) => setIngredients([...ingredients, item])}
-            onRemove={(idx) => setIngredients(ingredients.filter((_, i) => i !== idx))}
+            items={state.ingredients}
+            onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "ingredients", value: item })}
+            onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "ingredients", index: idx })}
             label="Ingredients"
             placeholder="Enter Ingredient"
             useTextarea
@@ -141,9 +183,9 @@ function ManualForm() {
         {/* Instructions */}
         <section>
           <ListInput
-            items={instructions}
-            onAdd={(item) => setInstructions([...instructions, item])}
-            onRemove={(idx) => setInstructions(instructions.filter((_, i) => i !== idx))}
+            items={state.instructions}
+            onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "instructions", value: item })}
+            onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "instructions", index: idx })}
             label="Instructions"
             placeholder="Enter Instruction"
             useTextarea
@@ -153,9 +195,9 @@ function ManualForm() {
         {/* Keywords */}
         <section>
           <ListInput
-            items={keywords}
-            onAdd={(item) => setKeywords([...keywords, item])}
-            onRemove={(idx) => setKeywords(keywords.filter((_, i) => i !== idx))}
+            items={state.keywords}
+            onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "keywords", value: item })}
+            onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "keywords", index: idx })}
             label="Keywords"
             placeholder="Enter Keyword..."
           />
@@ -173,9 +215,9 @@ function ManualForm() {
               onChange={handleFileSelected}
             />
           </label>
-          {fileName && (
+          {state.fileName && (
             <p className="pt-2">
-              currently selected: <b>{fileName}</b>
+              currently selected: <b>{state.fileName}</b>
             </p>
           )}
         </section>
