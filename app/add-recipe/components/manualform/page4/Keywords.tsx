@@ -1,4 +1,4 @@
-import AddIcon from "@mui/icons-material/Add";
+import { Plus } from "lucide-react";
 
 function Keywords({
   keywords,
@@ -28,7 +28,7 @@ function Keywords({
         <div className="mt-2 items-center">
           <button>
             <label>Add Keyword:</label>
-            <AddIcon />
+            <Plus size={20} />
           </button>
         </div>
       </form>

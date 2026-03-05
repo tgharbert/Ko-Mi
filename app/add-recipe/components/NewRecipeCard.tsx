@@ -5,7 +5,7 @@ import { useState } from "react";
 import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { addRecipe } from "@/app/add-recipe/data/addRecipe";
-import AddIcon from "@mui/icons-material/Add";
+import { Plus } from "lucide-react";
 import PrimaryButton from "@/app/components/PrimaryButton";
 function RecipeCard({ recipe }: { recipe: RawRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +45,7 @@ function RecipeCard({ recipe }: { recipe: RawRecipe }) {
       <div className="mt-2">
         <PrimaryButton onClick={handleRecipeSubmission}>
           Add Recipe
-          <AddIcon className="pl-1" />
+          <Plus className="pl-1" size={20} />
         </PrimaryButton>
       </div>
       {recipe.description ? (

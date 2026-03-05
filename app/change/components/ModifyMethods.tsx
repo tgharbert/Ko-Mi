@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
+import { Trash2, Plus } from "lucide-react";
 import updateMethods from "../data/updateMethod";
 import PrimaryButton from "@/app/components/PrimaryButton";
 
@@ -54,11 +53,11 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
               onClick={(e) => onDelClick(e, idx)}
               className=" text-red-500"
             >
-              <DeleteIcon />
+              <Trash2 size={20} />
             </button>
           </div>
           <button onClick={(e) => onAddClick(e, idx)} className="text-lime-500">
-            <AddIcon />
+            <Plus size={20} />
           </button>
         </div>
       ))}

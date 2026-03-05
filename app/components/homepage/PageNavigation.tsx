@@ -1,6 +1,5 @@
 "use client";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 function PageNavigation({
@@ -35,8 +34,8 @@ function PageNavigation({
       <div>
         {currentPage > 1 ? (
           <span className="hover:text-lime-500">
-            <NavigateBeforeIcon
-              fontSize="large"
+            <ChevronLeft
+              size={28}
               className="cursor-pointer"
               onClick={() => handlePreviousPageClick(currentPage)}
             />
@@ -49,9 +48,9 @@ function PageNavigation({
           ""
         ) : (
           <span className="hover:text-lime-500">
-            <NavigateNextIcon
-              fontSize="large"
-              className="cursor-pointer "
+            <ChevronRight
+              size={28}
+              className="cursor-pointer"
               onClick={() => handleNextPageClick(currentPage)}
             />
           </span>

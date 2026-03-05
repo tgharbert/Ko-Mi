@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import YieldDropdown from "./YieldDropdown";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { ShoppingCart } from "lucide-react";
 import Toast from "@/app/components/Toast";
 
 function AddIngredientsButton({
@@ -44,7 +44,7 @@ function AddIngredientsButton({
         className="cursor-pointer hover:text-lime-600 flex "
         onClick={handleClickOpen}
       >
-        <AddShoppingCartIcon className="mr-3" /> Add Ingredients
+        <ShoppingCart className="mr-3" size={20} /> Add Ingredients
       </button>
       <dialog
         ref={dialogRef}

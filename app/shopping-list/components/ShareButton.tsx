@@ -1,4 +1,4 @@
-import ShareIcon from "@mui/icons-material/Share";
+import { Share2 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import FriendsDropDown from "./FriendsDropdown";
 import Toast from "@/app/components/Toast";
@@ -44,7 +44,7 @@ const ShareButton = () => {
           className="text-white hover:text-lime-400 flex items-center gap-1"
         >
           Share
-          <ShareIcon />
+          <Share2 size={20} />
         </button>
         <dialog
           ref={dialogRef}

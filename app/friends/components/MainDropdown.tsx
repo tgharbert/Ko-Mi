@@ -1,6 +1,5 @@
 "use client";
-import MenuIcon from "@mui/icons-material/Menu";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { Menu, LogOut } from "lucide-react";
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
@@ -38,7 +37,7 @@ export default function MainDropDownMenu() {
         aria-label="open-menu"
         className="p-1"
       >
-        <MenuIcon className="text-white text-3xl" />
+        <Menu className="text-white" size={28} />
       </button>
       {open && (
         <div className="absolute right-0 top-full bg-white rounded shadow-lg z-50 min-w-[140px] py-1">
@@ -54,7 +53,7 @@ export default function MainDropDownMenu() {
           </Link>
           <button onClick={() => signOut()} className="w-full text-left px-4 py-2 hover:bg-gray-100 text-black">
             Logout
-            <LogoutIcon className="pl-1" />
+            <LogOut className="pl-1 inline" size={20} />
           </button>
         </div>
       )}

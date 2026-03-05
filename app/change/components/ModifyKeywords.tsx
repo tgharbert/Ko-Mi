@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
+import { Trash2, Plus } from "lucide-react";
 import updateKeywords from "../data/updateKeywords";
 import PrimaryButton from "@/app/components/PrimaryButton";
 
@@ -61,14 +60,14 @@ const ModifyKeywords = ({
               onClick={(e) => onDelClick(e, idx)}
               className=" text-red-700"
             >
-              <DeleteIcon />
+              <Trash2 size={20} />
             </button>
           </div>
         </div>
       ))}
       <div>
         <button onClick={(e) => onAddClick(e)} className="text-green-600">
-          <AddIcon />
+          <Plus size={20} />
         </button>
       </div>
       <PrimaryButton onClick={handleSubmit}>Update Keywords</PrimaryButton>

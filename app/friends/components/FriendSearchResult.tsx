@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { UserPlus } from "lucide-react";
 
 const FriendSearchResult = ({
   user,
@@ -19,7 +19,7 @@ const FriendSearchResult = ({
           <span className="mt-4 mb-4 flex">
             <span className="float-left pt-1">
               <button onClick={() => addFriendClick()}>
-                <PersonAddIcon />
+                <UserPlus size={24} />
               </button>
             </span>
             <Image

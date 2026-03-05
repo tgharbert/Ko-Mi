@@ -6,7 +6,7 @@ import InstructionAccordion from "@/app/components/accordions/InstructionAccordi
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";
 import { addCustomRecipe } from "@/app/add-recipe/data/addCustomRecipe";
-import AddIcon from "@mui/icons-material/Add";
+import { Plus } from "lucide-react";
 import PrimaryButton from "@/app/components/PrimaryButton";
 
 function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
@@ -118,7 +118,7 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
       <div className="mx-4 pt-7 pb-10">
         <PrimaryButton onClick={handleRecipeSubmission}>
           Add Recipe
-          <AddIcon className="pl-1" />
+          <Plus className="pl-1" size={20} />
         </PrimaryButton>
       </div>
     </div>

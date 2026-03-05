@@ -1,5 +1,5 @@
 "use client";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { MoreVertical } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { addUserRecipe } from "@/app/data/addUserRecipe";
@@ -69,7 +69,7 @@ const MoreRecipeClick = ({
         aria-label="open-menu"
         className="p-2"
       >
-        <MoreVertIcon className="text-black" />
+        <MoreVertical className="text-black" size={24} />
       </button>
       {menuOpen && (
         <div className="absolute right-0 top-full bg-white rounded-lg shadow-lg z-50 min-w-[160px] py-1">

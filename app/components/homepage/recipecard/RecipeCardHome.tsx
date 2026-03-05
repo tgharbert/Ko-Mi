@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import AddIngredientsButton from "./AddIngredientsButton";
 import IngredientAccordion from "../../accordions/IngredientAccordion";
@@ -114,7 +114,7 @@ export default function RecipeReviewCard({
                   className="p-2 transition-transform duration-200"
                   style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
                 >
-                  <ExpandMoreIcon />
+                  <ChevronDown size={24} />
                 </button>
                 <dialog
                   ref={dialogRef}
@@ -133,7 +133,7 @@ export default function RecipeReviewCard({
                 className="p-2 transition-transform duration-200"
                 style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
               >
-                <ExpandMoreIcon />
+                <ChevronDown size={24} />
               </button>
             )}
           </div>

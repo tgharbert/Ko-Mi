@@ -1,7 +1,6 @@
 "use client";
 
-import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { ShoppingCart } from "lucide-react";
 
 function IngredientNode({
   ingredient,
@@ -27,9 +26,9 @@ function IngredientNode({
               className="p-2 rounded-full hover:bg-gray-100 transition-colors"
             >
               {ingredient.checked ? (
-                <RemoveShoppingCartIcon className=" text-red-500 " />
+                <ShoppingCart className="text-red-500" size={24} />
               ) : (
-                <AddShoppingCartIcon className=" text-lime-500 " />
+                <ShoppingCart className="text-lime-500" size={24} />
               )}
             </button>
             <p className="pl-2 content-center text-left pr-4">

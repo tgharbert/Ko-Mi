@@ -1,4 +1,4 @@
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { CloudUpload } from "lucide-react";
 
 function PhotoForm({
   handleFileSelected,
@@ -12,7 +12,7 @@ function PhotoForm({
       <div className="mb-4">
         <p>Upload a Photo:</p>
         <label className="inline-flex items-center gap-2 bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded cursor-pointer">
-          <CloudUploadIcon />
+          <CloudUpload size={20} />
           Upload file
           <input
             type="file"

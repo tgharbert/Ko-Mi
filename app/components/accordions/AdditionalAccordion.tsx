@@ -1,5 +1,5 @@
 import Accordion from "@/app/components/Accordion";
-import LinkIcon from "@mui/icons-material/Link";
+import { Link as LinkIcon } from "lucide-react";
 
 function AdditionalAccordion({
   url,
@@ -26,7 +26,7 @@ function AdditionalAccordion({
         <p>
           <b>Original URL: </b>
           <a className="underline text-blue" href={url}>
-            <LinkIcon className="mr-1" />
+            <LinkIcon className="mr-1 inline" size={16} />
             click link
           </a>
         </p>

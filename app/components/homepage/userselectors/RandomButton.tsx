@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import ShuffleIcon from "@mui/icons-material/Shuffle";
+import { Shuffle } from "lucide-react";
 import PrimaryButton from "@/app/components/PrimaryButton";
 
 function RandomButton({ random }: { random: string }) {
@@ -19,7 +19,7 @@ function RandomButton({ random }: { random: string }) {
     <div className="mb-4">
       <PrimaryButton onClick={() => randomClick()}>
         Randomize
-        <ShuffleIcon className="ml-2" />
+        <Shuffle className="ml-2" size={20} />
       </PrimaryButton>
     </div>
   );

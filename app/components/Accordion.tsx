@@ -1,6 +1,6 @@
 "use client";
 import { useState, ReactNode } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { ChevronDown } from "lucide-react";
 
 function Accordion({
   title,
@@ -21,8 +21,9 @@ function Accordion({
         className="w-full flex items-center justify-between px-4 py-3 font-semibold text-left"
       >
         {title}
-        <ExpandMoreIcon
+        <ChevronDown
           className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          size={24}
         />
       </button>
       <div
