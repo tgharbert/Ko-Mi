@@ -31,13 +31,13 @@ export function useIngredients(initialData?: IngredientWithLocation[]) {
       ]);
       return { previous };
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: INGREDIENTS_KEY });
+    },
     onError: (_err, _item, context) => {
       if (context?.previous) {
         queryClient.setQueryData(INGREDIENTS_KEY, context.previous);
       }
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: INGREDIENTS_KEY });
     },
   });
 
@@ -57,9 +57,6 @@ export function useIngredients(initialData?: IngredientWithLocation[]) {
         queryClient.setQueryData(INGREDIENTS_KEY, context.previous);
       }
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: INGREDIENTS_KEY });
-    },
   });
 
   const deleteChecked = useMutation({
@@ -77,9 +74,6 @@ export function useIngredients(initialData?: IngredientWithLocation[]) {
         queryClient.setQueryData(INGREDIENTS_KEY, context.previous);
       }
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: INGREDIENTS_KEY });
-    },
   });
 
   const deleteAll = useMutation({
@@ -94,9 +88,6 @@ export function useIngredients(initialData?: IngredientWithLocation[]) {
       if (context?.previous) {
         queryClient.setQueryData(INGREDIENTS_KEY, context.previous);
       }
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: INGREDIENTS_KEY });
     },
   });
 

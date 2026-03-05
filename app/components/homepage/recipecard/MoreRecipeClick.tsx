@@ -43,14 +43,13 @@ const MoreRecipeClick = ({
   }, [isDeleteClick]);
 
   useEffect(() => {
+    if (!menuOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     };
-    if (menuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 

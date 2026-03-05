@@ -22,30 +22,30 @@ export async function GET(request: NextRequest) {
 
     const allIngredients = await prisma.userIngredient.findMany({
       where: { userId: user.id, checked: false },
-      select: { id: true, ingredientId: true, name: true, checked: true },
+      select: {
+        id: true,
+        ingredientId: true,
+        name: true,
+        checked: true,
+        ingredient: {
+          select: {
+            location: {
+              select: { store: true },
+            },
+          },
+        },
+      },
     });
 
-    const ingredientIds = allIngredients
-      .map((ing) => ing.ingredientId)
-      .filter((id): id is number => id !== undefined && id !== null);
-
-    const locationsArr = await prisma.location.findMany({
-      where: { ingredientId: { in: ingredientIds } },
-    });
-
-    const locationsObj: Record<string, string> = {};
-    for (const loc of locationsArr) {
-      locationsObj[loc.ingredientId.toString()] = loc.store;
-    }
-
-    const ingWithLoc: IngredientWithLocation[] = allIngredients.map((ingredient) => {
-      if (ingredient.ingredientId) {
-        return {
-          ...ingredient,
-          location: locationsObj[ingredient.ingredientId.toString()] || "other",
-        };
-      }
-      return { ...ingredient, location: matchLocation(ingredient.name || "") };
+    const ingWithLoc: IngredientWithLocation[] = allIngredients.map((ing) => {
+      const store = ing.ingredient?.location?.store;
+      return {
+        id: ing.id,
+        ingredientId: ing.ingredientId,
+        name: ing.name,
+        checked: ing.checked,
+        location: store || matchLocation(ing.name || ""),
+      };
     });
 
     const locationOrderMap: Record<string, IngredientWithLocation[]> = {};

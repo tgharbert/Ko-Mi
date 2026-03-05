@@ -83,6 +83,7 @@ model UserIngredient {
 
   @@unique([id])
   @@index([userId])
+  @@index([userId, checked])
   @@index([ingredientId])
 }
 

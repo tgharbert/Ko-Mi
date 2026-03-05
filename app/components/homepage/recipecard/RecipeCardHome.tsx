@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import he from "he";
 import AddIngredientsButton from "./AddIngredientsButton";
 import IngredientAccordion from "../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../accordions/InstructionAccordion";
@@ -50,9 +51,6 @@ export default function RecipeReviewCard({
     setExpanded(!expanded);
   };
 
-  // library that parses punctuation from HTML elements
-  const he = require("he");
-
   return (
     <div className="flex justify-center">
       <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md">
@@ -70,6 +68,7 @@ export default function RecipeReviewCard({
                 className="overflow-hidden rounded-lg object-cover"
                 height={188}
                 width={330}
+                sizes="(max-width: 768px) 100vw, 345px"
                 src={recipe.image}
                 alt={`image of ${recipe.name}`}
               />

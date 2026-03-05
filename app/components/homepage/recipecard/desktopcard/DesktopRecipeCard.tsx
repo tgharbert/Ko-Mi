@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import he from "he";
 import AddIngredientsButton from "./../AddIngredientsButton";
 import IngredientAccordion from "../../../accordions/IngredientAccordion";
 import InstructionAccordion from "../../../accordions/InstructionAccordion";
@@ -14,9 +15,6 @@ export default function DesktopRecipeCard({
   recipe: Recipe;
   user: User;
 }) {
-  // library that parses punctuation from HTML elements
-  const he = require("he");
-
   return (
     <div className="flex justify-center scrollbar-hide">
       <div className="max-w-[400px] min-w-[400px] rounded-xl shadow-md">
@@ -34,6 +32,7 @@ export default function DesktopRecipeCard({
                 className="overflow-hidden rounded-lg object-cover"
                 height={188}
                 width={330}
+                sizes="400px"
                 src={recipe.image}
                 alt={`image of ${recipe.name}`}
               />
