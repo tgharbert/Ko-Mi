@@ -43,17 +43,17 @@ export default function RecipeURLForm() {
   };
 
   return (
-    <div className="">
-      <form onSubmit={handleRecipeSubmit}>
+    <div>
+      <form onSubmit={handleRecipeSubmit} className="flex items-center justify-center gap-2 max-w-lg mx-auto">
         <input
-          className="text-black w-1/2 rounded px-4 pt-1 pb-1 "
+          className="flex-1 rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
           type="text"
           value={recipeURL}
           onChange={(e) => setRecipeURL(e.target.value)}
           placeholder="Recipe URL"
           autoFocus
         />
-        <button className="bg-secondary hover:bg-red-700 rounded ml-2 px-2 pt-1 pb-1">
+        <button className="bg-secondary hover:bg-red-700 text-tertiary rounded-md px-4 py-2 whitespace-nowrap transition-colors">
           Enter Recipe
         </button>
       </form>

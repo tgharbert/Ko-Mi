@@ -1,234 +1,244 @@
-import { useState } from "react";
-import NameAndDescription from "./page1/NameAndDescription";
-import NextPageButton from "./NextPageButton";
-import BackPageButton from "./BackPageButton";
-import AddItems from "./page2&3/AddItem";
-import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
+import { useReducer } from "react";
+import ListInput from "./ListInput";
+import RecipePreview from "./RecipePreview";
+import { CloudUpload } from "lucide-react";
 import convertTime from "@/utils/convertInputTime";
-import buildCustomRecipe from "../../data/buildCustomRecipe";
-import CustomRecipeCard from "./page5/CustomRecipeCard";
 import Toast from "@/app/components/Toast";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
-function RecipeForm() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [page, setPage] = useState(1);
-  const [servingSize, setServingSize] = useState<string>("1");
-  const [cookTime, setCookTime] = useState("");
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const [ingredient, setIngredient] = useState("");
-  const [instructions, setInstructions] = useState<string[]>([]);
-  const [instruction, setInstruction] = useState("");
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [keyword, setKeyword] = useState("");
-  const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState("");
-  const [recipe, setRecipe] = useState<CustomRecipe>();
-  const [isAlert, setIsAlert] = useState(false);
+type FormState = {
+  name: string;
+  description: string;
+  servingSize: string;
+  hours: string;
+  minutes: string;
+  ingredients: string[];
+  instructions: string[];
+  keywords: string[];
+  file: File | null;
+  fileName: string;
+  isAlert: boolean;
+  showPreview: boolean;
+};
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
+type ListField = "ingredients" | "instructions" | "keywords";
+
+type FormAction =
+  | { type: "SET_FIELD"; field: "name" | "description" | "servingSize" | "hours" | "minutes"; value: string }
+  | { type: "ADD_ITEM"; field: ListField; value: string }
+  | { type: "REMOVE_ITEM"; field: ListField; index: number }
+  | { type: "REORDER_ITEM"; field: ListField; index: number; direction: "up" | "down" }
+  | { type: "SET_FILE"; file: File | null; fileName: string }
+  | { type: "SET_ALERT"; value: boolean }
+  | { type: "SHOW_PREVIEW" };
+
+const initialState: FormState = {
+  name: "",
+  description: "",
+  servingSize: "1",
+  hours: "0",
+  minutes: "0",
+  ingredients: [],
+  instructions: [],
+  keywords: [],
+  file: null,
+  fileName: "",
+  isAlert: false,
+  showPreview: false,
+};
+
+function formReducer(state: FormState, action: FormAction): FormState {
+  switch (action.type) {
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "ADD_ITEM":
+      return { ...state, [action.field]: [...state[action.field], action.value] };
+    case "REMOVE_ITEM":
+      return { ...state, [action.field]: state[action.field].filter((_, i) => i !== action.index) };
+    case "REORDER_ITEM": {
+      const list = [...state[action.field]];
+      const target = action.direction === "up" ? action.index - 1 : action.index + 1;
+      [list[action.index], list[target]] = [list[target], list[action.index]];
+      return { ...state, [action.field]: list };
     }
-    setIsAlert(false);
-  };
+    case "SET_FILE":
+      return { ...state, file: action.file, fileName: action.fileName };
+    case "SET_ALERT":
+      return { ...state, isAlert: action.value };
+    case "SHOW_PREVIEW":
+      return { ...state, showPreview: true };
+  }
+}
 
-  const nameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const descriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(e.target.value);
-  };
-
-  const servingsChange = (value: string) => {
-    setServingSize(value);
-  };
-
-  const pageChange = () => {
-    if (page === 1) {
-      if (name === "") {
-        setIsAlert(true);
-        return;
-      }
-      if (description === "") {
-        setIsAlert(true);
-        return;
-      }
-      if (cookTime === "PT0M") {
-        setIsAlert(true);
-        return;
-      }
-    }
-    if (page === 2) {
-      if (ingredients.length === 0) {
-        setIsAlert(true);
-        return;
-      }
-    }
-    if (page === 3) {
-      if (instructions.length === 0) {
-        setIsAlert(true);
-        return;
-      }
-    }
-    if (page === 4) {
-      // here is where we prevent a null file - KILLED TO ALLOW TEMP PHOTOS FOR LATER UPDATES TO RECIPES
-      // if (file === null) {
-      //   setIsAlert(true);
-      //   return;
-      // }
-      let customRecipe = buildCustomRecipe(
-        name,
-        description,
-        servingSize,
-        cookTime,
-        ingredients,
-        instructions,
-        keywords,
-        file
-      );
-      setRecipe(customRecipe);
-    }
-    setPage(page + 1);
-  };
-
-  const revertPage = () => {
-    if (page != 1) {
-      setPage(page - 1);
-    }
-  };
-
-  const formatTime = (hours: string, minutes: string) => {
-    const formattedTime = convertTime(hours, minutes);
-    setCookTime(formattedTime);
-  };
-
-  const addIngredient = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    ingredient: string
-  ) => {
-    e.preventDefault();
-    if (!ingredient) {
-      setIsAlert(true);
-      return;
-    }
-    setIngredients([...ingredients, ingredient]);
-    setIngredient("");
-  };
-
-  const ingredientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIngredient(e.target.value);
-  };
-
-  const addInstruction = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    instruction: string
-  ) => {
-    e.preventDefault();
-    if (!instruction) {
-      setIsAlert(true);
-      return;
-    }
-    setInstructions([...instructions, instruction]);
-    setInstruction("");
-  };
-
-  const instructionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInstruction(e.target.value);
-  };
-
-  const addKeyword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    keyword: string
-  ) => {
-    e.preventDefault();
-    if (!keyword) {
-      return;
-    }
-    setKeywords([...keywords, keyword]);
-    setKeyword("");
-  };
-
-  const keywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-  };
+function ManualForm() {
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  const cookTime = convertTime(state.hours, state.minutes);
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files?.[0] ?? null);
-    setFileName(e.target.files?.[0].name ?? "");
+    const selected = e.target.files?.[0];
+    dispatch({ type: "SET_FILE", file: selected ?? null, fileName: selected?.name ?? "" });
   };
 
-  return (
-    <div className=" bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
-      <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
-      <div className="px-8 justify-center flex">
-        {isAlert && (
-          <Toast message="Not all fields are filled in!" onClose={handleClose} variant="warning" />
-        )}
-        {page === 1 && (
-          <NameAndDescription
-            nameChange={nameChange}
-            descriptionChange={descriptionChange}
-            name={name}
-            description={description}
-            servingsChange={servingsChange}
-            servingSize={servingSize}
-            formatTime={formatTime}
-          />
-        )}
-        {page === 2 && (
-          <AddItems
-            addItem={addIngredient}
-            items={ingredients}
-            item={ingredient}
-            itemChange={ingredientChange}
-            text={"Ingredient"}
-          />
-        )}
-        {page === 3 && (
-          <AddItems
-            addItem={addInstruction}
-            items={instructions}
-            item={instruction}
-            itemChange={instructionChange}
-            text={"Instruction"}
-          />
-        )}
-        {page === 4 && (
-          <KeywordsAndPhoto
-            keywords={keywords}
-            keywordChange={keywordChange}
-            keyword={keyword}
-            addKeyword={addKeyword}
-            handleFileSelected={handleFileSelected}
-            fileName={fileName}
-          />
-        )}
+  const handleSubmit = () => {
+    if (!state.name || !state.description || cookTime === "PT0M" || state.ingredients.length === 0 || state.instructions.length === 0) {
+      dispatch({ type: "SET_ALERT", value: true });
+      return;
+    }
+    dispatch({ type: "SHOW_PREVIEW" });
+  };
+
+  if (state.showPreview) {
+    const recipe: CustomRecipe = {
+      name: state.name,
+      description: state.description,
+      servingSize: state.servingSize,
+      cookTime,
+      ingredients: state.ingredients,
+      instructions: state.instructions,
+      keywords: state.keywords,
+      photoFile: state.file,
+    };
+    return (
+      <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-6 mx-4">
+        <RecipePreview recipe={recipe} />
       </div>
-      {page === 5 && recipe !== undefined ? (
-        <CustomRecipeCard recipe={recipe} />
-      ) : (
-        <div>
-          {page !== 1 ? (
-            <div className="flex justify-center px-2">
-              <span className="px-2">
-                <BackPageButton revertPage={revertPage} />
-              </span>
-              <span className="px-2">
-                <NextPageButton pageChange={pageChange} />
-              </span>
-            </div>
-          ) : (
-            <NextPageButton pageChange={pageChange} />
-          )}
-        </div>
+    );
+  }
+
+  return (
+    <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-6 mx-4">
+      <h2 className="text-xl font-bold text-accent mb-6 text-center">Enter Your Recipe Info</h2>
+
+      {state.isAlert && (
+        <Toast message="Please fill in name, description, cook time, ingredients, and instructions." onClose={() => dispatch({ type: "SET_ALERT", value: false })} variant="warning" />
       )}
+
+      <div className="space-y-8 max-w-md mx-auto">
+        {/* Details */}
+        <section className="space-y-4">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 text-center">Details</h3>
+          <div>
+            <label className="block text-sm mb-1 text-center">Recipe Name</label>
+            <input
+              className="w-full rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
+              type="text"
+              placeholder="Recipe Name"
+              autoFocus
+              value={state.name}
+              onChange={(e) => dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1 text-center">Description</label>
+            <textarea
+              className="w-full rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
+              placeholder="Recipe Description"
+              rows={3}
+              value={state.description}
+              onChange={(e) => dispatch({ type: "SET_FIELD", field: "description", value: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 text-center">Keywords</label>
+            <ListInput
+              items={state.keywords}
+              onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "keywords", value: item })}
+              onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "keywords", index: idx })}
+              onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "keywords", index: idx, direction: dir })}
+              placeholder="Enter Keyword..."
+            />
+          </div>
+        </section>
+
+        {/* Method */}
+        <section className="space-y-6">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 text-center">Method</h3>
+          <div>
+            <label className="block text-sm mb-2 text-center">Ingredients</label>
+            <ListInput
+              items={state.ingredients}
+              onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "ingredients", value: item })}
+              onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "ingredients", index: idx })}
+              onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "ingredients", index: idx, direction: dir })}
+              placeholder="Enter Ingredient"
+              useTextarea
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 text-center">Instructions</label>
+            <ListInput
+              items={state.instructions}
+              onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "instructions", value: item })}
+              onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "instructions", index: idx })}
+              onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "instructions", index: idx, direction: dir })}
+              placeholder="Enter Instruction"
+              useTextarea
+            />
+          </div>
+          <div className="flex flex-wrap justify-center gap-6">
+            <div>
+              <label className="block text-sm mb-1">Cook Time</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="number"
+                  className="w-16 rounded-md bg-primary/40 text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                  min="0" max="60" step="1"
+                  value={state.hours}
+                  onChange={(e) => dispatch({ type: "SET_FIELD", field: "hours", value: e.target.value })}
+                />
+                <span className="text-sm text-tertiary/60">hrs</span>
+                <input
+                  type="number"
+                  className="w-16 rounded-md bg-primary/40 text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                  min="0" max="60" step="1"
+                  value={state.minutes}
+                  onChange={(e) => dispatch({ type: "SET_FIELD", field: "minutes", value: e.target.value })}
+                />
+                <span className="text-sm text-tertiary/60">min</span>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm mb-1">Servings</label>
+              <select
+                onChange={(e) => dispatch({ type: "SET_FIELD", field: "servingSize", value: e.target.value })}
+                value={state.servingSize}
+                className="rounded-md bg-primary/40 text-tertiary px-3 py-2 border border-white/10 focus:border-accent focus:outline-none"
+              >
+                {Array.from({ length: 10 }, (_, i) => (
+                  <option key={i} value={i + 1}>{i + 1}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </section>
+
+        {/* Photo */}
+        <section>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 mb-4 text-center">Photo</h3>
+          <div className="text-center">
+            <label className="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-tertiary px-4 py-2 rounded-md cursor-pointer transition-colors">
+              <CloudUpload size={20} />
+              Upload file
+              <input
+                type="file"
+                className="sr-only"
+                onChange={handleFileSelected}
+              />
+            </label>
+            {state.fileName && (
+              <p className="mt-2 text-sm text-tertiary/70">
+                Selected: <span className="font-medium text-tertiary">{state.fileName}</span>
+              </p>
+            )}
+          </div>
+        </section>
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <PrimaryButton onClick={handleSubmit}>Preview Recipe</PrimaryButton>
+      </div>
     </div>
   );
 }
 
-export default RecipeForm;
+export default ManualForm;
