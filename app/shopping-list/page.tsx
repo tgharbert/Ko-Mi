@@ -21,9 +21,11 @@ export default async function Ingredients() {
       </div>
       <AddListItemBar id={user.id} />
       <TopStack id={user.id} />
-      <Suspense fallback={<LoadingPage />}>
-        <IngredientList id={user.id} />
-      </Suspense>
+      <div className="overflow-y-auto max-h-[60vh] mx-4 sm:mx-auto">
+        <Suspense fallback={<LoadingPage />}>
+          <IngredientList id={user.id} />
+        </Suspense>
+      </div>
     </div>
   );
 }
