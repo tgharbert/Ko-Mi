@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import getFriends from "@/app/friends/data/getFriends";
+import { useState } from "react";
 import LoadingPage from "@/app/loading";
 import PrimaryButton from "@/app/components/PrimaryButton";
 import { shareIngredients } from "@/app/shopping-list/data/shareIngredients";
+import { useFriends } from "@/app/hooks/useFriends";
 
 const FriendsDropDown = ({
   openSnackbar,
@@ -11,25 +11,8 @@ const FriendsDropDown = ({
   openSnackbar: Function;
   handleClose: Function;
 }) => {
-  const [friends, setFriends] = useState<User[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { friends, isLoading } = useFriends();
   const [friend, setFriend] = useState("");
-  const [isErrGettingFriends, setIsErrGettingFriends] = useState(false);
-
-  const getUserFriends = async () => {
-    let result = await getFriends();
-    if (result) {
-      setFriends(result);
-    } else {
-      // error message thrown...
-      setIsErrGettingFriends(true);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getUserFriends();
-  }, []);
 
   const handleChangeFriend = (selection: string) => {
     setFriend(selection);
