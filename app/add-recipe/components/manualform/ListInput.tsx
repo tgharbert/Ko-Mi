@@ -72,7 +72,6 @@ function ListInput({
           placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          autoFocus
         />
         <button
           type="submit"
