@@ -62,53 +62,42 @@ function RecipePreview({ recipe }: { recipe: CustomRecipe }) {
     }
   };
 
-  return isLoading ? (
-    <Loading />
-  ) : (
-    <div className="flexbox mr-8 ml-8 sm:mr-20 sm:ml-20 md:ml-2 md:mr-2">
-      <div>
-        <h1 className="text-xl pt-4 font-semi-bold">{recipe.name}</h1>
-      </div>
-      <div className="pt-4 pb-4 flex items-center justify-center">
+  if (isLoading) return <Loading />;
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-xl font-bold text-accent">{recipe.name}</h2>
+
+      <div className="flex justify-center">
         {typeof imagePreview === "string" && (
           <Image
-            width="400"
-            height="400"
+            width={400}
+            height={400}
             src={imagePreview}
             alt="recipe-photo"
             className="rounded-lg"
           />
         )}
       </div>
-      <div className="flex justify-center">
-        <div className="w-full md:w-full sm:w-2/5">
-          <DescriptionAccordion description={recipe.description} />
-        </div>
+
+      <div className="space-y-2 max-w-md mx-auto">
+        <DescriptionAccordion description={recipe.description} />
+        <InstructionAccordion instructions={recipe.instructions} />
+        <details className="rounded-lg border border-white/10 bg-primary/30 text-tertiary">
+          <summary className="px-4 py-3 font-semibold cursor-pointer">
+            Recipe Ingredients
+          </summary>
+          <div className="px-4 pb-4">
+            <ul className="px-2 list-disc text-left text-sm space-y-2">
+              {recipe.ingredients.map((ingredient: string, idx: number) => (
+                <li key={idx}>{ingredient}</li>
+              ))}
+            </ul>
+          </div>
+        </details>
       </div>
-      <div className="flex justify-center">
-        <div className="w-full md:w-full sm:w-2/5">
-          <InstructionAccordion instructions={recipe.instructions} />
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <div className="w-full md:w-full sm:w-2/5">
-          <details className="rounded-lg border border-gray-200 bg-white text-black">
-            <summary className="px-4 py-3 font-semibold cursor-pointer">
-              Recipe Ingredients
-            </summary>
-            <div className="px-4 pb-4">
-              <ul className="px-2 list-disc text-left">
-                {recipe.ingredients.map((ingredient: string, idx: number) => (
-                  <li className="pb-4" key={idx}>
-                    {ingredient}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </details>
-        </div>
-      </div>
-      <div className="mx-4 pt-7 pb-10">
+
+      <div className="flex justify-center pt-4 pb-2">
         <PrimaryButton onClick={handleRecipeSubmission}>
           Add Recipe
           <Plus className="pl-1" size={20} />

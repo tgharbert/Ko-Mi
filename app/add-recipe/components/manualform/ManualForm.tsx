@@ -99,75 +99,110 @@ function ManualForm() {
       photoFile: state.file,
     };
     return (
-      <div className="bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
+      <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-6 mx-4">
         <RecipePreview recipe={recipe} />
       </div>
     );
   }
 
   return (
-    <div className="bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
-      <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
+    <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-6 mx-4">
+      <h2 className="text-xl font-bold text-accent mb-6 text-center">Enter Your Recipe Info</h2>
 
       {state.isAlert && (
         <Toast message="Please fill in name, description, cook time, ingredients, and instructions." onClose={() => dispatch({ type: "SET_ALERT", value: false })} variant="warning" />
       )}
 
-      <div className="px-8 space-y-6">
+      <div className="space-y-8 max-w-md mx-auto">
         {/* Details */}
-        <section>
-          <div className="space-y-4 max-w-md mx-auto">
+        <section className="space-y-4">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 text-center">Details</h3>
+          <div>
+            <label className="block text-sm mb-1 text-center">Recipe Name</label>
+            <input
+              className="w-full rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
+              type="text"
+              placeholder="Recipe Name"
+              autoFocus
+              value={state.name}
+              onChange={(e) => dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1 text-center">Description</label>
+            <textarea
+              className="w-full rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
+              placeholder="Recipe Description"
+              rows={3}
+              value={state.description}
+              onChange={(e) => dispatch({ type: "SET_FIELD", field: "description", value: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 text-center">Keywords</label>
+            <ListInput
+              items={state.keywords}
+              onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "keywords", value: item })}
+              onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "keywords", index: idx })}
+              onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "keywords", index: idx, direction: dir })}
+              placeholder="Enter Keyword..."
+            />
+          </div>
+        </section>
+
+        {/* Method */}
+        <section className="space-y-6">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 text-center">Method</h3>
+          <div>
+            <label className="block text-sm mb-2 text-center">Ingredients</label>
+            <ListInput
+              items={state.ingredients}
+              onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "ingredients", value: item })}
+              onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "ingredients", index: idx })}
+              onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "ingredients", index: idx, direction: dir })}
+              placeholder="Enter Ingredient"
+              useTextarea
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-2 text-center">Instructions</label>
+            <ListInput
+              items={state.instructions}
+              onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "instructions", value: item })}
+              onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "instructions", index: idx })}
+              onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "instructions", index: idx, direction: dir })}
+              placeholder="Enter Instruction"
+              useTextarea
+            />
+          </div>
+          <div className="flex flex-wrap justify-center gap-6">
             <div>
-              <label className="block pb-1">Recipe Name:</label>
-              <input
-                className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
-                type="text"
-                placeholder="Recipe Name"
-                autoFocus
-                value={state.name}
-                onChange={(e) => dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block pb-1">Recipe Description:</label>
-              <textarea
-                className="text-black rounded-lg px-4 pt-1 pb-1 border-2 border-primary w-full"
-                placeholder="Recipe Description"
-                value={state.description}
-                onChange={(e) => dispatch({ type: "SET_FIELD", field: "description", value: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block pb-1">Cook Time:</label>
-              <div className="flex justify-center gap-4">
-                <div>
-                  <input
-                    type="number"
-                    className="text-black rounded-lg border-2 border-primary pl-2 w-20"
-                    min="0" max="60" step="1"
-                    value={state.hours}
-                    onChange={(e) => dispatch({ type: "SET_FIELD", field: "hours", value: e.target.value })}
-                  />
-                  <label className="ml-2">hours</label>
-                </div>
-                <div>
-                  <input
-                    type="number"
-                    className="text-black rounded-lg border-2 border-primary pl-2 w-20"
-                    min="0" max="60" step="1"
-                    value={state.minutes}
-                    onChange={(e) => dispatch({ type: "SET_FIELD", field: "minutes", value: e.target.value })}
-                  />
-                  <label className="ml-2">minutes</label>
-                </div>
+              <label className="block text-sm mb-1">Cook Time</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="number"
+                  className="w-16 rounded-md bg-primary/40 text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                  min="0" max="60" step="1"
+                  value={state.hours}
+                  onChange={(e) => dispatch({ type: "SET_FIELD", field: "hours", value: e.target.value })}
+                />
+                <span className="text-sm text-tertiary/60">hrs</span>
+                <input
+                  type="number"
+                  className="w-16 rounded-md bg-primary/40 text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                  min="0" max="60" step="1"
+                  value={state.minutes}
+                  onChange={(e) => dispatch({ type: "SET_FIELD", field: "minutes", value: e.target.value })}
+                />
+                <span className="text-sm text-tertiary/60">min</span>
               </div>
             </div>
             <div>
-              <label className="block pb-1">Servings:</label>
+              <label className="block text-sm mb-1">Servings</label>
               <select
                 onChange={(e) => dispatch({ type: "SET_FIELD", field: "servingSize", value: e.target.value })}
                 value={state.servingSize}
-                className="border-2 border-primary rounded-lg px-3 text-black"
+                className="rounded-md bg-primary/40 text-tertiary px-3 py-2 border border-white/10 focus:border-accent focus:outline-none"
               >
                 {Array.from({ length: 10 }, (_, i) => (
                   <option key={i} value={i + 1}>{i + 1}</option>
@@ -177,65 +212,29 @@ function ManualForm() {
           </div>
         </section>
 
-        {/* Ingredients */}
-        <section>
-          <ListInput
-            items={state.ingredients}
-            onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "ingredients", value: item })}
-            onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "ingredients", index: idx })}
-            onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "ingredients", index: idx, direction: dir })}
-            label="Ingredients"
-            placeholder="Enter Ingredient"
-            useTextarea
-          />
-        </section>
-
-        {/* Instructions */}
-        <section>
-          <ListInput
-            items={state.instructions}
-            onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "instructions", value: item })}
-            onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "instructions", index: idx })}
-            onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "instructions", index: idx, direction: dir })}
-            label="Instructions"
-            placeholder="Enter Instruction"
-            useTextarea
-          />
-        </section>
-
-        {/* Keywords */}
-        <section>
-          <ListInput
-            items={state.keywords}
-            onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "keywords", value: item })}
-            onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "keywords", index: idx })}
-            onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "keywords", index: idx, direction: dir })}
-            label="Keywords"
-            placeholder="Enter Keyword..."
-          />
-        </section>
-
         {/* Photo */}
         <section>
-          <p className="pb-1">Upload a Photo:</p>
-          <label className="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-tertiary px-4 py-2 rounded cursor-pointer">
-            <CloudUpload size={20} />
-            Upload file
-            <input
-              type="file"
-              className="sr-only"
-              onChange={handleFileSelected}
-            />
-          </label>
-          {state.fileName && (
-            <p className="pt-2">
-              currently selected: <b>{state.fileName}</b>
-            </p>
-          )}
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 mb-4 text-center">Photo</h3>
+          <div className="text-center">
+            <label className="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-tertiary px-4 py-2 rounded-md cursor-pointer transition-colors">
+              <CloudUpload size={20} />
+              Upload file
+              <input
+                type="file"
+                className="sr-only"
+                onChange={handleFileSelected}
+              />
+            </label>
+            {state.fileName && (
+              <p className="mt-2 text-sm text-tertiary/70">
+                Selected: <span className="font-medium text-tertiary">{state.fileName}</span>
+              </p>
+            )}
+          </div>
         </section>
       </div>
 
-      <div className="flex justify-center pt-6 pb-2">
+      <div className="flex justify-center mt-8">
         <PrimaryButton onClick={handleSubmit}>Preview Recipe</PrimaryButton>
       </div>
     </div>
