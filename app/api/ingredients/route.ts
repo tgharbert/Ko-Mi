@@ -1,8 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/app/api/_base";
+import assignValueToIng from "@/utils/assignCustomIng";
 
-// GET all ingredients for user
+const desiredLocationOrder = [
+  "produce",
+  "fish",
+  "meat",
+  "liquor",
+  "spice",
+  "baking",
+  "beans & rice",
+  "asian",
+  "pasta",
+  "dairy",
+  "other",
+];
+
+// GET all ingredients for user (unchecked, with location, sorted)
 export async function GET(request: NextRequest) {
   try {
     const session = await auth();
@@ -12,18 +27,60 @@ export async function GET(request: NextRequest) {
 
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
-      include: {
-        ingredients: {
-          orderBy: { id: "desc" },
-        },
-      },
     });
 
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    return NextResponse.json(user.ingredients);
+    const allIngredients = await prisma.userIngredient.findMany({
+      where: { userId: user.id, checked: false },
+      select: { id: true, ingredientId: true, name: true, checked: true },
+    });
+
+    const ingredientIds = allIngredients
+      .map((ing) => ing.ingredientId)
+      .filter((id): id is number => id !== undefined && id !== null);
+
+    const locationsArr = await prisma.location.findMany({
+      where: { ingredientId: { in: ingredientIds } },
+    });
+
+    const locationsObj: Record<string, string> = {};
+    for (const loc of locationsArr) {
+      locationsObj[loc.ingredientId.toString()] = loc.store;
+    }
+
+    const ingWithLoc: IngredientWithLocation[] = allIngredients.map((ingredient) => {
+      if (ingredient.ingredientId) {
+        return {
+          ...ingredient,
+          location: locationsObj[ingredient.ingredientId.toString()] || "other",
+        };
+      }
+      return assignValueToIng({ ...ingredient });
+    });
+
+    const locationOrderMap: Record<string, IngredientWithLocation[]> = {};
+    for (const loc of desiredLocationOrder) {
+      locationOrderMap[loc] = [];
+    }
+
+    for (const ing of ingWithLoc) {
+      const loc = ing.location || "other";
+      if (locationOrderMap[loc]) {
+        locationOrderMap[loc].push(ing);
+      } else {
+        locationOrderMap["other"].push(ing);
+      }
+    }
+
+    const ordered: IngredientWithLocation[] = [];
+    for (const loc of desiredLocationOrder) {
+      ordered.push(...locationOrderMap[loc]);
+    }
+
+    return NextResponse.json(ordered);
   } catch (error) {
     console.error("Error fetching ingredients:", error);
     return NextResponse.json(

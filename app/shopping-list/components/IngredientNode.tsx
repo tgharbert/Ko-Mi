@@ -1,40 +1,32 @@
 "use client";
 
-import { checkIngredient } from "../data/checkIngredient";
-import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 function IngredientNode({
   ingredient,
+  onCheck,
 }: {
   ingredient: IngredientWithLocation;
+  onCheck: (id: number, checked: boolean) => void;
 }) {
-  const [isChecked, setIsChecked] = useState(ingredient.checked);
-
-  const onCheckIngredient = async () => {
-    setIsChecked(!isChecked);
-    await checkIngredient(ingredient.id, isChecked);
-  };
-
   return (
     <span className="sm:flex sm:items-center sm:justify-center ">
       <div className=" overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
         <span
           className={
-            isChecked
+            ingredient.checked
               ? "w-full line-through text-lg text-red-500"
               : "w-full text-lg"
           }
         >
           <span className="mt-4 mb-4 flex ">
             <IconButton
-              onClick={() => onCheckIngredient()}
-              className=""
+              onClick={() => onCheck(ingredient.id, !ingredient.checked)}
               aria-label="check item"
             >
-              {isChecked ? (
+              {ingredient.checked ? (
                 <RemoveShoppingCartIcon className=" text-red-500 " />
               ) : (
                 <AddShoppingCartIcon className=" text-lime-500 " />
