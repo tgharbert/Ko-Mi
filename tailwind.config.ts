@@ -20,6 +20,35 @@ const config: Config = {
       fontFamily: {
         'sans': ['Roboto', 'ui-sans-serif', 'system-ui'],
       },
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(-4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-out': {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(-4px)' },
+        },
+        'slide-up': {
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'toast-in': {
+          '0%': { opacity: '0', transform: 'translate(-50%, -16px)' },
+          '100%': { opacity: '1', transform: 'translate(-50%, 0)' },
+        },
+        'check-strike': {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 200ms ease-out',
+        'fade-out': 'fade-out 150ms ease-in',
+        'slide-up': 'slide-up 300ms ease-out',
+        'toast-in': 'toast-in 300ms ease-out',
+        'check-strike': 'check-strike 200ms ease-out forwards',
+      },
     },
   },
   plugins: [],

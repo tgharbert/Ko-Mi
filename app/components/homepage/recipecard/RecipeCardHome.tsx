@@ -111,7 +111,7 @@ export default function RecipeReviewCard({
                   onClick={handleOpen}
                   aria-expanded={expanded}
                   aria-label="show more"
-                  className="p-2 transition-transform duration-200"
+                  className="p-2 transition-transform duration-300 hover:text-accent"
                   style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
                 >
                   <ChevronDown size={24} />
@@ -120,7 +120,7 @@ export default function RecipeReviewCard({
                   ref={dialogRef}
                   onClose={handleClose}
                   onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-                  className="rounded-xl backdrop:bg-black/50 p-0"
+                  className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
                 >
                   <DesktopRecipeCard recipe={recipe} user={user} />
                 </dialog>
@@ -130,7 +130,7 @@ export default function RecipeReviewCard({
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
-                className="p-2 transition-transform duration-200"
+                className="p-2 transition-transform duration-300 hover:text-accent"
                 style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
               >
                 <ChevronDown size={24} />

@@ -41,7 +41,7 @@ const ShareButton = () => {
       <div className="pt-4">
         <button
           onClick={handleClickOpen}
-          className="text-white hover:text-accent flex items-center gap-1"
+          className="text-white hover:text-accent active:scale-95 flex items-center gap-1 transition-all duration-150"
         >
           Share
           <Share2 size={20} />
@@ -50,7 +50,7 @@ const ShareButton = () => {
           ref={dialogRef}
           onClose={handleClose}
           onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-          className="rounded-xl backdrop:bg-black/50 p-0"
+          className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
         >
           <div className="px-10 pt-4 pb-8 justify-center flex text-lg bg-tertiary text-black">
             <FriendsDropDown
