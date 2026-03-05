@@ -16,10 +16,10 @@ function RandomButton({ random }: { random: string }) {
   };
 
   return (
-    <div className="mb-4">
-      <PrimaryButton onClick={() => randomClick()}>
+    <div>
+      <PrimaryButton onClick={() => randomClick()} className="inline-flex items-center">
         Randomize
-        <Shuffle className="ml-2" size={20} />
+        <Shuffle className="ml-2" size={18} />
       </PrimaryButton>
     </div>
   );

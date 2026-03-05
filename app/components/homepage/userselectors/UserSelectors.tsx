@@ -3,9 +3,9 @@ import UserToggle from "./UserToggle";
 
 export default function UserSelectors({ random }: { random: string }) {
   return (
-    <div>
-      <RandomButton random={random} />
+    <div className="flex flex-wrap items-center justify-center gap-3 pb-2">
       <UserToggle />
+      <RandomButton random={random} />
     </div>
   );
 }

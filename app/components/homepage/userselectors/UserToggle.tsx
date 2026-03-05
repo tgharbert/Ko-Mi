@@ -24,7 +24,7 @@ export default function UserToggle() {
   };
 
   return (
-    <div className="pb-2">
+    <div className="flex items-center">
       <button
         className={
           !all
