@@ -1,7 +1,7 @@
 'use server'
 import { auth } from "@/auth";
 import prisma from "@/app/api/_base"
-import assignValues from "@/utils/assignRecipeIngLoc";
+import { matchLocations } from "@/utils/matchIngredientLocation";
 
 export async function addCustomRecipe(recipe: any) {
   try {
@@ -55,7 +55,7 @@ export async function addCustomRecipe(recipe: any) {
       }
     })
 
-    const locationData: LocData[] = assignValues(ingredients)
+    const locationData: LocData[] = matchLocations(ingredients)
     await addSection(locationData)
 
     await prisma.$disconnect();
