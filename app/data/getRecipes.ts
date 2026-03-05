@@ -1,47 +1,13 @@
 'use server'
 
 import prisma from "../api/_base"
+import { Prisma } from "@prisma/client"
 
 export async function getRecipes(query: string, category: string, page: number, random: string, all: string, id: string) {
   const resultsPerPage = 12;
   try {
-    if (random !== "false" && all === 'true') {
-      const allRecipes = await prisma.$queryRaw`SELECT
-      r.*,
-      ARRAY_AGG(
-        JSON_BUILD_OBJECT(
-          'id', i.id,
-          'name', i.name
-        ) ORDER BY i.id
-      ) AS ingredients,
-      ARRAY_AGG(
-        JSON_BUILD_OBJECT(
-          'id', k.id,
-          'name', k.name
-        ) ORDER BY k.id
-      ) AS keywords
-      FROM
-          "Recipe" r
-      INNER JOIN
-          (
-              SELECT "recipeId" AS "ingredientRecipeId", *
-              FROM "Ingredient"
-          ) i ON r.id = i."recipeId"
-      INNER JOIN
-          (
-              SELECT "recipeId" AS "keywordRecipeId", *
-              FROM "Keyword"
-          ) k ON r.id = k."recipeId"
-      GROUP BY
-          r.id
-      ORDER BY
-          RANDOM()
-      LIMIT ${resultsPerPage}
-      `
-    await prisma.$disconnect();
-      return new Response(JSON.stringify(allRecipes));
-    }
     if (random !== "false") {
+      const whereClause = all === 'true' ? Prisma.empty : Prisma.sql`WHERE r."userId" = ${id}`;
       const allRecipes = await prisma.$queryRaw`SELECT
       r.*,
       ARRAY_AGG(
@@ -68,15 +34,13 @@ export async function getRecipes(query: string, category: string, page: number, 
               SELECT "recipeId" AS "keywordRecipeId", *
               FROM "Keyword"
           ) k ON r.id = k."recipeId"
-      WHERE
-          r."userId" = ${id}
+      ${whereClause}
       GROUP BY
           r.id
       ORDER BY
           RANDOM()
       LIMIT ${resultsPerPage}
       `
-    await prisma.$disconnect();
       return new Response(JSON.stringify(allRecipes));
     }
 
@@ -97,7 +61,6 @@ export async function getRecipes(query: string, category: string, page: number, 
         keywords: true,
       },
     });
-    await prisma.$disconnect();
 
     return new Response(JSON.stringify(allRecipes));
   }
@@ -119,7 +82,6 @@ export async function getRecipes(query: string, category: string, page: number, 
       },
       include: { ingredients: true, keywords: true}
     });
-    await prisma.$disconnect();
     return new Response(JSON.stringify(allRecipes));
   }
 
@@ -144,7 +106,6 @@ export async function getRecipes(query: string, category: string, page: number, 
         keywords: true,
       },
     });
-    await prisma.$disconnect();
     return new Response(JSON.stringify(allRecipes));
   }
 
@@ -165,7 +126,6 @@ export async function getRecipes(query: string, category: string, page: number, 
             keywords: true,
           },
         });
-        await prisma.$disconnect();
         return new Response(JSON.stringify(allRecipes));
   }
 
@@ -186,11 +146,9 @@ export async function getRecipes(query: string, category: string, page: number, 
         keywords: true,
       },
     });
-    await prisma.$disconnect();
     return new Response(JSON.stringify(allRecipes));
   }
 
-  // HOLDING ON TO THIS BECAUSE I DON'T KNOW IF I'LL NEED IT AGAIN
   const allRecipes = await prisma.recipe.findMany({
     skip: (page - 1) * resultsPerPage,
     take: resultsPerPage,
@@ -209,7 +167,6 @@ export async function getRecipes(query: string, category: string, page: number, 
       keywords: true,
     },
   });
-  await prisma.$disconnect();
   return new Response(JSON.stringify(allRecipes));
   } catch (error) {
     console.error(error);

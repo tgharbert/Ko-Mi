@@ -1,6 +1,8 @@
 import Accordion from "@/app/components/Accordion";
 
 function InstructionAccordion({ instructions }: { instructions: string[] }) {
+  if (!instructions?.length) return null;
+
   const he = require("he");
 
   return (

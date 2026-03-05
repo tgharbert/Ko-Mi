@@ -47,12 +47,10 @@ export async function shareIngredients(friendId: string) {
 
     const existingSet = new Set(targetIngs.map(ingredient => ingredient.name))
     const uniqueEntries = newEntry.filter(entry => !existingSet.has(entry.name))
-    console.log("uniqueEntries: ", uniqueEntries)
     await prisma.userIngredient.createMany({
       data: uniqueEntries,
     });
 
-    prisma.$disconnect();
     return 'success';
   } catch (error) {
     console.error("error", error);

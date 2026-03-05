@@ -17,7 +17,6 @@ export default async function addFriend (id: string) {
         status: "ACCEPTED",
       }
     });
-    await prisma.$disconnect();
     return updatedFriend;
   } catch (error) {
     console.error("Error adding friend: ", error)

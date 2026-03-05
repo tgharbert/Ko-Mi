@@ -68,7 +68,6 @@ export async function addRecipe(recipe: any) {
     })
     const locationData: LocData[] = matchLocations(ingredients)
     await addSection(locationData)
-    await prisma.$disconnect();
     return;
   } catch (error) {
     console.error("ERROR: ", error);

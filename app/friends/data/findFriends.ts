@@ -11,7 +11,6 @@ export default async function findFriends (inputName: string) {
         },
       }
     })
-    await prisma.$disconnect();
     return foundUsers;
   } catch (error) {
     console.error(`Error finding friend ${inputName}. Error: `, error)

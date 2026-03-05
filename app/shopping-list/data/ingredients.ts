@@ -54,7 +54,6 @@ export async function getUserIngredients (id: string) {
         ingWithLoc.push(newIng)
       }
     })
-    prisma.$disconnect();
 
     const locationOrderMap: Record<string, IngredientWithLocation[]> = {};
     for (const loc of STORE_LOCATIONS) {

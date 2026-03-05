@@ -22,7 +22,6 @@ export default async function deleteUserRecipe(recipeId: number) {
         id: target
       },
     })
-    await prisma.$disconnect();
     revalidatePath('/')
     return;
     // return new Response()

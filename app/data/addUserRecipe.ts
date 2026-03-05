@@ -24,7 +24,6 @@ export async function addUserRecipe(recipeId: number) {
         data: {...newRecipe}
       });
     }
-    await prisma.$disconnect();
     return;
   } catch (error) {
     console.error("ERROR: ", error);

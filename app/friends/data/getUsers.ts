@@ -35,6 +35,5 @@ export default async function getUsers () {
   })
 
   // console.log('response: ', response)
-  await prisma.$disconnect();
   return new Response(JSON.stringify(response));
 }

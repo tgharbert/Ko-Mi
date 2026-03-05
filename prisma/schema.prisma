@@ -42,6 +42,7 @@ model Recipe {
   // should there be a public/private setting?
 
   @@unique([url])
+  @@index([userId])
 }
 
 model Keyword {
@@ -50,6 +51,8 @@ model Keyword {
 
   recipeId Int
   recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  @@index([recipeId])
 }
 
 model Ingredient {
@@ -64,6 +67,8 @@ model Ingredient {
 
   recipe   Recipe @relation(fields: [recipeId], references: [id])
   recipeId Int
+
+  @@index([recipeId])
 }
 
 model UserIngredient {
@@ -77,6 +82,8 @@ model UserIngredient {
   ingredient Ingredient? @relation(fields: [ingredientId], references: [id])
 
   @@unique([id])
+  @@index([userId])
+  @@index([ingredientId])
 }
 
 model Location {
@@ -164,4 +171,6 @@ model Friend {
   status FriendStatus
 
   @@unique([friendAId, friendBId])
+  @@index([friendAId])
+  @@index([friendBId])
 }
