@@ -1,16 +1,9 @@
-import Button from "@mui/material/Button";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 function NextPageButton({ pageChange }: { pageChange: Function }) {
   return (
     <div>
-      <Button
-        variant="contained"
-        className="px-4 bg-lime-500"
-        onClick={() => pageChange()}
-        color="lime"
-      >
-        Next Page
-      </Button>
+      <PrimaryButton onClick={() => pageChange()}>Next Page</PrimaryButton>
     </div>
   );
 }

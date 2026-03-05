@@ -2,11 +2,6 @@
 import ModifyIngredients from "./ModifyIngredients";
 import ModifyNameAndPhoto from "./ModifyNameAndPhoto";
 import ModifyMethods from "./ModifyMethods";
-import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ModifyKeywords from "./ModifyKeywords";
 import ModifyDetails from "./ModifyDetails";
 import { revalidatePath } from "next/cache";
@@ -23,81 +18,61 @@ const ModifyRecipeForm = async ({ recipe }: { recipe: Recipe }) => {
 
       <div className="flex justify-center ">
         <div className="sm:w-2/5 w-full">
-          <Accordion className="rounded-lg ">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              className="font-semibold text-center"
-            >
+          <details className="rounded-lg border border-gray-200 bg-white text-black">
+            <summary className="px-4 py-3 font-semibold cursor-pointer">
               Recipe Details
-            </AccordionSummary>
-            <AccordionDetails>
+            </summary>
+            <div className="px-4 pb-4">
               <ModifyDetails
                 id={recipe.id}
                 description={recipe.description}
                 recipeYield={recipe.recipeYield}
                 time={recipe.cookTime}
               />
-            </AccordionDetails>
-          </Accordion>
+            </div>
+          </details>
         </div>
       </div>
 
       <div className="flex justify-center">
         <div className="sm:w-2/5 w-full">
-          <Accordion className="rounded-lg">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              className="font-semibold text-center"
-            >
+          <details className="rounded-lg border border-gray-200 bg-white text-black">
+            <summary className="px-4 py-3 font-semibold cursor-pointer">
               Recipe Ingredients
-            </AccordionSummary>
-            <AccordionDetails>
+            </summary>
+            <div className="px-4 pb-4">
               <ModifyIngredients
                 id={recipe.id}
                 ingredients={recipe.ingredients}
               />
-            </AccordionDetails>
-          </Accordion>
+            </div>
+          </details>
         </div>
       </div>
 
       <div className="flex justify-center ">
         <div className="sm:w-2/5 w-full">
-          <Accordion className="rounded-lg">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              className="font-semibold text-center"
-            >
+          <details className="rounded-lg border border-gray-200 bg-white text-black">
+            <summary className="px-4 py-3 font-semibold cursor-pointer">
               Recipe Method
-            </AccordionSummary>
-            <AccordionDetails>
+            </summary>
+            <div className="px-4 pb-4">
               <ModifyMethods id={recipe.id} methods={recipe.instructions} />
-            </AccordionDetails>
-          </Accordion>
+            </div>
+          </details>
         </div>
       </div>
 
       <div className="flex justify-center">
         <div className="sm:w-2/5 w-full">
-          <Accordion className="rounded-lg">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              className="font-semibold text-center"
-            >
+          <details className="rounded-lg border border-gray-200 bg-white text-black">
+            <summary className="px-4 py-3 font-semibold cursor-pointer">
               Recipe Keywords
-            </AccordionSummary>
-            <AccordionDetails>
+            </summary>
+            <div className="px-4 pb-4">
               <ModifyKeywords id={recipe.id} keywords={recipe.keywords} />
-            </AccordionDetails>
-          </Accordion>
+            </div>
+          </details>
         </div>
       </div>
     </div>

@@ -1,13 +1,11 @@
 "use client";
-import { useRef, useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
-import { ingredientApi } from "@/lib/api-client";
+import { useRef, useState } from "react";
+import { useIngredients } from "../hooks/useIngredients";
 
 function AddListItemBar({ id }: { id: string }) {
   const formRef = useRef<HTMLFormElement>(null);
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const { addItem } = useIngredients();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,19 +17,17 @@ function AddListItemBar({ id }: { id: string }) {
       return;
     }
 
-    try {
-      setError(null);
-      await ingredientApi.addItem(item.trim());
-      formRef.current?.reset();
-      startTransition(() => {
-        router.refresh();
-      });
-    } catch (error) {
-      console.error("Failed to add item:", error);
-      const errorMessage =
-        error instanceof Error ? error.message : "Failed to add item";
-      setError(errorMessage);
-    }
+    setError(null);
+    addItem.mutate(item.trim(), {
+      onSuccess: () => {
+        formRef.current?.reset();
+      },
+      onError: (err) => {
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to add item";
+        setError(errorMessage);
+      },
+    });
   };
 
   return (
@@ -43,7 +39,7 @@ function AddListItemBar({ id }: { id: string }) {
         placeholder="Item to add..."
         autoFocus
       />
-      <Button isPending={isPending} />
+      <Button isPending={addItem.isPending} />
       {error && <span className="text-red-500 ml-2">{error}</span>}
     </form>
   );
@@ -53,7 +49,7 @@ export function Button({ isPending }: { isPending: boolean }) {
   return (
     <button
       type="submit"
-      className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1"
+      className="bg-secondary hover:bg-red-700 rounded ml-2 px-2 pt-1 pb-1"
       disabled={isPending}
     >
       {isPending ? "Adding..." : "Add Item"}

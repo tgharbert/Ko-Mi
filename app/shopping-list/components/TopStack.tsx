@@ -1,57 +1,26 @@
 "use client";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+import { Trash2, ListX } from "lucide-react";
 import ShareButton from "./ShareButton";
-import { ingredientApi } from "@/lib/api-client";
-import { useRouter } from "next/navigation";
+import PrimaryButton from "@/app/components/PrimaryButton";
+import { useIngredients } from "../hooks/useIngredients";
 
 export default function TopStack({ id }: { id: string }) {
-  const router = useRouter();
-
-  const handleDeleteIngredients = async () => {
-    try {
-      await ingredientApi.deleteAll();
-      router.refresh();
-    } catch (error) {
-      console.error("ERROR: ", error);
-    }
-  };
-
-  const handleDeleteChecked = async () => {
-    try {
-      await ingredientApi.deleteChecked();
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { deleteAll, deleteChecked } = useIngredients();
 
   return (
     <div className="pb-4 mt-4 sm:mt-6 ml-4">
-      <Stack direction="row" className="flex justify-center content-center ">
-        <Button
-          variant="contained"
-          className=" bg-lime-500"
-          onClick={handleDeleteChecked}
-          color="lime"
-        >
-          <PlaylistRemoveIcon className="mr-2" />
+      <div className="flex flex-row justify-center content-center">
+        <PrimaryButton onClick={() => deleteChecked.mutate()} className="inline-flex items-center">
+          <ListX className="mr-2" size={20} />
           Delete Checked
-        </Button>
+        </PrimaryButton>
         <div className="px-4">
-          <Button
-            variant="contained"
-            className="bg-lime-500"
-            onClick={handleDeleteIngredients}
-            color="lime"
-          >
-            <DeleteIcon className="mr-2" />
+          <PrimaryButton onClick={() => deleteAll.mutate()} className="inline-flex items-center">
+            <Trash2 className="mr-2" size={20} />
             Delete All
-          </Button>
+          </PrimaryButton>
         </div>
-      </Stack>
+      </div>
       <ShareButton />
     </div>
   );

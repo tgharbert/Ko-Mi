@@ -1,15 +1,11 @@
 "use client";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import MenuIcon from "@mui/icons-material/Menu";
+import { MoreVertical } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { useState, useEffect, useRef } from "react";
 import { addUserRecipe } from "@/app/data/addUserRecipe";
 import { useRouter } from "next/navigation";
-import Dialog from "@mui/material/Dialog";
 import deleteUserRecipe from "@/app/data/deleteRecipe";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 const MoreRecipeClick = ({
   user,
@@ -26,15 +22,37 @@ const MoreRecipeClick = ({
   recipeName: string;
   uploadedBy: string;
 }) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isDeleteClick, setDeleteClick] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const handleClick = () => {
+    setMenuOpen(!menuOpen);
   };
   const handleClose = () => {
-    setAnchorEl(null);
+    setMenuOpen(false);
   };
-  const [isDeleteClick, setDeleteClick] = useState(false);
+
+  useEffect(() => {
+    if (isDeleteClick) {
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  }, [isDeleteClick]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
 
   const onDeleteRecipe = () => {
     deleteUserRecipe(recipeId);
@@ -43,75 +61,66 @@ const MoreRecipeClick = ({
   const router = useRouter();
 
   return (
-    <div className="-mb-4 -ml-4 -mx-4">
-      <Button
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
+    <div className="relative" ref={menuRef}>
+      <button
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+        aria-expanded={menuOpen}
         onClick={handleClick}
         aria-label="open-menu"
+        className="p-2"
       >
-        {/* CHANGE THIS TO THE EDIT ICON?? */}
-        <MoreVertIcon className=" text-black" />
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <Dialog
-          open={isDeleteClick}
-          onClose={() => setDeleteClick(false)}
-          className="mx-10 justify-center content-center"
-        >
-          <p className="px-10 pt-4 pb-4 justify-center flex font-bold ">
-            Are you sure you want to delete:
-          </p>
-          <div className="px-10 pb-4 justify-center flex font-bold ">
-            <b>{recipeName}</b>
-          </div>
-          <div className="flex justify-center content-center mb-4">
-            <Button
-              variant="contained"
-              className=" secondary "
-              onClick={onDeleteRecipe}
-              color="lime"
+        <MoreVertical className="text-black" size={24} />
+      </button>
+      {menuOpen && (
+        <div className="absolute right-0 top-full bg-white rounded-lg shadow-lg z-50 min-w-[160px] py-1">
+          <dialog
+            ref={dialogRef}
+            onClose={() => setDeleteClick(false)}
+            onClick={(e) => { if (e.target === dialogRef.current) setDeleteClick(false); }}
+            className="rounded-xl backdrop:bg-black/50 p-0"
+          >
+            <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-black">
+              Are you sure you want to delete:
+            </p>
+            <div className="px-10 pb-4 justify-center flex font-bold text-black">
+              <b>{recipeName}</b>
+            </div>
+            <div className="flex justify-center content-center mb-4">
+              <PrimaryButton onClick={onDeleteRecipe}>
+                Yes
+              </PrimaryButton>
+            </div>
+          </dialog>
+          {user.name === author && (
+            <div>
+              <Link href={`/change/${recipeId}`}>
+                <button
+                  onClick={() => { handleClose(); router.push(`/change/${recipeId}`); }}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 text-black"
+                >
+                  Modify
+                </button>
+              </Link>
+            </div>
+          )}
+          <div>
+            <button
+              onClick={() => { setDeleteClick(!isDeleteClick); handleClose(); }}
+              className="w-full text-left px-4 py-2 hover:bg-gray-100 text-black"
             >
-              Yes
-            </Button>
-          </div>
-        </Dialog>
-        {user.name === author && (
-          <div>
-            <Link href={`/change/${recipeId}`}>
-              <MenuItem onClick={() => router.push(`/change/${recipeId}`)}>
-                Modify
-              </MenuItem>
-            </Link>
-            {/* <MenuItem onClick={() => setDeleteClick(!isDeleteClick)}>
-                Delete Recipe
-              </MenuItem> */}
-          </div>
-        )}
-        {user.id === uploadedBy}{" "}
-        {
-          <div>
-            <MenuItem onClick={() => setDeleteClick(!isDeleteClick)}>
               Delete Recipe
-            </MenuItem>
+            </button>
           </div>
-        }
-        {user.id !== added && (
-          <MenuItem onClick={() => addUserRecipe(recipeId)}>
-            Add to my Ko-Mi
-          </MenuItem>
-        )}
-      </Menu>
+          {user.id !== added && (
+            <button
+              onClick={() => { addUserRecipe(recipeId); handleClose(); }}
+              className="w-full text-left px-4 py-2 hover:bg-gray-100 text-black"
+            >
+              Add to my Ko-Mi
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

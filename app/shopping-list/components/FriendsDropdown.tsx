@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import getFriends from "@/app/friends/data/getFriends";
-import { Button } from "@mui/material";
 import LoadingPage from "@/app/loading";
+import PrimaryButton from "@/app/components/PrimaryButton";
 import { shareIngredients } from "@/app/shopping-list/data/shareIngredients";
 
 const FriendsDropDown = ({
@@ -76,14 +76,9 @@ const FriendsDropDown = ({
               })}
             </select>
             <div className="pt-4 float-center">
-              <Button
-                variant="contained"
-                className="bg-lime-500 "
-                onClick={handleShareIngredients}
-                color="lime"
-              >
+              <PrimaryButton onClick={handleShareIngredients}>
                 Share
-              </Button>
+              </PrimaryButton>
             </div>
           </form>
         </div>

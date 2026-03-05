@@ -1,15 +1,6 @@
 "use client";
-import { useState } from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import { useMediaQuery } from "@mui/material";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Dialog from "@mui/material/Dialog";
+import { useState, useEffect, useRef } from "react";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import AddIngredientsButton from "./AddIngredientsButton";
 import IngredientAccordion from "../../accordions/IngredientAccordion";
@@ -18,21 +9,6 @@ import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
 import MoreRecipeClick from "./MoreRecipeClick";
 import DesktopRecipeCard from "./desktopcard/DesktopRecipeCard";
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 export default function RecipeReviewCard({
   recipe,
@@ -43,8 +19,24 @@ export default function RecipeReviewCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
-  // should work until recipes are single column
-  const isMobile = useMediaQuery("(max-width:1023px)");
+  const [isMobile, setIsMobile] = useState(true);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width:1023px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  }, [open]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -63,37 +55,33 @@ export default function RecipeReviewCard({
 
   return (
     <div className="flex justify-center">
-      <Card sx={{ maxWidth: 345, minWidth: 345 }} className="mt-2 mb-2">
-        <div className="bg-tertiary">
-          <CardHeader
-            action={<IconButton aria-label="settings"></IconButton>}
-            title={
-              <div className="inline-flex items-center">
-                <p className="text-lg font-semibold line-clamp-1 ">
-                  {he.decode(recipe.name)}
-                </p>
-              </div>
-            }
-          />
-          <div className="relative">
-            <figure className="overflow-hidden h-48 flex rounded-lg  justify-center mr-2 ml-2  content-center  items-center ">
-              <div className="flex content-center  items-center  ">
-                <Image
-                  className="overflow-hidden rounded-lg "
-                  height={188}
-                  width={330}
-                  src={recipe.image}
-                  alt={`image of ${recipe.name}`}
-                />
-              </div>
+      <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md overflow-hidden">
+        <div className="bg-card text-tertiary">
+          {/* Title */}
+          <div className="px-4 pt-4 pb-2">
+            <p className="text-lg font-semibold line-clamp-1">
+              {he.decode(recipe.name)}
+            </p>
+          </div>
+          {/* Image */}
+          <div className="px-3">
+            <figure className="overflow-hidden h-48 flex rounded-lg justify-center items-center">
+              <Image
+                className="overflow-hidden rounded-lg object-cover"
+                height={188}
+                width={330}
+                src={recipe.image}
+                alt={`image of ${recipe.name}`}
+              />
             </figure>
           </div>
-          <CardContent>
+          {/* Author + More menu */}
+          <div className="px-4 pt-3 pb-1">
             {recipe.author ? (
-              <div className="relative">
-                <p className="pb-2 italic">by: {recipe.author}</p>
-                <div className="absolute bottom-0 right-0 bg-tertiary pb-4 rounded-2xl">
-                  {user.name === recipe.author || user.id === recipe.userId ? (
+              <div className="flex items-center justify-center relative">
+                <p className="italic text-center">by: {recipe.author}</p>
+                {(user.name === recipe.author || user.id === recipe.userId) && (
+                  <div className="absolute right-0">
                     <MoreRecipeClick
                       user={user}
                       added={recipe.userId}
@@ -102,78 +90,73 @@ export default function RecipeReviewCard({
                       recipeName={recipe.name}
                       uploadedBy={recipe.userId}
                     />
-                  ) : (
-                    <></>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <p className="pb-2 italic">No listed author</p>
+              <p className="italic text-center">No listed author</p>
             )}
-            <div className="float-left pt-4">
+          </div>
+          {/* Add Ingredients + Expand */}
+          <div className="flex items-center justify-between px-4 pb-2">
+            <div className="ml-4">
               <AddIngredientsButton
                 recipeYield={recipe.recipeYield}
                 recipeIngredients={recipe.ingredients}
               />
             </div>
-          </CardContent>
-          <CardActions disableSpacing className="-mt-4">
             {!isMobile ? (
               <>
-                <ExpandMore
-                  expand={expanded}
+                <button
                   onClick={handleOpen}
                   aria-expanded={expanded}
                   aria-label="show more"
+                  className="p-2 transition-transform duration-200"
+                  style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
                 >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-                <Dialog
-                  open={open}
+                  <ChevronDown size={24} />
+                </button>
+                <dialog
+                  ref={dialogRef}
                   onClose={handleClose}
-                  className="justify-center content-center"
+                  onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
+                  className="rounded-xl backdrop:bg-black/50 p-0"
                 >
                   <DesktopRecipeCard recipe={recipe} user={user} />
-                </Dialog>
+                </dialog>
               </>
             ) : (
-              <ExpandMore
-                expand={expanded}
+              <button
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
+                className="p-2 transition-transform duration-200"
+                style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
               >
-                <ExpandMoreIcon />
-              </ExpandMore>
+                <ChevronDown size={24} />
+              </button>
             )}
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              {recipe.description && recipe.description.trim() !== "" && (
-                <div className="rounded-lg">
-                  <DescriptionAccordion
-                    description={he.decode(recipe.description)}
-                  />
-                </div>
-              )}
-              <div>
-                <IngredientAccordion ingredients={recipe.ingredients} />
-              </div>
-              <div className="rounded-lg">
-                <InstructionAccordion instructions={recipe.instructions} />
-              </div>
-              <div>
-                <AdditionalAccordion
-                  url={recipe.url}
-                  recipeYield={recipe.recipeYield}
-                  publisher={recipe.publisherName}
-                  keywords={recipe.keywords}
-                />
-              </div>
-            </CardContent>
-          </Collapse>
+          </div>
+          {/* Expandable content */}
+          <div
+            className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}
+          >
+            <div className="px-4 pb-4 divide-y divide-white/10">
+              <DescriptionAccordion
+                description={he.decode(recipe.description)}
+              />
+              <IngredientAccordion ingredients={recipe.ingredients} />
+              <InstructionAccordion instructions={recipe.instructions} />
+              <AdditionalAccordion
+                url={recipe.url}
+                recipeYield={recipe.recipeYield}
+                publisher={recipe.publisherName}
+                keywords={recipe.keywords}
+              />
+            </div>
+          </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

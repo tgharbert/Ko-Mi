@@ -1,8 +1,6 @@
 "use client";
-import { Switch } from "@mui/material";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import PeopleIcon from "@mui/icons-material/People";
-import PersonIcon from "@mui/icons-material/Person";
+import { Users, User } from "lucide-react";
 
 export default function UserToggle() {
   const searchParams = useSearchParams();
@@ -26,27 +24,27 @@ export default function UserToggle() {
   };
 
   return (
-    <div className="pb-2">
+    <div className="flex items-center">
       <button
         className={
           !all
-            ? "mx-4 underline hover:text-lime-600"
-            : "mx-4 hover:text-lime-600"
+            ? "mx-4 underline hover:text-accent"
+            : "mx-4 hover:text-accent"
         }
         onClick={toggleMyRecipes}
       >
-        <PersonIcon className="pr-2" />
+        <User className="pr-2 inline" size={20} />
         My Recipes
       </button>
       <button
         className={
           all
-            ? "mx-4 underline hover:text-lime-600"
-            : "mx-4 hover:text-lime-600"
+            ? "mx-4 underline hover:text-accent"
+            : "mx-4 hover:text-accent"
         }
         onClick={toggleAllRecipes}
       >
-        <PeopleIcon className="pr-2" />
+        <Users className="pr-2 inline" size={20} />
         All Recipes
       </button>
     </div>

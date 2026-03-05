@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { addIngredients } from "@/app/data/addIngredients";
-import Button from "@mui/material/Button";
-
+import PrimaryButton from "@/app/components/PrimaryButton";
 export default function YieldDropdown({
   recipeYield,
   recipeIngredients,
@@ -42,14 +41,9 @@ export default function YieldDropdown({
         <label className="ml-2">Servings</label>
       </div>
       <div className="flex justify-center content-center">
-        <Button
-          variant="contained"
-          className="px-4 bg-lime-500"
-          onClick={() => handleAddIngredients(recipeIngredients, multiplier)}
-          color="lime"
-        >
+        <PrimaryButton onClick={() => handleAddIngredients(recipeIngredients, multiplier)}>
           Add Ingredients
-        </Button>
+        </PrimaryButton>
       </div>
     </div>
   );

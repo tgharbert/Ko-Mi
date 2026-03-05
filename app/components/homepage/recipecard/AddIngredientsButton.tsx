@@ -1,11 +1,7 @@
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
+import { useState, useEffect, useRef } from "react";
 import YieldDropdown from "./YieldDropdown";
-import AddIcon from "@mui/icons-material/Add";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
+import { ShoppingCart } from "lucide-react";
+import Toast from "@/app/components/Toast";
 
 function AddIngredientsButton({
   recipeYield,
@@ -16,6 +12,15 @@ function AddIngredientsButton({
 }) {
   const [open, setOpen] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  }, [open]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,58 +30,33 @@ function AddIngredientsButton({
     setOpen(false);
   };
 
-  // the alert should be here because otherwise it's closing when the dialog closes
-  // therefore only onscreen for moments
-  const handleSnackbarClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setIsAlert(false);
-  };
-
   const openSnackbar = () => {
     setIsAlert(true);
+    setTimeout(() => setIsAlert(false), 2000);
   };
 
   return (
-    <div className="px-5 bg-tertiary flex justify-center content-center">
-      {isAlert ? (
-        <Snackbar
-          open={isAlert}
-          autoHideDuration={2000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert
-            onClose={handleSnackbarClose}
-            severity="success"
-            variant="filled"
-            sx={{ width: "100%" }}
-          >
-            Added Ingredients!
-          </Alert>
-        </Snackbar>
-      ) : (
-        ""
+    <div className="flex items-center">
+      {isAlert && (
+        <Toast message="Added Ingredients!" onClose={() => setIsAlert(false)} />
       )}
       <button
-        className="cursor-pointer hover:text-lime-600 flex "
+        className="cursor-pointer hover:text-accent flex "
         onClick={handleClickOpen}
       >
-        <AddShoppingCartIcon className="mr-3" /> Add Ingredients
+        <ShoppingCart className="mr-3" size={20} /> Add Ingredients
       </button>
-      <Dialog
-        open={open}
+      <dialog
+        ref={dialogRef}
         onClose={handleClose}
-        className="mx-10 justify-center content-center"
+        onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
+        className="rounded-xl backdrop:bg-black/50 p-0"
       >
-        <p className="px-10 pt-4 pb-4 justify-center flex font-bold ">
+        <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-black">
           Adjust Serving Size:
         </p>
         <div className="flex justify-center content-center">
-          <p className="px-10 italic text-center pb-4">
+          <p className="px-10 italic text-center pb-4 text-black">
             <b>{recipeYield}</b> is the standard serving size
           </p>
         </div>
@@ -86,7 +66,7 @@ function AddIngredientsButton({
           handleClose={handleClose}
           openSnackbar={openSnackbar}
         />
-      </Dialog>
+      </dialog>
     </div>
   );
 }

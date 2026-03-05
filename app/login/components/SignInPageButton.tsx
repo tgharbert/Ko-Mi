@@ -1,19 +1,14 @@
 "use client";
 import { signIn } from "next-auth/react";
-import Button from "@mui/material/Button";
-import LoginIcon from "@mui/icons-material/Login";
+import { LogIn } from "lucide-react";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 function SignInPageButton() {
   return (
-    <Button
-      variant="contained"
-      className=" bg-lime-500"
-      onClick={() => signIn()}
-      color="lime"
-    >
+    <PrimaryButton onClick={() => signIn()}>
       Sign In
-      <LoginIcon className="pl-1" />
-    </Button>
+      <LogIn className="pl-1" size={20} />
+    </PrimaryButton>
   );
 }
 

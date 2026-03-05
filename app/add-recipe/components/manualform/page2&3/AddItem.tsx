@@ -1,4 +1,4 @@
-import AddIcon from "@mui/icons-material/Add";
+import { Plus } from "lucide-react";
 import ItemField from "./ItemField";
 
 function AddItems({
@@ -30,7 +30,7 @@ function AddItems({
         <ItemField itemChange={itemChange} item={item} text={text} />
         <button className="pt-2 pb-2 mx-4 items-center ">
           <label>Add {text}: </label>
-          <AddIcon />
+          <Plus size={20} />
         </button>
       </form>
     </div>

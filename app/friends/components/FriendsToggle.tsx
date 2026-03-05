@@ -1,5 +1,4 @@
 "use client";
-import Switch from "@mui/material/Switch";
 import { useState, useEffect, useCallback } from "react";
 import Requests from "./Requests";
 import FriendsList from "./FriendsList";
@@ -52,7 +51,16 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
     <div>
       <div>
         <label>Friends</label>
-        <Switch onChange={onSwitch} />
+        <button
+          onClick={onSwitch}
+          className={`relative inline-flex h-6 w-11 items-center rounded-full mx-2 transition-colors ${isFriendsList ? "bg-gray-300" : "bg-secondary"}`}
+          role="switch"
+          aria-checked={!isFriendsList}
+        >
+          <span
+            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isFriendsList ? "translate-x-1" : "translate-x-6"}`}
+          />
+        </button>
         <label>Requests</label>
       </div>
       {isFriendsList ? (

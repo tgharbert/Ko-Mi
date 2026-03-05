@@ -22,10 +22,7 @@ module.exports = withPWA({
   },
   output: "standalone",
   turbopack: {},
-  compiler: {
-    emotion: true,
-  },
-  webpack: (config, { isServer }) => {
+webpack: (config, { isServer }) => {
     // for path in tsconfig.js: "@/*": ["./src/*"]
     config.resolve.alias["@"] = path.join(__dirname, "");
     return config;

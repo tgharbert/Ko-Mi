@@ -7,8 +7,7 @@ import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
 import buildCustomRecipe from "../../data/buildCustomRecipe";
 import CustomRecipeCard from "./page5/CustomRecipeCard";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
+import Toast from "@/app/components/Toast";
 
 function RecipeForm() {
   const [name, setName] = useState("");
@@ -167,23 +166,8 @@ function RecipeForm() {
     <div className=" bg-tertiary text-black sm:mx-96 md:mx-40 pt-4 pb-4 rounded-lg border-2 border-black mr-4 ml-4">
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
       <div className="px-8 justify-center flex">
-        {isAlert ? (
-          <Snackbar
-            open={isAlert}
-            autoHideDuration={4000}
-            onClose={handleClose}
-          >
-            <Alert
-              onClose={handleClose}
-              severity="warning"
-              variant="filled"
-              sx={{ width: "100%" }}
-            >
-              Not all fields are filled in!
-            </Alert>
-          </Snackbar>
-        ) : (
-          ""
+        {isAlert && (
+          <Toast message="Not all fields are filled in!" onClose={handleClose} variant="warning" />
         )}
         {page === 1 && (
           <NameAndDescription

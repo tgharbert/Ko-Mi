@@ -53,7 +53,7 @@ export default function RecipeURLForm() {
           placeholder="Recipe URL"
           autoFocus
         />
-        <button className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1">
+        <button className="bg-secondary hover:bg-red-700 rounded ml-2 px-2 pt-1 pb-1">
           Enter Recipe
         </button>
       </form>

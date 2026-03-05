@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
+import { Trash2, Plus } from "lucide-react";
 import updateIngredients from "../data/updateIngredients";
-import Button from "@mui/material/Button";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 const ModifyIngredients = ({
   id,
@@ -60,22 +59,15 @@ const ModifyIngredients = ({
               onClick={(e) => onDelClick(e, idx)}
               className="text-red-500"
             >
-              <DeleteIcon />
+              <Trash2 size={20} />
             </button>
           </div>
-          <button onClick={(e) => onAddClick(e, idx)} className="text-lime-500">
-            <AddIcon />
+          <button onClick={(e) => onAddClick(e, idx)} className="text-accent">
+            <Plus size={20} />
           </button>
         </div>
       ))}
-      <Button
-        className="bg-lime-500 px-4"
-        variant="contained"
-        color="lime"
-        onClick={handleSubmit}
-      >
-        Update Ingredients
-      </Button>
+      <PrimaryButton onClick={handleSubmit}>Update Ingredients</PrimaryButton>
     </div>
   );
 };

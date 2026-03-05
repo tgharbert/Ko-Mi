@@ -1,15 +1,20 @@
-import ShareIcon from "@mui/icons-material/Share";
-import { Button } from "@mui/material";
-import { useState } from "react";
-
-import Dialog from "@mui/material/Dialog";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
+import { Share2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import FriendsDropDown from "./FriendsDropdown";
+import Toast from "@/app/components/Toast";
 
 const ShareButton = () => {
   const [open, setOpen] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  }, [open]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,65 +24,41 @@ const ShareButton = () => {
     setOpen(false);
   };
 
-  // the alert should be here because otherwise it's closing when the dialog closes
-  // therefore only onscreen for moments
-  const handleSnackbarClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleSnackbarClose = () => {
     setIsAlert(false);
   };
 
   const openSnackbar = () => {
     setIsAlert(true);
+    setTimeout(() => setIsAlert(false), 2000);
   };
 
   return (
     <div className="px-5 flex justify-center content-center">
-      {isAlert ? (
-        <Snackbar
-          open={isAlert}
-          autoHideDuration={2000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert
-            onClose={handleSnackbarClose}
-            severity="success"
-            variant="filled"
-            sx={{ width: "100%" }}
-          >
-            Shared Ingredients!
-          </Alert>
-        </Snackbar>
-      ) : (
-        ""
+      {isAlert && (
+        <Toast message="Shared Ingredients!" onClose={handleSnackbarClose} />
       )}
       <div className="pt-4">
-        <Button
+        <button
           onClick={handleClickOpen}
-          sx={{
-            color: "white",
-          }}
-          color="lime"
+          className="text-white hover:text-accent flex items-center gap-1"
         >
           Share
-          <ShareIcon></ShareIcon>
-        </Button>
-        <Dialog
-          open={open}
+          <Share2 size={20} />
+        </button>
+        <dialog
+          ref={dialogRef}
           onClose={handleClose}
-          className="justify-center content-center "
+          onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
+          className="rounded-xl backdrop:bg-black/50 p-0"
         >
-          <div className="px-10 pt-4 pb-8 justify-center flex  text-lg bg-tertiary">
+          <div className="px-10 pt-4 pb-8 justify-center flex text-lg bg-tertiary text-black">
             <FriendsDropDown
               openSnackbar={openSnackbar}
               handleClose={handleClose}
             />
           </div>
-        </Dialog>
+        </dialog>
       </div>
     </div>
   );
