@@ -21,10 +21,13 @@ type FormState = {
   showPreview: boolean;
 };
 
+type ListField = "ingredients" | "instructions" | "keywords";
+
 type FormAction =
   | { type: "SET_FIELD"; field: "name" | "description" | "servingSize" | "hours" | "minutes"; value: string }
-  | { type: "ADD_ITEM"; field: "ingredients" | "instructions" | "keywords"; value: string }
-  | { type: "REMOVE_ITEM"; field: "ingredients" | "instructions" | "keywords"; index: number }
+  | { type: "ADD_ITEM"; field: ListField; value: string }
+  | { type: "REMOVE_ITEM"; field: ListField; index: number }
+  | { type: "REORDER_ITEM"; field: ListField; index: number; direction: "up" | "down" }
   | { type: "SET_FILE"; file: File | null; fileName: string }
   | { type: "SET_ALERT"; value: boolean }
   | { type: "SHOW_PREVIEW" };
@@ -52,6 +55,12 @@ function formReducer(state: FormState, action: FormAction): FormState {
       return { ...state, [action.field]: [...state[action.field], action.value] };
     case "REMOVE_ITEM":
       return { ...state, [action.field]: state[action.field].filter((_, i) => i !== action.index) };
+    case "REORDER_ITEM": {
+      const list = [...state[action.field]];
+      const target = action.direction === "up" ? action.index - 1 : action.index + 1;
+      [list[action.index], list[target]] = [list[target], list[action.index]];
+      return { ...state, [action.field]: list };
+    }
     case "SET_FILE":
       return { ...state, file: action.file, fileName: action.fileName };
     case "SET_ALERT":
@@ -174,6 +183,7 @@ function ManualForm() {
             items={state.ingredients}
             onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "ingredients", value: item })}
             onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "ingredients", index: idx })}
+            onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "ingredients", index: idx, direction: dir })}
             label="Ingredients"
             placeholder="Enter Ingredient"
             useTextarea
@@ -186,6 +196,7 @@ function ManualForm() {
             items={state.instructions}
             onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "instructions", value: item })}
             onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "instructions", index: idx })}
+            onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "instructions", index: idx, direction: dir })}
             label="Instructions"
             placeholder="Enter Instruction"
             useTextarea
@@ -198,6 +209,7 @@ function ManualForm() {
             items={state.keywords}
             onAdd={(item) => dispatch({ type: "ADD_ITEM", field: "keywords", value: item })}
             onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "keywords", index: idx })}
+            onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "keywords", index: idx, direction: dir })}
             label="Keywords"
             placeholder="Enter Keyword..."
           />

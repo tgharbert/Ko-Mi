@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Plus, X } from "lucide-react";
+import { Plus, X, ChevronUp, ChevronDown } from "lucide-react";
 
 function ListInput({
   items,
   onAdd,
   onRemove,
+  onReorder,
   label,
   placeholder,
   useTextarea = false,
@@ -12,6 +13,7 @@ function ListInput({
   items: string[];
   onAdd: (item: string) => void;
   onRemove: (index: number) => void;
+  onReorder: (index: number, direction: "up" | "down") => void;
   label: string;
   placeholder: string;
   useTextarea?: boolean;
@@ -32,8 +34,26 @@ function ListInput({
       <p className="pb-2">{label}:</p>
       <ul>
         {items.map((item, idx) => (
-          <li className="flex items-center gap-2 pb-1 text-left" key={idx}>
-            <span className="list-disc">{item}</span>
+          <li className="flex items-center gap-1 pb-1 text-left" key={idx}>
+            <div className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => onReorder(idx, "up")}
+                disabled={idx === 0}
+                className="text-gray-400 hover:text-gray-700 disabled:opacity-25"
+              >
+                <ChevronUp size={14} />
+              </button>
+              <button
+                type="button"
+                onClick={() => onReorder(idx, "down")}
+                disabled={idx === items.length - 1}
+                className="text-gray-400 hover:text-gray-700 disabled:opacity-25"
+              >
+                <ChevronDown size={14} />
+              </button>
+            </div>
+            <span className="flex-1">{item}</span>
             <button
               type="button"
               onClick={() => onRemove(idx)}
