@@ -55,8 +55,8 @@ export default function RecipeReviewCard({
 
   return (
     <div className="flex justify-center">
-      <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md overflow-hidden">
-        <div className="bg-card text-tertiary">
+      <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md">
+        <div className="bg-card text-tertiary rounded-xl">
           {/* Title */}
           <div className="px-4 pt-4 pb-2">
             <p className="text-lg font-semibold line-clamp-1">

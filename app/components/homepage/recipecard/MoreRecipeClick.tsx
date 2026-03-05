@@ -2,7 +2,6 @@
 import { MoreVertical } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import { addUserRecipe } from "@/app/data/addUserRecipe";
 import { useRouter } from "next/navigation";
 import deleteUserRecipe from "@/app/data/deleteRecipe";
@@ -25,19 +24,10 @@ const MoreRecipeClick = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDeleteClick, setDeleteClick] = useState(false);
-  const [menuPos, setMenuPos] = useState({ top: 0, right: 0 });
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const handleClick = () => {
-    if (!menuOpen && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setMenuPos({
-        top: rect.bottom + window.scrollY,
-        right: window.innerWidth - rect.right,
-      });
-    }
     setMenuOpen(!menuOpen);
   };
   const handleClose = () => {
@@ -54,10 +44,7 @@ const MoreRecipeClick = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        menuRef.current && !menuRef.current.contains(event.target as Node) &&
-        buttonRef.current && !buttonRef.current.contains(event.target as Node)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     };
@@ -74,9 +61,8 @@ const MoreRecipeClick = ({
   const router = useRouter();
 
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <button
-        ref={buttonRef}
         aria-haspopup="true"
         aria-expanded={menuOpen}
         onClick={handleClick}
@@ -103,12 +89,8 @@ const MoreRecipeClick = ({
           </PrimaryButton>
         </div>
       </dialog>
-      {menuOpen && createPortal(
-        <div
-          ref={menuRef}
-          className="fixed bg-white rounded-lg shadow-lg z-50 min-w-[160px] py-1 animate-fade-in"
-          style={{ top: menuPos.top, right: menuPos.right }}
-        >
+      {menuOpen && (
+        <div className="absolute right-0 top-full bg-white rounded-lg shadow-lg z-50 min-w-[160px] py-1 animate-fade-in">
           {user.name === author && (
             <div>
               <Link href={`/change/${recipeId}`}>
@@ -137,8 +119,7 @@ const MoreRecipeClick = ({
               Add to my Ko-Mi
             </button>
           )}
-        </div>,
-        document.body
+        </div>
       )}
     </div>
   );
