@@ -55,8 +55,8 @@ export default function RecipeReviewCard({
 
   return (
     <div className="flex justify-center">
-      <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md overflow-hidden">
-        <div className="bg-card text-tertiary">
+      <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md">
+        <div className="bg-card text-tertiary rounded-xl">
           {/* Title */}
           <div className="px-4 pt-4 pb-2">
             <p className="text-lg font-semibold line-clamp-1">
@@ -111,7 +111,7 @@ export default function RecipeReviewCard({
                   onClick={handleOpen}
                   aria-expanded={expanded}
                   aria-label="show more"
-                  className="p-2 transition-transform duration-200"
+                  className="p-2 transition-transform duration-300 hover:text-accent"
                   style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
                 >
                   <ChevronDown size={24} />
@@ -120,7 +120,7 @@ export default function RecipeReviewCard({
                   ref={dialogRef}
                   onClose={handleClose}
                   onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-                  className="rounded-xl backdrop:bg-black/50 p-0"
+                  className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
                 >
                   <DesktopRecipeCard recipe={recipe} user={user} />
                 </dialog>
@@ -130,7 +130,7 @@ export default function RecipeReviewCard({
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
-                className="p-2 transition-transform duration-200"
+                className="p-2 transition-transform duration-300 hover:text-accent"
                 style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}
               >
                 <ChevronDown size={24} />

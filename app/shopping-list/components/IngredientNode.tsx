@@ -10,20 +10,20 @@ function IngredientNode({
   onCheck: (id: number, checked: boolean) => void;
 }) {
   return (
-    <span className="sm:flex sm:items-center sm:justify-center ">
-      <div className=" overflow-y-auto mx-4 px-4  border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black ">
+    <span className="sm:flex sm:items-center sm:justify-center">
+      <div className={`overflow-y-auto mx-4 px-4 border-2 sm:w-2/5 border-black rounded-lg h-auto mt-4 bg-tertiary text-black animate-slide-up transition-all duration-200 ${ingredient.checked ? "opacity-60" : "opacity-100"}`}>
         <span
           className={
             ingredient.checked
-              ? "w-full line-through text-lg text-red-500"
-              : "w-full text-lg"
+              ? "w-full line-through text-lg text-red-500 transition-colors duration-200"
+              : "w-full text-lg transition-colors duration-200"
           }
         >
-          <span className="mt-4 mb-4 flex ">
+          <span className="mt-4 mb-4 flex">
             <button
               onClick={() => onCheck(ingredient.id, !ingredient.checked)}
               aria-label="check item"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-full hover:bg-gray-100 active:scale-90 transition-all duration-150"
             >
               {ingredient.checked ? (
                 <ShoppingCart className="text-red-500" size={24} />

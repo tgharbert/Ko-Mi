@@ -41,7 +41,7 @@ function AddIngredientsButton({
         <Toast message="Added Ingredients!" onClose={() => setIsAlert(false)} />
       )}
       <button
-        className="cursor-pointer hover:text-accent flex "
+        className="cursor-pointer hover:text-accent active:scale-95 flex whitespace-nowrap transition-all duration-150"
         onClick={handleClickOpen}
       >
         <ShoppingCart className="mr-3" size={20} /> Add Ingredients
@@ -50,7 +50,7 @@ function AddIngredientsButton({
         ref={dialogRef}
         onClose={handleClose}
         onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-        className="rounded-xl backdrop:bg-black/50 p-0"
+        className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
       >
         <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-black">
           Adjust Serving Size:
