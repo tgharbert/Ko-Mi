@@ -1,6 +1,10 @@
-"use server";
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import getUsers from "@/app/friends/data/getUsers";
+
+export const metadata: Metadata = {
+  title: "Friends",
+};
 import FriendsToggle from "./components/FriendsToggle";
 import LoadingPage from "../loading";
 import { Suspense } from "react";

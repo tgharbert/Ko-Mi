@@ -1,61 +1,31 @@
 import { Share2 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
 import FriendsDropDown from "./FriendsDropdown";
 import Toast from "@/app/components/Toast";
+import { useDialog } from "@/app/hooks/useDialog";
+import { useToast } from "@/app/hooks/useToast";
 
 const ShareButton = () => {
-  const [open, setOpen] = useState(false);
-  const [isAlert, setIsAlert] = useState(false);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (open) {
-      dialogRef.current?.showModal();
-    } else {
-      dialogRef.current?.close();
-    }
-  }, [open]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSnackbarClose = () => {
-    setIsAlert(false);
-  };
-
-  const openSnackbar = () => {
-    setIsAlert(true);
-    setTimeout(() => setIsAlert(false), 2000);
-  };
+  const { open, close, dialogProps } = useDialog();
+  const toast = useToast();
 
   return (
     <div className="flex justify-center content-center">
-      {isAlert && (
-        <Toast message="Shared Ingredients!" onClose={handleSnackbarClose} />
+      {toast.isVisible && (
+        <Toast message="Shared Ingredients!" onClose={toast.hide} />
       )}
       <div>
         <button
-          onClick={handleClickOpen}
+          onClick={open}
           className="text-white hover:text-accent active:scale-95 flex items-center gap-1 transition-all duration-150"
         >
           Share
           <Share2 size={20} />
         </button>
-        <dialog
-          ref={dialogRef}
-          onClose={handleClose}
-          onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-          className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
-        >
+        <dialog {...dialogProps}>
           <div className="px-10 pt-4 pb-8 justify-center flex text-lg bg-tertiary text-black">
             <FriendsDropDown
-              openSnackbar={openSnackbar}
-              handleClose={handleClose}
+              openSnackbar={toast.show}
+              handleClose={close}
             />
           </div>
         </dialog>

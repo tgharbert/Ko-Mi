@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import AddIngredientsButton from "./AddIngredientsButton";
@@ -9,6 +9,7 @@ import AdditionalAccordion from "../../accordions/AdditionalAccordion";
 import DescriptionAccordion from "../../accordions/DescriptionAccordion";
 import MoreRecipeClick from "./MoreRecipeClick";
 import DesktopRecipeCard from "./desktopcard/DesktopRecipeCard";
+import { useDialog } from "@/app/hooks/useDialog";
 
 export default function RecipeReviewCard({
   recipe,
@@ -18,9 +19,8 @@ export default function RecipeReviewCard({
   user: User;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const { open, close, dialogRef, dialogProps } = useDialog();
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width:1023px)");
@@ -29,22 +29,6 @@ export default function RecipeReviewCard({
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
-
-  useEffect(() => {
-    if (open) {
-      dialogRef.current?.showModal();
-    } else {
-      dialogRef.current?.close();
-    }
-  }, [open]);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -108,7 +92,7 @@ export default function RecipeReviewCard({
             {!isMobile ? (
               <>
                 <button
-                  onClick={handleOpen}
+                  onClick={open}
                   aria-expanded={expanded}
                   aria-label="show more"
                   className="p-2 transition-transform duration-300 hover:text-accent"
@@ -116,12 +100,7 @@ export default function RecipeReviewCard({
                 >
                   <ChevronDown size={24} />
                 </button>
-                <dialog
-                  ref={dialogRef}
-                  onClose={handleClose}
-                  onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-                  className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
-                >
+                <dialog {...dialogProps}>
                   <DesktopRecipeCard recipe={recipe} user={user} />
                 </dialog>
               </>

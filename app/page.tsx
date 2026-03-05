@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Header from "./components/Header";
 import RecipeList from "./components/homepage/RecipeList";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 import { Suspense } from "react";
 import LoadingPage from "./loading";
 import RecipeSearchBar from "./components/homepage/SearchBar";

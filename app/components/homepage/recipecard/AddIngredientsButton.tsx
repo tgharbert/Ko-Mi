@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
 import YieldDropdown from "./YieldDropdown";
 import { ShoppingCart } from "lucide-react";
 import Toast from "@/app/components/Toast";
+import { useDialog } from "@/app/hooks/useDialog";
+import { useToast } from "@/app/hooks/useToast";
 
 function AddIngredientsButton({
   recipeYield,
@@ -10,48 +11,21 @@ function AddIngredientsButton({
   recipeYield: number;
   recipeIngredients: Ingredient[];
 }) {
-  const [open, setOpen] = useState(false);
-  const [isAlert, setIsAlert] = useState(false);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (open) {
-      dialogRef.current?.showModal();
-    } else {
-      dialogRef.current?.close();
-    }
-  }, [open]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const openSnackbar = () => {
-    setIsAlert(true);
-    setTimeout(() => setIsAlert(false), 2000);
-  };
+  const { open, close, dialogProps } = useDialog();
+  const toast = useToast();
 
   return (
     <div className="flex items-center">
-      {isAlert && (
-        <Toast message="Added Ingredients!" onClose={() => setIsAlert(false)} />
+      {toast.isVisible && (
+        <Toast message="Added Ingredients!" onClose={toast.hide} />
       )}
       <button
         className="cursor-pointer hover:text-accent active:scale-95 flex whitespace-nowrap transition-all duration-150"
-        onClick={handleClickOpen}
+        onClick={open}
       >
         <ShoppingCart className="mr-3" size={20} /> Add Ingredients
       </button>
-      <dialog
-        ref={dialogRef}
-        onClose={handleClose}
-        onClick={(e) => { if (e.target === dialogRef.current) handleClose(); }}
-        className="rounded-xl backdrop:bg-black/50 p-0 animate-fade-in"
-      >
+      <dialog {...dialogProps}>
         <p className="px-10 pt-4 pb-4 justify-center flex font-bold text-black">
           Adjust Serving Size:
         </p>
@@ -63,8 +37,8 @@ function AddIngredientsButton({
         <YieldDropdown
           recipeYield={recipeYield}
           recipeIngredients={recipeIngredients}
-          handleClose={handleClose}
-          openSnackbar={openSnackbar}
+          handleClose={close}
+          openSnackbar={toast.show}
         />
       </dialog>
     </div>

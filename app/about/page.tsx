@@ -1,6 +1,10 @@
-"use server";
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import LoadingPage from "../loading";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 import { Suspense } from "react";
 import verifyUser from "@/utils/verifyUser";
 import Link from "next/link";

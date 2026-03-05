@@ -1,6 +1,10 @@
-"use server";
+import type { Metadata } from "next";
 import verifyUser from "@/utils/verifyUser";
 import Header from "@/app/components/Header";
+
+export const metadata: Metadata = {
+  title: "Edit Recipe",
+};
 import getRecipe from "@/app/change/data/getRecipe";
 import UnableToModify from "../components/UnableToModify";
 import ModifyRecipeForm from "../components/ModifyRecipeForm";

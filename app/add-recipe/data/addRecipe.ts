@@ -1,6 +1,6 @@
 'use server'
 import { auth } from "@/auth";
-
+import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/api/_base"
 import { matchLocations } from "@/utils/matchIngredientLocation";
@@ -68,6 +68,7 @@ export async function addRecipe(recipe: any) {
     })
     const locationData: LocData[] = matchLocations(ingredients)
     await addSection(locationData)
+    revalidatePath('/');
     return;
   } catch (error) {
     console.error("ERROR: ", error);
