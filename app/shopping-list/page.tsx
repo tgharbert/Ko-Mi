@@ -1,5 +1,9 @@
-"use server";
+import type { Metadata } from "next";
 import Header from "../components/Header";
+
+export const metadata: Metadata = {
+  title: "Shopping List",
+};
 import verifyUser from "@/utils/verifyUser";
 import AddListItemBar from "./components/NewIngredientBar";
 import TopStack from "./components/TopStack";
