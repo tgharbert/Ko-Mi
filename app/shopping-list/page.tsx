@@ -23,16 +23,14 @@ export default async function Ingredients() {
       <div className="-mt-12">
         <Header />
       </div>
-      <AddListItemBar id={user.id} />
-      <TopStack id={user.id} />
-      <div className="relative mx-4 sm:mx-auto">
-        <div className="sm:hidden pointer-events-none absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-primary to-transparent z-10" />
-        <div className="overflow-y-auto max-h-[62vh] sm:max-h-[65vh]">
-          <Suspense fallback={<LoadingPage />}>
-            <IngredientList id={user.id} />
-          </Suspense>
-        </div>
-        <div className="sm:hidden pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-primary to-transparent z-10" />
+      <div className="sticky top-0 z-20 bg-primary pt-4">
+        <AddListItemBar id={user.id} />
+        <TopStack id={user.id} />
+      </div>
+      <div className="relative mx-4 sm:mx-auto min-h-screen">
+        <Suspense fallback={<LoadingPage />}>
+          <IngredientList id={user.id} />
+        </Suspense>
       </div>
     </div>
   );
