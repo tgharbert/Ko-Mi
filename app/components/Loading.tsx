@@ -1,6 +1,6 @@
 function Loading() {
   return (
-    <div className="flex justify-center items-center pt-10 text-lime-500">
+    <div className="flex justify-center items-center pt-10 text-accent">
       <svg
         className="animate-spin h-10 w-10"
         viewBox="0 0 24 24"

@@ -20,7 +20,7 @@ export default function DesktopRecipeCard({
   return (
     <div className="flex justify-center scrollbar-hide">
       <div className="max-w-[400px] min-w-[400px] rounded-xl shadow-md overflow-hidden">
-        <div className="bg-tertiary text-black">
+        <div className="bg-card text-tertiary">
           {/* Title */}
           <div className="px-4 pt-4 pb-2">
             <p className="text-lg font-semibold text-center">
@@ -69,7 +69,7 @@ export default function DesktopRecipeCard({
             />
           </div>
           {/* Accordion content */}
-          <div className="px-4 pb-4 divide-y divide-gray-200">
+          <div className="px-4 pb-4 divide-y divide-white/10">
             <DescriptionAccordion
               description={he.decode(recipe.description)}
             />

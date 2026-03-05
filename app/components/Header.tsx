@@ -10,7 +10,7 @@ export default async function Header() {
         <a href="/">
           <Image src={logo} alt="ko-mi logo" width={80} height={80} />
         </a>
-        <h1 className="font-bold text-4xl sm:text-5xl italic text-lime-500">
+        <h1 className="font-bold text-4xl sm:text-5xl italic text-pop">
           <a href="/">Ko-Mi</a>
         </h1>
       </div>

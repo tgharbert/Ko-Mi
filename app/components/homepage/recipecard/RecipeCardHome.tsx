@@ -56,7 +56,7 @@ export default function RecipeReviewCard({
   return (
     <div className="flex justify-center">
       <div className="mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md overflow-hidden">
-        <div className="bg-tertiary text-black">
+        <div className="bg-card text-tertiary">
           {/* Title */}
           <div className="px-4 pt-4 pb-2">
             <p className="text-lg font-semibold line-clamp-1">
@@ -141,7 +141,7 @@ export default function RecipeReviewCard({
           <div
             className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}
           >
-            <div className="px-4 pb-4 divide-y divide-gray-200">
+            <div className="px-4 pb-4 divide-y divide-white/10">
               <DescriptionAccordion
                 description={he.decode(recipe.description)}
               />

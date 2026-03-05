@@ -33,7 +33,7 @@ function PageNavigation({
     <div className="mb-4">
       <div>
         {currentPage > 1 ? (
-          <span className="hover:text-lime-500">
+          <span className="hover:text-accent">
             <ChevronLeft
               size={28}
               className="cursor-pointer"
@@ -47,7 +47,7 @@ function PageNavigation({
         {numberOfResults < 9 ? (
           ""
         ) : (
-          <span className="hover:text-lime-500">
+          <span className="hover:text-accent">
             <ChevronRight
               size={28}
               className="cursor-pointer"

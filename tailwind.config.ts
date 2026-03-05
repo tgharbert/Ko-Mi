@@ -9,9 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#233329',
-        secondary: '#487509',
-        tertiary: '#F7F9F9',
+        primary: '#1A1A1A',
+        secondary: '#D64045',
+        tertiary: '#FFF8F0',
+        accent: '#F4A127',
+        'accent-hover': '#D88B1A',
+        pop: '#2274A5',
+        card: '#555555',
       },
       fontFamily: {
         'sans': ['Roboto', 'ui-sans-serif', 'system-ui'],

@@ -56,7 +56,7 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
               <Trash2 size={20} />
             </button>
           </div>
-          <button onClick={(e) => onAddClick(e, idx)} className="text-lime-500">
+          <button onClick={(e) => onAddClick(e, idx)} className="text-accent">
             <Plus size={20} />
           </button>
         </div>

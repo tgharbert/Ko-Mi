@@ -28,7 +28,7 @@ function IngredientNode({
               {ingredient.checked ? (
                 <ShoppingCart className="text-red-500" size={24} />
               ) : (
-                <ShoppingCart className="text-lime-500" size={24} />
+                <ShoppingCart className="text-accent" size={24} />
               )}
             </button>
             <p className="pl-2 content-center text-left pr-4">

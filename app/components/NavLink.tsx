@@ -27,8 +27,8 @@ export default function NavLink({
       href={href}
       className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-200 ${
         isActive
-          ? "bg-lime-600 text-white shadow-md"
-          : "text-tertiary/70 hover:text-white hover:bg-white/10"
+          ? "bg-secondary text-white shadow-md"
+          : "text-tertiary/70 hover:text-accent hover:bg-white/10"
       }`}
     >
       <Icon size={16} />

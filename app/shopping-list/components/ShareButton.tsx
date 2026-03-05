@@ -41,7 +41,7 @@ const ShareButton = () => {
       <div className="pt-4">
         <button
           onClick={handleClickOpen}
-          className="text-white hover:text-lime-400 flex items-center gap-1"
+          className="text-white hover:text-accent flex items-center gap-1"
         >
           Share
           <Share2 size={20} />

@@ -14,7 +14,7 @@ function Accordion({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white text-black">
+    <div className="bg-card text-tertiary">
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}

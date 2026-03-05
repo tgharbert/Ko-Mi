@@ -17,7 +17,7 @@ function AddRecipeForm() {
         <label>Enter URL</label>
         <button
           onClick={onToggle}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full mx-2 transition-colors ${isManual ? "bg-lime-600" : "bg-gray-300"}`}
+          className={`relative inline-flex h-6 w-11 items-center rounded-full mx-2 transition-colors ${isManual ? "bg-secondary" : "bg-gray-300"}`}
           role="switch"
           aria-checked={isManual}
         >

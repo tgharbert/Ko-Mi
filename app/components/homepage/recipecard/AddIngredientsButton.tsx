@@ -41,7 +41,7 @@ function AddIngredientsButton({
         <Toast message="Added Ingredients!" onClose={() => setIsAlert(false)} />
       )}
       <button
-        className="cursor-pointer hover:text-lime-600 flex "
+        className="cursor-pointer hover:text-accent flex "
         onClick={handleClickOpen}
       >
         <ShoppingCart className="mr-3" size={20} /> Add Ingredients

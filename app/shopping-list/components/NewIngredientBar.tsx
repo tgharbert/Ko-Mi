@@ -49,7 +49,7 @@ export function Button({ isPending }: { isPending: boolean }) {
   return (
     <button
       type="submit"
-      className="bg-secondary hover:bg-lime-600 rounded ml-2 px-2 pt-1 pb-1"
+      className="bg-secondary hover:bg-red-700 rounded ml-2 px-2 pt-1 pb-1"
       disabled={isPending}
     >
       {isPending ? "Adding..." : "Add Item"}

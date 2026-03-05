@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import ReportIcon from "@mui/icons-material/Report";
+import { AlertTriangle } from "lucide-react";
+import PrimaryButton from "@/app/components/PrimaryButton";
 import { reportedUrlApi } from "@/lib/api-client";
 
 function RecipeCardError({ url }: { url: string }) {
@@ -40,19 +40,17 @@ function RecipeCardError({ url }: { url: string }) {
       <div className="mt-4">
         {isReported ? (
           <p className="text-green-700 font-semibold">
-            ✓ URL reported successfully. Thank you for helping us improve!
+            URL reported successfully. Thank you for helping us improve!
           </p>
         ) : (
           <>
-            <Button
-              variant="contained"
-              color="warning"
+            <PrimaryButton
               onClick={handleReportUrl}
-              disabled={isReporting}
-              startIcon={<ReportIcon />}
+              className="inline-flex items-center bg-amber-500 hover:bg-amber-600"
             >
+              <AlertTriangle className="mr-2" size={20} />
               {isReporting ? "Reporting..." : "Report Unsupported URL"}
-            </Button>
+            </PrimaryButton>
             {error && <p className="text-red-600 mt-2 text-sm">{error}</p>}
           </>
         )}

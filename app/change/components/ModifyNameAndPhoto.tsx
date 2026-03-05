@@ -107,7 +107,7 @@ const ModifyNameAndPhoto = ({
         )}
       </div>
       <div className="mb-4">
-        <label className="inline-flex items-center gap-2 bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded cursor-pointer">
+        <label className="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-tertiary px-4 py-2 rounded cursor-pointer">
           <CloudUpload size={20} />
           Upload file
           <input

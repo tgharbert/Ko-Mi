@@ -28,8 +28,8 @@ export default function UserToggle() {
       <button
         className={
           !all
-            ? "mx-4 underline hover:text-lime-600"
-            : "mx-4 hover:text-lime-600"
+            ? "mx-4 underline hover:text-accent"
+            : "mx-4 hover:text-accent"
         }
         onClick={toggleMyRecipes}
       >
@@ -39,8 +39,8 @@ export default function UserToggle() {
       <button
         className={
           all
-            ? "mx-4 underline hover:text-lime-600"
-            : "mx-4 hover:text-lime-600"
+            ? "mx-4 underline hover:text-accent"
+            : "mx-4 hover:text-accent"
         }
         onClick={toggleAllRecipes}
       >
