@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import { useState, useEffect } from "react";
+import Accordion from "@/app/components/Accordion";
 import InstructionAccordion from "@/app/components/accordions/InstructionAccordion";
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";
@@ -83,24 +84,19 @@ function RecipePreview({ recipe }: { recipe: CustomRecipe }) {
       <div className="space-y-2 max-w-md mx-auto">
         <DescriptionAccordion description={recipe.description} />
         <InstructionAccordion instructions={recipe.instructions} />
-        <details className="rounded-lg border border-white/10 bg-primary/30 text-tertiary">
-          <summary className="px-4 py-3 font-semibold cursor-pointer">
-            Recipe Ingredients
-          </summary>
-          <div className="px-4 pb-4">
-            <ul className="px-2 list-disc text-left text-sm space-y-2">
-              {recipe.ingredients.map((ingredient: string, idx: number) => (
-                <li key={idx}>{ingredient}</li>
-              ))}
-            </ul>
-          </div>
-        </details>
+        <Accordion title="Recipe Ingredients">
+          <ul className="px-2 list-disc text-left text-sm space-y-2">
+            {recipe.ingredients.map((ingredient: string, idx: number) => (
+              <li key={idx}>{ingredient}</li>
+            ))}
+          </ul>
+        </Accordion>
       </div>
 
       <div className="flex justify-center pt-4 pb-2">
-        <PrimaryButton onClick={handleRecipeSubmission}>
+        <PrimaryButton onClick={handleRecipeSubmission} className="inline-flex items-center gap-1">
           Add Recipe
-          <Plus className="pl-1" size={20} />
+          <Plus size={18} />
         </PrimaryButton>
       </div>
     </div>
