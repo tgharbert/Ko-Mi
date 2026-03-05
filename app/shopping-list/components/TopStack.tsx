@@ -19,7 +19,7 @@ export default function TopStack({ id }: { id: string }) {
           Delete All
         </PrimaryButton>
       </div>
-      <div className="flex flex-row justify-center items-center gap-2 px-4 mt-5">
+      <div className="flex flex-row justify-center items-center gap-5 px-4 mt-5">
         <button
           onClick={() => consolidate.mutate()}
           className="inline-flex items-center text-xs sm:text-sm text-accent border border-accent px-3 py-1.5 rounded hover:bg-accent hover:text-black active:scale-95 transition-all duration-150 whitespace-nowrap"
@@ -27,11 +27,11 @@ export default function TopStack({ id }: { id: string }) {
           <ListCollapse className="mr-1 shrink-0" size={14} />
           Consolidate
         </button>
+        <ShareButton />
         <span className="text-tertiary text-xs sm:text-sm tabular-nums">
           {data.length} {data.length === 1 ? "item" : "items"}
         </span>
       </div>
-      <ShareButton />
     </div>
   );
 }

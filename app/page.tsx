@@ -49,17 +49,23 @@ export default async function Home(props: {
       </div>
       <RecipeSearchBar category={category} currentPage={currentPage} />
       <UserSelectors random={random} />
-      <Suspense fallback={<LoadingPage />} key={query + currentPage}>
-        <RecipeList
-          query={query}
-          category={category}
-          currentPage={currentPage}
-          random={random}
-          all={all}
-          user={user}
-          getUserRecipes={getUserRecipes}
-        />
-      </Suspense>
+      <div className="relative mx-4 sm:mx-auto">
+        <div className="sm:hidden pointer-events-none absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-primary to-transparent z-10" />
+        <div className="overflow-y-auto max-h-[75vh] sm:max-h-[65vh]">
+          <Suspense fallback={<LoadingPage />} key={query + currentPage}>
+            <RecipeList
+              query={query}
+              category={category}
+              currentPage={currentPage}
+              random={random}
+              all={all}
+              user={user}
+              getUserRecipes={getUserRecipes}
+            />
+          </Suspense>
+        </div>
+        <div className="sm:hidden pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-primary to-transparent z-10" />
+      </div>
     </div>
   );
 }

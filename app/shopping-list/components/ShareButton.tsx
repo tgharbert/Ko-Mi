@@ -34,11 +34,11 @@ const ShareButton = () => {
   };
 
   return (
-    <div className="px-5 flex justify-center content-center">
+    <div className="flex justify-center content-center">
       {isAlert && (
         <Toast message="Shared Ingredients!" onClose={handleSnackbarClose} />
       )}
-      <div className="pt-4">
+      <div>
         <button
           onClick={handleClickOpen}
           className="text-white hover:text-accent active:scale-95 flex items-center gap-1 transition-all duration-150"

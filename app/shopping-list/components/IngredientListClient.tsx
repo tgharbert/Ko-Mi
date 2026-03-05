@@ -15,7 +15,7 @@ export default function IngredientListClient({
   };
 
   return (
-    <div className="flex-col -mt-4">
+    <div className="flex-col -mt-4 pt-6 pb-8">
       {data.map((ingredient: IngredientWithLocation) => (
         <IngredientNode
           key={ingredient.id}
