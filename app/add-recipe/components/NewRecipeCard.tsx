@@ -6,6 +6,7 @@ import InstructionAccordion from "@/app/components/accordions/InstructionAccordi
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { addRecipe } from "@/app/add-recipe/data/addRecipe";
 import AddIcon from "@mui/icons-material/Add";
+import PrimaryButton from "@/app/components/PrimaryButton";
 function RecipeCard({ recipe }: { recipe: RawRecipe }) {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,13 +43,10 @@ function RecipeCard({ recipe }: { recipe: RawRecipe }) {
         />
       </div>
       <div className="mt-2">
-        <button
-          className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
-          onClick={handleRecipeSubmission}
-        >
+        <PrimaryButton onClick={handleRecipeSubmission}>
           Add Recipe
           <AddIcon className="pl-1" />
-        </button>
+        </PrimaryButton>
       </div>
       {recipe.description ? (
         <div className="flex justify-center">

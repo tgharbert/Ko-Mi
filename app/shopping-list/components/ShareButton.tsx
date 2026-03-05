@@ -1,6 +1,7 @@
 import ShareIcon from "@mui/icons-material/Share";
 import { useState, useEffect, useRef } from "react";
 import FriendsDropDown from "./FriendsDropdown";
+import Toast from "@/app/components/Toast";
 
 const ShareButton = () => {
   const [open, setOpen] = useState(false);
@@ -35,10 +36,7 @@ const ShareButton = () => {
   return (
     <div className="px-5 flex justify-center content-center">
       {isAlert && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
-          <span>Shared Ingredients!</span>
-          <button onClick={handleSnackbarClose} className="ml-2 font-bold">×</button>
-        </div>
+        <Toast message="Shared Ingredients!" onClose={handleSnackbarClose} />
       )}
       <div className="pt-4">
         <button

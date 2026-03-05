@@ -7,6 +7,7 @@ import KeywordsAndPhoto from "./page4/KeywordsAndPhoto";
 import convertTime from "@/utils/convertInputTime";
 import buildCustomRecipe from "../../data/buildCustomRecipe";
 import CustomRecipeCard from "./page5/CustomRecipeCard";
+import Toast from "@/app/components/Toast";
 
 function RecipeForm() {
   const [name, setName] = useState("");
@@ -166,10 +167,7 @@ function RecipeForm() {
       <p className="text-lg pb-4 font-bold">Enter Your Recipe Info:</p>
       <div className="px-8 justify-center flex">
         {isAlert && (
-          <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-amber-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
-            <span>Not all fields are filled in!</span>
-            <button onClick={handleClose} className="ml-2 font-bold">×</button>
-          </div>
+          <Toast message="Not all fields are filled in!" onClose={handleClose} variant="warning" />
         )}
         {page === 1 && (
           <NameAndDescription

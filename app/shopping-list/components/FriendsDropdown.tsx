@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import getFriends from "@/app/friends/data/getFriends";
 import LoadingPage from "@/app/loading";
+import PrimaryButton from "@/app/components/PrimaryButton";
 import { shareIngredients } from "@/app/shopping-list/data/shareIngredients";
 
 const FriendsDropDown = ({
@@ -75,12 +76,9 @@ const FriendsDropDown = ({
               })}
             </select>
             <div className="pt-4 float-center">
-              <button
-                className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
-                onClick={handleShareIngredients}
-              >
+              <PrimaryButton onClick={handleShareIngredients}>
                 Share
-              </button>
+              </PrimaryButton>
             </div>
           </form>
         </div>

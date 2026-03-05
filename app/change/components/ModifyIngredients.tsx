@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import updateIngredients from "../data/updateIngredients";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 const ModifyIngredients = ({
   id,
@@ -67,12 +68,7 @@ const ModifyIngredients = ({
           </button>
         </div>
       ))}
-      <button
-        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
-        onClick={handleSubmit}
-      >
-        Update Ingredients
-      </button>
+      <PrimaryButton onClick={handleSubmit}>Update Ingredients</PrimaryButton>
     </div>
   );
 };

@@ -69,7 +69,7 @@ export default function DesktopRecipeCard({
             />
           </div>
           {/* Accordion content */}
-          <div className="px-4 pb-4 space-y-2">
+          <div className="px-4 pb-4 divide-y divide-gray-200">
             <DescriptionAccordion
               description={he.decode(recipe.description)}
             />

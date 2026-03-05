@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import heic2any from "heic2any";
 import LoadingPage from "@/app/loading";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 const ModifyNameAndPhoto = ({
   recipe,
@@ -116,12 +117,7 @@ const ModifyNameAndPhoto = ({
           />
         </label>
       </div>
-      <button
-        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
-        onClick={handleSubmit}
-      >
-        Update Name and Photo
-      </button>
+      <PrimaryButton onClick={handleSubmit}>Update Name and Photo</PrimaryButton>
     </form>
   );
 };

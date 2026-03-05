@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import YieldDropdown from "./YieldDropdown";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Toast from "@/app/components/Toast";
 
 function AddIngredientsButton({
   recipeYield,
@@ -37,10 +38,7 @@ function AddIngredientsButton({
   return (
     <div className="flex items-center">
       {isAlert && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
-          <span>Added Ingredients!</span>
-          <button onClick={() => setIsAlert(false)} className="ml-2 font-bold">×</button>
-        </div>
+        <Toast message="Added Ingredients!" onClose={() => setIsAlert(false)} />
       )}
       <button
         className="cursor-pointer hover:text-lime-600 flex "

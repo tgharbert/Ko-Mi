@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { addUserRecipe } from "@/app/data/addUserRecipe";
 import { useRouter } from "next/navigation";
 import deleteUserRecipe from "@/app/data/deleteRecipe";
+import PrimaryButton from "@/app/components/PrimaryButton";
 
 const MoreRecipeClick = ({
   user,
@@ -84,12 +85,9 @@ const MoreRecipeClick = ({
               <b>{recipeName}</b>
             </div>
             <div className="flex justify-center content-center mb-4">
-              <button
-                className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
-                onClick={onDeleteRecipe}
-              >
+              <PrimaryButton onClick={onDeleteRecipe}>
                 Yes
-              </button>
+              </PrimaryButton>
             </div>
           </dialog>
           {user.name === author && (
