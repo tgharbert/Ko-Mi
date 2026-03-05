@@ -174,6 +174,17 @@ export const ingredientApi = {
     return response.json();
   },
 
+  async consolidate() {
+    const response = await fetch("/api/ingredients/consolidate", {
+      method: "POST",
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Failed to consolidate ingredients");
+    }
+    return response.json();
+  },
+
   async share(friendId: string, ingredients: string[]) {
     const response = await fetch("/api/ingredients/share", {
       method: "POST",
