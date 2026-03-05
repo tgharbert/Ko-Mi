@@ -12,10 +12,10 @@ jest.mock("../../utils/ingredientMap", () => ({
 
 import { GET, POST, DELETE } from "@/app/api/ingredients/route";
 
-const mockAuth = auth as jest.MockedFunction<typeof auth>;
+const mockAuth = auth as jest.Mock;
 
 function createRequest(url: string, options?: RequestInit) {
-  return new NextRequest(new URL(url, "http://localhost:3000"), options);
+  return new NextRequest(new URL(url, "http://localhost:3000"), options as any);
 }
 
 describe("GET /api/ingredients", () => {

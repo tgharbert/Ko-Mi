@@ -3,10 +3,10 @@ import { auth } from "@/auth";
 import prisma from "@/app/api/_base";
 import { GET, POST } from "@/app/api/friends/route";
 
-const mockAuth = auth as jest.MockedFunction<typeof auth>;
+const mockAuth = auth as jest.Mock;
 
 function createRequest(url: string, options?: RequestInit) {
-  return new NextRequest(new URL(url, "http://localhost:3000"), options);
+  return new NextRequest(new URL(url, "http://localhost:3000"), options as any);
 }
 
 describe("GET /api/friends", () => {

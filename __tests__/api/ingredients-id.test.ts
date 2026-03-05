@@ -3,10 +3,10 @@ import { auth } from "@/auth";
 import prisma from "@/app/api/_base";
 import { PATCH, DELETE } from "@/app/api/ingredients/[id]/route";
 
-const mockAuth = auth as jest.MockedFunction<typeof auth>;
+const mockAuth = auth as jest.Mock;
 
 function createRequest(url: string, options?: RequestInit) {
-  return new NextRequest(new URL(url, "http://localhost:3000"), options);
+  return new NextRequest(new URL(url, "http://localhost:3000"), options as any);
 }
 
 function createParams(id: string) {

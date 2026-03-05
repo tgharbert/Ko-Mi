@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import prisma from "@/app/api/_base";
 import { GET } from "@/app/api/users/route";
 
-const mockAuth = auth as jest.MockedFunction<typeof auth>;
+const mockAuth = auth as jest.Mock;
 
 function createRequest(url: string) {
   return new NextRequest(new URL(url, "http://localhost:3000"));

@@ -17,12 +17,12 @@ import { GET, POST } from "@/app/api/recipes/route";
 import getData from "@/utils/scraper";
 import getRecipeObject from "@/utils/parseRecipe";
 
-const mockAuth = auth as jest.MockedFunction<typeof auth>;
-const mockGetData = getData as jest.MockedFunction<typeof getData>;
-const mockGetRecipeObject = getRecipeObject as jest.MockedFunction<typeof getRecipeObject>;
+const mockAuth = auth as jest.Mock;
+const mockGetData = getData as jest.Mock;
+const mockGetRecipeObject = getRecipeObject as jest.Mock;
 
 function createRequest(url: string, options?: RequestInit) {
-  return new NextRequest(new URL(url, "http://localhost:3000"), options);
+  return new NextRequest(new URL(url, "http://localhost:3000"), options as any);
 }
 
 describe("GET /api/recipes", () => {
