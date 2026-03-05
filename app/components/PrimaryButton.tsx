@@ -16,7 +16,7 @@ function PrimaryButton({
     <button
       type={type}
       onClick={onClick}
-      className={`bg-secondary hover:bg-red-700 active:scale-95 text-tertiary px-4 py-2 rounded whitespace-nowrap transition-all duration-150 ${className}`}
+      className={`bg-secondary hover:bg-red-700 active:scale-95 text-tertiary px-3 py-1.5 rounded whitespace-nowrap transition-all duration-150 ${className}`}
     >
       {children}
     </button>
