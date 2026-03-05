@@ -9,6 +9,8 @@ type Ingredient = {
 };
 
 function IngredientAccordion({ ingredients }: { ingredients: Ingredient[] }) {
+  if (!ingredients?.length) return null;
+
   return (
     <Accordion title="Recipe Ingredients">
       <ul className="list-disc text-left ml-2">
