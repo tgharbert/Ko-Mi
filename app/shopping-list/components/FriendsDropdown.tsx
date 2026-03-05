@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import getFriends from "@/app/friends/data/getFriends";
-import { Button } from "@mui/material";
 import LoadingPage from "@/app/loading";
 import { shareIngredients } from "@/app/shopping-list/data/shareIngredients";
 
@@ -76,14 +75,12 @@ const FriendsDropDown = ({
               })}
             </select>
             <div className="pt-4 float-center">
-              <Button
-                variant="contained"
-                className="bg-lime-500 "
+              <button
+                className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
                 onClick={handleShareIngredients}
-                color="lime"
               >
                 Share
-              </Button>
+              </button>
             </div>
           </form>
         </div>

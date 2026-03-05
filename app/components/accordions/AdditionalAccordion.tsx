@@ -1,12 +1,6 @@
-import Collapse from "@mui/material/Collapse";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+"use client";
+import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
 import LinkIcon from "@mui/icons-material/Link";
 
 function AdditionalAccordion({
@@ -20,6 +14,8 @@ function AdditionalAccordion({
   publisher: string;
   keywords: Keywords[];
 }) {
+  const [open, setOpen] = useState(false);
+
   // filter the keywords due to raw SQL query for random recipes
   keywords = keywords.reduce((acc: Keywords[], keyword: Keywords) => {
     if (!acc.find((item: Keywords) => item.id === keyword.id)) {
@@ -29,49 +25,57 @@ function AdditionalAccordion({
   }, []);
 
   return (
-    <Accordion className="rounded-lg">
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1-content"
-        id="panel1-header"
-        className="font-semibold text-center"
+    <div className="rounded-lg border border-gray-200 bg-white text-black">
+      <button
+        onClick={() => setOpen(!open)}
+        aria-controls="additional-content"
+        aria-expanded={open}
+        className="w-full flex items-center justify-between px-4 py-3 font-semibold text-left"
       >
         Additional Information
-      </AccordionSummary>
-      <AccordionDetails>
-        <div>
-          <p>
-            <b>Original URL: </b>
-            <a className="underline text-blue" href={url}>
-              <LinkIcon className="mr-1" />
-              click link
-            </a>
-          </p>
+        <ExpandMoreIcon
+          className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <div
+        id="additional-content"
+        className={`overflow-hidden transition-all duration-200 ${open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <div className="px-4 pb-4">
+          <div>
+            <p>
+              <b>Original URL: </b>
+              <a className="underline text-blue" href={url}>
+                <LinkIcon className="mr-1" />
+                click link
+              </a>
+            </p>
+          </div>
+          <div>
+            <p>
+              <b>Recipe Yield: </b>
+              {recipeYield} servings
+            </p>
+          </div>
+          <div>
+            <p>
+              <b>Original Publisher: </b>
+              {publisher}
+            </p>
+          </div>
+          <div>
+            <b>Keywords: </b>
+            {keywords.map((keyword) => {
+              return (
+                <p className="italic text-sm" key={keyword.name}>
+                  #{keyword.name}
+                </p>
+              );
+            })}
+          </div>
         </div>
-        <div>
-          <p>
-            <b>Recipe Yield: </b>
-            {recipeYield} servings
-          </p>
-        </div>
-        <div>
-          <p>
-            <b>Original Publisher: </b>
-            {publisher}
-          </p>
-        </div>
-        <div>
-          <b>Keywords: </b>
-          {keywords.map((keyword) => {
-            return (
-              <p className="italic text-sm" key={keyword.name}>
-                #{keyword.name}
-              </p>
-            );
-          })}
-        </div>
-      </AccordionDetails>
-    </Accordion>
+      </div>
+    </div>
   );
 }
 

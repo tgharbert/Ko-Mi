@@ -1,16 +1,12 @@
-import Button from "@mui/material/Button";
-
 function NextPageButton({ pageChange }: { pageChange: Function }) {
   return (
     <div>
-      <Button
-        variant="contained"
-        className="px-4 bg-lime-500"
+      <button
+        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
         onClick={() => pageChange()}
-        color="lime"
       >
         Next Page
-      </Button>
+      </button>
     </div>
   );
 }

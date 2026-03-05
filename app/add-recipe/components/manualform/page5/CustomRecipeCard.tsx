@@ -1,8 +1,4 @@
 import Image from "next/image";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import { useState, useEffect } from "react";
@@ -10,7 +6,6 @@ import InstructionAccordion from "@/app/components/accordions/InstructionAccordi
 import DescriptionAccordion from "@/app/components/accordions/DescriptionAccordion";
 import { supabase } from "@/lib/supabase";
 import { addCustomRecipe } from "@/app/add-recipe/data/addCustomRecipe";
-import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
 function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
@@ -101,19 +96,13 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
           <InstructionAccordion instructions={recipe.instructions} />
         </div>
       </div>
-      {/* REFACTOR BASED ON SHARED ACCORDIONS */}
       <div className="flex justify-center">
         <div className="w-full md:w-full sm:w-2/5">
-          <Accordion className="rounded-lg">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              className="font-semibold text-center"
-            >
+          <details className="rounded-lg border border-gray-200 bg-white text-black">
+            <summary className="px-4 py-3 font-semibold cursor-pointer">
               Recipe Ingredients
-            </AccordionSummary>
-            <AccordionDetails>
+            </summary>
+            <div className="px-4 pb-4">
               <ul className="px-2 list-disc text-left">
                 {recipe.ingredients.map((ingredient: string, idx: number) => (
                   <li className="pb-4" key={idx}>
@@ -121,20 +110,18 @@ function CustomRecipeCard({ recipe }: { recipe: CustomRecipe }) {
                   </li>
                 ))}
               </ul>
-            </AccordionDetails>
-          </Accordion>
+            </div>
+          </details>
         </div>
       </div>
       <div className="mx-4 pt-7 pb-10">
-        <Button
-          variant="contained"
-          className=" bg-lime-500"
+        <button
+          className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
           onClick={handleRecipeSubmission}
-          color="lime"
         >
           Add Recipe
           <AddIcon className="pl-1" />
-        </Button>
+        </button>
       </div>
     </div>
   );

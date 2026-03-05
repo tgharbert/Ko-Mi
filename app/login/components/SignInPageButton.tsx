@@ -1,19 +1,16 @@
 "use client";
 import { signIn } from "next-auth/react";
-import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 
 function SignInPageButton() {
   return (
-    <Button
-      variant="contained"
-      className=" bg-lime-500"
+    <button
+      className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
       onClick={() => signIn()}
-      color="lime"
     >
       Sign In
       <LoginIcon className="pl-1" />
-    </Button>
+    </button>
   );
 }
 

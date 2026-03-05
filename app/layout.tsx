@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./components/Providers";
 import Appbar from "./components/Appbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const APP_NAME = "Ko-Mi";
 const APP_DEFAULT_TITLE = "Ko-Mi";
@@ -58,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-primary font-roboto text-tertiary overflow-y-scroll h-lvh ">
+      <body className="bg-primary text-tertiary overflow-y-scroll h-lvh">
         <Providers>
           <Appbar />
           {children}

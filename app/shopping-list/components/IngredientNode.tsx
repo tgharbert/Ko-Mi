@@ -1,6 +1,5 @@
 "use client";
 
-import IconButton from "@mui/material/IconButton";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
@@ -22,16 +21,17 @@ function IngredientNode({
           }
         >
           <span className="mt-4 mb-4 flex ">
-            <IconButton
+            <button
               onClick={() => onCheck(ingredient.id, !ingredient.checked)}
               aria-label="check item"
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
             >
               {ingredient.checked ? (
                 <RemoveShoppingCartIcon className=" text-red-500 " />
               ) : (
                 <AddShoppingCartIcon className=" text-lime-500 " />
               )}
-            </IconButton>
+            </button>
             <p className="pl-2 content-center text-left pr-4">
               {ingredient.name}
             </p>

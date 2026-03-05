@@ -1,6 +1,5 @@
 "use client";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import Button from "@mui/material/Button";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 function RandomButton({ random }: { random: string }) {
@@ -17,15 +16,13 @@ function RandomButton({ random }: { random: string }) {
 
   return (
     <div className="mb-4">
-      <Button
-        variant="contained"
-        className=" secondary"
+      <button
+        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
         onClick={() => randomClick()}
-        color="lime"
       >
         Randomize
         <ShuffleIcon className="ml-2" />
-      </Button>
+      </button>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 import RecipeURLForm from "./RecipeURLForm";
 import { useState } from "react";
-import Switch from "@mui/material/Switch";
 import ManualForm from "./manualform/ManualForm";
 
 function AddRecipeForm() {
@@ -16,7 +15,16 @@ function AddRecipeForm() {
     <div>
       <div className="mb-4">
         <label>Enter URL</label>
-        <Switch onChange={onToggle} />
+        <button
+          onClick={onToggle}
+          className={`relative inline-flex h-6 w-11 items-center rounded-full mx-2 transition-colors ${isManual ? "bg-lime-600" : "bg-gray-300"}`}
+          role="switch"
+          aria-checked={isManual}
+        >
+          <span
+            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isManual ? "translate-x-6" : "translate-x-1"}`}
+          />
+        </button>
         <label>Enter Recipe Manually</label>
       </div>
       {isManual ? <ManualForm /> : <RecipeURLForm />}

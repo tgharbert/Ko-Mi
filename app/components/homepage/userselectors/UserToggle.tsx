@@ -1,5 +1,4 @@
 "use client";
-import { Switch } from "@mui/material";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import PeopleIcon from "@mui/icons-material/People";
 import PersonIcon from "@mui/icons-material/Person";

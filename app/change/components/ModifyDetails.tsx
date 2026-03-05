@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import convertISO8601ToTimeString from "@/utils/convertToTimeString";
 import updateDetails from "../data/updateDetails";
 import convertTime from "@/utils/convertInputTime";
-import Button from "@mui/material/Button";
 
 const ModifyDetails = ({
   id,
@@ -108,14 +107,12 @@ const ModifyDetails = ({
         ></input>
         <label>Minutes</label>
       </div>
-      <Button
-        className="bg-lime-500 px-4"
-        variant="contained"
-        color="lime"
+      <button
+        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
         onClick={modifyDetails}
       >
         Update Details
-      </Button>
+      </button>
     </>
   );
 };

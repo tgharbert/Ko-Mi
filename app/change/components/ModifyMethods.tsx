@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import updateMethods from "../data/updateMethod";
-import Button from "@mui/material/Button";
 
 const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
   const [newMethods, setNewMethods] = useState<string[]>([]);
@@ -62,14 +61,12 @@ const ModifyMethods = ({ id, methods }: { id: number; methods: string[] }) => {
           </button>
         </div>
       ))}
-      <Button
-        className="bg-lime-500 px-4"
-        variant="contained"
-        color="lime"
+      <button
+        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
         onClick={handleSubmit}
       >
         Update Methods
-      </Button>
+      </button>
     </div>
   );
 };

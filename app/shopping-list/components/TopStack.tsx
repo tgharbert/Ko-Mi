@@ -1,7 +1,5 @@
 "use client";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import ShareButton from "./ShareButton";
 import { useIngredients } from "../hooks/useIngredients";
@@ -11,28 +9,24 @@ export default function TopStack({ id }: { id: string }) {
 
   return (
     <div className="pb-4 mt-4 sm:mt-6 ml-4">
-      <Stack direction="row" className="flex justify-center content-center ">
-        <Button
-          variant="contained"
-          className=" bg-lime-500"
+      <div className="flex flex-row justify-center content-center">
+        <button
+          className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
           onClick={() => deleteChecked.mutate()}
-          color="lime"
         >
           <PlaylistRemoveIcon className="mr-2" />
           Delete Checked
-        </Button>
+        </button>
         <div className="px-4">
-          <Button
-            variant="contained"
-            className="bg-lime-500"
+          <button
+            className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
             onClick={() => deleteAll.mutate()}
-            color="lime"
           >
             <DeleteIcon className="mr-2" />
             Delete All
-          </Button>
+          </button>
         </div>
-      </Stack>
+      </div>
       <ShareButton />
     </div>
   );

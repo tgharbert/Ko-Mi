@@ -6,8 +6,6 @@ import updatePhoto from "../data/updatePhoto";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import heic2any from "heic2any";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import LoadingPage from "@/app/loading";
 
 const ModifyNameAndPhoto = ({
@@ -77,18 +75,6 @@ const ModifyNameAndPhoto = ({
     }
   };
 
-  const VisuallyHiddenInput = styled("input")({
-    clip: "rect(0 0 0 0)",
-    clipPath: "inset(50%)",
-    height: 1,
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    whiteSpace: "nowrap",
-    width: 1,
-  });
-
   return (
     <form className="pb-6" onSubmit={handleSubmit}>
       <div className="pb-4 pt-4">
@@ -120,28 +106,22 @@ const ModifyNameAndPhoto = ({
         )}
       </div>
       <div className="mb-4">
-        <Button
-          component="label"
-          role={undefined}
-          onChange={handleImageChange}
-          variant="contained"
-          tabIndex={-1}
-          startIcon={<CloudUploadIcon />}
-          className="bg-lime-500 px-4"
-          color="lime"
-        >
+        <label className="inline-flex items-center gap-2 bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded cursor-pointer">
+          <CloudUploadIcon />
           Upload file
-          <VisuallyHiddenInput type="file" />
-        </Button>
+          <input
+            type="file"
+            className="sr-only"
+            onChange={handleImageChange}
+          />
+        </label>
       </div>
-      <Button
-        className="bg-lime-500 px-4"
-        variant="contained"
-        color="lime"
+      <button
+        className="bg-lime-600 hover:bg-lime-700 text-tertiary px-4 py-2 rounded"
         onClick={handleSubmit}
       >
         Update Name and Photo
-      </Button>
+      </button>
     </form>
   );
 };
