@@ -38,7 +38,7 @@ const FriendsDropDown = ({
           </div>
           <form>
             <select
-              className="text-tertiary bg-secondary hover:bg-primary rounded px-2 pt-1 pb-1 "
+              className="text-tertiary bg-pop hover:bg-pop/80 rounded px-2 pt-1 pb-1 "
               onChange={(e) => {
                 handleChangeFriend(e.target.value);
               }}

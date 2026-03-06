@@ -18,7 +18,7 @@ const FriendSearchBar = ({
           value={searchTerm}
           onChange={onNameChange}
         ></input>
-        <button className="bg-secondary hover:bg-red-700 rounded ml-2 px-2 pt-1 pb-1">
+        <button className="bg-pop hover:bg-pop/80 rounded ml-2 px-2 pt-1 pb-1">
           Search
         </button>
       </form>

@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Shuffle } from "lucide-react";
-import PrimaryButton from "@/app/components/PrimaryButton";
+
 
 function RandomButton({ random }: { random: string }) {
   const searchParams = useSearchParams();
@@ -17,10 +17,13 @@ function RandomButton({ random }: { random: string }) {
 
   return (
     <div>
-      <PrimaryButton onClick={() => randomClick()} className="inline-flex items-center">
+      <button
+        onClick={() => randomClick()}
+        className="inline-flex items-center text-xs sm:text-sm text-accent border border-accent px-3 py-1.5 rounded hover:bg-accent hover:text-black active:scale-95 transition-all duration-150 whitespace-nowrap"
+      >
+        <Shuffle className="mr-1 shrink-0" size={14} />
         Randomize
-        <Shuffle className="ml-2" size={18} />
-      </PrimaryButton>
+      </button>
     </div>
   );
 }
