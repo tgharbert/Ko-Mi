@@ -51,6 +51,7 @@ const FriendsToggle = ({ getAllRequests }: { getAllRequests: Function }) => {
           className={`relative inline-flex h-6 w-11 items-center rounded-full mx-2 transition-colors ${isFriendsList ? "bg-gray-300" : "bg-secondary"}`}
           role="switch"
           aria-checked={!isFriendsList}
+          aria-label="Toggle between friends and requests"
         >
           <span
             className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isFriendsList ? "translate-x-1" : "translate-x-6"}`}

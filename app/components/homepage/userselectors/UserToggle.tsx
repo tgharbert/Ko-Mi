@@ -28,23 +28,23 @@ export default function UserToggle() {
       <button
         className={
           !all
-            ? "mx-4 underline hover:text-accent"
-            : "mx-4 hover:text-accent"
+            ? "mx-4 underline hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
+            : "mx-4 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
         }
         onClick={toggleMyRecipes}
       >
-        <User className="pr-2 inline" size={20} />
+        <User className="pr-2 inline" size={20} aria-hidden="true" />
         My Recipes
       </button>
       <button
         className={
           all
-            ? "mx-4 underline hover:text-accent"
-            : "mx-4 hover:text-accent"
+            ? "mx-4 underline hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
+            : "mx-4 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
         }
         onClick={toggleAllRecipes}
       >
-        <Users className="pr-2 inline" size={20} />
+        <Users className="pr-2 inline" size={20} aria-hidden="true" />
         All Recipes
       </button>
     </div>

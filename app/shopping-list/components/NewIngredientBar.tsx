@@ -36,6 +36,7 @@ function AddListItemBar({ id }: { id: string }) {
         className="flex-1 rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
         type="text"
         name="item"
+        aria-label="Add shopping list item"
         placeholder="Item to add..."
         autoFocus
       />

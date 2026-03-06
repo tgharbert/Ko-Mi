@@ -33,13 +33,13 @@ function PageNavigation({
     <div className="mb-4">
       <div>
         {currentPage > 1 ? (
-          <span className="hover:text-accent">
-            <ChevronLeft
-              size={28}
-              className="cursor-pointer"
-              onClick={() => handlePreviousPageClick(currentPage)}
-            />
-          </span>
+          <button
+            onClick={() => handlePreviousPageClick(currentPage)}
+            aria-label="Previous page"
+            className="hover:text-accent"
+          >
+            <ChevronLeft size={28} />
+          </button>
         ) : (
           ""
         )}
@@ -47,13 +47,13 @@ function PageNavigation({
         {numberOfResults < 9 ? (
           ""
         ) : (
-          <span className="hover:text-accent">
-            <ChevronRight
-              size={28}
-              className="cursor-pointer"
-              onClick={() => handleNextPageClick(currentPage)}
-            />
-          </span>
+          <button
+            onClick={() => handleNextPageClick(currentPage)}
+            aria-label="Next page"
+            className="hover:text-accent"
+          >
+            <ChevronRight size={28} />
+          </button>
         )}
       </div>
     </div>

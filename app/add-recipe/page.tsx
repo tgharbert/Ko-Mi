@@ -13,7 +13,7 @@ const AddRecipe = async () => {
   await verifyUser();
 
   return (
-    <div className="text-center">
+    <main className="text-center">
       <div className="-mt-12">
         <Header />
       </div>
@@ -22,7 +22,7 @@ const AddRecipe = async () => {
           <AddRecipeForm />
         </div>
       </Suspense>
-    </div>
+    </main>
   );
 };
 

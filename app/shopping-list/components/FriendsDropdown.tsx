@@ -43,7 +43,7 @@ const FriendsDropDown = ({
                 handleChangeFriend(e.target.value);
               }}
               defaultValue={"Select Friend"}
-              aria-label="filter categories"
+              aria-label="Select friend to share list with"
             >
               {friends.length === 0 ? (
                 <option>You have no friends 😭</option>

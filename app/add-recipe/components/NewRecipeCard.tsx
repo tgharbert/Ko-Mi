@@ -38,7 +38,7 @@ function RecipeCard({ recipe }: { recipe: RawRecipe }) {
           width="400"
           height="400"
           src={recipe.image}
-          alt="recipe-photo"
+          alt={`Photo of ${recipe.name}`}
           className="rounded-lg"
         />
       </div>

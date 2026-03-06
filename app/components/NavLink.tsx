@@ -31,7 +31,7 @@ export default function NavLink({
           : "text-tertiary/70 hover:text-accent hover:bg-white/10"
       }`}
     >
-      <Icon size={16} className="sm:w-4 sm:h-4" />
+      <Icon size={16} className="sm:w-4 sm:h-4" aria-hidden="true" />
       {label}
     </Link>
   );

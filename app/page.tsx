@@ -48,7 +48,7 @@ export default async function Home(props: {
   };
 
   return (
-    <div className="text-center flexbox content-center">
+    <main className="text-center flexbox content-center">
       <div className="-mt-12">
         <Header />
       </div>
@@ -73,6 +73,6 @@ export default async function Home(props: {
         </Suspense>
       </div>
       <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-primary to-transparent z-10" />
-    </div>
+    </main>
   );
 }

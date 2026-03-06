@@ -24,6 +24,7 @@ function Accordion({
         <ChevronDown
           className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           size={24}
+          aria-hidden="true"
         />
       </button>
       <div

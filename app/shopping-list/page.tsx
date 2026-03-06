@@ -19,7 +19,7 @@ export default async function Ingredients() {
   }
 
   return (
-    <div className="text-center">
+    <main className="text-center">
       <div className="-mt-12">
         <Header />
       </div>
@@ -36,6 +36,6 @@ export default async function Ingredients() {
         </Suspense>
       </div>
       <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-primary to-transparent z-10" />
-    </div>
+    </main>
   );
 }

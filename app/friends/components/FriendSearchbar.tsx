@@ -14,6 +14,7 @@ const FriendSearchBar = ({
       <form onSubmit={handleSearch}>
         <input
           className="text-black w-1/2 rounded px-4 pt-1 pb-1 sm:w-1/5"
+          aria-label="Search for friends"
           placeholder="Enter Friend to Search"
           value={searchTerm}
           onChange={onNameChange}
