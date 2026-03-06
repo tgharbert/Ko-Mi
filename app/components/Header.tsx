@@ -6,7 +6,7 @@ import NavLink from "./NavLink";
 export default async function Header() {
   return (
     <header className="bg-primary pb-2 sm:pb-4">
-      <div className="flex justify-center items-center gap-3 pb-4">
+      <div className="flex justify-center items-center gap-1 pb-4">
         <a href="/">
           <Image src={logo} alt="ko-mi logo" width={80} height={80} />
         </a>
@@ -16,8 +16,8 @@ export default async function Header() {
       </div>
       <nav className="flex justify-center gap-2 sm:gap-4 px-4">
         <NavLink href="/" label="Recipes" icon="utensils" />
-        <NavLink href="/add-recipe" label="Add Recipe" icon="plus" />
         <NavLink href="/shopping-list" label="Shopping List" icon="cart" />
+        <NavLink href="/add-recipe" label="Add Recipe" icon="plus" />
       </nav>
     </header>
   );

@@ -99,24 +99,24 @@ function ManualForm() {
       photoFile: state.file,
     };
     return (
-      <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-6 mx-4">
+      <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-4 sm:p-6">
         <RecipePreview recipe={recipe} />
       </div>
     );
   }
 
   return (
-    <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-6 mx-4">
-      <h2 className="text-xl font-bold text-accent mb-6 text-center">Enter Your Recipe Info</h2>
+    <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-4 sm:p-6">
+      <h2 className="text-xl font-bold text-accent mb-4 text-center">Enter Your Recipe Info</h2>
 
       {state.isAlert && (
         <Toast message="Please fill in name, description, cook time, ingredients, and instructions." onClose={() => dispatch({ type: "SET_ALERT", value: false })} variant="warning" />
       )}
 
-      <div className="space-y-8 max-w-md mx-auto">
+      <div className="space-y-4 max-w-md mx-auto">
         {/* Details */}
-        <section className="space-y-4">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 text-center">Details</h3>
+        <section className="space-y-3">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-1 text-center">Details</h3>
           <div>
             <label className="block text-sm mb-1 text-center">Recipe Name</label>
             <input
@@ -151,8 +151,8 @@ function ManualForm() {
         </section>
 
         {/* Method */}
-        <section className="space-y-6">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 text-center">Method</h3>
+        <section className="space-y-4">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-1 text-center">Method</h3>
           <div>
             <label className="block text-sm mb-2 text-center">Ingredients</label>
             <ListInput
@@ -214,9 +214,9 @@ function ManualForm() {
 
         {/* Photo */}
         <section>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-2 mb-4 text-center">Photo</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-1 mb-3 text-center">Photo</h3>
           <div className="text-center">
-            <label className="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-tertiary px-4 py-2 rounded-md cursor-pointer transition-colors">
+            <label className="inline-flex items-center gap-2 bg-pop hover:bg-pop/80 text-tertiary px-4 py-2 rounded-md cursor-pointer transition-colors">
               <CloudUpload size={20} />
               Upload file
               <input
@@ -234,7 +234,7 @@ function ManualForm() {
         </section>
       </div>
 
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-4">
         <PrimaryButton onClick={handleSubmit}>Preview Recipe</PrimaryButton>
       </div>
     </div>

@@ -13,8 +13,7 @@ function AddRecipeForm() {
 
   return (
     <div>
-      {isManual ? <ManualForm /> : <RecipeURLForm />}
-      <div className="mt-4 flex items-center justify-center gap-2">
+      <div className="mb-4 flex items-center justify-center gap-2">
         <label className={`text-sm transition-colors ${isManual ? "text-tertiary/50" : "text-tertiary font-medium"}`}>Enter URL</label>
         <button
           onClick={onToggle}
@@ -28,6 +27,7 @@ function AddRecipeForm() {
         </button>
         <label className={`text-sm transition-colors ${isManual ? "text-tertiary font-medium" : "text-tertiary/50"}`}>Enter Recipe Manually</label>
       </div>
+      {isManual ? <ManualForm /> : <RecipeURLForm />}
     </div>
   );
 }

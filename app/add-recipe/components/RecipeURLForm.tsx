@@ -53,7 +53,7 @@ export default function RecipeURLForm() {
           placeholder="Recipe URL"
           autoFocus
         />
-        <button className="bg-secondary hover:bg-red-700 text-tertiary rounded-md px-3 py-1.5 whitespace-nowrap transition-colors">
+        <button className="bg-pop hover:bg-pop/80 text-tertiary rounded-md px-3 py-1.5 whitespace-nowrap transition-colors">
           Enter Recipe
         </button>
       </form>
