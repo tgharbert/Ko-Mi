@@ -107,7 +107,7 @@ function ManualForm() {
 
   return (
     <div className="bg-card text-tertiary max-w-2xl mx-auto rounded-lg border border-white/10 p-4 sm:p-6">
-      <h2 className="text-xl font-bold text-accent mb-4 text-center">Enter Your Recipe Info</h2>
+      <h2 className="text-xl font-bold text-tertiary mb-4 text-center">Enter Your Recipe Info</h2>
 
       {state.isAlert && (
         <Toast message="Please fill in name, description, cook time, ingredients, and instructions." onClose={() => dispatch({ type: "SET_ALERT", value: false })} variant="warning" />
@@ -116,11 +116,11 @@ function ManualForm() {
       <div className="space-y-4 max-w-md mx-auto">
         {/* Details */}
         <section className="space-y-3">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-1 text-center">Details</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-tertiary border-b border-white/10 pb-1 text-center">Details</h3>
           <div>
             <label className="block text-sm mb-1 text-center">Recipe Name</label>
             <input
-              className="w-full rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
+              className="w-full rounded-md bg-primary text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none"
               type="text"
               placeholder="Recipe Name"
               autoFocus
@@ -131,7 +131,7 @@ function ManualForm() {
           <div>
             <label className="block text-sm mb-1 text-center">Description</label>
             <textarea
-              className="w-full rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
+              className="w-full rounded-md bg-primary text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
               placeholder="Recipe Description"
               rows={3}
               value={state.description}
@@ -152,7 +152,7 @@ function ManualForm() {
 
         {/* Method */}
         <section className="space-y-4">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-1 text-center">Method</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-tertiary border-b border-white/10 pb-1 text-center">Method</h3>
           <div>
             <label className="block text-sm mb-2 text-center">Ingredients</label>
             <ListInput
@@ -181,20 +181,20 @@ function ManualForm() {
               <div className="flex items-center gap-3">
                 <input
                   type="number"
-                  className="w-16 rounded-md bg-primary/40 text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                  className="w-16 rounded-md bg-primary text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
                   min="0" max="60" step="1"
                   value={state.hours}
                   onChange={(e) => dispatch({ type: "SET_FIELD", field: "hours", value: e.target.value })}
                 />
-                <span className="text-sm text-tertiary/60">hrs</span>
+                <span className="text-sm text-tertiary">hrs</span>
                 <input
                   type="number"
-                  className="w-16 rounded-md bg-primary/40 text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                  className="w-16 rounded-md bg-primary text-tertiary px-2 py-2 border border-white/10 focus:border-accent focus:outline-none"
                   min="0" max="60" step="1"
                   value={state.minutes}
                   onChange={(e) => dispatch({ type: "SET_FIELD", field: "minutes", value: e.target.value })}
                 />
-                <span className="text-sm text-tertiary/60">min</span>
+                <span className="text-sm text-tertiary">min</span>
               </div>
             </div>
             <div>
@@ -202,7 +202,7 @@ function ManualForm() {
               <select
                 onChange={(e) => dispatch({ type: "SET_FIELD", field: "servingSize", value: e.target.value })}
                 value={state.servingSize}
-                className="rounded-md bg-primary/40 text-tertiary px-3 py-2 border border-white/10 focus:border-accent focus:outline-none"
+                className="rounded-md bg-primary text-tertiary px-3 py-2 border border-white/10 focus:border-accent focus:outline-none"
               >
                 {Array.from({ length: 10 }, (_, i) => (
                   <option key={i} value={i + 1}>{i + 1}</option>
@@ -214,7 +214,7 @@ function ManualForm() {
 
         {/* Photo */}
         <section>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent/70 border-b border-white/10 pb-1 mb-3 text-center">Photo</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-tertiary border-b border-white/10 pb-1 mb-3 text-center">Photo</h3>
           <div className="text-center">
             <label className="inline-flex items-center gap-2 bg-pop hover:bg-pop/80 text-tertiary px-4 py-2 rounded-md cursor-pointer transition-colors">
               <CloudUpload size={20} />
