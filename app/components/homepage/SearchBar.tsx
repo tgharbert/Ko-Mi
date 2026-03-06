@@ -61,7 +61,7 @@ function RecipeSearchBar({
         defaultValue={searchParams.get("query")?.toString()}
       />
       <select
-        className="bg-secondary hover:bg-red-700 text-tertiary rounded-md px-4 py-2 transition-colors"
+        className="bg-pop hover:bg-pop/80 text-tertiary rounded-md px-4 py-2 transition-colors"
         onChange={(e) => {
           handleCategory(e.target.value);
         }}

@@ -29,6 +29,7 @@ function AddRecipeForm() {
         </button>
         <label className={`text-sm transition-colors ${isManual ? "text-tertiary font-medium" : "text-tertiary/70"}`}>Enter Recipe Manually</label>
       </div>
+      {isManual ? <ManualForm /> : <RecipeURLForm />}
     </div>
   );
 }

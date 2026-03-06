@@ -50,7 +50,7 @@ export function Button({ isPending }: { isPending: boolean }) {
   return (
     <button
       type="submit"
-      className="bg-secondary hover:bg-red-700 active:scale-95 text-tertiary rounded-md px-4 py-2 whitespace-nowrap transition-all duration-150"
+      className="bg-pop hover:bg-pop/80 active:scale-95 text-tertiary rounded-md px-4 py-2 whitespace-nowrap transition-all duration-150"
       disabled={isPending}
     >
       {isPending ? "Adding..." : "Add Item"}

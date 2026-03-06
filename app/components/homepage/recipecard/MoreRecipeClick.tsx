@@ -51,7 +51,7 @@ const MoreRecipeClick = ({
           <b>{recipeName}</b>
         </div>
         <div className="flex justify-center content-center mb-4">
-          <PrimaryButton onClick={onDeleteRecipe}>
+          <PrimaryButton onClick={onDeleteRecipe} variant="danger">
             Yes
           </PrimaryButton>
         </div>

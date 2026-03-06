@@ -52,9 +52,12 @@ export default async function Home(props: {
       <div className="-mt-12">
         <Header />
       </div>
-      <div className="sticky top-0 z-20 bg-primary pt-4">
-        <RecipeSearchBar category={category} currentPage={currentPage} />
-        <UserSelectors random={random} />
+      <div className="sticky top-0 z-20">
+        <div className="bg-primary pt-4">
+          <RecipeSearchBar category={category} currentPage={currentPage} />
+          <UserSelectors random={random} />
+        </div>
+        <div className="pointer-events-none h-6 bg-gradient-to-b from-primary to-transparent" />
       </div>
       <div className="relative mx-4 sm:mx-auto min-h-screen">
         <Suspense fallback={<LoadingPage />} key={query + currentPage}>
@@ -69,6 +72,7 @@ export default async function Home(props: {
           />
         </Suspense>
       </div>
+      <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-primary to-transparent z-10" />
     </main>
   );
 }

@@ -18,7 +18,9 @@ const AddRecipe = async () => {
         <Header />
       </div>
       <Suspense fallback={<LoadingPage />}>
-        <AddRecipeForm />
+        <div className="px-4">
+          <AddRecipeForm />
+        </div>
       </Suspense>
     </main>
   );

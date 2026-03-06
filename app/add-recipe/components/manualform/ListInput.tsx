@@ -68,7 +68,7 @@ function ListInput({
       )}
       <form onSubmit={handleSubmit} className="flex items-start gap-2 max-w-sm mx-auto">
         <InputElement
-          className="flex-1 rounded-md bg-primary/40 text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
+          className="flex-1 rounded-md bg-primary text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
           placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}

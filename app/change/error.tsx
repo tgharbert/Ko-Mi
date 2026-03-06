@@ -13,7 +13,7 @@ export default function Error({
       <p className="mb-6 text-tertiary/70">{error.message || "An unexpected error occurred."}</p>
       <button
         onClick={reset}
-        className="bg-secondary hover:bg-red-700 text-tertiary rounded-md px-6 py-2 transition-colors"
+        className="bg-pop hover:bg-pop/80 text-tertiary rounded-md px-6 py-2 transition-colors"
       >
         Try again
       </button>
