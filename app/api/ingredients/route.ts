@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     }
 
     const allIngredients = await prisma.userIngredient.findMany({
-      where: { userId: user.id, checked: false },
+      where: { userId: user.id },
       select: { id: true, ingredientId: true, name: true, checked: true },
     });
 
