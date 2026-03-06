@@ -75,7 +75,7 @@ function RecipePreview({ recipe }: { recipe: CustomRecipe }) {
             width={400}
             height={400}
             src={imagePreview}
-            alt="recipe-photo"
+            alt={`Photo of ${recipe.name}`}
             className="rounded-lg"
           />
         )}

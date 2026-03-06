@@ -21,14 +21,14 @@ const Friends = async () => {
   };
 
   return (
-    <div className="text-center pb-10">
+    <main className="text-center pb-10">
       <div className="-mt-12">
         <Header />
       </div>
       <Suspense fallback={<LoadingPage />}>
         <FriendsToggle getAllRequests={getAllRequests} />
       </Suspense>
-    </div>
+    </main>
   );
 };
 

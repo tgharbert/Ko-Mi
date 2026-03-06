@@ -47,7 +47,7 @@ function AdditionalAccordion({
         <b>Keywords: </b>
         {keywords.map((keyword) => {
           return (
-            <p className="italic text-sm" key={keyword.name}>
+            <p className="italic text-sm" key={keyword.id}>
               #{keyword.name}
             </p>
           );

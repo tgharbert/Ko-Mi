@@ -13,14 +13,14 @@ const AddRecipe = async () => {
   await verifyUser();
 
   return (
-    <div className="text-center">
+    <main className="text-center">
       <div className="-mt-12">
         <Header />
       </div>
       <Suspense fallback={<LoadingPage />}>
         <AddRecipeForm />
       </Suspense>
-    </div>
+    </main>
   );
 };
 

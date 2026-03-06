@@ -18,7 +18,7 @@ const FriendSearchResult = ({
         <span className="w-full float-center text-lg">
           <span className="mt-4 mb-4 flex">
             <span className="float-left pt-1">
-              <button onClick={() => addFriendClick()}>
+              <button onClick={() => addFriendClick()} aria-label={`Add ${user.name} as friend`} className="focus:outline-none focus:ring-2 focus:ring-accent rounded">
                 <UserPlus size={24} />
               </button>
             </span>

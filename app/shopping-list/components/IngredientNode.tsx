@@ -30,7 +30,7 @@ function IngredientNode({
             </p>
           </div>
           {ingredient.location && ingredient.location !== "other" && (
-            <p className="text-tertiary/50 italic text-sm text-right -mt-1">
+            <p className="text-tertiary/70 italic text-sm text-right -mt-1">
               {ingredient.location}
             </p>
           )}

@@ -19,7 +19,7 @@ export default async function Ingredients() {
   }
 
   return (
-    <div className="text-center">
+    <main className="text-center">
       <div className="-mt-12">
         <Header />
       </div>
@@ -32,6 +32,6 @@ export default async function Ingredients() {
           <IngredientList id={user.id} />
         </Suspense>
       </div>
-    </div>
+    </main>
   );
 }

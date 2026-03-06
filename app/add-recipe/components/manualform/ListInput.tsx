@@ -41,7 +41,7 @@ function ListInput({
                   type="button"
                   onClick={() => onReorder(idx, "up")}
                   disabled={idx === 0}
-                  className="text-tertiary/40 hover:text-accent disabled:opacity-25 transition-colors"
+                  className="text-tertiary/60 hover:text-accent disabled:opacity-25 transition-colors"
                 >
                   <ChevronUp size={14} />
                 </button>
@@ -49,7 +49,7 @@ function ListInput({
                   type="button"
                   onClick={() => onReorder(idx, "down")}
                   disabled={idx === items.length - 1}
-                  className="text-tertiary/40 hover:text-accent disabled:opacity-25 transition-colors"
+                  className="text-tertiary/60 hover:text-accent disabled:opacity-25 transition-colors"
                 >
                   <ChevronDown size={14} />
                 </button>

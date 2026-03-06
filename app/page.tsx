@@ -48,7 +48,7 @@ export default async function Home(props: {
   };
 
   return (
-    <div className="text-center flexbox content-center">
+    <main className="text-center flexbox content-center">
       <div className="-mt-12">
         <Header />
       </div>
@@ -69,6 +69,6 @@ export default async function Home(props: {
           />
         </Suspense>
       </div>
-    </div>
+    </main>
   );
 }

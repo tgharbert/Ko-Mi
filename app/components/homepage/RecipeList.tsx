@@ -81,7 +81,7 @@ function RecipeList({
   }, [getRecipes]);
 
   return (
-    <main className="w-120%" id="scrollableDiv">
+    <div className="w-full" id="scrollableDiv">
       <div className="sm:flex justify-center items-center pb-8">
         <div className="grid xl:grid-cols-3 gap-2 sm:w-4/5 lg:grid-cols-2">
           {recipes.map((recipe: Recipe) => {
@@ -104,7 +104,7 @@ function RecipeList({
           <EndOfRecipes />
         </div>
       )}
-    </main>
+    </div>
   );
 }
 
