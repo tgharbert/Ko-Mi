@@ -16,8 +16,8 @@ export default async function Header() {
       </div>
       <nav className="flex justify-center gap-2 sm:gap-4 px-4">
         <NavLink href="/" label="Recipes" icon="utensils" />
-        <NavLink href="/shopping-list" label="Shopping List" icon="cart" />
         <NavLink href="/add-recipe" label="Add Recipe" icon="plus" />
+        <NavLink href="/shopping-list" label="Shopping List" icon="cart" />
       </nav>
     </header>
   );
