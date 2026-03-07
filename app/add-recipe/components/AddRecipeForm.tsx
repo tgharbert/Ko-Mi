@@ -12,9 +12,8 @@ function AddRecipeForm() {
   };
 
   return (
-    <div>
-      {isManual ? <ManualForm /> : <RecipeURLForm />}
-      <div className="mt-4 flex items-center justify-center gap-2">
+    <div className="pb-8">
+      <div className="mt-4 mb-6 flex items-center justify-center gap-2 max-w-md mx-auto">
         <label className={`text-sm transition-colors ${isManual ? "text-tertiary/70" : "text-tertiary font-medium"}`}>Enter URL</label>
         <button
           onClick={onToggle}
