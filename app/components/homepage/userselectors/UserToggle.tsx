@@ -28,8 +28,8 @@ export default function UserToggle() {
       <button
         className={
           !all
-            ? "mx-4 underline hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
-            : "mx-4 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
+            ? "mx-2 sm:mx-4 underline hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
+            : "mx-2 sm:mx-4 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
         }
         onClick={toggleMyRecipes}
       >
@@ -39,8 +39,8 @@ export default function UserToggle() {
       <button
         className={
           all
-            ? "mx-4 underline hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
-            : "mx-4 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
+            ? "mx-2 sm:mx-4 underline hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
+            : "mx-2 sm:mx-4 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded"
         }
         onClick={toggleAllRecipes}
       >
