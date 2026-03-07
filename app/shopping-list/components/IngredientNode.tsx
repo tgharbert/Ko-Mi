@@ -2,6 +2,19 @@
 
 import { ShoppingCart } from "lucide-react";
 
+const locationBorders: Record<string, string> = {
+  produce: "#4A7C59",
+  fish: "#2274A5",
+  meat: "#D64045",
+  dairy: "#FFF8F0",
+  condiments: "#F4A127",
+  spice: "#C17817",
+  baking: "#E8998D",
+  asian: "#2A9D8F",
+  pasta: "#E9C46A",
+  liquor: "#7B2D8B",
+};
+
 function IngredientNode({
   ingredient,
   onCheck,
@@ -9,10 +22,15 @@ function IngredientNode({
   ingredient: IngredientWithLocation;
   onCheck: (id: number, checked: boolean) => void;
 }) {
+  const borderColor = locationBorders[ingredient.location ?? ""] ?? "transparent";
+
   return (
     <div className="flex justify-center">
       <div className={`mt-2 mb-2 max-w-[345px] min-w-[345px] rounded-xl shadow-md animate-slide-up transition-all duration-200 ${ingredient.checked ? "opacity-60" : "opacity-100"}`}>
-        <div className="bg-card text-tertiary rounded-xl px-4 py-3">
+        <div
+          className="bg-card text-tertiary rounded-xl px-4 py-3"
+          style={{ border: `3px solid ${borderColor}` }}
+        >
           <div className="flex items-center">
             <button
               onClick={() => onCheck(ingredient.id, !ingredient.checked)}
