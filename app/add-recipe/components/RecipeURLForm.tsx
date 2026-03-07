@@ -11,6 +11,15 @@ export default function RecipeURLForm() {
   const [badURL, setBadURL] = useState("");
   const [isError, setIsError] = useState(false);
 
+  const isValidURL = (url: string) => {
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === "http:" || parsed.protocol === "https:";
+    } catch {
+      return false;
+    }
+  };
+
   const handleRecipeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -54,7 +63,10 @@ export default function RecipeURLForm() {
           placeholder="Recipe URL"
           autoFocus
         />
-        <button className="bg-pop hover:bg-pop/80 text-tertiary rounded-md px-3 py-1.5 whitespace-nowrap transition-colors">
+        <button
+          disabled={!isValidURL(recipeURL)}
+          className="bg-pop hover:bg-pop/80 text-tertiary rounded-md px-3 py-1.5 whitespace-nowrap transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
           Enter Recipe
         </button>
       </form>
