@@ -146,6 +146,7 @@ function ManualForm() {
               onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "keywords", index: idx })}
               onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "keywords", index: idx, direction: dir })}
               placeholder="Enter Keyword..."
+              addLabel="Add Keyword"
             />
           </div>
         </section>
@@ -161,6 +162,7 @@ function ManualForm() {
               onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "ingredients", index: idx })}
               onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "ingredients", index: idx, direction: dir })}
               placeholder="Enter Ingredient"
+              addLabel="Add Ingredient"
               useTextarea
             />
           </div>
@@ -172,6 +174,7 @@ function ManualForm() {
               onRemove={(idx) => dispatch({ type: "REMOVE_ITEM", field: "instructions", index: idx })}
               onReorder={(idx, dir) => dispatch({ type: "REORDER_ITEM", field: "instructions", index: idx, direction: dir })}
               placeholder="Enter Instruction"
+              addLabel="Add Instruction"
               useTextarea
             />
           </div>

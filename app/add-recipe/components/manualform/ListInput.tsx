@@ -7,6 +7,7 @@ function ListInput({
   onRemove,
   onReorder,
   placeholder,
+  addLabel,
   useTextarea = false,
 }: {
   items: string[];
@@ -14,6 +15,7 @@ function ListInput({
   onRemove: (index: number) => void;
   onReorder: (index: number, direction: "up" | "down") => void;
   placeholder: string;
+  addLabel: string;
   useTextarea?: boolean;
 }) {
   const [value, setValue] = useState("");
@@ -66,18 +68,18 @@ function ListInput({
           ))}
         </ul>
       )}
-      <form onSubmit={handleSubmit} className="flex items-start gap-2 max-w-sm mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <InputElement
-          className="flex-1 rounded-md bg-primary text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
+          className="w-full rounded-md bg-primary text-tertiary placeholder-tertiary/40 px-4 py-2 border border-white/10 focus:border-accent focus:outline-none resize-y"
           placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
         <button
           type="submit"
-          className="text-accent hover:text-accent-hover pt-2 transition-colors"
+          className="flex items-center gap-1.5 mx-auto mt-2 text-sm text-accent hover:text-accent-hover transition-colors"
         >
-          <Plus size={22} />
+          {addLabel} <Plus size={16} />
         </button>
       </form>
     </div>
